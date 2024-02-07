@@ -22,6 +22,7 @@ class NoticeController extends Controller
         $requestedData = (object)$request->json()->all();
         $mailing_id = [];
         $mailed_to = implode(',', array_column($requestedData->mail_to, 'name'));
+        $mailed_to_id = implode(',', array_column($requestedData->mail_to, 'id'));
         foreach ($requestedData->mail_to as $mail){
             $mailing_id[] = $mail['id'];
         }
@@ -30,7 +31,7 @@ class NoticeController extends Controller
         $data->subject = $requestedData->subject;
         $data->body = $requestedData->body;
         $data->mailed_to = $mailed_to;
-//        $data->mailed_to_id = $mailed_to_id;
+        $data->mailed_to_id = $mailed_to_id;
         $data->published_on = Carbon::today();
         $data->franchise_id =  $request->user()->franchise_id;
         $data->save();
