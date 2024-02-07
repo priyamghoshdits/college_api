@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\MenuManagement;
+use App\Models\User;
+use App\Models\UserType;
+use App\Http\Requests\StoreUserTypeRequest;
+use App\Http\Requests\UpdateUserTypeRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class UserTypeController extends Controller
+{
+
+    public function get_user_types()
+    {
+        $data = UserType::get();
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function save_user_type(Request $request)
+    {
+        $requestedData = (object)$request->json()->all();
+        $franchise_id = $request->user()->franchise_id;
+        $data = new UserType();
+        $data->name = $requestedData->name;
+        $data->save();
+
+        $menuManagement = MenuManagement::whereUserTypeId(1)->whereFranchiseId($franchise_id)->get();
+        foreach ($menuManagement as $item){
+            $menuManagementObject = new MenuManagement();
+            $menuManagementObject->user_type_id = $data->id;
+            $menuManagementObject->name = $item['name'];
+            $menuManagementObject->permission = 0;
+            $menuManagementObject->franchise_id = $franchise_id;
+            $menuManagementObject->save();
+        }
+
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function update_user_type(Request $request)
+    {
+        $requestedData = (object)$request->json()->all();
+        $data = UserType::find($requestedData->id);
+        $data->name = $requestedData->name;
+        $data->save();
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function delete_user_type($id)
+    {
+        $data = UserType::find($id);
+        $data->delete();
+
+        DB::select("delete FROM menu_management where user_type_id = ".$id);
+
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(UserType $userType)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateUserTypeRequest $request, UserType $userType)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(UserType $userType)
+    {
+        //
+    }
+}
