@@ -30,6 +30,7 @@ class NoticeController extends Controller
         $data->subject = $requestedData->subject;
         $data->body = $requestedData->body;
         $data->mailed_to = $mailed_to;
+        $data->mailed_to_id = $mailed_to_id;
         $data->published_on = Carbon::today();
         $data->franchise_id =  $request->user()->franchise_id;
         $data->save();
