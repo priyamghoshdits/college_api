@@ -23,6 +23,7 @@ class NoticeController extends Controller
         $mailing_id = [];
         $mailed_to = implode(',', array_column($requestedData->mail_to, 'name'));
         $mailed_to_id = implode(',', array_column($requestedData->mail_to, 'id'));
+        return response()->json(['success'=>$mailed_to_id,'data'=> $mailed_to], 200,[],JSON_NUMERIC_CHECK);
         foreach ($requestedData->mail_to as $mail){
             $mailing_id[] = $mail['id'];
         }
