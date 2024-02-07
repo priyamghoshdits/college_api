@@ -45,17 +45,22 @@ class NoticeController extends Controller
 //        })->afterResponse();
 
 
-        return response()->json(['success'=>$mailing_id,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_notices(Request $request)
     {
         $requestedData = (object)$request->json()->all();
+        $mailed_to = implode(',', array_column($requestedData->mail_to, 'name'));
+        $mailed_to_id = implode(',', array_column($requestedData->mail_to, 'id'));
+//        return response()->json(['success'=>$requestedData], 200,[],JSON_NUMERIC_CHECK);
+
+
         $data = Notice::find($requestedData->id);
         $data->subject = $requestedData->subject;
         $data->body = $requestedData->body;
-        $data->mailed_to = $requestedData->mailed_to ?? null;
-        $data->franchise_id =  $request->user()->franchise_id;
+        $data->mailed_to = $mailed_to;
+        $data->mailed_to_id = $mailed_to_id;
         $data->update();
 
         return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
