@@ -30,7 +30,7 @@ class NoticeController extends Controller
         $data->subject = $requestedData->subject;
         $data->body = $requestedData->body;
         $data->mailed_to = $mailed_to;
-        $data->mailed_to_id = $mailed_to_id;
+//        $data->mailed_to_id = $mailed_to_id;
         $data->published_on = Carbon::today();
         $data->franchise_id =  $request->user()->franchise_id;
         $data->save();
@@ -43,7 +43,7 @@ class NoticeController extends Controller
 //        })->afterResponse();
 
 
-        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>$mailing_id,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_notices(Request $request)
