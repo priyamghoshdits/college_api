@@ -39,13 +39,13 @@ class RolesSeeder extends Seeder
             ['name' => 'STUDENT ADMISSION'],
             ['name' => 'NOTICE'],
             ['name' => 'SUBJECT DETAILS'],
-            ['name' => 'SUBJECT QUESTION'],
+            ['name' => 'SUBJECT QUESTION'], // to be done later
             ['name' => 'FEES TYPE'],
-            ['name' => 'FEES STRUCTURE'],
-            ['name' => 'COLLECT FEES'],
+            ['name' => 'FEES STRUCTURE'], // to be done later
+            ['name' => 'COLLECT FEES'], // to be done later
             ['name' => 'DISCOUNT'],
             ['name' => 'AGENT'],
-            ['name' => 'ADD USER TYPE'],
+            ['name' => 'USER TYPE'],
             ['name' => 'UPLOAD CONTENT'],
             ['name' => 'ASSIGNMENT'],
             ['name' => 'STUDY MATERIAL'], //35
