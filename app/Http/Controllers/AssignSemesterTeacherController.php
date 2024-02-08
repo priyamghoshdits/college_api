@@ -71,7 +71,7 @@ class AssignSemesterTeacherController extends Controller
             }
         }
 
-        $assignSemesterTeacher = $data = AssignSemesterTeacher::whereCourseId($requestedData->course_id)
+        $assignSemesterTeacher  = AssignSemesterTeacher::whereCourseId($requestedData->course_id)
             ->whereSemesterId($requestedData->semester_id)
             ->first();
 //        $data = AssignSemesterTeacher::whereCourseId($requestedData->course_id)

@@ -47,22 +47,57 @@ class FeesStructureController extends Controller
         return response()->json(['success'=>1,'data'=>FeesStructureResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function delete_fees_structure($id)
+    public function delete_fees_structure(Request $request)
     {
-        $data = FeesStructure::find($id);
-        $data->delete();
-        return response()->json(['success'=>1,'data'=>FeesStructureResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
+        $requestedData = (object)$request->json()->all();
+        $course_id = $requestedData->course_id;
+        $semester_id = $requestedData->semester_id;
+
+        foreach ($requestedData->fees_types as $item){
+            $feesStructure = FeesStructure::whereCourseId($course_id)->whereSemesterId($semester_id)->whereFeesTypeId($item['fees_type_id'])->first();
+            $feesStructure->delete();
+        }
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_fees_structure(Request $request)
     {
-        $requestedData = (object)$request->json()->all();
-        $feesStructure = FeesStructure::find($requestedData->id);
-        $feesStructure->course_id = $requestedData->course_id;
-        $feesStructure->fees_type_id = $requestedData->fees_type_id;
-        $feesStructure->amount = $requestedData->amount;
-        $feesStructure->update();
-        return response()->json(['success'=>1,'data'=>new FeesStructureResource($feesStructure)], 200,[],JSON_NUMERIC_CHECK);
+
+        $requestedData = $request->json()->all();
+
+        foreach ($requestedData as $item){
+            $feesStructure = FeesStructure::whereCourseId($item['course_id'])->whereSemesterId($item['semester_id'])->whereFeesTypeId($item['fees_type_id'])->first();
+            if($feesStructure){
+                $feesStructure->amount = $item['amount'];
+                $feesStructure->update();
+            }else {
+                $feesStructure = new FeesStructure();
+                $feesStructure->course_id = $item['course_id'];
+                $feesStructure->semester_id = $item['semester_id'];
+                $feesStructure->fees_type_id = $item['fees_type_id'];
+                $feesStructure->amount = $item['amount'];
+                $feesStructure->save();
+            }
+        }
+
+        $feesStructure = FeesStructure::whereCourseId($requestedData[0]['course_id'])->whereSemesterId($requestedData[0]['semester_id'])->get();
+        $database_fees_type_id = [];
+        $req_fees_type_id = [];
+        foreach ($feesStructure as $item){
+            $database_fees_type_id[] = $item['fees_type_id'];
+        }
+        foreach ($requestedData as $item){
+            $req_fees_type_id[] = $item['fees_type_id'];
+        }
+
+        $arr = array_diff($database_fees_type_id,$req_fees_type_id);
+
+        foreach ($arr as $item){
+            $data = FeesStructure::whereCourseId($requestedData[0]['course_id'])->whereSemesterId($requestedData[0]['semester_id'])->whereFeesTypeId($item)->first();
+            $data->delete();
+        }
+
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_student_fees_details($student_id)

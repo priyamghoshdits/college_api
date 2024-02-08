@@ -253,7 +253,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getFeesStructureByCourseId/{course_id}",[FeesStructureController::class,'get_fees_structure_by_course_id']);
     Route::post("saveFeesStructure",[FeesStructureController::class,'save_fees_structure']);
     Route::post("updateFeesStructure",[FeesStructureController::class,'update_fees_structure']);
-    Route::get("deleteFeesStructure/{id}",[FeesStructureController::class,'delete_fees_structure']);
+    Route::post("deleteFeesStructure",[FeesStructureController::class,'delete_fees_structure']);
     Route::get("getStudentFeesDetails/{id}",[FeesStructureController::class,'get_student_fees_details']);
 
     //DISCOUNT
