@@ -22,6 +22,8 @@ class QuestionController extends Controller
 //            inner join subjects on subjects.id = subject_details.subject_id
 //            where questions.franchise_id = ".$request->user()->franchise_id);
 
+        $ret = [];
+
         $data = SubjectDetails::whereFranchiseId($request->user()->franchise_id)->get();
         foreach ($data as $list){
             $questionList = Question::whereSubjectDetailsId($list['id'])->get();
@@ -37,9 +39,12 @@ class QuestionController extends Controller
             }
             $list->questions = $questionList;
             $list->ans_count = Answersheet::whereSubjectDetailsId($list['id'])->whereStudentId($request->user()->id)->count();
+
+            if(count($questionList) > 0){
+                $ret[] = $list;
+            }
         }
-        return response()->json(['success'=>1,'data'=>QuestionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
-//        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>QuestionResource::collection($ret)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function save_questions(Request $request)
@@ -73,20 +78,46 @@ class QuestionController extends Controller
         return response()->json(['success'=>1, 'data' => new QuestionResource($getData)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Question $question)
+    public function update_questions(Request $request)
     {
-        //
+        $requestedData = (object)$request->json()->all();
+        $subject_details_id = $requestedData->subject_details_id;
+        foreach ($requestedData->questions as $list){
+            if($list['id']){
+                $data = Question::find($list['id']);
+                $data->question = $list['question'];
+                $data->option_1 = $list['option_1'];
+                $data->option_2 = $list['option_2'];
+                $data->option_3 = $list['option_3'];
+                $data->option_4 = $list['option_4'];
+                $data->marks = $list['marks'];
+                $data->answer = $list['answer'];
+                $data->update();
+            }else{
+                $data = new Question();
+                $data->subject_details_id = $subject_details_id;
+                $data->question = $list['question'];
+                $data->option_1 = $list['option_1'];
+                $data->option_2 = $list['option_2'];
+                $data->option_3 = $list['option_3'];
+                $data->option_4 = $list['option_4'];
+                $data->marks = $list['marks'];
+                $data->answer = $list['answer'];
+                $data->save();
+            }
+        }
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Question $question)
+    public function delete_questions(Request $request)
     {
-        //
+        $requestedData = (object)$request->json()->all();
+        foreach ($requestedData->questions as $list){
+            $questions = Question::find($list['id']);
+            $questions->delete();
+        }
+//        $getData = SubjectDetails::find($requestedData->subject_details_id);
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

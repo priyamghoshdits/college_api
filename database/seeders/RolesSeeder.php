@@ -47,8 +47,8 @@ class RolesSeeder extends Seeder
             ['name' => 'AGENT'],
             ['name' => 'USER TYPE'],
             ['name' => 'UPLOAD CONTENT'],
-            ['name' => 'ASSIGNMENT'],
-            ['name' => 'STUDY MATERIAL'], //35
+//            ['name' => 'ASSIGNMENT'],
+//            ['name' => 'STUDY MATERIAL'], //35
 
         ]);
     }

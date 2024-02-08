@@ -237,7 +237,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //QUESTIONS
     Route::get("getQuestions",[QuestionController::class,'get_questions']);
     Route::post("saveQuestions",[QuestionController::class,'save_questions']);
+    Route::post("updateQuestions",[QuestionController::class,'update_questions']);
     Route::get("updateStatus/{id}",[QuestionController::class,'updateStatus']);
+    Route::post("deleteQuestion",[QuestionController::class,'delete_questions']);
 //    Route::get("deleteSubjectDetails/{id?}",[QuestionController::class,'delete_subject_details']);
 
     //FEES TYPE
