@@ -332,6 +332,7 @@ Route::get("deleteTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTea
 // ATTENDANCE SAVE
 Route::post("saveAttendance",[AttendanceController::class,'save_attendance']);
 Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}",[AttendanceController::class,'get_student_attendance']);
+Route::get("getStudentOwnAttendance/{course_id}/{semester_id}/{date}",[AttendanceController::class,'get_student_attendance_own']);
 
 //SEMESTER TIME TABLE
 Route::post("saveSemesterTimeTable",[SemesterTimetableController::class,'save_semester_timetable']);

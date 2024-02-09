@@ -66,6 +66,16 @@ class AttendanceController extends Controller
 //        where users.user_type_id = 3;
     }
 
+    public function get_student_attendance_own($course_id, $semester_id, $date)
+    {
+        $attendance = DB::select("select attendances.id, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
+            inner join courses on courses.id = attendances.course_id
+            inner join semesters on semesters.id = attendances.semester_id
+            inner join subjects on subjects.id = attendances.subject_id
+            where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ?",[$course_id, $semester_id, $date]);
+        return response()->json(['success'=>1,'data' => $attendance], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function store(StoreAttendanceRequest $request)
     {
         //

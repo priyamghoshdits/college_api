@@ -43,6 +43,18 @@ class DatabaseSeeder extends Seeder
         $user->password= "12345678";
         $user->save();
 
+        $user = new User();
+        $user->identification_no = "self";
+        $user->first_name = "self";
+        $user->last_name = "";
+        $user->dob = "2000-09-12";
+        $user->category_id = 1;
+        $user->email= "agent@gmail.com";
+        $user->franchise_id= 1;
+        $user->user_type_id= 5;
+        $user->password= "12345678";
+        $user->save();
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

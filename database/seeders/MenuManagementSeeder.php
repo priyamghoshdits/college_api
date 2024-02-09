@@ -77,7 +77,9 @@ class MenuManagementSeeder extends Seeder
 
             ['user_type_id' => '1' , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1' , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -155,7 +157,9 @@ class MenuManagementSeeder extends Seeder
 
             ['user_type_id' => '2' , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2' , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -231,7 +235,9 @@ class MenuManagementSeeder extends Seeder
 
             ['user_type_id' => '3' , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3' , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -306,7 +312,9 @@ class MenuManagementSeeder extends Seeder
 
             ['user_type_id' => '4' , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4' , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -380,7 +388,9 @@ class MenuManagementSeeder extends Seeder
 
             ['user_type_id' => '5' , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5' , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
