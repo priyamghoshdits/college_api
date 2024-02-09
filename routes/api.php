@@ -336,6 +336,8 @@ Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}",
 //SEMESTER TIME TABLE
 Route::post("saveSemesterTimeTable",[SemesterTimetableController::class,'save_semester_timetable']);
 Route::get("getSemesterTimeTable",[SemesterTimetableController::class,'get_semester_timetable']);
+Route::post("updateSemesterTimeTable",[SemesterTimetableController::class,'update_semester_timetable']);
+Route::get("deleteSemesterTimeTable/{id}",[SemesterTimetableController::class,'delete_semester_timetable']);
 Route::get("getSemesterTimeTableByTeacherId/{teacher_id}",[SemesterTimetableController::class,'get_semester_timetable_by_teacher_id']);
 Route::get("getSemesterTimeTableByCourseAndSemesterId/{course_id}/{semester_id}",[SemesterTimetableController::class,'get_semester_timetable_by_courseId_semester_id']);
 

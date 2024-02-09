@@ -20,6 +20,7 @@ class RolesSeeder extends Seeder
             ['name' => 'SEMESTER'],
             ['name' => 'SUBJECT GROUP'],
             ['name' => 'ASSIGN SEMESTER TEACHER'],
+            ['name' => 'CREATE SEMESTER TIMETABLE'],
             ['name' => 'STAFF'],
             ['name' => 'LEAVE TYPE'],
             ['name' => 'ALLOCATE LEAVE'],
