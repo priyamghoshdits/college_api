@@ -49,10 +49,8 @@ class AttendanceController extends Controller
             inner join student_details on users.id =  student_details.student_id
             where users.user_type_id = 3 and student_details.course_id = ? and student_details.semester_id = ? and attendances.date = ? and attendances.subject_id = ?",[$course_id, $semester_id, $date, $subject_id]);
 
-//        return response()->json(['success'=>15,'data' =>count($attendanceTable)], 200,[],JSON_NUMERIC_CHECK);
-
         if(count($attendanceTable)>0){
-            return response()->json(['success'=>15,'data' => $attendanceTable], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>0,'data' => $attendanceTable], 200,[],JSON_NUMERIC_CHECK);
         }else{
             $data = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, 'absent' as attendance from users
                 inner join student_details on users.id =  student_details.student_id

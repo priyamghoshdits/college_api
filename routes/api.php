@@ -44,6 +44,7 @@ use App\Http\Controllers\MenuManagementController;
 use App\Http\Controllers\RolesAndPermissionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\StaffAttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -331,6 +332,8 @@ Route::get("deleteTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTea
 
 // ATTENDANCE SAVE
 Route::post("saveAttendance",[AttendanceController::class,'save_attendance']);
+Route::get("getStaffAttendance/{user_type_id}/{date}",[StaffAttendanceController::class,'get_staff_attendance']);
+Route::post("saveStaffAttendance",[StaffAttendanceController::class,'save_attendance']);
 Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}",[AttendanceController::class,'get_student_attendance']);
 Route::get("getStudentOwnAttendance/{course_id}/{semester_id}/{date}/{user_id}",[AttendanceController::class,'get_student_attendance_own']);
 
