@@ -29,6 +29,17 @@ class MemberController extends Controller
         return response()->json(['success'=>1,'data'=> $member], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_members_by_user_type_id($user_type_id)
+    {
+        $member = User::select('*', 'member_details.id as members_id', 'users.id as id')
+            ->leftjoin('member_details', 'member_details.user_id', '=', 'users.id')
+            ->leftjoin('leaves', 'leaves.user_id', '=', 'users.id')
+            ->leftjoin('leave_types', 'leave_types.id', '=', 'leaves.leave_type_id')
+            ->whereUserTypeId($user_type_id)
+            ->get();
+        return response()->json(['success'=>1,'data'=> $member], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function get_teachers(Request $request)
     {
         $member = User::select('*', 'member_details.id as members_id', 'users.id as id')
