@@ -6,11 +6,16 @@ use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\StudentResource;
 use App\Models\AssignSemesterTeacher;
+use App\Models\GeneratedPayroll;
+use App\Models\Leave;
+use App\Models\LeaveType;
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Models\StaffAttendance;
 use App\Models\StudentDetail;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -29,15 +34,29 @@ class MemberController extends Controller
         return response()->json(['success'=>1,'data'=> $member], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function get_members_by_user_type_id($user_type_id)
+    public function get_members_by_user_type_id($user_type_id, $month, $year)
     {
-        $member = User::select('*', 'member_details.id as members_id', 'users.id as id')
-            ->leftjoin('member_details', 'member_details.user_id', '=', 'users.id')
-            ->leftjoin('leaves', 'leaves.user_id', '=', 'users.id')
-            ->leftjoin('leave_types', 'leave_types.id', '=', 'leaves.leave_type_id')
-            ->whereUserTypeId($user_type_id)
+        $members = User::select('*','users.id as id','designations.name as designation_name', 'departments.name as department_name' ,'member_details.id as member_details_id')->whereUserTypeId(2)
+            ->join('member_details', 'member_details.user_id', '=', 'users.id')
+            ->join('designations', 'designations.id', '=', 'member_details.designation_id')
+            ->join('departments', 'departments.id', '=', 'member_details.department_id')
             ->get();
-        return response()->json(['success'=>1,'data'=> $member], 200,[],JSON_NUMERIC_CHECK);
+        foreach ($members as $member){
+            $member->no_of_days =Carbon::now()->month($month)->daysInMonth;
+            $member->generated = (GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first())? 1: 0;
+            $member->total_present = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('present')->count();
+            $member->total_absent = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('absent')->count();
+            $member->total_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
+                ->whereUserId($member['id'])
+                ->whereMonth('created_at',$month)
+                ->whereApproved(1)->first())->total_days;
+            $member->total_non_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
+                ->whereUserId($member['id'])
+                ->whereMonth('created_at',$month)
+                ->whereApproved(0)->first())->total_days;
+        }
+
+        return response()->json(['success'=>1,'data'=> $members], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_teachers(Request $request)
@@ -80,7 +99,6 @@ class MemberController extends Controller
         $data = (object)$request->json()->all();
         $subject = $data->subject;
         $message = $data->message;
-//        return response()->json(['success'=>1,'data'=> $data->user_type[0]->id], 200,[],JSON_NUMERIC_CHECK);
         foreach ($data->user_type as $userType){
             $users = User::whereUserTypeId($userType['id'])->get();
             foreach($users as $user){
@@ -183,5 +201,31 @@ class MemberController extends Controller
         }
         $user->token = request()->bearerToken();
         return response()->json(['success'=>1, 'data' => new LoginResource($user)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function testUser(){
+        $month = 02;
+        $user_type_id = 02;
+        $members = User::select('*','users.id as id', 'member_details.id as member_details_id')->whereUserTypeId(2)
+            ->join('member_details', 'member_details.user_id', '=', 'users.id')
+            ->get();
+        foreach ($members as $member){
+            $member->no_of_days =Carbon::now()->month($month)->daysInMonth;
+            $member->no_of_days_present = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('present')->count();
+            $member->no_of_days_absent = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('absent')->count();;
+            $member->leaves = LeaveType::get();
+            foreach ($member->leaves as $leaves){
+                $leaves->total_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
+                    ->whereUserId($member['id'])
+                    ->whereLeaveTypeId($leaves['id'])
+                    ->whereApproved(1)->first())->total_days;
+                $leaves->total_non_approved_leave =  (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
+                    ->whereUserId($member['id'])
+                    ->whereLeaveTypeId($leaves['id'])
+                    ->whereApproved(0)->first())->total_days;
+            }
+        }
+
+        return response()->json(['success'=>1, 'data' => $members], 200,[],JSON_NUMERIC_CHECK);
     }
 }

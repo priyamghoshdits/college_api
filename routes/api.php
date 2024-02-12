@@ -45,6 +45,7 @@ use App\Http\Controllers\RolesAndPermissionController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\StaffAttendanceController;
+use App\Http\Controllers\GeneratedPayrollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::post("login",[UserController::class,'login']);
 Route::get("forgotPassword/{email_id}",[UserController::class,'forgot_password']);
 
 Route::get("initilialize",[RolesAndPermissionController::class,'initilialize']);
+
+
+Route::get("testF",[MemberController::class,'testUser']);
 
 
 Route::group(['middleware' => 'auth:sanctum'],function(){
@@ -168,9 +172,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("uploadProfilePic",[MemberController::class,'upload_file']);
     Route::post("promoteStudents",[MemberController::class,'promote_students']);
 
+    //GENERATED PAYROLL
+    Route::post("savePayroll",[GeneratedPayrollController::class,'save_payroll']);
+
     // GET ALL MEMBERS
     Route::get("getAllMembers",[MemberController::class,'get_all_members']);
-    Route::get("getMembers/{user_type_id}",[MemberController::class,'get_members_by_user_type_id']);
+    Route::get("getMembers/{user_type_id}/{month}/{year}",[MemberController::class,'get_members_by_user_type_id']);
     Route::get("getTeachers",[MemberController::class,'get_teachers']);
     Route::get("getStudents",[MemberController::class,'get_students']);
     Route::get("getTeacherByCourseAndSem/{course_id}/{semester_id}",[MemberController::class,'get_teacher_by_course_and_semester']);

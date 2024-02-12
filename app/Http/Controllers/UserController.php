@@ -260,45 +260,66 @@ class UserController extends Controller
 
     public function save_member(Request $request){
         $data = (object)$request->json()->all();
-        $user = new User();
-        $user->identification_no = $data->identification_no ;
-        $user->first_name = $data->first_name ;
-        $user->middle_name = $data->middle_name ?? null ;
-        $user->last_name = $data->last_name ;
-        $user->gender = $data->gender ;
-        $user->dob = $data->dob ;
-        $user->category_id  = $data->category_id  ;
-        $user->religion = $data->religion ;
-        $user->mobile_no = $data->mobile_no ;
-        $user->image = $data->image ?? null ;
-        $user->blood_group = $data->blood_group ;
-        $user->user_type_id  = $data->user_type_id ;
-        $user->franchise_id  = $request->user()->franchise_id ;
-        $user->email  = $data->email ;
-        $user->password = $data->password ;
-        $user->status = 1 ;
-        $user->save();
 
-        $member_details = new MemberDetails();
-        $member_details->user_id = $user->id;
-        $member_details->date_of_joining = $data->date_of_joining;
-        $member_details->department_id = $data->department_id;
-        $member_details->designation_id = $data->designation_id;
-        $member_details->epf_number = $data->epf_number;
-        $member_details->basic_salary = $data->basic_salary;
-        $member_details->emergency_phone_number = $data->emergency_phone_number;
-        $member_details->location = $data->location;
-        $member_details->contract_type = $data->contract_type;
-        $member_details->bank_account_number = $data->bank_account_number;
-        $member_details->bank_name = $data->bank_name;
-        $member_details->ifsc_code = $data->ifsc_code;
-        $member_details->bank_branch_name = $data->bank_branch_name;
-        $member_details->material_status = $data->material_status;
-        $member_details->work_experience = $data->work_experience;
-        $member_details->qualification = $data->qualification;
-        $member_details->current_address = $data->current_address;
-        $member_details->permanent_address = $data->permanent_address;
-        $member_details->save();
+        DB::beginTransaction();
+        try {
+            $pass = rand(100000,999999);
+            $user = new User();
+            $user->identification_no = $data->identification_no ;
+            $user->first_name = $data->first_name ;
+            $user->middle_name = $data->middle_name ?? null ;
+            $user->last_name = $data->last_name ;
+            $user->gender = $data->gender ;
+            $user->dob = $data->dob ;
+            $user->category_id  = $data->category_id  ;
+            $user->religion = $data->religion ;
+            $user->mobile_no = $data->mobile_no ;
+            $user->image = $data->image ?? null ;
+            $user->blood_group = $data->blood_group ;
+            $user->user_type_id  = $data->user_type_id ;
+            $user->franchise_id  = $request->user()->franchise_id ;
+            $user->email  = $data->email ;
+            $user->password = $pass ;
+            $user->status = 1 ;
+            $user->save();
+
+            $email_id = $data->email;
+
+            $member_details = new MemberDetails();
+            $member_details->user_id = $user->id;
+            $member_details->date_of_joining = $data->date_of_joining;
+            $member_details->department_id = $data->department_id;
+            $member_details->designation_id = $data->designation_id;
+            $member_details->epf_number = $data->epf_number;
+            $member_details->basic_salary = $data->basic_salary;
+            $member_details->emergency_phone_number = $data->emergency_phone_number;
+            $member_details->location = $data->location;
+            $member_details->contract_type = $data->contract_type;
+            $member_details->bank_account_number = $data->bank_account_number;
+            $member_details->bank_name = $data->bank_name;
+            $member_details->ifsc_code = $data->ifsc_code;
+            $member_details->bank_branch_name = $data->bank_branch_name;
+            $member_details->material_status = $data->material_status;
+            $member_details->work_experience = $data->work_experience;
+            $member_details->qualification = $data->qualification;
+            $member_details->current_address = $data->current_address;
+            $member_details->permanent_address = $data->permanent_address;
+            $member_details->save();
+
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 200);
+        }
+
+        dispatch(function () use($data,$pass,$email_id){
+            Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
+            , 'password' => $pass) , function ($message) use($email_id) {
+                $message->from('rudkarsh@rgoi.in');
+                $message->to($email_id);
+                $message->subject('Test mail');
+            });
+        })->afterResponse();
 
         return response()->json(['success'=>1,'data'=> new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
     }
