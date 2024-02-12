@@ -116,6 +116,7 @@ class UserController extends Controller
             $user->save();
 
             $email_id = $data->email;
+            $mobile_no = $data->mobile_no;
 
             $student_details = new StudentDetail();
             $student_details->student_id  = $user->id ;
@@ -158,9 +159,9 @@ class UserController extends Controller
             ->where('users.id',$user->id)
             ->first();
 
-        dispatch(function () use($data,$pass,$email_id){
+        dispatch(function () use($data,$pass,$email_id,$mobile_no){
             Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
-            , 'password' => $pass) , function ($message) use($email_id) {
+            , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
                 $message->from('rudkarsh@rgoi.in');
                 $message->to($email_id);
                 $message->subject('Test mail');
