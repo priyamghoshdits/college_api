@@ -7,6 +7,7 @@ use App\Http\Resources\MemberResource;
 use App\Http\Resources\StudentResource;
 use App\Models\AssignSemesterTeacher;
 use App\Models\GeneratedPayroll;
+use App\Models\Holiday;
 use App\Models\Leave;
 use App\Models\LeaveType;
 use App\Models\Member;
@@ -43,9 +44,11 @@ class MemberController extends Controller
             ->get();
         foreach ($members as $member){
             $member->no_of_days =Carbon::now()->month($month)->daysInMonth;
+            $member->total_holidays = Holiday::whereMonth('date',$month)->count();
             $member->generated = (GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first())? 1: 0;
             $member->total_present = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('present')->count();
-            $member->total_absent = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('absent')->count();
+//            $member->total_absent = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('absent')->count();
+            $member->total_absent = $member->no_of_days - $member->total_present - $member->total_holidays;
             $member->total_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
                 ->whereUserId($member['id'])
                 ->whereMonth('created_at',$month)

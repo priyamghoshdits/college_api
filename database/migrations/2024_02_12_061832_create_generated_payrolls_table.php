@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('year')->nullable(false);
             $table->integer('basic_salary')->nullable(false);
             $table->integer('gross_salary')->nullable(false);
+            $table->integer('net_salary')->nullable(false);
             $table->integer('total_present')->nullable(false);
             $table->integer('total_absent')->nullable(false);
             $table->integer('total_leave')->nullable(false);

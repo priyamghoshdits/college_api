@@ -29,6 +29,7 @@ class RolesSeeder extends Seeder
             ['name' => 'DESIGNATION'],
             ['name' => 'CATEGORY'],
             ['name' => 'HOLIDAY'],
+            ['name' => 'PAYROLL'],
             ['name' => 'PERIOD ATTENDANCE'], // TO BE DONE LATER
             ['name' => 'ADD ITEM'],
             ['name' => 'ISSUE BOOK'],

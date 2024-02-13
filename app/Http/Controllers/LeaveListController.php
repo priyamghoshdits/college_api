@@ -27,11 +27,21 @@ class LeaveListController extends Controller
         return response()->json(['success'=>1,'data'=>new LeaveAllocationResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function update_leave_list(Request $request){
+        $requestedData = (object)$request->json()->all();
+        $data = LeaveList::whereUserId($requestedData->user_id)->whereLeaveTypeId($requestedData->leave_type_id)->first();
+        $data->total_leave = $requestedData->total_leave;
+        $data->update();
+        return response()->json(['success'=>1,'data'=>new LeaveAllocationResource($data)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function delete_leave_list($id)
     {
-        $data = LeaveList::whereUserId($id)->first();
-        $data->delete();
-        return response()->json(['success'=>1,'data'=>new LeaveAllocationResource($data)], 200,[],JSON_NUMERIC_CHECK);
+        $data = LeaveList::whereUserId($id)->get();
+        foreach ($data as $item){
+            $item->delete();
+        }
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

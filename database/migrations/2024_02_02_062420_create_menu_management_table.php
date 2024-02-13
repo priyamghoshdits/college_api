@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('menu_management', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_type_id')->references('id')->on('user_types')->onDelete('cascade');
+            $table->integer("groups");
             $table->string("name");
             $table->boolean('permission');
             $table->foreignId('franchise_id')->references('id')->on('franchises')->onDelete('cascade');

@@ -10,17 +10,27 @@ use App\Models\RolesAndPermission;
 use App\Models\UserType;
 use Couchbase\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class RolesController extends Controller
 {
     public function get_roles_and_permission(Request $request)
     {
-        $data = Roles::get();
-        $user_type_id = $request->user()->user_type_id;
-        foreach ($data as $list){
-            $list->user_type_id = $user_type_id;
+        if(Cache::has('get_roles_and_permission')){
+            $data = Cache::get('get_roles_and_permission');
+            return response()->json(['success'=>1,'from'=>'Cache','data'=>RolesAndPermissionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
+        }else{
+            $data = Cache::rememberForever('get_roles_and_permission', function () use($request) {
+                $data = Roles::get();
+                $user_type_id = $request->user()->user_type_id;
+                foreach ($data as $list){
+                    $list->user_type_id = $user_type_id;
+                }
+                return $data;
+            });
         }
+
         return response()->json(['success'=>1,'data'=>RolesAndPermissionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
@@ -59,6 +69,7 @@ class RolesController extends Controller
         $roleAndPermission = RolesAndPermission::find($id);
         $roleAndPermission->permission = ($roleAndPermission->permission == 0)?1:0;
         $roleAndPermission->update();
+        Cache::forget('get_roles_and_permission');
         return response()->json(['success'=>1,'data'=>$roleAndPermission], 200,[],JSON_NUMERIC_CHECK);
     }
 

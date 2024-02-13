@@ -19,6 +19,7 @@ class GeneratedPayrollController extends Controller
         $payroll->staff_id = $data->staff_id;
         $payroll->basic_salary = $data->basic_salary;
         $payroll->gross_salary = $data->gross_salary;
+        $payroll->net_salary = $data->net_salary;
         $payroll->total_present = $data->total_present;
         $payroll->total_absent = $data->total_absent;
         $payroll->total_leave = $data->total_leave;

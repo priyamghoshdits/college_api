@@ -67,6 +67,7 @@ Route::post("login",[UserController::class,'login']);
 Route::get("forgotPassword/{email_id}",[UserController::class,'forgot_password']);
 
 Route::get("initilialize",[RolesAndPermissionController::class,'initilialize']);
+Route::get("clearCache",[RolesAndPermissionController::class,'clear_cache']);
 
 
 Route::get("testF",[MemberController::class,'testUser']);
@@ -209,6 +210,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //LEAVE LIST
     Route::get("getLeaveList",[LeaveListController::class,'get_leave_list']);
     Route::post("saveLeaveList",[LeaveListController::class,'save_leave_list']);
+    Route::post("updateLeaveList",[LeaveListController::class,'update_leave_list']);
     Route::get("deleteLeaveList/{id}",[LeaveListController::class,'delete_leave_list']);
 
     //LEAVE

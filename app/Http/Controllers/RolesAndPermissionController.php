@@ -7,6 +7,7 @@ use App\Models\RolesAndPermission;
 use App\Http\Requests\StoreRolesAndPermissionRequest;
 use App\Http\Requests\UpdateRolesAndPermissionRequest;
 use App\Models\UserType;
+use Illuminate\Support\Facades\Artisan;
 
 class RolesAndPermissionController extends Controller
 {
@@ -40,12 +41,10 @@ class RolesAndPermissionController extends Controller
         return 1;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function clear_cache()
     {
-        //
+        Artisan::call('cache:clear');
+        return "done";
     }
 
     /**

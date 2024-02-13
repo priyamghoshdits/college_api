@@ -285,6 +285,7 @@ class UserController extends Controller
             $user->save();
 
             $email_id = $data->email;
+            $mobile_no = $user->mobile_no;
 
             $member_details = new MemberDetails();
             $member_details->user_id = $user->id;
@@ -306,21 +307,24 @@ class UserController extends Controller
             $member_details->current_address = $data->current_address;
             $member_details->permanent_address = $data->permanent_address;
             $member_details->save();
-
             DB::commit();
+
+            dispatch(function () use($user,$pass,$email_id,$mobile_no){
+                Mail::send('welcome_password',array('name'=>$user->first_name." ".$user->middle_name." ".$user->last_name
+                , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
+                    $message->from('rudkarsh@rgoi.in');
+                    $message->to($email_id);
+                    $message->subject('Test mail');
+                });
+            })->afterResponse();
+
+            return response()->json(['success'=>1,'data'=>new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
         }catch(\Exception $e){
             DB::rollBack();
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 200);
         }
 
-        dispatch(function () use($data,$pass,$email_id){
-            Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
-            , 'password' => $pass) , function ($message) use($email_id) {
-                $message->from('rudkarsh@rgoi.in');
-                $message->to($email_id);
-                $message->subject('Test mail');
-            });
-        })->afterResponse();
+
 
         return response()->json(['success'=>1,'data'=> new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
     }

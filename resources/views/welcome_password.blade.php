@@ -43,7 +43,7 @@
     <div class="container">
         <div class="emailaera">
             <div class="emailimg">
-                <img src="{{asset('user_image/no_image.jpg')}}" alt="icon">
+{{--                <img src="{{asset('user_image/no_image.jpg')}}" alt="icon">--}}
 {{--                <img src="{{asset()}}" alt="icon">--}}
             </div>
             <div class="emailcontent">
