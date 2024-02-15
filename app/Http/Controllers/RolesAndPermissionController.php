@@ -44,6 +44,8 @@ class RolesAndPermissionController extends Controller
     public function clear_cache()
     {
         Artisan::call('cache:clear');
+        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         return "done";
     }
 

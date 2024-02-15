@@ -17,7 +17,7 @@ class RolesController extends Controller
 {
     public function get_roles_and_permission(Request $request)
     {
-        if(Cache::has('get_roles_and_permission')){
+        if(Cache::has('get_roles_and_permission_'.$request->user()->user_type_id)){
             $data = Cache::get('get_roles_and_permission');
             return response()->json(['success'=>1,'from'=>'Cache','data'=>RolesAndPermissionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
         }else{
@@ -69,7 +69,7 @@ class RolesController extends Controller
         $roleAndPermission = RolesAndPermission::find($id);
         $roleAndPermission->permission = ($roleAndPermission->permission == 0)?1:0;
         $roleAndPermission->update();
-        Cache::forget('get_roles_and_permission');
+        Cache::forget('get_roles_and_permission_'.$roleAndPermission->user_type_id);
         return response()->json(['success'=>1,'data'=>$roleAndPermission], 200,[],JSON_NUMERIC_CHECK);
     }
 

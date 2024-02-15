@@ -8,6 +8,7 @@ use App\Http\Requests\StoreAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AgentController extends Controller
 {
@@ -34,6 +35,17 @@ class AgentController extends Controller
         $data->commission_percentage = $requestedData->commission_percentage;
         $data->status = 1;
         $data->save();
+
+        $email_id = $data->email;
+
+        dispatch(function () use($data,$pass,$email_id){
+            Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
+            , 'password' => $pass) , function ($message) use($email_id) {
+                $message->from('rudkarsh@rgoi.in');
+                $message->to($email_id);
+                $message->subject('Forgot Passowrd');
+            });
+        })->afterResponse();
         return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
     }
 

@@ -21,6 +21,7 @@ class LoginResource extends JsonResource
             'middle_name' => $this->first_name,
             'last_name' => $this->last_name,
             'user_type_id' => $this->user_type_id,
+            'user_type_name' => UserType::find($this->user_type_id)->name,
             'image' => $this->image,
             'email' => $this->email,
             'token' => $this->token

@@ -97,17 +97,17 @@ class UserController extends Controller
             $pass = rand(100000,999999);
 
             $user = new User();
-            $user->identification_no = $data->identification_no ;
+            $user->identification_no = $data->identification_no ?? null;
             $user->first_name = $data->first_name ;
             $user->middle_name = $data->middle_name ?? null ;
             $user->last_name = $data->last_name ;
-            $user->gender = $data->gender ;
-            $user->dob = $data->dob ;
+            $user->gender = $data->gender ?? null;
+            $user->dob = $data->dob  ?? null;
             $user->category_id  = $data->category_id  ;
-            $user->religion = $data->religion ;
-            $user->mobile_no = $data->mobile_no ;
+            $user->religion = $data->religion  ?? null;
+            $user->mobile_no = $data->mobile_no ?? null ;
             $user->image = $data->image ?? null ;
-            $user->blood_group = $data->blood_group ;
+            $user->blood_group = $data->blood_group  ?? null;
             $user->user_type_id  = 3 ;
             $user->franchise_id  = $request->user()->franchise_id ;
             $user->email  = $data->email ;
@@ -124,26 +124,26 @@ class UserController extends Controller
             $student_details->semester_id  = $data->semester_id ;
             $student_details->agent_id  = $data->agent_id ;
             $student_details->current_semester_id  = $data->semester_id ;
-            $student_details->session_id = $data->session_id ;
-            $student_details->admission_date = $data->admission_date ;
-            $student_details->father_name = $data->father_name ;
-            $student_details->father_occupation = $data->father_occupation ;
-            $student_details->father_phone = $data->father_phone ;
-            $student_details->mother_name = $data->mother_name ;
-            $student_details->mother_occupation = $data->mother_occupation ;
-            $student_details->material_status = $data->material_status ;
-            $student_details->guardian_name = $data->guardian_name ;
-            $student_details->guardian_phone = $data->guardian_phone ;
-            $student_details->guardian_email = $data->guardian_email ;
+            $student_details->session_id = $data->session_id  ?? null;
+            $student_details->admission_date = $data->admission_date  ?? null;
+            $student_details->father_name = $data->father_name  ?? null;
+            $student_details->father_occupation = $data->father_occupation  ?? null;
+            $student_details->father_phone = $data->father_phone  ?? null;
+            $student_details->mother_name = $data->mother_name  ?? null;
+            $student_details->mother_occupation = $data->mother_occupation  ?? null;
+            $student_details->material_status = $data->material_status  ?? null;
+            $student_details->guardian_name = $data->guardian_name  ?? null;
+            $student_details->guardian_phone = $data->guardian_phone  ?? null;
+            $student_details->guardian_email = $data->guardian_email  ?? null;
 //        $student_details->admission_status = $data->admission_status ;
-            $student_details->admission_status = 1 ;
-            $student_details->emergency_phone_number = $data->emergency_phone_number ;
-            $student_details->current_address = $data->current_address ;
-            $student_details->permanent_address = $data->permanent_address ;
-            $student_details->mother_phone = $data->mother_phone ;
-            $student_details->guardian_relation = $data->guardian_relation ;
-            $student_details->guardian_address = $data->guardian_address ;
-            $student_details->guardian_occupation = $data->guardian_occupation ;
+            $student_details->admission_status = $data->admission_status ?? null ;
+            $student_details->emergency_phone_number = $data->emergency_phone_number ?? null ;
+            $student_details->current_address = $data->current_address ?? null ;
+            $student_details->permanent_address = $data->permanent_address ?? null ;
+            $student_details->mother_phone = $data->mother_phone ?? null ;
+            $student_details->guardian_relation = $data->guardian_relation ?? null ;
+            $student_details->guardian_address = $data->guardian_address ?? null ;
+            $student_details->guardian_occupation = $data->guardian_occupation ?? null ;
             $student_details->save();
 
             DB::commit();
@@ -159,14 +159,16 @@ class UserController extends Controller
             ->where('users.id',$user->id)
             ->first();
 
-        dispatch(function () use($data,$pass,$email_id,$mobile_no){
-            Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
-            , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
-                $message->from('rudkarsh@rgoi.in');
-                $message->to($email_id);
-                $message->subject('Test mail');
-            });
-        })->afterResponse();
+        if($student_details->admission_status == 1){
+            dispatch(function () use($data,$pass,$email_id,$mobile_no){
+                Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
+                , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
+                    $message->from('rudkarsh@rgoi.in');
+                    $message->to($email_id);
+                    $message->subject('Test mail');
+                });
+            })->afterResponse();
+        }
 
         return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -249,7 +251,6 @@ class UserController extends Controller
             $student_details->save();
         }
 
-
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereUserTypeId(3)
@@ -308,7 +309,6 @@ class UserController extends Controller
             $member_details->permanent_address = $data->permanent_address;
             $member_details->save();
             DB::commit();
-
             dispatch(function () use($user,$pass,$email_id,$mobile_no){
                 Mail::send('welcome_password',array('name'=>$user->first_name." ".$user->middle_name." ".$user->last_name
                 , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
