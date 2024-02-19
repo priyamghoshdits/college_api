@@ -18,10 +18,10 @@ class RolesController extends Controller
     public function get_roles_and_permission(Request $request)
     {
         if(Cache::has('get_roles_and_permission_'.$request->user()->user_type_id)){
-            $data = Cache::get('get_roles_and_permission');
+            $data = Cache::get(('get_roles_and_permission_'.$request->user()->user_type_id));
             return response()->json(['success'=>1,'from'=>'Cache','data'=>RolesAndPermissionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
         }else{
-            $data = Cache::rememberForever('get_roles_and_permission', function () use($request) {
+            $data = Cache::rememberForever(('get_roles_and_permission_'.$request->user()->user_type_id), function () use($request) {
                 $data = Roles::get();
                 $user_type_id = $request->user()->user_type_id;
                 foreach ($data as $list){

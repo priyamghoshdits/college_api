@@ -47,6 +47,8 @@ class RolesSeeder extends Seeder
             ['name' => 'COLLECT FEES'],
             ['name' => 'DISCOUNT'],
             ['name' => 'AGENT'],
+            ['name' => 'FRANCHISE'],
+            ['name' => 'AGENT STUDENT ENTRY'],
             ['name' => 'USER TYPE'],
             ['name' => 'UPLOAD CONTENT'],
 //            ['name' => 'ASSIGNMENT'],

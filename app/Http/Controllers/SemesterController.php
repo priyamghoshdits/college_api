@@ -7,6 +7,7 @@ use App\Models\Semester;
 use App\Http\Requests\StoreSemesterRequest;
 use App\Http\Requests\UpdateSemesterRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SemesterController extends Controller
 {
@@ -46,9 +47,17 @@ class SemesterController extends Controller
 
     public function semester_by_course($id)
     {
-        $data = CourseGroup::select('semesters.id as semester_id','semesters.name')
-            ->join('semesters', 'semesters.id', '=', 'course_groups.semester_id')
-            ->whereCourseId($id)->get();
+        if(Cache::has('semester_by_course_'.$id)){
+            $data = Cache::get('semester_by_course_'.$id);
+            return response()->json(['success'=>1,'from'=>'Cache','data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        }else{
+            $data = Cache::rememberForever('semester_by_course_'.$id, function () use($id) {
+                return CourseGroup::select('semesters.id as semester_id','semesters.name')
+                    ->join('semesters', 'semesters.id', '=', 'course_groups.semester_id')
+                    ->whereCourseId($id)->get();
+            });
+        }
+
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 

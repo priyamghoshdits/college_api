@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\CourseGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
@@ -29,6 +30,8 @@ class CourseController extends Controller
         $course->duration = $requestedData->duration;
         $course->save();
 
+        Cache::forget('semester_by_course_'.$course->id);
+
         foreach ($requestedData->semester as $lists){
             $list = (object)$lists;
             $courseGroup = new CourseGroup();
@@ -46,6 +49,7 @@ class CourseController extends Controller
         $course = Course::find($id);
         $course->delete();
         DB::select("delete from course_groups where course_id = ".$id);
+        Cache::forget('semester_by_course_'.$course->id);
         return response()->json(['success'=>1,'data'=>$course], 200,[],JSON_NUMERIC_CHECK);
     }
 
@@ -70,6 +74,8 @@ class CourseController extends Controller
         $course->course_name = $requestedData->course_name;
         $course->duration = $requestedData->duration;
         $course->update();
+
+        Cache::forget('semester_by_course_'.$course->id);
 
         foreach ($requestedData->semester as $lists){
             $list = (object)$lists;

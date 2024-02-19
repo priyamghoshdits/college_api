@@ -46,7 +46,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\StaffAttendanceController;
 use App\Http\Controllers\GeneratedPayrollController;
-
+use App\Http\Controllers\FranchiseController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -304,6 +304,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getAnswerSheet",[AnswersheetController::class,'get_answersheet']);
     Route::post("saveAnswerSheet",[AnswersheetController::class,'save_answersheet']);
 
+    //GET SEMESTER BY COURSE
+    Route::get("getSemesterByCourse/{id}",[SemesterController::class,'semester_by_course']);
+
     //Content
     Route::get("getContent",[ContentController::class,'get_content']);
     Route::post("saveContent",[ContentController::class,'save_content']);
@@ -311,6 +314,19 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getStudyMaterial",[ContentController::class,'get_study_material']);
     Route::get("deleteContent/{id}",[ContentController::class,'delete_content']);
     Route::post("updateContent",[ContentController::class,'update_content']);
+
+    // ATTENDANCE SAVE
+    Route::post("saveAttendance",[AttendanceController::class,'save_attendance']);
+    Route::get("getStaffAttendance/{user_type_id}/{date}",[StaffAttendanceController::class,'get_staff_attendance']);
+    Route::post("saveStaffAttendance",[StaffAttendanceController::class,'save_attendance']);
+    Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}",[AttendanceController::class,'get_student_attendance']);
+    Route::get("getStudentOwnAttendance/{course_id}/{semester_id}/{date}/{user_id}",[AttendanceController::class,'get_student_attendance_own']);
+
+    //FRANCHISE
+    Route::get("getFranchise",[FranchiseController::class,'get_franchise']);
+    Route::post("saveFranchise",[FranchiseController::class,'save_franchise']);
+    Route::post("updateFranchise",[FranchiseController::class,'update_franchise']);
+    Route::get("deleteFranchise/{id}",[FranchiseController::class,'delete_franchise']);
 
 });
 
@@ -338,15 +354,6 @@ Route::post("updateSemesterTeacher",[AssignSemesterTeacherController::class,'upd
 Route::get("getTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTeacherController::class,'get_teachers']);
 Route::get("deleteTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTeacherController::class,'delete_assigned_semester_teacher']);
 
-
-
-// ATTENDANCE SAVE
-Route::post("saveAttendance",[AttendanceController::class,'save_attendance']);
-Route::get("getStaffAttendance/{user_type_id}/{date}",[StaffAttendanceController::class,'get_staff_attendance']);
-Route::post("saveStaffAttendance",[StaffAttendanceController::class,'save_attendance']);
-Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}",[AttendanceController::class,'get_student_attendance']);
-Route::get("getStudentOwnAttendance/{course_id}/{semester_id}/{date}/{user_id}",[AttendanceController::class,'get_student_attendance_own']);
-
 //SEMESTER TIME TABLE
 Route::post("saveSemesterTimeTable",[SemesterTimetableController::class,'save_semester_timetable']);
 Route::get("getSemesterTimeTable",[SemesterTimetableController::class,'get_semester_timetable']);
@@ -372,8 +379,7 @@ Route::post("saveCategory",[CategoryController::class,'save_category']);
 Route::post("updateCategory",[CategoryController::class,'update_category']);
 Route::get("deleteCategory/{id}",[CategoryController::class,'delete_category']);
 
-//GET SEMESTER BY COURSE
-Route::get("getSemesterByCourse/{id}",[SemesterController::class,'semester_by_course']);
+
 
 
 //STUDENT TOTAL PAID
