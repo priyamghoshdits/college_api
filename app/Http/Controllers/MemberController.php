@@ -13,6 +13,8 @@ use App\Models\LeaveType;
 use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Models\PayrollDeduction;
+use App\Models\PayrollEarnings;
 use App\Models\StaffAttendance;
 use App\Models\StudentDetail;
 use App\Models\User;
@@ -43,21 +45,26 @@ class MemberController extends Controller
             ->join('departments', 'departments.id', '=', 'member_details.department_id')
             ->get();
         foreach ($members as $member){
-            $member->no_of_days =Carbon::now()->month($month)->daysInMonth;
-            $member->total_holidays = Holiday::whereMonth('date',$month)->count();
             $member->generated = (GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first())? 1: 0;
-            $member->total_present = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('present')->count();
-//            $member->total_absent = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('absent')->count();
-            $member->total_absent = $member->no_of_days - $member->total_present - $member->total_holidays;
-            $member->total_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
-                ->whereUserId($member['id'])
-                ->whereMonth('created_at',$month)
-                ->whereApproved(1)->first())->total_days;
-            $member->total_non_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
-                ->whereUserId($member['id'])
-                ->whereMonth('created_at',$month)
-                ->whereApproved(0)->first())->total_days;
+            $member->payroll = ($member->generated==1)?GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first():null;
+            $member->earnings = ($member->generated==1)? PayrollEarnings::wherePayrollId($member->payroll->id)->get(): null;
+            $member->deduction = ($member->generated==1)? PayrollDeduction::wherePayrollId($member->payroll->id)->get(): null;
         }
+//        foreach ($members as $member){
+//            $member->no_of_days =Carbon::now()->month($month)->daysInMonth;
+//            $member->total_holidays = Holiday::whereMonth('date',$month)->count();
+//            $member->generated = (GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first())? 1: 0;
+//            $member->total_present = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('present')->count();
+//            $member->total_absent = $member->no_of_days - $member->total_present - $member->total_holidays;
+//            $member->total_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
+//                ->whereUserId($member['id'])
+//                ->whereMonth('created_at',$month)
+//                ->whereApproved(1)->first())->total_days;
+//            $member->total_non_approved_leave = (Leave::select(DB::raw('ifnull(sum(total_days), 0) as total_days'))
+//                ->whereUserId($member['id'])
+//                ->whereMonth('created_at',$month)
+//                ->whereApproved(0)->first())->total_days;
+//        }
 
         return response()->json(['success'=>1,'data'=> $members], 200,[],JSON_NUMERIC_CHECK);
     }
