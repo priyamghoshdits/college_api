@@ -47,6 +47,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\StaffAttendanceController;
 use App\Http\Controllers\GeneratedPayrollController;
 use App\Http\Controllers\FranchiseController;
+use App\Http\Controllers\PayrollTypesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -327,6 +328,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveFranchise",[FranchiseController::class,'save_franchise']);
     Route::post("updateFranchise",[FranchiseController::class,'update_franchise']);
     Route::get("deleteFranchise/{id}",[FranchiseController::class,'delete_franchise']);
+
+    //PAYROLL TYPES
+    Route::get("getPayrollTypes",[PayrollTypesController::class,'get_payroll_types']);
+    Route::post("savePayrollTypes",[PayrollTypesController::class,'save_payroll_types']);
+    Route::post("updatePayrollTypes",[PayrollTypesController::class,'update_payroll_types']);
+    Route::get("deletePayrollTypes/{id}",[PayrollTypesController::class,'delete_payroll_types']);
 
 });
 
