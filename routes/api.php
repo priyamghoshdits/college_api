@@ -49,6 +49,8 @@ use App\Http\Controllers\GeneratedPayrollController;
 use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\PayrollTypesController;
 use App\Http\Controllers\ItemSupplierController;
+use App\Http\Controllers\ItemStoreController;
+use App\Http\Controllers\ItemStockController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -341,6 +343,18 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveItemSupplier",[ItemSupplierController::class,'save_item_supplier']);
     Route::post("updateItemSupplier",[ItemSupplierController::class,'update_item_supplier']);
     Route::get("deleteItemSupplier/{id}",[ItemSupplierController::class,'delete_item_supplier']);
+
+    //ITEM STORE
+    Route::get("getItemStore",[ItemStoreController::class,'get_item_store']);
+    Route::post("saveItemStore",[ItemStoreController::class,'save_item_store']);
+    Route::post("updateItemStore",[ItemStoreController::class,'update_item_store']);
+    Route::get("deleteItemStore/{id}",[ItemStoreController::class,'delete_item_store']);
+
+    //ITEM STOCK
+    Route::get("getItemStock",[ItemStockController::class,'get_item_stock']);
+    Route::post("saveItemStock",[ItemStockController::class,'save_item_stock']);
+    Route::post("updateItemStock",[ItemStockController::class,'update_item_stock']);
+    Route::get("deleteItemStock/{id}",[ItemStockController::class,'delete_item_stock']);
 
 });
 
