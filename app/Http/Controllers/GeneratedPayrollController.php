@@ -46,7 +46,7 @@ class GeneratedPayrollController extends Controller
                 $payrollDeduction->amount = $deduction['amount'];
                 $payrollDeduction->save();
             }
-
+            DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 200);
