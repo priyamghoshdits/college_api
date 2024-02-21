@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ItemStock;
 use App\Models\ItemTypes;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

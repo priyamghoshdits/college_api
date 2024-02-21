@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_stocks', function (Blueprint $table) {
+        Schema::create('inventory_issues', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_type_id')->references('id')->on('user_types')->onDelete('cascade');
+            $table->foreignId('issue_to')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('issue_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('item_type_id')->references('id')->on('item_types')->onDelete('cascade');
             $table->foreignId('inventory_item_id')->references('id')->on('inventory_items')->onDelete('cascade');
-            $table->foreignId('item_supplier_id')->references('id')->on('item_suppliers')->onDelete('cascade');
-            $table->foreignId('item_store_id')->references('id')->on('item_stores')->onDelete('cascade');
             $table->integer('quantity');
-            $table->integer('purchase_price');
-            $table->date('purchase_date');
-            $table->string('description')->nullable(true);
+            $table->date('issue_date');
+            $table->date('return_date');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('item_stocks');
+        Schema::dropIfExists('inventory_issues');
     }
 };

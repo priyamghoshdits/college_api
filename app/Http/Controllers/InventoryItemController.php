@@ -16,6 +16,12 @@ class InventoryItemController extends Controller
         return response()->json(['success'=>1,'data'=>InventoryItemResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_inventory_items_by_category($category_id)
+    {
+        $data = InventoryItem::whereItemTypeId($category_id)->get();
+        return response()->json(['success'=>1,'data'=>InventoryItemResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function save_inventory_items(Request $request)
     {
         $requestedData = (object)$request->json()->all();

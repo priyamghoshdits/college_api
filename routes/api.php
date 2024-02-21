@@ -51,6 +51,7 @@ use App\Http\Controllers\PayrollTypesController;
 use App\Http\Controllers\ItemSupplierController;
 use App\Http\Controllers\ItemStoreController;
 use App\Http\Controllers\ItemStockController;
+use App\Http\Controllers\InventoryIssueController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -169,6 +170,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
 
     //INVENTORY ITEM
     Route::get("getInventoryItems",[InventoryItemController::class,'get_inventory_items']);
+    Route::get("getInventoryItemsByCategory/{category_id}",[InventoryItemController::class,'get_inventory_items_by_category']);
     Route::post("saveInventoryItems",[InventoryItemController::class,'save_inventory_items']);
     Route::post("updateInventoryItems",[InventoryItemController::class,'update_inventory_items']);
     Route::get("deleteInventoryItems/{id}",[InventoryItemController::class,'delete_inventory_items']);
@@ -239,6 +241,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
 
     //USER TYPE
     Route::get("getUserTypes",[UserTypeController::class,'get_user_types']);
+    Route::get("getUserByUserTypes/{user_type_id}",[UserTypeController::class,'get_user_by_user_type_id']);
     Route::post("saveUserTypes",[UserTypeController::class,'save_user_type']);
     Route::post("updateUserTypes",[UserTypeController::class,'update_user_type']);
     Route::get("deleteUserTypes/{id}",[UserTypeController::class,'delete_user_type']);
@@ -355,6 +358,13 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveItemStock",[ItemStockController::class,'save_item_stock']);
     Route::post("updateItemStock",[ItemStockController::class,'update_item_stock']);
     Route::get("deleteItemStock/{id}",[ItemStockController::class,'delete_item_stock']);
+    Route::get("getQuantityByItemId/{item_id}",[ItemStockController::class,'get_quantity_by_item_id']);
+
+    //ITEM ISSUE
+    Route::get("getIssueItem",[InventoryIssueController::class,'get_issue_item']);
+    Route::post("saveIssueItem",[InventoryIssueController::class,'save_issue_item']);
+    Route::post("updateIssueItem",[InventoryIssueController::class,'update_issue_item']);
+    Route::get("deleteIssueItem/{id}",[InventoryIssueController::class,'delete_issue_item']);
 
 });
 

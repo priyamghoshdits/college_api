@@ -19,6 +19,11 @@ class UserTypeController extends Controller
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_user_by_user_type_id($user_type_id){
+        $data = User::whereUserTypeId($user_type_id)->get();
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function save_user_type(Request $request)
     {
         $requestedData = (object)$request->json()->all();

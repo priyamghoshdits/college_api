@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ItemStockResource;
 use App\Models\ItemStock;
 use App\Http\Requests\StoreItemStockRequest;
 use App\Http\Requests\UpdateItemStockRequest;
@@ -12,7 +13,7 @@ class ItemStockController extends Controller
     public function get_item_stock()
     {
         $data = ItemStock::get();
-        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>ItemStockResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function save_item_stock(Request $request)
@@ -28,7 +29,7 @@ class ItemStockController extends Controller
         $data->purchase_date = $requestData->purchase_date;
         $data->description = $requestData->description;
         $data->save();
-        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> new ItemStockResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_item_stock(Request $request)
@@ -44,22 +45,20 @@ class ItemStockController extends Controller
         $data->purchase_date = $requestData->purchase_date;
         $data->description = $requestData->description;
         $data->save();
-        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> new ItemStockResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function delete_item_stock($id)
     {
         $data = ItemStock::find($id);
         $data->delete();
-        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> new ItemStockResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ItemStock $itemStock)
+    public function get_quantity_by_item_id($item_id)
     {
-        //
+        $data = ItemStock::whereInventoryItemId($item_id)->first();
+        return response()->json(['success'=>1,'data'=> $data->quantity], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
