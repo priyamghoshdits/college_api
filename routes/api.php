@@ -365,6 +365,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveIssueItem",[InventoryIssueController::class,'save_issue_item']);
     Route::post("updateIssueItem",[InventoryIssueController::class,'update_issue_item']);
     Route::get("deleteIssueItem/{id}",[InventoryIssueController::class,'delete_issue_item']);
+    Route::get("updateStatusInventoryIssue/{id}",[InventoryIssueController::class,'update_status']);
 
 });
 

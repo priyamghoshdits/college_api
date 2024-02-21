@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\InventoryIssueResource;
 use App\Models\InventoryIssue;
 use App\Http\Requests\StoreInventoryIssueRequest;
 use App\Http\Requests\UpdateInventoryIssueRequest;
@@ -13,7 +14,7 @@ class InventoryIssueController extends Controller
     public function get_issue_item()
     {
         $data = InventoryIssue::get();
-        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>InventoryIssueResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function save_issue_item(Request $request)
@@ -35,7 +36,7 @@ class InventoryIssueController extends Controller
         $inventoryStock->quantity = $inventoryStock->quantity - $requestedData->quantity;
         $inventoryStock->update();
 
-        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new InventoryIssueResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_issue_item(Request $request)
@@ -51,22 +52,32 @@ class InventoryIssueController extends Controller
         $data->issue_date = $requestedData->issue_date;
         $data->return_date = $requestedData->return_date;
         $data->update();
-        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new InventoryIssueResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function delete_issue_item($id)
     {
         $data = InventoryIssue::find($id);
+        if($data->status == 1){
+            $inventoryStock = ItemStock::whereInventoryItemId($data->inventory_item_id)->first();
+            $inventoryStock->quantity = $inventoryStock->quantity + $data->quantity;
+            $inventoryStock->update();
+        }
         $data->delete();
-        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new InventoryIssueResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateInventoryIssueRequest $request, InventoryIssue $inventoryIssue)
+    public function update_status($id)
     {
-        //
+        $data = InventoryIssue::find($id);
+        $data->status = ($data->status==1)?0:1;
+        $data->update();
+
+        $inventoryStock = ItemStock::whereInventoryItemId($data->inventory_item_id)->first();
+        $inventoryStock->quantity = $inventoryStock->quantity + $data->quantity;
+        $inventoryStock->update();
+
+        return response()->json(['success'=>1,'data'=>new InventoryIssueResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

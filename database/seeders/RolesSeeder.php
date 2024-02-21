@@ -52,6 +52,12 @@ class RolesSeeder extends Seeder
             ['name' => 'AGENT STUDENT ENTRY'],
             ['name' => 'USER TYPE'],
             ['name' => 'UPLOAD CONTENT'],
+            ['name' => 'INVENTORY ADD ITEM'],
+            ['name' => 'INVENTORY ISSUE ITEM'],
+            ['name' => 'INVENTORY ITEM STOCK'],
+            ['name' => 'INVENTORY ITEM STORE'],
+            ['name' => 'INVENTORY ITEM SUPPLIER'],
+            ['name' => 'INVENTORY ITEM TYPE'],
 //            ['name' => 'ASSIGNMENT'],
 //            ['name' => 'STUDY MATERIAL'], //35
 
