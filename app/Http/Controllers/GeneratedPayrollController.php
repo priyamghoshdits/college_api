@@ -60,9 +60,16 @@ class GeneratedPayrollController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function save_proceed_to_pay(Request $request)
     {
-        //
+        $data = (object)$request->json()->all();
+        $generatedPayroll = GeneratedPayroll::find($data->id);
+        $generatedPayroll->payment_mode = $data->payment_mode;
+        $generatedPayroll->payment_date = $data->payment_date;
+        $generatedPayroll->status = 2;
+        $generatedPayroll->update();
+
+        return response()->json(['success'=>1,'data'=> $generatedPayroll], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
