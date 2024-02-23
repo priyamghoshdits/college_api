@@ -22,6 +22,9 @@ return new class extends Migration
             $table->integer('total_absent')->nullable(false);
             $table->integer('total_leave')->nullable(false);
             $table->float('deduction')->default(0);
+            $table->string('payment_mode')->nullable(true);
+            $table->date('payment_date')->nullable(true);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

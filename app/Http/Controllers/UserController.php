@@ -262,10 +262,9 @@ class UserController extends Controller
 
     public function save_member(Request $request){
         $data = (object)$request->json()->all();
-
+        $pass = rand(100000,999999);
         DB::beginTransaction();
         try {
-            $pass = rand(100000,999999);
             $user = new User();
             $user->identification_no = $data->identification_no ;
             $user->first_name = $data->first_name ;
@@ -309,6 +308,7 @@ class UserController extends Controller
             $member_details->permanent_address = $data->permanent_address;
             $member_details->save();
             DB::commit();
+
             dispatch(function () use($user,$pass,$email_id,$mobile_no){
                 Mail::send('welcome_password',array('name'=>$user->first_name." ".$user->middle_name." ".$user->last_name
                 , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
@@ -318,15 +318,12 @@ class UserController extends Controller
                 });
             })->afterResponse();
 
-            return response()->json(['success'=>1,'data'=>new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
         }catch(\Exception $e){
             DB::rollBack();
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 200);
         }
 
-
-
-        return response()->json(['success'=>1,'data'=> new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_member(Request $request){

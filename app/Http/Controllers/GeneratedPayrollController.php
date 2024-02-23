@@ -29,6 +29,7 @@ class GeneratedPayrollController extends Controller
             $payroll->total_absent = $data->member_payroll_form['total_absent'];
             $payroll->total_leave = $data->member_payroll_form['total_leave'];
             $payroll->deduction = $data->member_payroll_form['deduction'];
+            $payroll->status = 1;
             $payroll->save();
 
             foreach ($data->earnings as $earning){
