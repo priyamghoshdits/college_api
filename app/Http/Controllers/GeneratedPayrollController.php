@@ -72,12 +72,19 @@ class GeneratedPayrollController extends Controller
         return response()->json(['success'=>1,'data'=> $generatedPayroll], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreGeneratedPayrollRequest $request)
+    public function revert_proceed_to_pay($id)
     {
-        //
+        $generatedPayroll = GeneratedPayroll::find($id);
+        $generatedPayroll->status = 1;
+        $generatedPayroll->update();
+        return response()->json(['success'=>1,'data'=> $generatedPayroll], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function revert_generate($id)
+    {
+        $generatedPayroll = GeneratedPayroll::find($id);
+        $generatedPayroll->delete();
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

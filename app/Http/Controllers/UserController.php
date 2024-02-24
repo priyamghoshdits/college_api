@@ -109,7 +109,7 @@ class UserController extends Controller
             $user->image = $data->image ?? null ;
             $user->blood_group = $data->blood_group  ?? null;
             $user->user_type_id  = 3 ;
-            $user->franchise_id  = $request->user()->franchise_id ;
+            $user->franchise_id  = $data->franchise_id??$request->user()->franchise_id ;
             $user->email  = $data->email ;
             $user->password =  $pass;
             $user->status = 1 ;
@@ -278,7 +278,7 @@ class UserController extends Controller
             $user->image = $data->image ?? null ;
             $user->blood_group = $data->blood_group ;
             $user->user_type_id  = $data->user_type_id ;
-            $user->franchise_id  = $request->user()->franchise_id ;
+            $user->franchise_id  = $data->franchise_id ?? $request->user()->franchise_id ;
             $user->email  = $data->email ;
             $user->password = $pass ;
             $user->status = 1 ;

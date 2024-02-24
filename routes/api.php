@@ -182,6 +182,8 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //GENERATED PAYROLL
     Route::post("savePayroll",[GeneratedPayrollController::class,'save_payroll']);
     Route::post("saveProceedToPay",[GeneratedPayrollController::class,'save_proceed_to_pay']);
+    Route::get("revertToProceedToPay/{id}",[GeneratedPayrollController::class,'revert_proceed_to_pay']);
+    Route::get("revertToGenerate/{id}",[GeneratedPayrollController::class,'revert_generate']);
 
     // GET ALL MEMBERS
     Route::get("getAllMembers",[MemberController::class,'get_all_members']);
