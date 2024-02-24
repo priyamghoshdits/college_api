@@ -60,9 +60,9 @@ class MemberController extends Controller
                 ->whereUserId($member['id'])
                 ->whereMonth('created_at',$month)
                 ->whereApproved(0)->first())->total_days;
-            $member->payroll = ($member->generated==2)?GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first():null;
-            $member->earnings = ($member->generated==2)? PayrollEarningResource::collection(PayrollEarnings::wherePayrollId($member->payroll->id)->get()): null;
-            $member->deductions = ($member->generated==2)? PayrollDeductionResource::collection(PayrollDeduction::wherePayrollId($member->payroll->id)->get()): null;
+            $member->payroll = ($member->generated!=0)?GeneratedPayroll::where('month',$month)->where('year',$year)->whereStaffId($member['id'])->first():null;
+            $member->earnings = ($member->generated!=0)? PayrollEarningResource::collection(PayrollEarnings::wherePayrollId($member->payroll->id)->get()): null;
+            $member->deductions = ($member->generated!=0)? PayrollDeductionResource::collection(PayrollDeduction::wherePayrollId($member->payroll->id)->get()): null;
         }
 
         return response()->json(['success'=>1,'data'=> $members], 200,[],JSON_NUMERIC_CHECK);
