@@ -52,6 +52,9 @@ use App\Http\Controllers\ItemSupplierController;
 use App\Http\Controllers\ItemStoreController;
 use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\InventoryIssueController;
+use App\Http\Controllers\IncomeHeadController;
+use App\Http\Controllers\ExpenseHeadController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -369,6 +372,18 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateIssueItem",[InventoryIssueController::class,'update_issue_item']);
     Route::get("deleteIssueItem/{id}",[InventoryIssueController::class,'delete_issue_item']);
     Route::get("updateStatusInventoryIssue/{id}",[InventoryIssueController::class,'update_status']);
+
+    //INCOME HEAD API
+    Route::get("getIncomeHead",[IncomeHeadController::class,'get_income_head']);
+    Route::post("saveIncomeHead",[IncomeHeadController::class,'save_income_head']);
+    Route::post("updateIncomeHead",[IncomeHeadController::class,'update_income_head']);
+    Route::get("deleteIncomeHead/{id?}",[IncomeHeadController::class,'delete_income_head']);
+
+    //EXPENSE HEAD API
+    Route::get("getExpenseHead",[ExpenseHeadController::class,'get_expense_head']);
+    Route::post("saveExpenseHead",[ExpenseHeadController::class,'save_expense_head']);
+    Route::post("updateExpenseHead",[ExpenseHeadController::class,'update_expense_head']);
+    Route::get("deleteExpenseHead/{id?}",[ExpenseHeadController::class,'delete_expense_head']);
 
 });
 
