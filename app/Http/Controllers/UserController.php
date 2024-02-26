@@ -79,6 +79,22 @@ class UserController extends Controller
         return response()->json(['success'=>1,'data'=>$request->user()->currentAccessToken()->delete()], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_user_data(Request $request){
+        if($request->user()->user_type_id == 3){
+            $member = User::select('*','student_details.id as student_details_id','users.id as id')
+                ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+                ->whereId($request->user()->id)
+                ->find();
+            return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+        }
+        $member = User::select('*','student_details.id as student_details_id','users.id as id')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->where('users.id',$request->user()->id)
+            ->first();
+        return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+//        return $request->user()->id;
+    }
+
     public function delete_personal_access_token(){
         return PersonalAccessToken::where('last_used_at', '<=', Carbon::now()->subDays(1))->delete();
     }

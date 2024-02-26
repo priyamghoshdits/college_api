@@ -87,6 +87,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //LOGOUT
     Route::get("logout",[UserController::class,'logout']);
 
+    //GET LOGGED IN USER DATA
+    Route::get("getLoggedInUserData",[UserController::class,'get_user_data']);
+
     //HOLIDAY
     Route::post("saveHolidayForWholeYear",[HolidayController::class,'holiday_for_whole_year']);
     Route::post("saveHoliday",[HolidayController::class,'save_holiday']);

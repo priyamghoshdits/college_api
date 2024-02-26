@@ -81,7 +81,6 @@ class MemberController extends Controller
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereUserTypeId(3)
-//            ->whereAdmissionStatus(1)
             ->where('users.franchise_id',$request->user()->franchise_id)
             ->get();
 
