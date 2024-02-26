@@ -54,6 +54,8 @@ use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\InventoryIssueController;
 use App\Http\Controllers\IncomeHeadController;
 use App\Http\Controllers\ExpenseHeadController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\ExpenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -328,6 +330,14 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("deleteContent/{id}",[ContentController::class,'delete_content']);
     Route::post("updateContent",[ContentController::class,'update_content']);
 
+    //SUBJECT GROUP
+    Route::get("getSubjectGroup",[SubjectGroupController::class,'get_subject_group']);
+    Route::post("saveSubjectGroup",[SubjectGroupController::class,'save_subject_group']);
+    Route::post("updateSubjectGroup",[SubjectGroupController::class,'update_subject_group']);
+    Route::get("deleteSubjectGroup/{course_id?}",[SubjectGroupController::class,'delete_subject_group']);
+    Route::get("getSubjectGroup/{course_id?}/{semester_id?}",[SubjectGroupController::class,'get_subject_group_by_course_semester']);
+    Route::get("getSubject/{course_id?}/{semester_id?}",[SubjectGroupController::class,'get_subjects']);
+
     // ATTENDANCE SAVE
     Route::post("saveAttendance",[AttendanceController::class,'save_attendance']);
     Route::get("getStaffAttendance/{user_type_id}/{date}",[StaffAttendanceController::class,'get_staff_attendance']);
@@ -359,6 +369,34 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateItemStore",[ItemStoreController::class,'update_item_store']);
     Route::get("deleteItemStore/{id}",[ItemStoreController::class,'delete_item_store']);
 
+    //WEEK DAYS
+    Route::get("getWeekdays",[WeekDaysController::class,'get_week_days']);
+    Route::post("saveWeekdays",[WeekDaysController::class,'save_week_days']);
+    Route::post("updateWeekdays",[WeekDaysController::class,'update_week_days']);
+    Route::get("deleteWeekdays/{id}",[WeekDaysController::class,'delete_week_days']);
+
+
+    //CATEGORY
+    Route::get("getCategory",[CategoryController::class,'get_category']);
+    Route::post("saveCategory",[CategoryController::class,'save_category']);
+    Route::post("updateCategory",[CategoryController::class,'update_category']);
+    Route::get("deleteCategory/{id}",[CategoryController::class,'delete_category']);
+
+    // ASSIGN SEMESTER TEACHER
+    Route::get("getAssignedSemesterTeacher",[AssignSemesterTeacherController::class,'get_assigned_semester_teacher']);
+    Route::post("saveSemesterTeacher",[AssignSemesterTeacherController::class,'save_semester_teacher']);
+    Route::post("updateSemesterTeacher",[AssignSemesterTeacherController::class,'update_semester_teacher']);
+    Route::get("getTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTeacherController::class,'get_teachers']);
+    Route::get("deleteTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTeacherController::class,'delete_assigned_semester_teacher']);
+
+    //SEMESTER TIME TABLE
+    Route::post("saveSemesterTimeTable",[SemesterTimetableController::class,'save_semester_timetable']);
+    Route::get("getSemesterTimeTable",[SemesterTimetableController::class,'get_semester_timetable']);
+    Route::post("updateSemesterTimeTable",[SemesterTimetableController::class,'update_semester_timetable']);
+    Route::get("deleteSemesterTimeTable/{id}",[SemesterTimetableController::class,'delete_semester_timetable']);
+    Route::get("getSemesterTimeTableByTeacherId/{teacher_id}",[SemesterTimetableController::class,'get_semester_timetable_by_teacher_id']);
+    Route::get("getSemesterTimeTableByCourseAndSemesterId/{course_id}/{semester_id}",[SemesterTimetableController::class,'get_semester_timetable_by_courseId_semester_id']);
+
     //ITEM STOCK
     Route::get("getItemStock",[ItemStockController::class,'get_item_stock']);
     Route::post("saveItemStock",[ItemStockController::class,'save_item_stock']);
@@ -385,6 +423,18 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateExpenseHead",[ExpenseHeadController::class,'update_expense_head']);
     Route::get("deleteExpenseHead/{id?}",[ExpenseHeadController::class,'delete_expense_head']);
 
+    //INCOME API
+    Route::get("getIncome",[IncomeController::class,'get_income']);
+    Route::post("saveIncome",[IncomeController::class,'save_income']);
+    Route::post("updateIncome",[IncomeController::class,'update_income']);
+    Route::get("deleteIncome/{id?}",[IncomeController::class,'delete_income']);
+
+    //EXPENSE API
+    Route::get("getExpense",[ExpenseController::class,'get_expense']);
+    Route::post("saveExpense",[ExpenseController::class,'save_expense']);
+    Route::post("updateExpense",[ExpenseController::class,'update_expense']);
+    Route::get("deleteExpense/{id?}",[ExpenseController::class,'delete_expense']);
+
 });
 
 //TEST
@@ -395,46 +445,9 @@ Route::get("get_total_discount/{studentId}/{feesTypeId}",[PaymentController::cla
 Route::get("clearPersonalAccessToken",[UserController::class,'delete_personal_access_token']);
 Route::post("createUser",[UserController::class,'create_user']);
 
-//SUBJECT GROUP
-Route::get("getSubjectGroup",[SubjectGroupController::class,'get_subject_group']);
-Route::post("saveSubjectGroup",[SubjectGroupController::class,'save_subject_group']);
-Route::post("updateSubjectGroup",[SubjectGroupController::class,'update_subject_group']);
-Route::get("deleteSubjectGroup/{course_id?}",[SubjectGroupController::class,'delete_subject_group']);
-Route::get("getSubjectGroup/{course_id?}/{semester_id?}",[SubjectGroupController::class,'get_subject_group_by_course_semester']);
-Route::get("getSubject/{course_id?}/{semester_id?}",[SubjectGroupController::class,'get_subjects']);
-
-
-// ASSIGN SEMESTER TEACHER
-Route::get("getAssignedSemesterTeacher",[AssignSemesterTeacherController::class,'get_assigned_semester_teacher']);
-Route::post("saveSemesterTeacher",[AssignSemesterTeacherController::class,'save_semester_teacher']);
-Route::post("updateSemesterTeacher",[AssignSemesterTeacherController::class,'update_semester_teacher']);
-Route::get("getTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTeacherController::class,'get_teachers']);
-Route::get("deleteTeachersAssign/{course_id?}/{semester_id?}",[AssignSemesterTeacherController::class,'delete_assigned_semester_teacher']);
-
-//SEMESTER TIME TABLE
-Route::post("saveSemesterTimeTable",[SemesterTimetableController::class,'save_semester_timetable']);
-Route::get("getSemesterTimeTable",[SemesterTimetableController::class,'get_semester_timetable']);
-Route::post("updateSemesterTimeTable",[SemesterTimetableController::class,'update_semester_timetable']);
-Route::get("deleteSemesterTimeTable/{id}",[SemesterTimetableController::class,'delete_semester_timetable']);
-Route::get("getSemesterTimeTableByTeacherId/{teacher_id}",[SemesterTimetableController::class,'get_semester_timetable_by_teacher_id']);
-Route::get("getSemesterTimeTableByCourseAndSemesterId/{course_id}/{semester_id}",[SemesterTimetableController::class,'get_semester_timetable_by_courseId_semester_id']);
-
 
 
 Route::get("getDueFees/{id}",[FeesTypeController::class,'get_due_fees']);
-
-//WEEK DAYS
-Route::get("getWeekdays",[WeekDaysController::class,'get_week_days']);
-Route::post("saveWeekdays",[WeekDaysController::class,'save_week_days']);
-Route::post("updateWeekdays",[WeekDaysController::class,'update_week_days']);
-Route::get("deleteWeekdays/{id}",[WeekDaysController::class,'delete_week_days']);
-
-
-//CATEGORY
-Route::get("getCategory",[CategoryController::class,'get_category']);
-Route::post("saveCategory",[CategoryController::class,'save_category']);
-Route::post("updateCategory",[CategoryController::class,'update_category']);
-Route::get("deleteCategory/{id}",[CategoryController::class,'delete_category']);
 
 
 
