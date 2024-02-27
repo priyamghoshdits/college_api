@@ -13,6 +13,7 @@ use App\Models\UserLog;
 use App\Models\UserType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -35,6 +36,7 @@ class UserController extends Controller
         $userLog->media = $request->header('User-Agent');
         $userLog->login_time = Carbon::now();
         $userLog->save();
+        Cache::forget('get_user_log');
         $token = $user->createToken('my-app-token')->plainTextToken;
         $user->token = $token;
         return response()->json(['success'=>1,'data'=>new LoginResource($user), $token => $token], 200,[],JSON_NUMERIC_CHECK);
