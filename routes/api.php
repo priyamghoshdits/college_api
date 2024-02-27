@@ -56,6 +56,7 @@ use App\Http\Controllers\IncomeHeadController;
 use App\Http\Controllers\ExpenseHeadController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\UserLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,10 @@ Route::get("testF",[MemberController::class,'testUser']);
 Route::group(['middleware' => 'auth:sanctum'],function(){
     //LOGOUT
     Route::get("logout",[UserController::class,'logout']);
+
+    //GET USER LOGS
+    Route::get("getUserLogs",[UserLogController::class,'get_user_log']);
+    Route::get("deleteUserLogs",[UserLogController::class,'delete_user_log']);
 
     //GET LOGGED IN USER DATA
     Route::get("getLoggedInUserData",[UserController::class,'get_user_data']);
@@ -442,6 +447,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
 
 //TEST
 Route::get("test/{studentId}",[PaymentController::class,'get_student_amount']);
+Route::get("test",[PaymentController::class,'test_func']);
 Route::get("get_total_discount/{studentId}/{feesTypeId}",[PaymentController::class,'get_total_discount']);
 
 // LOGIN

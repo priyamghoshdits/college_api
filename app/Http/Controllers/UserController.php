@@ -9,6 +9,8 @@ use App\Models\Member;
 use App\Models\MemberDetails;
 use App\Models\StudentDetail;
 use App\Models\User;
+use App\Models\UserLog;
+use App\Models\UserType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +28,13 @@ class UserController extends Controller
         if (!$user || !Hash::check($requestData->password, $user->password)) {
             return response()->json(['success'=>0,'data'=>null, 'message'=>'Wrong credential or user disabled'], 200,[],JSON_NUMERIC_CHECK);
         }
+        $userLog = new UserLog();
+        $userLog->email = $requestData->email;
+        $userLog->role = $user? UserType::find($user->user_type_id)->name: null;
+        $userLog->ip_address = $request->getClientIp();
+        $userLog->media = $request->header('User-Agent');
+        $userLog->login_time = Carbon::now();
+        $userLog->save();
         $token = $user->createToken('my-app-token')->plainTextToken;
         $user->token = $token;
         return response()->json(['success'=>1,'data'=>new LoginResource($user), $token => $token], 200,[],JSON_NUMERIC_CHECK);

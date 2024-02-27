@@ -58,6 +58,10 @@ class RolesSeeder extends Seeder
             ['name' => 'INVENTORY ITEM STORE'],
             ['name' => 'INVENTORY ITEM SUPPLIER'],
             ['name' => 'INVENTORY ITEM TYPE'],
+            ['name' => 'INCOME HEAD'],
+            ['name' => 'ADD INCOME'],
+            ['name' => 'EXPENSE HEAD'],
+            ['name' => 'ADD EXPENSE'],
 //            ['name' => 'ASSIGNMENT'],
 //            ['name' => 'STUDY MATERIAL'], //35
 

@@ -11,8 +11,11 @@ use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
@@ -131,5 +134,10 @@ class PaymentController extends Controller
             return response()->json(['success'=>1,'data'=>$payment], 200,[],JSON_NUMERIC_CHECK);
         }
 
+    }
+
+    public function test_func(Request $request){
+//        return $request->getClientIp();
+        return $request->header('User-Agent');
     }
 }
