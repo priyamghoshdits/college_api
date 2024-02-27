@@ -36,7 +36,7 @@ class DesignationController extends Controller
 
     public function delete_designation($id)
     {
-        $data = $data = Designation::find($id);
+        $data = Designation::find($id);
         $data->delete();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }

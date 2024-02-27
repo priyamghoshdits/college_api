@@ -8,14 +8,22 @@ use App\Http\Requests\StoreMenuManagementRequest;
 use App\Http\Requests\UpdateMenuManagementRequest;
 use App\Models\UserType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MenuManagementController extends Controller
 {
     public function get_menu_management(Request $request)
     {
-        $user_type = $request->user()->user_type_id;
-        $franchise_id = $request->user()->franchise_id;
-        $data = MenuManagement::whereUserTypeId($user_type)->whereFranchiseId($franchise_id)->get();
+        if(Cache::has('get_user_log_user_type_id'.$request->user()->user_type_id.'franchise_id'.$request->user()->franchise_id)){
+            return response()->json(['success'=>1,'from'=>'Cache','data'=>Cache::get('get_user_log_user_type_id'.$request->user()->user_type_id.'franchise_id'.$request->user()->franchise_id)], 200,[],JSON_NUMERIC_CHECK);
+        }else {
+            $data = Cache::rememberForever('get_user_log_user_type_id'.$request->user()->user_type_id.'franchise_id'.$request->user()->franchise_id
+                , function () use($request) {
+                    $user_type = $request->user()->user_type_id;
+                    $franchise_id = $request->user()->franchise_id;
+                    return MenuManagement::whereUserTypeId($user_type)->whereFranchiseId($franchise_id)->get();
+                });
+        }
         return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
     }
 
@@ -34,6 +42,7 @@ class MenuManagementController extends Controller
         $data = MenuManagement::find($id);
         $data->permission = ($data->permission == 1)? 0:1;
         $data->update();
+        Cache::forget('get_user_log_user_type_id'.$data->user_type_id.'franchise_id'.$data->franchise_id);
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
