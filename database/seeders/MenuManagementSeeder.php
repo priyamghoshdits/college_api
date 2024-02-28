@@ -94,6 +94,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Agent Student Entry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Agent Payment' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -188,6 +189,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Agent Student Entry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Agent Payment' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -280,6 +282,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Agent Student Entry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Agent Payment' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -371,6 +374,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Agent Student Entry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Agent Payment' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],
@@ -461,6 +465,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Add User Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Icard' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Agent Student Entry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Agent Payment' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Download Center' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Upload Content' , 'permission' => true, 'franchise_id' => 1],

@@ -447,6 +447,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //AGENT PAYMENT
     Route::post("saveAgentPayment",[AgentPaymentController::class,'save_agent_payment']);
     Route::get("getAgentDetails/{id}",[AgentPaymentController::class,'get_agent_payment_details']);
+    Route::get("getAgentPayment",[AgentPaymentController::class,'get_agent_payment']);
+    Route::post("updateAgentPayment",[AgentPaymentController::class,'update_agent_payment']);
+    Route::get("deleteAgentPayment/{id}",[AgentPaymentController::class,'delete_agent_payment']);
 });
 
 //TEST
