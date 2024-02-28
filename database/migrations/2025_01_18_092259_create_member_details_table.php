@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string("epf_number")->nullable(true);
             $table->string("current_address")->nullable(true);
             $table->string("permanent_address")->nullable(true);
-            $table->string("basic_salary")->nullable(true);
+            $table->string("gross_salary")->nullable(true);
             $table->string("location")->nullable(true);
             $table->string("contract_type")->nullable(true);
             $table->string("bank_account_number")->nullable(true);
