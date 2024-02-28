@@ -6,6 +6,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Agent;
 use App\Http\Requests\StoreAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
+use App\Models\FeesStructure;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -15,6 +16,19 @@ class AgentController extends Controller
     public function get_agent()
     {
         $data = User::whereUserTypeId(5)->get();
+        $feesStructure = new FeesStructureController();
+//        $fees = FeesStructure::select('course_id','semester_id')->whereCourseId(2)->distinct()->get();
+//        dd($feesStructure->get_total_course_fees_by_course_id(2));
+        foreach ($data as $agent){
+            $agent->admitted_student = count(User::join('student_details', 'users.id', '=', 'student_details.student_id')
+                ->whereAgentId($agent['id'])
+                ->whereAdmissionStatus(1)->get());
+            $agent->non_admitted_student = count(User::join('student_details', 'users.id', '=', 'student_details.student_id')
+                ->whereAgentId($agent['id'])
+                ->whereAdmissionStatus(0)->get());
+//            $agent->due_payment = $agent['commission_flat'] ? ($agent['commission_flat'] * $agent->admitted_student) : ($agent['commission_percentage'] ? ($agent['commission_percentage'] / 100) * $agent->admitted_student: 0);
+            $agent->due_payment = $agent['commission_flat'] ? ($agent['commission_flat'] * $agent->admitted_student) : ($agent['commission_percentage'] ? ($agent['commission_percentage'] / 100) * $feesStructure->get_student_by_agent_id($agent['id']): 0);
+        }
         return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
     }
 

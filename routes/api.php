@@ -57,6 +57,7 @@ use App\Http\Controllers\ExpenseHeadController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\UserLogController;
+use App\Http\Controllers\AgentPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -443,6 +444,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateExpense",[ExpenseController::class,'update_expense']);
     Route::get("deleteExpense/{id?}",[ExpenseController::class,'delete_expense']);
 
+    //AGENT PAYMENT
+    Route::post("saveAgentPayment",[AgentPaymentController::class,'save_agent_payment']);
+    Route::get("getAgentDetails/{id}",[AgentPaymentController::class,'get_agent_payment_details']);
 });
 
 //TEST

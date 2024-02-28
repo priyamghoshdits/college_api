@@ -47,6 +47,25 @@ class FeesStructureController extends Controller
         return response()->json(['success'=>1,'data'=>FeesStructureResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_total_course_fees_by_course_id($course_id){
+        $data = FeesStructure::select('course_id','semester_id')->whereCourseId($course_id)->distinct()->first();
+        return DB::select("SELECT sum(amount) as total FROM fees_structures
+                inner join fees_types on fees_structures.fees_type_id = fees_types.id
+                where fees_structures.course_id = ? and fees_structures.semester_id = ?",[$data->course_id,$data->semester_id])[0]->total;
+    }
+
+    public function get_student_by_agent_id($agent_id){
+        $data = User::join('student_details', 'users.id', '=', 'student_details.student_id')
+            ->whereAgentId($agent_id)
+            ->whereAdmissionStatus(1)->get();
+        $total = 0;
+        foreach ($data as $item) {
+            $total = $total + floatval($this->get_total_course_fees_by_course_id($item['course_id']));
+        }
+        return $total;
+    }
+
+
     public function delete_fees_structure(Request $request)
     {
         $requestedData = (object)$request->json()->all();
