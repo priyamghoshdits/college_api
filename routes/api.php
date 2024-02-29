@@ -404,7 +404,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateSemesterTimeTable",[SemesterTimetableController::class,'update_semester_timetable']);
     Route::get("deleteSemesterTimeTable/{id}",[SemesterTimetableController::class,'delete_semester_timetable']);
     Route::get("getSemesterTimeTableByTeacherId/{teacher_id}",[SemesterTimetableController::class,'get_semester_timetable_by_teacher_id']);
-    Route::get("getSemesterTimeTableByCourseAndSemesterId/{course_id}/{semester_id}",[SemesterTimetableController::class,'get_semester_timetable_by_courseId_semester_id']);
+    Route::get("getSemesterTimeTableByCourseAndSemesterId/{course_id}/{semester_id}/{session_id}",[SemesterTimetableController::class,'get_semester_timetable_by_courseId_semester_id']);
 
     //ITEM STOCK
     Route::get("getItemStock",[ItemStockController::class,'get_item_stock']);

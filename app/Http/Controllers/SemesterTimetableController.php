@@ -15,6 +15,7 @@ class SemesterTimetableController extends Controller
         $requestedData = (object)$request->json()->all();
         $course_id = $requestedData->course_id;
         $semester_id = $requestedData->semester_id;
+        $session_id = $requestedData->session_id;
         foreach($requestedData->details as $detail){
             $saveData = new SemesterTimetable();
             $saveData->course_id = $course_id;
@@ -22,6 +23,7 @@ class SemesterTimetableController extends Controller
             $saveData->subject_id = $detail['subject_id'];
             $saveData->week_id = $detail['week_id'];
             $saveData->teacher_id = $detail['teacher_id'];
+            $saveData->session_id = $session_id;
             $saveData->time_from = $detail['time_from'];
             $saveData->time_to = $detail['time_to'];
             $saveData->room_no = $detail['room_no'];
@@ -36,7 +38,7 @@ class SemesterTimetableController extends Controller
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function get_semester_timetable_by_courseId_semester_id($course_id, $semester_id){
+    public function get_semester_timetable_by_courseId_semester_id($course_id, $semester_id,$session_id){
         $data = SemesterTimetable::select('semester_timetables.id','courses.id as course_id','semesters.id as semester_id','users.id as teacher_id'
             ,'semester_timetables.week_id','subjects.name as subject_name','courses.course_name','subjects.id as subject_id',
             'semesters.name as semester_name','semester_timetables.time_from','semester_timetables.time_to','semester_timetables.room_no')
@@ -47,6 +49,7 @@ class SemesterTimetableController extends Controller
             ->Join('users', 'users.id', '=', 'semester_timetables.teacher_id')
             ->whereCourseId($course_id)
             ->whereSemesterId($semester_id)
+            ->whereSessionId($session_id)
             ->get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }

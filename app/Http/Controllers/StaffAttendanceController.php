@@ -28,12 +28,14 @@ class StaffAttendanceController extends Controller
 
     public function save_attendance(Request $request)
     {
+        $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
         foreach ($requestedData as $data){
             $attendance = new StaffAttendance();
             $attendance->user_id = $data['id'];
             $attendance->user_type_id = $data['user_type_id'];
             $attendance->attendance = $data['attendance'];
+            $attendance->attendance_by = $attendance_by;
             $attendance->date = $data['date'];
             $attendance->save();
         }

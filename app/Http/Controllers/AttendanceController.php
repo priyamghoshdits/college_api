@@ -14,6 +14,7 @@ class AttendanceController extends Controller
 {
     public function save_attendance(Request $request)
     {
+        $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
         $course_id = $requestedData[0]['course_id'];
         $semester_id = $requestedData[0]['semester_id'];
@@ -30,6 +31,7 @@ class AttendanceController extends Controller
                 $attendance->course_id = $course_id;
                 $attendance->semester_id = $semester_id;
                 $attendance->subject_id = $subject_id;
+                $attendance->attendance_by = $attendance_by;
                 $attendance->user_id = $list['user_id'];
                 $attendance->user_type_id = 3;
                 $attendance->attendance = $list['attendance'];
