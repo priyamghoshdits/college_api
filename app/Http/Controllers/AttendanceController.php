@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
+use App\Models\Holiday;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Mail\Attachable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +18,8 @@ class AttendanceController extends Controller
     {
         $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
+
+//        return response()->json(['success'=>$attendance_by], 200,[],JSON_NUMERIC_CHECK);
         $course_id = $requestedData[0]['course_id'];
         $semester_id = $requestedData[0]['semester_id'];
         $subject_id = $requestedData[0]['subject_id'];
@@ -41,6 +45,51 @@ class AttendanceController extends Controller
         }
 
         return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function attendance_percentage(Request $request){
+
+        $requestedData = (object)$request->json()->all();
+
+        $receivedStartDate = $requestedData->from_date;
+        $receivedEndDate = $requestedData->to_date;
+        $session_id = $requestedData->session_id;
+        $courseId = $requestedData->course_id;
+        $semesterId = $requestedData->semester_id;
+        $no_of_days = 0;
+        $retArr = [];
+        $start_date = Carbon::parse($receivedStartDate);
+        $end_date = Carbon::parse($receivedEndDate);
+        for($i = $start_date; $i <= $end_date; $i->modify('+1 day')){
+            $holiday = Holiday::whereDate('date',Carbon::createFromDate($i->format("Y-m-d")))->first();
+            if($holiday){
+                continue;
+            }else{
+                if (Carbon::createFromDate($i->format("Y-m-d"))->dayOfWeek === Carbon::SUNDAY) {
+                    $no_of_days = $no_of_days + (DB::select('SELECT count(id) as week1 FROM `semester_timetables`  where week_id = ? and session_id=?',[0,$session_id]))[0]->week1;
+                }else{
+                    $no_of_days = $no_of_days + (DB::select('SELECT count(id) as week1 FROM `semester_timetables`  where week_id = ? and session_id=?',[Carbon::createFromDate($i->format("Y-m-d"))->dayOfWeek,$session_id]))[0]->week1;
+                }
+            }
+        }
+
+        $users = User::join('student_details', 'users.id', '=', 'student_details.student_id')
+            ->whereCourseId($courseId)
+            ->whereCurrentSemesterId($semesterId)
+            ->whereSessionId($session_id)
+            ->get();
+
+        foreach ($users as $user){
+            $ret = [
+                'name' => $user['first_name'].' '.$user['middle_name'].' '.$user['last_name'],
+                'present' => count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()),
+                'absent' => $no_of_days - (count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get())),
+                'total_classes' => $no_of_days,
+            ];
+            $retArr[] = $ret;
+        }
+
+        return response()->json(['success'=>1, 'data' =>$retArr], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_student_attendance($course_id, $semester_id, $date, $subject_id)

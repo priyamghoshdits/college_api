@@ -456,6 +456,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
 Route::get("test/{studentId}",[PaymentController::class,'get_student_amount']);
 Route::get("test",[PaymentController::class,'test_func']);
 Route::get("get_total_discount/{studentId}/{feesTypeId}",[PaymentController::class,'get_total_discount']);
+Route::post("getAttendancePercentage",[AttendanceController::class,'attendance_percentage']);
 
 // LOGIN
 Route::get("clearPersonalAccessToken",[UserController::class,'delete_personal_access_token']);
