@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FeesCollectionResource;
 use App\Http\Resources\PaymentResource;
 use App\Models\Discount;
 use App\Models\FeesStructure;
@@ -139,5 +140,23 @@ class PaymentController extends Controller
     public function test_func(Request $request){
 //        return $request->getClientIp();
         return $request->header('User-Agent');
+    }
+
+    public function get_fees_collection_report(Request $request){
+
+        $requestedData = (object)$request->json()->all();
+
+        $course_id = $requestedData->course_id;
+        $semester_id = $requestedData->semester_id;
+        $from_date = $requestedData->from_date;
+        $to_date = $requestedData->to_date;
+
+        $data = Payment::whereCourseId($course_id)
+            ->whereSemesterId($semester_id)
+            ->whereBetween('paid_on',[$from_date,$to_date])
+            ->orderBy('paid_on','desc')
+            ->get();
+
+        return response()->json(['success'=>1,'data'=>FeesCollectionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 }
