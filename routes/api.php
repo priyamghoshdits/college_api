@@ -454,14 +454,14 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //REPORT
     Route::post("getAttendancePercentage",[AttendanceController::class,'attendance_percentage']);
     Route::post("getExamReport",[AnswersheetController::class,'get_exam_report']);
+    Route::post("getFeesCollectionReport",[PaymentController::class,'get_fees_collection_report']);
 });
 
 //TEST
 Route::get("test/{studentId}",[PaymentController::class,'get_student_amount']);
 Route::get("test",[PaymentController::class,'test_func']);
 Route::get("get_total_discount/{studentId}/{feesTypeId}",[PaymentController::class,'get_total_discount']);
-
-Route::post("getFeesCollectionReport",[PaymentController::class,'get_fees_collection_report']);
+Route::post("getStudentReport",[UserController::class,'get_student_by_date']);
 
 
 // LOGIN

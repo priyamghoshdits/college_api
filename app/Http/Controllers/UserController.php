@@ -421,5 +421,17 @@ class UserController extends Controller
         return response()->json(['success'=>1,'data'=> new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_student_by_date(Request $request){
+        $requestedData = (object)$request->json()->all();
+        $startDate = $requestedData->from_date;
+        $endDate = $requestedData->to_date;
+
+        $users = User::join('student_details', 'users.id', '=', 'student_details.student_id')
+            ->whereBetween('admission_date',[$startDate,$endDate])
+            ->whereAdmissionStatus(1)
+            ->get();
+        return response()->json(['success'=>1,'data'=>StudentResource::collection($users)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
 
 }
