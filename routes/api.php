@@ -450,13 +450,18 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getAgentPayment",[AgentPaymentController::class,'get_agent_payment']);
     Route::post("updateAgentPayment",[AgentPaymentController::class,'update_agent_payment']);
     Route::get("deleteAgentPayment/{id}",[AgentPaymentController::class,'delete_agent_payment']);
+
+    //REPORT
+    Route::post("getAttendancePercentage",[AttendanceController::class,'attendance_percentage']);
 });
 
 //TEST
 Route::get("test/{studentId}",[PaymentController::class,'get_student_amount']);
 Route::get("test",[PaymentController::class,'test_func']);
 Route::get("get_total_discount/{studentId}/{feesTypeId}",[PaymentController::class,'get_total_discount']);
-Route::post("getAttendancePercentage",[AttendanceController::class,'attendance_percentage']);
+
+Route::post("getExamReport",[AnswersheetController::class,'get_exam_report']);
+
 
 // LOGIN
 Route::get("clearPersonalAccessToken",[UserController::class,'delete_personal_access_token']);

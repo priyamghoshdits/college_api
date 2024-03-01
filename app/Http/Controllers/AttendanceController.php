@@ -85,6 +85,7 @@ class AttendanceController extends Controller
                 'present' => count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()),
                 'absent' => $no_of_days - (count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get())),
                 'total_classes' => $no_of_days,
+                'attendance_percentage' => round(((count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()))/$no_of_days)*100,2),
             ];
             $retArr[] = $ret;
         }
