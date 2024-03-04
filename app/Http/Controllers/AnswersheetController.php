@@ -65,10 +65,10 @@ class AnswersheetController extends Controller
 
         foreach ($users as $user){
             $arr=[
-                'name' => $user['first_name'].' '.$user['middle_name'].' '.$user['last_name'],
-                'full_marks' => $subjectDetails->full_marks,
-                'obtained_marks' => Answersheet::whereSubjectDetailsId($subjectDetails->id)->whereStudentId($user['id'])->sum('marks_obtained'),
-                'status' => Answersheet::whereSubjectDetailsId($subjectDetails->id)->whereStudentId($user['id'])->first()?'Attended':'Not Attended'
+                'name' => $subjectDetails?$user['first_name'].' '.$user['middle_name'].' '.$user['last_name']:null,
+                'full_marks' => $subjectDetails->full_marks ?? null,
+                'obtained_marks' => $subjectDetails?Answersheet::whereSubjectDetailsId($subjectDetails->id)->whereStudentId($user['id'])->sum('marks_obtained'):null,
+                'status' => $subjectDetails?Answersheet::whereSubjectDetailsId($subjectDetails->id)->whereStudentId($user['id'])->first()?'Attended':'Not Attended':''
             ];
             $retArr[] = $arr;
         }

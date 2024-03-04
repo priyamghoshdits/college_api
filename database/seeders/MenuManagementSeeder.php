@@ -88,6 +88,12 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Collect Fees' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Discount/Scholarship' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Attendance report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Examination report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Fees Collection report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Admission report' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
@@ -183,6 +189,12 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Collect Fees' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Discount/Scholarship' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Attendance report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Examination report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Fees Collection report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Admission report' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
@@ -276,6 +288,12 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Collect Fees' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Discount/Scholarship' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Attendance report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Examination report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Fees Collection report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Admission report' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
@@ -368,6 +386,12 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Collect Fees' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Discount/Scholarship' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Attendance report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Examination report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Fees Collection report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Admission report' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Roles And Permission' , 'permission' => true, 'franchise_id' => 1],
@@ -458,6 +482,12 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Collect Fees' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Discount/Scholarship' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Attendance report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Examination report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Fees Collection report' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Admission report' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Others' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Agent' , 'permission' => true, 'franchise_id' => 1],
