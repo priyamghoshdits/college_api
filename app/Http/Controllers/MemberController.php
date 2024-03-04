@@ -87,6 +87,19 @@ class MemberController extends Controller
         return response()->json(['success'=>1,'data'=> StudentResource::collection($member)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function change_student_status($id){
+        $data = User::find($id);
+        $data->status = ($data->status==1)?0:1;
+        $data->update();
+
+        $member = User::select('*','student_details.id as student_details_id','users.id as id')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->where('users.id',$data->id)
+            ->first();
+
+        return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function get_teacher_by_course_and_semester($course_id, $semester_id){
         $data = DB::select("SELECT teacher_id,users.first_name,users.middle_name,users.last_name FROM `assign_semester_teachers`
             inner join users on assign_semester_teachers.teacher_id = users.id

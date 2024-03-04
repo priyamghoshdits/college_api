@@ -204,6 +204,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getMembers/{user_type_id}/{month}/{year}",[MemberController::class,'get_members_by_user_type_id']);
     Route::get("getTeachers",[MemberController::class,'get_teachers']);
     Route::get("getStudents",[MemberController::class,'get_students']);
+    Route::get("changeStudentStatus/{id}",[MemberController::class,'change_student_status']);
     Route::get("getTeacherByCourseAndSem/{course_id}/{semester_id}",[MemberController::class,'get_teacher_by_course_and_semester']);
 
     //INTERNSHIP PROVIDER

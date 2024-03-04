@@ -64,6 +64,7 @@ class StudentResource extends JsonResource
             'guardian_phone' => $this->guardian_phone,
             'guardian_address' => $this->guardian_address,
             'agent_id' => $this->agent_id,
+            'status' => $this->status,
             'franchise_id' => $this->franchise_id,
         ];
     }
