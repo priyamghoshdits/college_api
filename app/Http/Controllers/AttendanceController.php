@@ -115,7 +115,7 @@ class AttendanceController extends Controller
               and attendances.date = ? and attendances.subject_id = ? and student_details.admission_status = 1",[$course_id, $semester_id, $session_id ,$date, $subject_id]);
 
         if(count($attendanceTable)>0){
-            return response()->json(['success'=>0,'data' => $attendanceTable], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>0,'data' => $attendanceTable, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }else{
             $data = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, 'absent' as attendance from users
                 inner join student_details on users.id =  student_details.student_id
@@ -131,10 +131,11 @@ class AttendanceController extends Controller
 
     public function get_student_attendance_own($course_id, $semester_id, $date, $user_id)
     {
-        $attendance = DB::select("select attendances.id, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
+        $attendance = DB::select("select attendances.id,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
             inner join courses on courses.id = attendances.course_id
             inner join semesters on semesters.id = attendances.semester_id
             inner join subjects on subjects.id = attendances.subject_id
+            inner join users on attendances.attendance_by = users.id
             where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ? and attendances.user_id = ?",[$course_id, $semester_id, $date, $user_id]);
         return response()->json(['success'=>1,'data' => $attendance], 200,[],JSON_NUMERIC_CHECK);
     }
