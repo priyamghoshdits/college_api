@@ -50,14 +50,15 @@ class PaymentController extends Controller
         $payment = new Payment();
         $payment->student_id = $request['student_id'];
         $payment->semester_id = $semester_id;
-        $payment->amount =$request['amount'];
-        $payment->course_id =$courseId;
-        $payment->paid_on =$request['paid_on'];
-        $payment->transaction_id =$request->transaction_id;
+        $payment->amount = $request['amount'];
+        $payment->course_id = $courseId;
+        $payment->paid_on = $request['paid_on'];
+        $payment->transaction_id = $request->transaction_id;
 //        $payment->paid_on =Carbon::today();
-        $payment->mode =$request['mode'];
-        $payment->description =$request['description'] ?? null;
-        $payment->file_name =$file_name ?? null;
+        $payment->mode = $request['mode'];
+        $payment->description = $request['description'] ?? null;
+        $payment->file_name = $file_name ?? null;
+        $payment->received_by = $request->user()->id;
         $payment->save();
 
         return response()->json(['success'=>1,'data'=>$payment], 200,[],JSON_NUMERIC_CHECK);

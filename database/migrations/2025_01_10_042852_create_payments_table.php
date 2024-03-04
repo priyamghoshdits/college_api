@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('mode')->nullable(false);
             $table->string('file_name')->nullable(true);
             $table->string('description')->nullable(true);
+            $table->foreignId('received_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
