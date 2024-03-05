@@ -39,7 +39,9 @@ class SemesterTimetableController extends Controller
     }
 
     public function get_semester_timetable_by_courseId_semester_id($course_id, $semester_id,$session_id){
-        $data = SemesterTimetable::select('semester_timetables.id','courses.id as course_id','semesters.id as semester_id','users.id as teacher_id'
+        $data = SemesterTimetable::select('semester_timetables.id','users.first_name as teacher_first_name'
+            ,'users.middle_name as teacher_middle_name','users.last_name as teacher_last_name'
+            ,'courses.id as course_id','semesters.id as semester_id','users.id as teacher_id'
             ,'semester_timetables.week_id','subjects.name as subject_name','courses.course_name','subjects.id as subject_id',
             'semesters.name as semester_name','semester_timetables.time_from','semester_timetables.time_to','semester_timetables.room_no')
             ->Join('subjects', 'subjects.id', '=', 'semester_timetables.subject_id')

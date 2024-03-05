@@ -27,7 +27,7 @@ class RolesSeeder extends Seeder
             ['name' => 'APPLY LEAVE'],
             ['name' => 'DEPARTMENT'],
             ['name' => 'DESIGNATION'],
-            ['name' => 'CATEGORY'],
+            ['name' => 'CASTE'],
             ['name' => 'HOLIDAY'],
             ['name' => 'PAYROLL'],
             ['name' => 'PAYROLL TYPES'],

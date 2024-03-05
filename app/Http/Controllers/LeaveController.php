@@ -51,15 +51,20 @@ class LeaveController extends Controller
     {
         $requestedData = (object)$request->json()->all();
         $leave = Leave::find($requestedData->id);
-        $leave->user_id = $requestedData->user_id;
-        $leave->leave_type_id = $requestedData->leave_type_id;
+        $leave->user_id = $requestedData->user_id ?? $leave->user_id;
+        $leave->leave_type_id = $requestedData->leave_type_id ?? $leave->leave_type_id;
         $leave->from_date = $requestedData->from_date;
         $leave->to_date = $requestedData->to_date;
-        $leave->reason = $requestedData->reason;
+        $leave->reason = $requestedData->reason ?? $leave->reason;
+        $leaveList = LeaveList::whereUserId($leave->user_id)->whereLeaveTypeId($leave->leave_type_id)->first();
+        $leaveList->total_leave = $leaveList->total_leave + ($leave->total_days - $requestedData->total_days);
+        $leaveList->update();
         $leave->total_days = $requestedData->total_days;
+        $leave->approved = $requestedData->approved ?? $leave->approved;
+        $leave->approved_by = $leave->approved==1?$request->user()->id:null;
         $leave->update();
 
-        return response()->json(['success'=>1,'data'=>$leave], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new LeaveResource($leave)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_leave_by_userId_and_leaveTypeId($user_id, $leave_type_id)
