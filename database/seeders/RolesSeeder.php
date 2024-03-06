@@ -34,6 +34,7 @@ class RolesSeeder extends Seeder
             ['name' => 'PERIOD ATTENDANCE'], // TO BE DONE LATER
             ['name' => 'ADD ITEM'],
             ['name' => 'ISSUE BOOK'],
+            ['name' => 'UPLOAD DIGITAL BOOK'],
             ['name' => 'ADD HOSTEL'],
             ['name' => 'ROOM TYPE'],
             ['name' => 'ADD HOSTEL ROOM'],

@@ -58,6 +58,7 @@ use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\UserLogController;
 use App\Http\Controllers\AgentPaymentController;
+use App\Http\Controllers\LibraryDigitalBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +136,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveLibraryDetails",[LibraryStockController::class,'save_library_details']);
     Route::post("updateLibraryDetails",[LibraryStockController::class,'update_library_details']);
     Route::get("deleteLibraryDetails/{id}",[LibraryStockController::class,'delete_library_details']);
+
+    //LIBRARY DIGITAL BOOKS
+    Route::get("getLibraryDigitalBook",[LibraryDigitalBookController::class,'get_digital_library_books']);
+    Route::post("saveLibraryDigitalBook",[LibraryDigitalBookController::class,'save_digital_library_books']);
+    Route::post("updateLibraryDigitalBook",[LibraryDigitalBookController::class,'update_digital_library_books']);
+    Route::get("deleteLibraryDigitalBook/{id}",[LibraryDigitalBookController::class,'delete_digital_library_books']);
 
     //LIBRARY ISSUE
     Route::get("getIssuedBooks",[LibraryIssueController::class,'get_issued_books']);

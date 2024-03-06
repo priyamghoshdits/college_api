@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('library_stocks', function (Blueprint $table) {
             $table->id();
             $table->string("name")->nullable(false);
+            $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreignId('semester_id')->references('id')->on('semesters')->onDelete('cascade');
+            $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->integer("isbn_no");
+            $table->integer("publisher_name");
+            $table->integer("author_name");
+            $table->integer("rack_number");
+            $table->integer("book_price");
+            $table->integer("description");
             $table->integer("quantity")->default(0);
             $table->integer("remaining")->default(0);
             $table->foreignId('franchise_id')->references('id')->on('franchises')->onDelete('cascade');
