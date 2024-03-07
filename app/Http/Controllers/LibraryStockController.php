@@ -23,8 +23,17 @@ class LibraryStockController extends Controller
         $requestedData = (object)$request->json()->all();
         $library = new LibraryStock();
         $library->name = $requestedData->name;
-        $library->quantity = $requestedData->quantity;
+        $library->course_id = $requestedData->course_id;
+        $library->semester_id = $requestedData->semester_id;
+        $library->subject_id = $requestedData->subject_id;
+        $library->isbn_no = $requestedData->isbn_no;
+        $library->publisher_name = $requestedData->publisher_name;
+        $library->author_name = $requestedData->author_name;
+        $library->rack_number = $requestedData->rack_number;
+        $library->book_price = $requestedData->book_price;
+        $library->description = $requestedData->description;
         $library->remaining = $requestedData->remaining;
+        $library->quantity = $requestedData->quantity;
         $library->franchise_id = $request->user()->franchise_id;
         $library->save();
         return response()->json(['success'=>1,'data'=>$library], 200,[],JSON_NUMERIC_CHECK);
@@ -34,8 +43,17 @@ class LibraryStockController extends Controller
         $requestedData = (object)$request->json()->all();
         $library = LibraryStock::find($requestedData->id);
         $library->name = $requestedData->name;
-        $library->quantity = $requestedData->quantity;
+        $library->course_id = $requestedData->course_id;
+        $library->semester_id = $requestedData->semester_id;
+        $library->subject_id = $requestedData->subject_id;
+        $library->isbn_no = $requestedData->isbn_no;
+        $library->publisher_name = $requestedData->publisher_name;
+        $library->author_name = $requestedData->author_name;
+        $library->rack_number = $requestedData->rack_number;
+        $library->book_price = $requestedData->book_price;
+        $library->description = $requestedData->description;
         $library->remaining = $requestedData->remaining;
+        $library->quantity = $requestedData->quantity;
         $library->update();
         return response()->json(['success'=>1,'data'=>$library], 200,[],JSON_NUMERIC_CHECK);
     }

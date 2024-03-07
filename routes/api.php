@@ -59,6 +59,8 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\UserLogController;
 use App\Http\Controllers\AgentPaymentController;
 use App\Http\Controllers\LibraryDigitalBookController;
+use App\Http\Controllers\CertificateTypesController;
+use App\Http\Controllers\CertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -451,6 +453,19 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveExpense",[ExpenseController::class,'save_expense']);
     Route::post("updateExpense",[ExpenseController::class,'update_expense']);
     Route::get("deleteExpense/{id?}",[ExpenseController::class,'delete_expense']);
+
+    //CERTIFICATE TYPE
+    Route::get("getCertificateType",[CertificateTypesController::class,'get_certificate_types']);
+    Route::post("saveCertificateType",[CertificateTypesController::class,'save_certificate_types']);
+    Route::post("updateCertificateType",[CertificateTypesController::class,'update_certificate_types']);
+    Route::get("deleteCertificateType/{id?}",[CertificateTypesController::class,'delete_certificate_types']);
+
+    //CERTIFICATE
+    Route::get("getCertificate",[CertificateController::class,'get_certificates']);
+    Route::post("saveCertificate",[CertificateController::class,'save_certificates']);
+    Route::post("updateCertificate",[CertificateController::class,'update_certificates']);
+    Route::get("deleteCertificate/{id?}",[CertificateController::class,'delete_certificates']);
+    Route::post("getStudentForCertificate",[CertificateController::class,'get_student_for_certificate']);
 
     //AGENT PAYMENT
     Route::post("saveAgentPayment",[AgentPaymentController::class,'save_agent_payment']);
