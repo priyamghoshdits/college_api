@@ -466,6 +466,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateCertificate",[CertificateController::class,'update_certificates']);
     Route::get("deleteCertificate/{id?}",[CertificateController::class,'delete_certificates']);
     Route::post("getStudentForCertificate",[CertificateController::class,'get_student_for_certificate']);
+    Route::post("getCertificateByUser",[CertificateController::class,'get_certificate_by_user']);
 
     //AGENT PAYMENT
     Route::post("saveAgentPayment",[AgentPaymentController::class,'save_agent_payment']);

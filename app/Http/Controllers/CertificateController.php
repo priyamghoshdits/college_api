@@ -131,12 +131,20 @@ class CertificateController extends Controller
         return response()->json(['success'=>1,'data'=> $data3], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCertificateRequest $request, Certificate $certificate)
+    public function get_certificate_by_user(Request $request)
     {
-        //
+        $requestedData = (object)$request->json()->all();
+        $data = User::select('student_details.id as student_details_id','certificates.id as certificate_id'
+            ,'users.id','users.first_name','users.middle_name','users.last_name','users.gender','users.mobile_no'
+            ,'users.dob','certificates.file_name','certificates.status')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->join('certificates', 'users.id', '=', 'certificates.user_id')
+            ->whereUserTypeId(3)
+            ->where('users.id',$requestedData->user_id)
+            ->where('certificates.certificate_type_id',$requestedData->certificate_type_id)
+            ->get();
+
+        return response()->json(['success'=>1,'data'=> $data], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
