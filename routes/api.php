@@ -62,6 +62,7 @@ use App\Http\Controllers\LibraryDigitalBookController;
 use App\Http\Controllers\CertificateTypesController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\VirtualClassController;
+use App\Http\Controllers\VirtualMeetingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -466,6 +467,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveVirtualClass",[VirtualClassController::class,'save_virtual_class']);
     Route::post("updateVirtualClass",[VirtualClassController::class,'update_virtual_class']);
     Route::get("deleteVirtualClass/{id?}",[VirtualClassController::class,'delete_virtual_class']);
+
+    //VIRTUAL MEETING
+    Route::get("getVirtualMeeting",[VirtualMeetingController::class,'get_virtual_meeting']);
+    Route::post("saveVirtualMeeting",[VirtualMeetingController::class,'save_virtual_meeting']);
+    Route::post("updateVirtualMeeting",[VirtualMeetingController::class,'update_virtual_meeting']);
+    Route::get("deleteVirtualMeeting/{id?}",[VirtualMeetingController::class,'delete_virtual_meeting']);
 
     //CERTIFICATE
     Route::get("getCertificate",[CertificateController::class,'get_certificates']);
