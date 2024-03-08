@@ -30,6 +30,7 @@ class VirtualClassController extends Controller
         $virtualClass->date_of_class = $requestedData->date_of_class;
         $virtualClass->time_of_class = $requestedData->time_of_class;
         $virtualClass->class_start_before = $requestedData->class_start_before;
+        $virtualClass->class_duration = $requestedData->class_duration;
         $virtualClass->save();
         return response()->json(['success'=>1,'data'=> new VirtualClassResource($virtualClass)], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -48,6 +49,7 @@ class VirtualClassController extends Controller
         $virtualClass->date_of_class = $requestedData->date_of_class;
         $virtualClass->time_of_class = $requestedData->time_of_class;
         $virtualClass->class_start_before = $requestedData->class_start_before;
+        $virtualClass->class_duration = $requestedData->class_duration;
         $virtualClass->save();
         return response()->json(['success'=>1,'data'=> new VirtualClassResource($virtualClass)], 200,[],JSON_NUMERIC_CHECK);
     }

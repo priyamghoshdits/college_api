@@ -29,6 +29,7 @@ class VirtualClassResource extends JsonResource
             'date_of_class' => $this->date_of_class,
             'time_of_class' => $this->time_of_class,
             'class_start_before' => $this->class_start_before,
+            'class_duration' => $this->class_duration,
         ];
     }
 }

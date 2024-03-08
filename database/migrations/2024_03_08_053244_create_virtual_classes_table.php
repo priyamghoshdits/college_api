@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("link");
             $table->string("date_of_class");
             $table->string("time_of_class");
+            $table->string("class_duration");
             $table->string("class_start_before");
             $table->timestamps();
         });
