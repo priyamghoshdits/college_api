@@ -61,6 +61,7 @@ use App\Http\Controllers\AgentPaymentController;
 use App\Http\Controllers\LibraryDigitalBookController;
 use App\Http\Controllers\CertificateTypesController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\VirtualClassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -459,6 +460,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveCertificateType",[CertificateTypesController::class,'save_certificate_types']);
     Route::post("updateCertificateType",[CertificateTypesController::class,'update_certificate_types']);
     Route::get("deleteCertificateType/{id?}",[CertificateTypesController::class,'delete_certificate_types']);
+
+    //VIRTUAL CLASS
+    Route::get("getVirtualClass",[VirtualClassController::class,'get_virtual_class']);
+    Route::post("saveVirtualClass",[VirtualClassController::class,'save_virtual_class']);
+    Route::post("updateVirtualClass",[VirtualClassController::class,'update_virtual_class']);
+    Route::get("deleteVirtualClass/{id?}",[VirtualClassController::class,'delete_virtual_class']);
 
     //CERTIFICATE
     Route::get("getCertificate",[CertificateController::class,'get_certificates']);

@@ -64,6 +64,7 @@ class RolesSeeder extends Seeder
             ['name' => 'EXPENSE HEAD'],
             ['name' => 'ADD EXPENSE'],
             ['name' => 'AGENT PAYMENT'],
+            ['name' => 'VIRTUAL CLASS'],
 //            ['name' => 'ASSIGNMENT'],
 //            ['name' => 'STUDY MATERIAL'], //35
 
