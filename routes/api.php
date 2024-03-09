@@ -63,6 +63,7 @@ use App\Http\Controllers\CertificateTypesController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\VirtualClassController;
 use App\Http\Controllers\VirtualMeetingController;
+use App\Http\Controllers\StudentDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //GET USER LOGS
     Route::get("getUserLogs",[UserLogController::class,'get_user_log']);
     Route::get("deleteUserLogs",[UserLogController::class,'delete_user_log']);
+
+    //REFUND PRE ADMISSION PAYMENT
+    Route::get("refundPayment/{id}",[StudentDetailController::class,'refund_student']);
 
     //GET LOGGED IN USER DATA
     Route::get("getLoggedInUserData",[UserController::class,'get_user_data']);

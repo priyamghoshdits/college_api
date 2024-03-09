@@ -7,6 +7,7 @@ use App\Http\Resources\MemberResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Member;
 use App\Models\MemberDetails;
+use App\Models\PreAdmissionPayment;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserLog;
@@ -139,11 +140,21 @@ class UserController extends Controller
             $user->franchise_id  = $data->franchise_id??$request->user()->franchise_id ;
             $user->email  = $data->email ;
             $user->password =  $pass;
-            $user->status = 1 ;
+            $user->status = ($data->admission_status == 0)?0:1;
             $user->save();
 
             $email_id = $data->email;
             $mobile_no = $data->mobile_no;
+
+            if($data->admission_status == 0){
+                $preAdmissionPayment = new PreAdmissionPayment();
+                $preAdmissionPayment->user_id = $user->id;
+                $preAdmissionPayment->payment_date = $data->payment_date;
+                $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
+                $preAdmissionPayment->transaction_id = $data->transaction_id;
+                $preAdmissionPayment->amount = $data->amount;
+                $preAdmissionPayment->save();
+            }
 
             $student_details = new StudentDetail();
             $student_details->student_id  = $user->id ;
@@ -171,6 +182,7 @@ class UserController extends Controller
             $student_details->guardian_relation = $data->guardian_relation ?? null ;
             $student_details->guardian_address = $data->guardian_address ?? null ;
             $student_details->guardian_occupation = $data->guardian_occupation ?? null ;
+            $student_details->pre_admission_payment_id = ($data->admission_status==0)? $preAdmissionPayment->id: null;
             $student_details->save();
 
             DB::commit();
@@ -182,6 +194,7 @@ class UserController extends Controller
 
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->whereUserTypeId(3)
             ->where('users.id',$user->id)
             ->first();
@@ -219,8 +232,17 @@ class UserController extends Controller
         $user->user_type_id  = 3 ;
         $user->franchise_id  = $request->user()->franchise_id ;
         $user->email  = $data->email ;
-        $user->status = 1 ;
+        $user->status = ($data->admission_status == 0)?0:1;
         $user->update();
+
+        if($data->admission_status == 0){
+            $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);
+            $preAdmissionPayment->payment_date = $data->payment_date;
+            $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
+            $preAdmissionPayment->transaction_id = $data->transaction_id;
+            $preAdmissionPayment->amount = $data->amount;
+            $preAdmissionPayment->update();
+        }
 
         $student_details = StudentDetail::whereStudentId($data->id)->first();
         if($student_details){
@@ -240,7 +262,7 @@ class UserController extends Controller
             $student_details->guardian_name = $data->guardian_name ?? $student_details->guardian_name;
             $student_details->guardian_phone = $data->guardian_phone ?? $student_details->guardian_phone;
             $student_details->guardian_email = $data->guardian_email ?? $student_details->guardian_email;
-            $student_details->admission_status = 1 ;
+            $student_details->admission_status = $data->admission_status ;
             $student_details->emergency_phone_number = $data->emergency_phone_number ?? $student_details->emergency_phone_number;
             $student_details->current_address = $data->current_address ?? $student_details->current_address;
             $student_details->permanent_address = $data->permanent_address ?? $student_details->permanent_address;
@@ -267,7 +289,7 @@ class UserController extends Controller
             $student_details->guardian_name = $data->guardian_name ;
             $student_details->guardian_phone = $data->guardian_phone ;
             $student_details->guardian_email = $data->guardian_email ;
-            $student_details->admission_status = 1 ;
+            $student_details->admission_status = $data->admission_status ;
             $student_details->emergency_phone_number = $data->emergency_phone_number ;
             $student_details->current_address = $data->current_address ;
             $student_details->permanent_address = $data->permanent_address ;
@@ -280,6 +302,7 @@ class UserController extends Controller
 
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->whereUserTypeId(3)
             ->where('users.id',$user->id)
             ->first();

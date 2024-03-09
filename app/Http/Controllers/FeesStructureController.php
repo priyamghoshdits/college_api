@@ -9,6 +9,7 @@ use App\Http\Requests\StoreFeesStructureRequest;
 use App\Http\Requests\UpdateFeesStructureRequest;
 use App\Models\FeesType;
 use App\Models\Payment;
+use App\Models\PreAdmissionPayment;
 use App\Models\Semester;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -130,6 +131,7 @@ class FeesStructureController extends Controller
             ->first();
         $courseId = $studentDetails->course_id;
         $semesterId = $studentDetails->current_semester_id;
+        $advancePayment = (PreAdmissionPayment::whereUserId($student_id)->first())?(PreAdmissionPayment::whereUserId($student_id)->first())->amount:0;
 
         $data = DB::select("SELECT DISTINCT course_id, semester_id FROM fees_structures where course_id = ? and semester_id = ?",[$courseId,$semesterId]);
 
@@ -148,7 +150,7 @@ class FeesStructureController extends Controller
             $myArray[] = (object) $temp;
         }
 
-        return response()->json(['success'=>1,'data'=>$myArray], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$myArray, 'advance_payment' => $advancePayment], 200,[],JSON_NUMERIC_CHECK);
 
     }
 

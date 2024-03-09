@@ -80,6 +80,7 @@ class MemberController extends Controller
     {
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->whereUserTypeId(3)
             ->where('users.franchise_id',$request->user()->franchise_id)
             ->get();
@@ -94,6 +95,7 @@ class MemberController extends Controller
 
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->where('users.id',$data->id)
             ->first();
 

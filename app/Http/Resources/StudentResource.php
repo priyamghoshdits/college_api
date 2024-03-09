@@ -66,6 +66,11 @@ class StudentResource extends JsonResource
             'agent_id' => $this->agent_id,
             'status' => $this->status,
             'franchise_id' => $this->franchise_id,
+            'amount' => $this->amount ?? null,
+            'payment_date' => $this->payment_date ?? null,
+            'mode_of_payment' => $this->mode_of_payment ?? null,
+            'transaction_id' => $this->transaction_id ?? null,
+            'refund' => $this->refund ?? null,
         ];
     }
 }
