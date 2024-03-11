@@ -500,11 +500,13 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("getAttendancePercentage",[AttendanceController::class,'attendance_percentage']);
     Route::post("getExamReport",[AnswersheetController::class,'get_exam_report']);
     Route::post("getFeesCollectionReport",[PaymentController::class,'get_fees_collection_report']);
+
+    //CHAT
+    Route::get("getChat",[ChatController::class,'get_chat']);
+    Route::post("saveChat",[ChatController::class,'save_chat']);
 });
 
-//CHAT
-Route::get("revertToProceedToPay",[ChatController::class,'revert_proceed_to_pay']);
-Route::post("saveChat",[ChatController::class,'save_chat']);
+
 
 //TEST
 Route::get("test/{studentId}",[PaymentController::class,'get_student_amount']);
