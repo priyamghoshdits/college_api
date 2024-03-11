@@ -85,13 +85,13 @@ class LibraryIssueController extends Controller
 
         return response()->json(['success'=>1,'data'=>new LibraryIssueResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLibraryIssueRequest $request, LibraryIssue $libraryIssue)
+    public function return_over_period()
     {
-        //
+        $todayDate = Carbon::now()->format('Y-m-d');
+        $data = LibraryIssue::where('return_date', '<', $todayDate)->get();
+//        return $data;
+        return response()->json(['success'=>1,'data'=>LibraryIssueResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**

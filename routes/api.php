@@ -158,6 +158,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateIssuedBooks",[LibraryIssueController::class,'update_issue_books']);
     Route::get("deleteIssuedBooks/{id}",[LibraryIssueController::class,'delete_issue_books']);
     Route::get("updateReturnStatus/{id}",[LibraryIssueController::class,'update_return_status']);
+//    Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
 
     //GET HOTEL TYPES
     Route::get("getHostelTypes",[HotelTypeController::class,'get_hotel_type']);
@@ -507,6 +508,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveChat",[ChatController::class,'save_chat']);
 });
 
+Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
 
 
 //TEST
