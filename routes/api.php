@@ -355,6 +355,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveContent",[ContentController::class,'save_content']);
     Route::get("getAssignment",[ContentController::class,'get_assignment']);
     Route::get("getStudyMaterial",[ContentController::class,'get_study_material']);
+    Route::get("getSyllabus",[ContentController::class,'get_syllabus']);
     Route::get("deleteContent/{id}",[ContentController::class,'delete_content']);
     Route::post("updateContent",[ContentController::class,'update_content']);
 

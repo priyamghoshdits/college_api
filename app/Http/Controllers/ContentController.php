@@ -64,6 +64,12 @@ class ContentController extends Controller
         return response()->json(['success'=>1,'data'=>ContentResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_syllabus()
+    {
+        $data = Content::orderBy('id', 'DESC')->whereType('syllabus')->get();
+        return response()->json(['success'=>1,'data'=>ContentResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function update_content(Request $request)
     {
 
