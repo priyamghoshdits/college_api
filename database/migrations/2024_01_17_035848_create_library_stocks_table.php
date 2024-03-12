@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("author_name");
             $table->string("rack_number");
             $table->string("book_price");
+            $table->integer("fine");
             $table->string("description");
             $table->string("quantity")->default(0);
             $table->string("remaining")->default(0);

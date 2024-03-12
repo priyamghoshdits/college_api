@@ -156,6 +156,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getIssuedBooks",[LibraryIssueController::class,'get_issued_books']);
     Route::post("saveIssuedBooks",[LibraryIssueController::class,'save_issue_books']);
     Route::post("updateIssuedBooks",[LibraryIssueController::class,'update_issue_books']);
+    Route::post("updateIssuedBooksDiscount",[LibraryIssueController::class,'update_issue_books_discount']);
     Route::get("deleteIssuedBooks/{id}",[LibraryIssueController::class,'delete_issue_books']);
     Route::get("updateReturnStatus/{id}",[LibraryIssueController::class,'update_return_status']);
 //    Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
@@ -509,6 +510,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
 });
 
 Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
+Route::get("calculateFine",[LibraryIssueController::class,'calculate_fine']);
 
 
 //TEST

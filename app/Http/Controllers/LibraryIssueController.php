@@ -27,6 +27,8 @@ class LibraryIssueController extends Controller
         $issueItem->quantity = $requestedData->quantity;
         $issueItem->issued_on = $requestedData->issued_on;
         $issueItem->return_date = $requestedData->return_date;
+        $issueItem->fine = 0;
+        $issueItem->discount = 0;
         $issueItem->returned = 0;
         $issueItem->franchise_id = $request->user()->franchise_id;
         $issueItem->save();
@@ -64,6 +66,15 @@ class LibraryIssueController extends Controller
         return response()->json(['success'=>1,'data'=>new LibraryIssueResource($issueItem)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function update_issue_books_discount(Request $request){
+        $requestedData = (object)$request->json()->all();
+        $issueItem = LibraryIssue::find($requestedData->id);
+        $issueItem->discount = $requestedData->discount;
+        $issueItem->update();
+
+        return response()->json(['success'=>1,'data'=>new LibraryIssueResource($issueItem)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function delete_issue_books($id)
     {
         $issueItem = LibraryIssue::find($id);
@@ -88,17 +99,23 @@ class LibraryIssueController extends Controller
     public function return_over_period()
     {
         $todayDate = Carbon::now()->format('Y-m-d');
-        $data = LibraryIssue::where('return_date', '<', $todayDate)->get();
-//        return $data;
+        $data = LibraryIssue::where('return_date', '<', $todayDate)->whereReturned(0)->get();
         return response()->json(['success'=>1,'data'=>LibraryIssueResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(LibraryIssue $libraryIssue)
+    public function calculate_fine()
     {
-        //
+        $today_date = Carbon::now()->format('Y-m-d');
+        $bookIssue = LibraryIssue::where('return_date', '<', $today_date)->whereReturned(0)->get();
+        foreach ($bookIssue as $issue){
+            $today_date = Carbon::createFromDate($issue['return_date'])->diffInDays($today_date);
+            $bookFine = LibraryStock::find($issue['book_id'])->fine;
+            $issueSave = LibraryIssue::find($issue['id']);
+            $issueSave->fine = $today_date * $bookFine;
+            $issueSave->update();
+        }
+
+        return 'updated';
     }
 }

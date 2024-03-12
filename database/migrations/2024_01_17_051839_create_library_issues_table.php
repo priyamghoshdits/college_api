@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('book_id')->references('id')->on('library_stocks')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('quantity')->nullable(false);
+            $table->integer('fine')->nullable(false);
+            $table->integer("discount")->nullable(false);
             $table->date('issued_on')->nullable(false);
             $table->date('return_date')->nullable(false);
             $table->integer('returned')->default(0);

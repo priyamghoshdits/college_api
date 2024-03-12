@@ -31,6 +31,7 @@ class LibraryStockController extends Controller
         $library->author_name = $requestedData->author_name;
         $library->rack_number = $requestedData->rack_number;
         $library->book_price = $requestedData->book_price;
+        $library->fine = $requestedData->fine;
         $library->description = $requestedData->description;
         $library->remaining = $requestedData->remaining;
         $library->quantity = $requestedData->quantity;
@@ -51,6 +52,7 @@ class LibraryStockController extends Controller
         $library->author_name = $requestedData->author_name;
         $library->rack_number = $requestedData->rack_number;
         $library->book_price = $requestedData->book_price;
+        $library->fine = $requestedData->fine;
         $library->description = $requestedData->description;
         $library->remaining = $requestedData->remaining;
         $library->quantity = $requestedData->quantity;
