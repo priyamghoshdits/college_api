@@ -96,6 +96,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //LOGOUT
     Route::get("logout",[UserController::class,'logout']);
 
+    //SEND STUDENT LOGIN CREDENTIALS
+    Route::get("sendLoginCredentials/{id}",[UserController::class,'send_login_credentials']);
+
     //GET USER LOGS
     Route::get("getUserLogs",[UserLogController::class,'get_user_log']);
     Route::get("deleteUserLogs",[UserLogController::class,'delete_user_log']);
@@ -159,7 +162,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateIssuedBooksDiscount",[LibraryIssueController::class,'update_issue_books_discount']);
     Route::get("deleteIssuedBooks/{id}",[LibraryIssueController::class,'delete_issue_books']);
     Route::get("updateReturnStatus/{id}",[LibraryIssueController::class,'update_return_status']);
-//    Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
+    Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
 
     //GET HOTEL TYPES
     Route::get("getHostelTypes",[HotelTypeController::class,'get_hotel_type']);
@@ -217,13 +220,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("revertToProceedToPay/{id}",[GeneratedPayrollController::class,'revert_proceed_to_pay']);
     Route::get("revertToGenerate/{id}",[GeneratedPayrollController::class,'revert_generate']);
 
-
-
     // GET ALL MEMBERS
     Route::get("getAllMembers",[MemberController::class,'get_all_members']);
     Route::get("getMembers/{user_type_id}/{month}/{year}",[MemberController::class,'get_members_by_user_type_id']);
     Route::get("getTeachers",[MemberController::class,'get_teachers']);
     Route::get("getStudents",[MemberController::class,'get_students']);
+    Route::post("getStudentsBySession",[MemberController::class,'get_students_by_session']);
     Route::get("changeStudentStatus/{id}",[MemberController::class,'change_student_status']);
     Route::get("getTeacherByCourseAndSem/{course_id}/{semester_id}",[MemberController::class,'get_teacher_by_course_and_semester']);
 
@@ -504,13 +506,16 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("getExamReport",[AnswersheetController::class,'get_exam_report']);
     Route::post("getFeesCollectionReport",[PaymentController::class,'get_fees_collection_report']);
 
+
     //CHAT
     Route::get("getChat",[ChatController::class,'get_chat']);
     Route::post("saveChat",[ChatController::class,'save_chat']);
 });
 
-Route::get("getReturnOverPeriod",[LibraryIssueController::class,'return_over_period']);
+//CORN JOB
 Route::get("calculateFine",[LibraryIssueController::class,'calculate_fine']);
+
+Route::get("getDueFeesReport",[PaymentController::class,'get_due_fees_report']);
 
 
 //TEST

@@ -88,6 +88,21 @@ class MemberController extends Controller
         return response()->json(['success'=>1,'data'=> StudentResource::collection($member)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_students_by_session(Request $request){
+        $data = (object)$request->json()->all();
+        $member = User::select('*','student_details.id as student_details_id','users.id as id')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->whereUserTypeId(3)
+            ->whereCourseId($data->course_id)
+            ->whereCurrentSemesterId($data->semester_id)
+            ->whereSessionId($data->session_id)
+            ->where('users.franchise_id',$request->user()->franchise_id)
+            ->get();
+
+        return response()->json(['success'=>1,'data'=> StudentResource::collection($member)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function change_student_status($id){
         $data = User::find($id);
         $data->status = ($data->status==1)?0:1;

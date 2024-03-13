@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FeesCollectionResource;
 use App\Http\Resources\PaymentResource;
+use App\Models\Course;
 use App\Models\Discount;
 use App\Models\FeesStructure;
 use App\Models\Payment;
@@ -159,5 +160,35 @@ class PaymentController extends Controller
             ->get();
 
         return response()->json(['success'=>1,'data'=>FeesCollectionResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function get_due_fees_report(){
+        $users = User::select( '*','users.id as user_id','student_details.id as student_details_id')->join('student_details', 'student_details.student_id', '=', 'users.id')->whereAdmissionStatus(1)->get();
+        $ret_arr = [];
+        $course = DB::select("select table1.course_id, table1.semester_id, table1.amount, semesters.name, courses.course_name from(SELECT course_id,semester_id, sum(amount) as amount FROM `fees_structures`
+            group by semester_id,course_id) as table1
+            inner join semesters on semesters.id = table1.semester_id
+            inner join courses on courses.id = table1.course_id");
+        foreach ($users as $user){
+            $courseSemDetails = array_filter($course, function ($obj) use ($user) {
+                return $obj->course_id == $user['course_id'];
+            });
+            foreach ($courseSemDetails as $list){
+                $list->total_paid = DB::select("SELECT ifnull(sum(amount),0) as amount FROM payments where course_id = ? and semester_id = ? and student_id = ?",[$list->course_id,$list->semester_id,$user['user_id']])[0]->amount;
+                $list->discount = DB::select("SELECT ifnull(sum(amount),0) as amount FROM discounts where course_id = ? and semester_id = ? and student_id = ?",[$list->course_id,$list->semester_id,$user['user_id']])[0]->amount;
+            }
+            $a = [
+                'user_id' => $user['user_id'],
+                'user_name' => $user['first_name'].' '.$user['middle_name'].' '.$user['last_name'],
+                'course_id' => $user['course_id'],
+                'course_name' => Course::find($user['course_id'])->course_name,
+                'semester_id' => $user['current_semester_id'],
+                'payment_details' => $courseSemDetails,
+                'book_fine' => DB::select("select ifnull(sum(fine),0) as amount from library_issues where user_id = ?",[$user['user_id']])[0]->amount
+            ];
+            $ret_arr[] = $a;
+        }
+
+        return response()->json(['success'=>1,'data'=>$ret_arr], 200,[],JSON_NUMERIC_CHECK);
     }
 }

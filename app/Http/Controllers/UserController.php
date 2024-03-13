@@ -69,6 +69,23 @@ class UserController extends Controller
         return response()->json(['success'=>1,'data'=>$user], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function send_login_credentials($id){
+        $pass = rand(100000,999999);
+        $data = User::find($id);
+        $data->password = $pass;
+        $data->update();
+
+        dispatch(function () use($data,$pass){
+            Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
+            , 'password' => $pass) , function ($message) use($data) {
+                $message->from('rudkarsh@rgoi.in');
+                $message->to($data->email);
+                $message->subject('Password Resend');
+            });
+        })->afterResponse();
+        return response()->json(['success'=>1,'message'=>"Mail Sent"], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function forgot_password($email_id){
         $pass = rand(100000,999999);
 
@@ -84,7 +101,7 @@ class UserController extends Controller
                 $message->subject('Forgot Passowrd');
             });
         })->afterResponse();
-        return response()->json(['success'=>$pass,'data'=>"Please check your mail"], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>"Please check your mail"], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function logout(Request $request){
