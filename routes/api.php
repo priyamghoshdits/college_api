@@ -65,6 +65,8 @@ use App\Http\Controllers\VirtualClassController;
 use App\Http\Controllers\VirtualMeetingController;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\VisitorBookController;
+use App\Http\Controllers\PostalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -485,6 +487,19 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveVirtualMeeting",[VirtualMeetingController::class,'save_virtual_meeting']);
     Route::post("updateVirtualMeeting",[VirtualMeetingController::class,'update_virtual_meeting']);
     Route::get("deleteVirtualMeeting/{id?}",[VirtualMeetingController::class,'delete_virtual_meeting']);
+
+    //VISITOR BOOK
+    Route::get("getVisitorBook",[VisitorBookController::class,'get_visitor']);
+    Route::post("saveVisitorBook",[VisitorBookController::class,'save_visitor_book']);
+    Route::post("updateVisitorBook",[VisitorBookController::class,'update_visitor_book']);
+    Route::get("deleteVisitorBook/{id?}",[VisitorBookController::class,'delete_visitor_book']);
+
+    //POSTAL DISPATCH AND RECEIVE
+    Route::get("getPostalDispatch",[PostalController::class,'get_postal_dispatch']);
+    Route::get("getPostalReceive",[PostalController::class,'get_postal_receive']);
+    Route::post("savePostal",[PostalController::class,'save_postal']);
+    Route::post("updatePostal",[PostalController::class,'update_postal']);
+    Route::get("deleteVisitorBook/{id?}",[PostalController::class,'delete_visitor_book']);
 
     //CERTIFICATE
     Route::get("getCertificate",[CertificateController::class,'get_certificates']);
