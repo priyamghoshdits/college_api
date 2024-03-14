@@ -69,6 +69,7 @@ use App\Http\Controllers\VisitorBookController;
 use App\Http\Controllers\PostalController;
 use App\Http\Controllers\CallLogController;
 use App\Http\Controllers\AdmissionEnquiryController;
+use App\Http\Controllers\HomeworkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -495,6 +496,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveVisitorBook",[VisitorBookController::class,'save_visitor_book']);
     Route::post("updateVisitorBook",[VisitorBookController::class,'update_visitor_book']);
     Route::get("deleteVisitorBook/{id?}",[VisitorBookController::class,'delete_visitor_book']);
+
+    //HOMEWORK
+    Route::get("getHomework",[HomeworkController::class,'get_homework']);
+    Route::post("saveHomework",[HomeworkController::class,'save_homework']);
+    Route::post("updateHomework",[HomeworkController::class,'update_homework']);
+    Route::get("deleteHomework/{id?}",[HomeworkController::class,'delete_homework']);
 
     //STUDENT ENQUIRY
     Route::get("getAdmissionEnquiry",[AdmissionEnquiryController::class,'get_admission_enquiry']);
