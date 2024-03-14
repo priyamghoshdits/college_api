@@ -67,6 +67,8 @@ use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\VisitorBookController;
 use App\Http\Controllers\PostalController;
+use App\Http\Controllers\CallLogController;
+use App\Http\Controllers\AdmissionEnquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -494,12 +496,24 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("updateVisitorBook",[VisitorBookController::class,'update_visitor_book']);
     Route::get("deleteVisitorBook/{id?}",[VisitorBookController::class,'delete_visitor_book']);
 
+    //STUDENT ENQUIRY
+    Route::get("getAdmissionEnquiry",[AdmissionEnquiryController::class,'get_admission_enquiry']);
+    Route::post("saveAdmissionEnquiry",[AdmissionEnquiryController::class,'save_admission_enquiry']);
+    Route::post("updateAdmissionEnquiry",[AdmissionEnquiryController::class,'update_admission_enquiry']);
+    Route::get("deleteAdmissionEnquiry/{id?}",[AdmissionEnquiryController::class,'delete_admission_enquiry']);
+
+    //CALL LOG
+    Route::get("getCallLog",[CallLogController::class,'get_call_log']);
+    Route::post("saveCallLog",[CallLogController::class,'save_call_log']);
+    Route::post("updateCallLog",[CallLogController::class,'update_call_log']);
+    Route::get("deleteCallLog/{id?}",[CallLogController::class,'delete_call_log']);
+
     //POSTAL DISPATCH AND RECEIVE
     Route::get("getPostalDispatch",[PostalController::class,'get_postal_dispatch']);
     Route::get("getPostalReceive",[PostalController::class,'get_postal_receive']);
     Route::post("savePostal",[PostalController::class,'save_postal']);
     Route::post("updatePostal",[PostalController::class,'update_postal']);
-    Route::get("deleteVisitorBook/{id?}",[PostalController::class,'delete_visitor_book']);
+    Route::get("deletePostal/{id?}",[PostalController::class,'delete_postal']);
 
     //CERTIFICATE
     Route::get("getCertificate",[CertificateController::class,'get_certificates']);

@@ -51,12 +51,11 @@ class PostalController extends Controller
         return response()->json(['success'=>1,'data'=>$postal], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Postal $postal)
+    public function delete_postal($id)
     {
-        //
+        $postal = Postal::find($id);
+        $postal->delete();
+        return response()->json(['success'=>1,'data'=>$postal], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
