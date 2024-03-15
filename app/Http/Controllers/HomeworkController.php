@@ -7,6 +7,7 @@ use App\Models\Homework;
 use App\Http\Requests\StoreHomeworkRequest;
 use App\Http\Requests\UpdateHomeworkRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class HomeworkController extends Controller
 {
@@ -41,6 +42,12 @@ class HomeworkController extends Controller
     public function update_homework(Request $request)
     {
         $homework = Homework::find($request['id']);
+        if ($files = $request->file('file')) {
+            if (file_exists(public_path() . '/homework/' . $homework->file_name)) {
+                File::delete(public_path() . '/homework/' . $homework->file_name);
+            }
+        }
+
         $homework->course_id = $request['course_id'];
         $homework->semester_id = $request['semester_id'];
         $homework->subject_id = $request['subject_id'];
@@ -48,12 +55,27 @@ class HomeworkController extends Controller
         $homework->submission_date = $request['submission_date'];
         $homework->file_name = $request['file_name'];
         $homework->update();
+
+        if ($files = $request->file('file')) {
+            // Define upload path
+            $destinationPath = public_path('/homework/'); // upload path
+            // Upload Orginal Image
+            $profileImage1 = $files->getClientOriginalName();
+            $files->move($destinationPath, $profileImage1);
+        }
+
         return response()->json(['success'=>1,'data'=>new HomeworkResource($homework)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function delete_homework($id)
     {
-        //
+        $homework = Homework::find($id);
+        if (file_exists(public_path() . '/homework/' . $homework->file_name)) {
+            File::delete(public_path() . '/homework/' . $homework->file_name);
+        }
+        $homework->delete();
+
+        return response()->json(['success'=>1,'data'=>new HomeworkResource($homework)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
