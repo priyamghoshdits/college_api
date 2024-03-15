@@ -71,6 +71,17 @@ class StudentResource extends JsonResource
             'mode_of_payment' => $this->mode_of_payment ?? null,
             'transaction_id' => $this->transaction_id ?? null,
             'refund' => $this->refund ?? null,
+            'caution_money_id' => $this->caution_money_id ?? null,
+            'caution_money_payment_date' => $this->caution_money_payment_date ?? null,
+            'caution_money_mode_of_payment' => $this->caution_money_mode_of_payment ?? null,
+            'caution_money_transaction_id' => $this->caution_money_transaction_id ?? null,
+            'caution_money' => $this->caution_money ?? null,
+            'caution_money_deduction' => $this->caution_money_deduction ?? null,
+            'refund_mode_of_payment' => $this->refund_mode_of_payment ?? null,
+            'refund_transaction_id' => $this->refund_transaction_id ?? null,
+            'refunded_amount' => $this->refunded_amount ?? null,
+            'refund_payment_date' => $this->refund_payment_date ?? null,
+            'caution_money_refund' => $this->caution_money_refund ?? null,
         ];
     }
 }

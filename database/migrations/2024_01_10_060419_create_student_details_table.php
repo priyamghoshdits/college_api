@@ -41,6 +41,7 @@ return new class extends Migration
             $table->integer('admission_status')->default(1);
             //0 for pre-admission, 1 for admitted, 2 for passed, 3 left
             $table->integer('pre_admission_payment_id')->nullable(true);
+            $table->integer('caution_money_id')->nullable(true);
             $table->timestamps();
         });
     }

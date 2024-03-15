@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\StudentResource;
+use App\Models\CautionMoney;
 use App\Models\Member;
 use App\Models\MemberDetails;
 use App\Models\PreAdmissionPayment;
@@ -202,6 +203,21 @@ class UserController extends Controller
             $student_details->pre_admission_payment_id = ($data->admission_status==0)? $preAdmissionPayment->id: null;
             $student_details->save();
 
+            if($data->admission_status == 1){
+                $cautionMoney = new CautionMoney();
+                $cautionMoney->user_id = $user->id;
+                $cautionMoney->caution_money_payment_date = $data->payment_date;
+                $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
+                $cautionMoney->caution_money_transaction_id = $data->transaction_id;
+                $cautionMoney->caution_money = $data->caution_money;
+                $cautionMoney->caution_money_deduction = $data->deduction ?? null;
+                $cautionMoney->refund_payment_date = $data->refund_payment_date ?? null;
+                $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? null;
+                $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? null;
+                $cautionMoney->caution_money_refund = 0;
+                $cautionMoney->save();
+            }
+
             DB::commit();
 
         }catch(\Exception $e){
@@ -212,6 +228,7 @@ class UserController extends Controller
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
             ->where('users.id',$user->id)
             ->first();
@@ -252,6 +269,34 @@ class UserController extends Controller
         $user->status = ($data->admission_status == 0)?0:1;
         $user->update();
 
+        $cautionMoney = CautionMoney::whereUserId($user->id)->first();
+        if($cautionMoney){
+            $cautionMoney->user_id = $user->id;
+            $cautionMoney->caution_money_payment_date = $data->payment_date;
+            $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
+            $cautionMoney->caution_money_transaction_id = $data->transaction_id;
+            $cautionMoney->caution_money = $data->caution_money;
+            $cautionMoney->caution_money_deduction = $data->deduction ?? $cautionMoney->caution_money_deduction;
+            $cautionMoney->refund_payment_date = $data->refund_payment_date ?? $cautionMoney->refund_payment_date;
+            $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? $cautionMoney->refund_mode_of_payment;
+            $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? $cautionMoney->refund_transaction_id;
+            $cautionMoney->caution_money_refund = $data->caution_money_refund ?? $cautionMoney->caution_money_refund;
+            $cautionMoney->update();
+        }else{
+            $cautionMoney = new CautionMoney();
+            $cautionMoney->user_id = $user->id;
+            $cautionMoney->caution_money_payment_date = $data->payment_date;
+            $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
+            $cautionMoney->caution_money_transaction_id = $data->transaction_id;
+            $cautionMoney->caution_money = $data->caution_money;
+            $cautionMoney->caution_money_deduction = $data->deduction ?? null;
+            $cautionMoney->refund_payment_date = $data->refund_payment_date ?? null;
+            $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? null;
+            $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? null;
+            $cautionMoney->caution_money_refund = 0;
+            $cautionMoney->save();
+        }
+
         if($data->admission_status == 0){
             $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);
             $preAdmissionPayment->payment_date = $data->payment_date;
@@ -287,6 +332,7 @@ class UserController extends Controller
             $student_details->guardian_relation = $data->guardian_relation ?? $student_details->guardian_relation;
             $student_details->guardian_address = $data->guardian_address ?? $student_details->guardian_address;
             $student_details->guardian_occupation = $data->guardian_occupation ?? $student_details->guardian_occupation;
+            $student_details->caution_money_id = $cautionMoney->id ?? $student_details->caution_money_id;
             $student_details->update();
         }else{
             $student_details = new StudentDetail();
@@ -314,12 +360,14 @@ class UserController extends Controller
             $student_details->guardian_relation = $data->guardian_relation ;
             $student_details->guardian_address = $data->guardian_address ;
             $student_details->guardian_occupation = $data->guardian_occupation ;
+            $student_details->caution_money_id =  $cautionMoney->id ;
             $student_details->save();
         }
 
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
             ->where('users.id',$user->id)
             ->first();

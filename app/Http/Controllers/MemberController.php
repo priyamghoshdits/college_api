@@ -8,6 +8,7 @@ use App\Http\Resources\PayrollDeductionResource;
 use App\Http\Resources\PayrollEarningResource;
 use App\Http\Resources\StudentResource;
 use App\Models\AssignSemesterTeacher;
+use App\Models\CautionMoney;
 use App\Models\GeneratedPayroll;
 use App\Models\Holiday;
 use App\Models\Leave;
@@ -81,6 +82,7 @@ class MemberController extends Controller
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
             ->where('users.franchise_id',$request->user()->franchise_id)
             ->get();
@@ -88,11 +90,52 @@ class MemberController extends Controller
         return response()->json(['success'=>1,'data'=> StudentResource::collection($member)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_students_for_caution_money(Request $request){
+        $data = (object)$request->json()->all();
+        $member = User::select('*','student_details.id as student_details_id','users.id as id')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
+            ->whereCourseId($data->course_id)
+            ->whereSemesterId($data->semester_id)
+            ->whereSessionId($data->session_id)
+            ->whereUserTypeId(3)
+            ->where('users.franchise_id',$request->user()->franchise_id)
+            ->get();
+
+        return response()->json(['success'=>1,'data'=> StudentResource::collection($member)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function refund_caution_money(Request $request){
+        $data = (object)$request->json()->all();
+        $cautionMoney = CautionMoney::whereUserId($data->user_id)->first();
+        $cautionMoney->caution_money_deduction = $data->caution_money_deduction;
+        $cautionMoney->refund_payment_date = $data->refund_payment_date;
+        $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment;
+        $cautionMoney->refund_transaction_id = $data->refund_transaction_id;
+        $cautionMoney->refunded_amount = ($cautionMoney->caution_money - $data->caution_money_deduction);
+        $cautionMoney->caution_money_refund = 1;
+        $cautionMoney->update();
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function revert_caution_money($user_id){
+        $cautionMoney = CautionMoney::whereUserId($user_id)->first();
+        $cautionMoney->caution_money_deduction = null;
+        $cautionMoney->refund_payment_date = null;
+        $cautionMoney->refund_mode_of_payment = null;
+        $cautionMoney->refund_transaction_id = null;
+        $cautionMoney->caution_money_refund = 0;
+        $cautionMoney->update();
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function get_students_by_session(Request $request){
         $data = (object)$request->json()->all();
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
             ->whereCourseId($data->course_id)
             ->whereCurrentSemesterId($data->semester_id)
@@ -111,6 +154,7 @@ class MemberController extends Controller
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
+            ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->where('users.id',$data->id)
             ->first();
 
