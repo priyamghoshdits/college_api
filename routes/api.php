@@ -70,6 +70,8 @@ use App\Http\Controllers\PostalController;
 use App\Http\Controllers\CallLogController;
 use App\Http\Controllers\AdmissionEnquiryController;
 use App\Http\Controllers\HomeworkController;
+use App\Http\Controllers\RoutesController;
+use App\Http\Controllers\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -254,6 +256,18 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveSession",[SessionController::class,'save_session']);
     Route::post("updateSession",[SessionController::class,'update_session']);
     Route::get("deleteSession/{id}",[SessionController::class,'delete_session']);
+
+    //ROUTES
+    Route::get("getRoutes",[RoutesController::class,'get_routes']);
+    Route::post("saveRoutes",[RoutesController::class,'save_routes']);
+    Route::post("updateRoutes",[RoutesController::class,'update_routes']);
+    Route::get("deleteRoutes/{id}",[RoutesController::class,'delete_routes']);
+
+    //VEHICLE
+    Route::get("getVehicle",[VehicleController::class,'get_vehicle']);
+    Route::post("saveVehicle",[VehicleController::class,'save_vehicle']);
+    Route::post("updateVehicle",[VehicleController::class,'update_vehicle']);
+    Route::get("deleteVehicle/{id}",[VehicleController::class,'delete_vehicle']);
 
     //LEAVE TYPE
     Route::get("getLeaveType",[LeaveTypeController::class,'get_leave_type']);

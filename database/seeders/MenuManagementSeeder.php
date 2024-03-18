@@ -88,6 +88,16 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Virtual Class' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Virtual Meeting' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Front Desk' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Visitor Book' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Admission Enquiry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Call Log' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Postal Dispatch' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Postal Receive' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
@@ -195,6 +205,16 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Virtual Class' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Virtual Meeting' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Front Desk' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Visitor Book' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Admission Enquiry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Call Log' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Postal Dispatch' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Postal Receive' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
+
 
             ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
@@ -301,6 +321,16 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Virtual Class' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Virtual Meeting' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Front Desk' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Visitor Book' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Admission Enquiry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Call Log' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Postal Dispatch' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Postal Receive' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
@@ -405,6 +435,16 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Virtual Class' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Virtual Meeting' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Front Desk' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Visitor Book' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Admission Enquiry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Call Log' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Postal Dispatch' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Postal Receive' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
@@ -507,6 +547,16 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Virtual Class Meeting' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Virtual Class' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Virtual Meeting' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Front Desk' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Visitor Book' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Admission Enquiry' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Call Log' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Postal Dispatch' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Postal Receive' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
