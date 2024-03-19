@@ -441,6 +441,18 @@ class UserController extends Controller
         return response()->json(['success'=>1,'data'=>new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function update_member_own(Request $request){
+        $data = (object)$request->json()->all();
+        $user = User::find($request->user()->id);
+        $user->gender = $data->gender ;
+        $user->dob = $data->dob ;
+        $user->religion = $data->religion ;
+        $user->mobile_no = $data->mobile_no ;
+        $user->blood_group = $data->blood_group ;
+        $user->update();
+        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function update_member(Request $request){
         $data = (object)$request->json()->all();
         $user = User::find($data->id);

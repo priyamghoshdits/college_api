@@ -74,6 +74,10 @@ class RolesSeeder extends Seeder
             ['name' => 'POSTAL DISPATCH'],
             ['name' => 'POSTAL RECEIVE'],
 
+            ['name' => 'ROUTES'],
+            ['name' => 'VEHICLE'],
+            ['name' => 'ASSIGN VEHICLE'],
+
 //            ['name' => 'ASSIGNMENT'],
 //            ['name' => 'STUDY MATERIAL'], //35
 

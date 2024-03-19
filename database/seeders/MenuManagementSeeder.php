@@ -98,6 +98,11 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Transport' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Routes' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Vehicle' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Assign Vehicle' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
@@ -215,6 +220,11 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Transport' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Routes' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Vehicle' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Assign Vehicle' , 'permission' => true, 'franchise_id' => 1],
+
 
             ['user_type_id' => '2' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
@@ -331,6 +341,11 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Transport' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Routes' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Vehicle' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Assign Vehicle' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '3' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
@@ -445,6 +460,11 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Transport' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Routes' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Vehicle' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Assign Vehicle' , 'permission' => true, 'franchise_id' => 1],
+
             ['user_type_id' => '4' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4' , 'groups' => 0 , 'name' => 'Fees Structure' , 'permission' => true, 'franchise_id' => 1],
@@ -557,6 +577,11 @@ class MenuManagementSeeder extends Seeder
 
             ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Homework' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Add Homework' , 'permission' => true, 'franchise_id' => 1],
+
+            ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Transport' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Routes' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Vehicle' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Assign Vehicle' , 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5' , 'groups' => 1 , 'name' => 'Fees Collection' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5' , 'groups' => 0 , 'name' => 'Fees Type' , 'permission' => true, 'franchise_id' => 1],

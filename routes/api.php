@@ -150,6 +150,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("memberStatus/{id}",[MemberController::class,'member_status']);
     Route::post("saveMember",[UserController::class,'save_member']);
     Route::post("updateMember",[UserController::class,'update_member']);
+    Route::post("updateMemberOwn",[UserController::class,'update_member_own']);
 
     //LIBRARY
     Route::get("getLibraryDetails",[LibraryStockController::class,'get_library_details']);
