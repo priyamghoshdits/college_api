@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CourseResource;
+use App\Models\AssignSemesterTeacher;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
@@ -75,7 +76,19 @@ class CourseController extends Controller
         $course->duration = $requestedData->duration;
         $course->update();
 
+        $test = [];
+        foreach ($requestedData->semester as $list){
+            $test[] = $list['semester_id'];
+        }
+
         Cache::forget('semester_by_course_'.$course->id);
+        $courseGrp = CourseGroup::whereCourseId($course->id)->whereNotIn('semester_id',$test)->get();
+        if($courseGrp){
+            foreach ($courseGrp as $d_sem){
+                $data = CourseGroup::whereCourseId($course->id)->whereSemesterId($d_sem->semester_id)->first();
+                $data->delete();
+            }
+        }
 
         foreach ($requestedData->semester as $lists){
             $list = (object)$lists;

@@ -72,6 +72,7 @@ use App\Http\Controllers\AdmissionEnquiryController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\RoutesController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\AssignVehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +180,12 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::post("saveHostels",[HotelController::class,'save_hostels']);
     Route::post("updateHostels",[HotelController::class,'update_hostels']);
     Route::get("deleteHostels/{id}",[HotelController::class,'delete_hostels']);
+
+    //ASSIGN VEHICLE
+    Route::get("getAssignVehicle",[AssignVehicleController::class,'get_assign_vehicle']);
+    Route::post("saveAssignVehicle",[AssignVehicleController::class,'save_assign_vehicle']);
+    Route::post("updateAssignVehicle",[AssignVehicleController::class,'update_assign_vehicle']);
+    Route::get("deleteAssignVehicle/{route_id}",[AssignVehicleController::class,'delete_assign_vehicle']);
 
     //ROOM TYPE
     Route::get("getRoomType",[RoomTypeController::class,'get_room_type']);
