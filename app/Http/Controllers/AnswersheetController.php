@@ -57,7 +57,8 @@ class AnswersheetController extends Controller
             ->whereSessionId($session_id)
             ->first();
 
-        $users = User::join('student_details', 'users.id', '=', 'student_details.student_id')
+        $users = User::select('*','users.id as id')
+            ->join('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereCourseId($course_id)
             ->whereCurrentSemesterId($semester_id)
             ->whereSessionId($session_id)
