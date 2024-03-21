@@ -90,7 +90,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //LOGIN PART
-Route::post("login",[UserController::class,'login']);
+Route::post("login",[UserController::class,'login'])->name('login');
 Route::get("forgotPassword/{email_id}",[UserController::class,'forgot_password']);
 
 Route::get("initilialize",[RolesAndPermissionController::class,'initilialize']);
