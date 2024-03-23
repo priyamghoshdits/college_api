@@ -615,7 +615,8 @@ Route::get("tmail",[FeesTypeController::class,'testMail']);
 
 
 
-
+//test api
+Route::get("testMigration",[MemberController::class,'test_migration']);
 
 // count(json_decode($data->semester_by_course(3)->content(),true)['data']); semester controller
 

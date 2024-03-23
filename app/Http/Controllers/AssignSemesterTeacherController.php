@@ -20,14 +20,22 @@ class AssignSemesterTeacherController extends Controller
         $course_id = $requestedData->course_id;
         $semester_id = $requestedData->semester_id;
 
-        foreach ($requestedData->teacher as $item){
-            $assignSemesterTeacher = new AssignSemesterTeacher();
-            $assignSemesterTeacher->course_id = $course_id;
-            $assignSemesterTeacher->semester_id = $semester_id;
-            $assignSemesterTeacher->teacher_id = $item['id'];
-            $assignSemesterTeacher->save();
+        $check = AssignSemesterTeacher::whereCourseId($course_id)
+            ->whereSemesterId($semester_id)
+            ->get();
+        if(count($check) == 0){
+            foreach ($requestedData->teacher as $item){
+                $assignSemesterTeacher = new AssignSemesterTeacher();
+                $assignSemesterTeacher->course_id = $course_id;
+                $assignSemesterTeacher->semester_id = $semester_id;
+                $assignSemesterTeacher->teacher_id = $item['id'];
+                $assignSemesterTeacher->save();
+            }
+            return response()->json(['success'=>1,'data'=>new AssignSemesterTeacherResource($assignSemesterTeacher)], 200,[],JSON_NUMERIC_CHECK);
+        }else{
+            return response()->json(['success'=>0], 200,[],JSON_NUMERIC_CHECK);
         }
-        return response()->json(['success'=>1,'data'=>new AssignSemesterTeacherResource($assignSemesterTeacher)], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     public function update_semester_teacher(Request $request)

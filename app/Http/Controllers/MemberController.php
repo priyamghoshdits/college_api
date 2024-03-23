@@ -23,6 +23,7 @@ use App\Models\StudentDetail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -309,5 +310,9 @@ class MemberController extends Controller
         }
 
         return response()->json(['success'=>1, 'data' => $members], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function test_migration(){
+        Artisan::call('migrate:refresh --seed');
     }
 }
