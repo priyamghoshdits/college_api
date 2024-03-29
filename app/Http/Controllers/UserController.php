@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\StudentResource;
+use App\Models\Attendance;
 use App\Models\CautionMoney;
 use App\Models\Member;
 use App\Models\MemberDetails;
@@ -118,11 +119,18 @@ class UserController extends Controller
             return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
         }
         $member = User::select('*','student_details.id as student_details_id','users.id as id')
-            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->where('users.id',$request->user()->id)
             ->first();
         return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
 //        return $request->user()->id;
+    }
+
+    public function get_user_attendance(Request $request){
+        $today = Carbon::now();
+        $year = count(Attendance::whereUserId($request->user()->id)->whereYear('date',$today->year)->get());
+        $month = count(Attendance::whereUserId($request->user()->id)->whereMonth('date',$today->month)->get());
+        $total_teacher = count(User::whereUserTypeId(2)->get());
+        return response()->json(['success'=>1,'year'=>$year, 'month' =>$month, 'teacher' => $total_teacher], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function delete_personal_access_token(){
