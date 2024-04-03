@@ -73,6 +73,7 @@ use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\RoutesController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\AssignVehicleController;
+use App\Http\Controllers\MarksheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,9 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     //GET LOGGED IN USER DATA
     Route::get("getLoggedInUserData",[UserController::class,'get_user_data']);
     Route::get("getTotalUserAttendance",[UserController::class,'get_user_attendance']);
+
+    //MARKSHEET
+    Route::post("saveMarksheet",[MarksheetController::class,'saveMarkSheet']);
 
     //HOLIDAY
     Route::post("saveHolidayForWholeYear",[HolidayController::class,'holiday_for_whole_year']);

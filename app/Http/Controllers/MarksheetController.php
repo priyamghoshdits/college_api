@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StudentResource;
 use App\Models\Marksheet;
 use App\Http\Requests\StoreMarksheetRequest;
 use App\Http\Requests\UpdateMarksheetRequest;
+use Illuminate\Http\Request;
 
 class MarksheetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function saveMarkSheet(Request $request)
     {
-        //
+        $requestedData = $request->json()->all();
+        foreach ($requestedData as $data){
+            $marksheet = new Marksheet();
+            $marksheet->course_id = $data['course_id'];
+            $marksheet->semester_id = $data['semester_id'];
+            $marksheet->subject_id = $data['subject_id'];
+            $marksheet->student_id = $data['student_id'];
+            $marksheet->marks = $data['marks'];
+            $marksheet->full_marks = $data['full_marks'];
+            $marksheet->save();
+        }
+
+        return response()->json(['success'=>1,'data'=> $marksheet], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
