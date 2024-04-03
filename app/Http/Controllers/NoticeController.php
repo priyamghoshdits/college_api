@@ -40,6 +40,11 @@ class NoticeController extends Controller
         $data->save();
 
         $users = User::whereFranchiseId($request->user()->franchise_id)->whereIn('user_type_id',$mailing_id)->get();
+//        Mail::send('notice',array(),function ($message){
+//            $message->from('rudkarsh@rgoi.in');
+//            $message->to('priyamghosh.dits@gmail.com');
+//            $message->subject('Test mail');
+//        });
         dispatch(function () use ($users, $requestedData){
             foreach ($users as $user){
                 Mail::send('notice',array('name'=>$user['first_name']." ".$user['middle_name']." ".$user['last_name']
@@ -49,6 +54,12 @@ class NoticeController extends Controller
                     $message->to($user['email']);
                     $message->subject('Test mail');
                 });
+
+//                Mail::send('notice',array(),function ($message) use($user) {
+//                    $message->from('rudkarsh@rgoi.in');
+//                    $message->to(json_decode(json_encode($user['email'])));
+//                    $message->subject('Test mail');
+//                });
             }
         })->afterResponse();
 

@@ -126,6 +126,7 @@ class MemberController extends Controller
         $cautionMoney->refund_payment_date = null;
         $cautionMoney->refund_mode_of_payment = null;
         $cautionMoney->refund_transaction_id = null;
+        $cautionMoney->refunded_amount = 0;
         $cautionMoney->caution_money_refund = 0;
         $cautionMoney->update();
         return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
