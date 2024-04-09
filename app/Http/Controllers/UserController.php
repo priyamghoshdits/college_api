@@ -118,10 +118,10 @@ class UserController extends Controller
                 ->find();
             return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
         }
-        $member = User::select('*','student_details.id as student_details_id','users.id as id')
+        $member = User::select('*')
             ->where('users.id',$request->user()->id)
             ->first();
-        return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new MemberResource($member)], 200,[],JSON_NUMERIC_CHECK);
 //        return $request->user()->id;
     }
 
@@ -452,6 +452,9 @@ class UserController extends Controller
     public function update_member_own(Request $request){
         $data = (object)$request->json()->all();
         $user = User::find($request->user()->id);
+        $user->first_name = $data->first_name ;
+        $user->middle_name = $data->middle_name ;
+        $user->last_name = $data->last_name ;
         $user->gender = $data->gender ;
         $user->dob = $data->dob ;
         $user->religion = $data->religion ;

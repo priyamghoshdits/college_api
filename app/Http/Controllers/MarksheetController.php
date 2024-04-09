@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MarksheetResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Marksheet;
 use App\Http\Requests\StoreMarksheetRequest;
@@ -10,31 +11,45 @@ use Illuminate\Http\Request;
 
 class MarksheetController extends Controller
 {
-    public function saveMarkSheet(Request $request)
+    public function save_mark_sheet(Request $request)
     {
         $requestedData = $request->json()->all();
         foreach ($requestedData as $data){
-            $marksheet = new Marksheet();
-            $marksheet->course_id = $data['course_id'];
-            $marksheet->semester_id = $data['semester_id'];
-            $marksheet->subject_id = $data['subject_id'];
-            $marksheet->student_id = $data['student_id'];
-            $marksheet->marks = $data['marks'];
-            $marksheet->full_marks = $data['full_marks'];
-            $marksheet->save();
+            $marksheetUpdate = Marksheet::whereCourseId($data['course_id'])
+                ->whereSemesterId($data['semester_id'])
+                ->whereSessionId($data['session_id'])
+                ->whereStudentId($data['student_id'])
+                ->whereSubjectId($data['subject_id'])->first();
+            if($marksheetUpdate){
+                $marksheetUpdate->marks = $data['marks'];
+                $marksheetUpdate->full_marks = $data['full_marks'];
+                $marksheetUpdate->update();
+            }else{
+                $marksheet = new Marksheet();
+                $marksheet->course_id = $data['course_id'];
+                $marksheet->semester_id = $data['semester_id'];
+                $marksheet->subject_id = $data['subject_id'];
+                $marksheet->student_id = $data['student_id'];
+                $marksheet->session_id = $data['session_id'];
+                $marksheet->marks = $data['marks'];
+                $marksheet->full_marks = $data['full_marks'];
+                $marksheet->save();
+            }
         }
 
-        return response()->json(['success'=>1,'data'=> $marksheet], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$marksheet ?? $marksheetUpdate], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function create()
+    public function get_mark_sheet(Request $request)
     {
-        //
+        $requestedData = (object)$request->json()->all();
+        $marksheet = Marksheet::select('student_id','course_id','semester_id','session_id')->whereCourseId($requestedData->course_id)
+            ->whereSemesterId($requestedData->semester_id)
+            ->whereSessionId($requestedData->session_id)->distinct()->get();
+        return response()->json(['success'=>1,'data'=> MarksheetResource::collection($marksheet)], 200,[],JSON_NUMERIC_CHECK);
+//        return response()->json(['success'=>1,'data'=> $marksheet], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreMarksheetRequest $request)
     {
         //

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('semester_id')->references('id')->on('semesters')->onDelete('cascade');
             $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreignId('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->integer('marks')->nullable(false);
             $table->integer('full_marks')->nullable(false);
             $table->integer('grade')->nullable(true);

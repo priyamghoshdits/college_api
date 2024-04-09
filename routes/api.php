@@ -100,6 +100,8 @@ Route::get("clearCache",[RolesAndPermissionController::class,'clear_cache']);
 
 Route::get("testF",[MemberController::class,'testUser']);
 
+Route::post("getMarksheet",[MarksheetController::class,'get_mark_sheet']);
+
 
 Route::group(['middleware' => 'auth:sanctum'],function(){
     //LOGOUT
@@ -120,7 +122,8 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getTotalUserAttendance",[UserController::class,'get_user_attendance']);
 
     //MARKSHEET
-    Route::post("saveMarksheet",[MarksheetController::class,'saveMarkSheet']);
+    Route::post("saveMarksheet",[MarksheetController::class,'save_mark_sheet']);
+//    Route::get("getMarksheet",[MarksheetController::class,'get_mark_sheet']);
 
     //HOLIDAY
     Route::post("saveHolidayForWholeYear",[HolidayController::class,'holiday_for_whole_year']);
