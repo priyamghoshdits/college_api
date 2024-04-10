@@ -10,6 +10,7 @@ use App\Models\CautionMoney;
 use App\Models\Member;
 use App\Models\MemberDetails;
 use App\Models\PreAdmissionPayment;
+use App\Models\Registration;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserLog;
@@ -182,6 +183,12 @@ class UserController extends Controller
                 $preAdmissionPayment->save();
             }
 
+            $registration = new Registration();
+            $registration->student_id = $user->id;
+            $registration->roll_no = $data->roll_no ?? null;
+            $registration->registration_no = $data->registration_no ?? null;
+            $registration->save();
+
             $student_details = new StudentDetail();
             $student_details->student_id  = $user->id ;
             $student_details->course_id  = $data->course_id ;
@@ -304,6 +311,11 @@ class UserController extends Controller
             $cautionMoney->caution_money_refund = 0;
             $cautionMoney->save();
         }
+
+        $registration = Registration::whereStudentId($user->id)->first();
+        $registration->roll_no = $data->roll_no ?? $registration->roll_no;
+        $registration->registration_no = $data->registration_no ?? $registration->registration_no;
+        $registration->save();
 
         if($data->admission_status == 0){
             $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);

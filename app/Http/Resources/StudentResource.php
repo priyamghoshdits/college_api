@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Registration;
 use App\Models\Semester;
 use App\Models\Session;
 use App\Models\UserType;
@@ -12,11 +13,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudentResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
@@ -82,6 +78,8 @@ class StudentResource extends JsonResource
             'refunded_amount' => $this->refunded_amount ?? null,
             'refund_payment_date' => $this->refund_payment_date ?? null,
             'caution_money_refund' => $this->caution_money_refund ?? null,
+            'roll_no' => (Registration::whereStudentId($this->id)->first())?(Registration::whereStudentId($this->id)->first())->roll_no : null,
+            'registration_no' => (Registration::whereStudentId($this->id)->first())?(Registration::whereStudentId($this->id)->first())->registration_no : null,
         ];
     }
 }
