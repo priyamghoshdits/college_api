@@ -428,7 +428,7 @@ class UserController extends Controller
             $member_details->department_id = $data->department_id;
             $member_details->designation_id = $data->designation_id;
             $member_details->epf_number = $data->epf_number;
-            $member_details->basic_salary = $data->basic_salary;
+            $member_details->gross_salary = $data->gross_salary;
             $member_details->emergency_phone_number = $data->emergency_phone_number;
             $member_details->location = $data->location;
             $member_details->contract_type = $data->contract_type;
