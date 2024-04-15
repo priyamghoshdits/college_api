@@ -176,11 +176,13 @@ class UserController extends Controller
             if($data->admission_status == 0){
                 $preAdmissionPayment = new PreAdmissionPayment();
                 $preAdmissionPayment->user_id = $user->id;
-                $preAdmissionPayment->payment_date = $data->payment_date;
-                $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
-                $preAdmissionPayment->transaction_id = $data->transaction_id;
-                $preAdmissionPayment->amount = $data->amount;
-                $preAdmissionPayment->save();
+                if(isset($data->payment_date)){
+                    $preAdmissionPayment->payment_date = $data->payment_date;
+                    $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
+                    $preAdmissionPayment->transaction_id = $data->transaction_id;
+                    $preAdmissionPayment->amount = $data->amount;
+                    $preAdmissionPayment->save();
+                }
             }
 
             $registration = new Registration();

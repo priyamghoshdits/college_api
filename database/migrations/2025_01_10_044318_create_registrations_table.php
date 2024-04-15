@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('registration_no')->nullable(false);
+            $table->string('registration_no')->nullable(true);
             $table->string('roll_no')->nullable(true);
 
             $table->timestamps();
