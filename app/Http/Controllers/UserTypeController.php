@@ -37,6 +37,7 @@ class UserTypeController extends Controller
             $menuManagementObject = new MenuManagement();
             $menuManagementObject->user_type_id = $data->id;
             $menuManagementObject->name = $item['name'];
+            $menuManagementObject->groups = $item['groups'];
             $menuManagementObject->permission = 0;
             $menuManagementObject->franchise_id = $franchise_id;
             $menuManagementObject->save();

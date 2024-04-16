@@ -43,7 +43,10 @@ class SubjectGroupController extends Controller
 
     public function update_subject_group(Request $request){
         $requestedData = (object)$request->json()->all();
+//        return $requestedData->semester;
         $course_id = $requestedData->course_id;
+        $semester_id = $requestedData->semester;
+        $old_semester_id = $requestedData->old_semester;
         $name = $requestedData->name;
         $test = [];
         foreach ($requestedData->subject as $list){
@@ -61,10 +64,8 @@ class SubjectGroupController extends Controller
             }
         }
 
-//        return response()->json(['success'=>$tempSem,'data'=>$test, 'data1'=>$requestedData->semester], 200,[],JSON_NUMERIC_CHECK);
-        foreach ($requestedData->semester as $list){
             foreach ($requestedData->subject as $value){
-                $temp = SubjectGroup::whereCourseId($course_id)->whereSemesterId($list['id'])->whereSubjectId($value['id'])->first();
+                $temp = SubjectGroup::whereCourseId($course_id)->whereSemesterId($old_semester_id)->whereSubjectId($value['id'])->first();
                 if($temp){
                     continue;
                 }else{
@@ -76,7 +77,16 @@ class SubjectGroupController extends Controller
                     $subject->save();
                 }
             }
+
+        if($semester_id != $old_semester_id){
+            $data = SubjectGroup::whereCourseId($course_id)->whereSemesterId($old_semester_id)->get();
+            foreach ($data as $item){
+                $objectUpdate = SubjectGroup::find($item['id']);
+                $objectUpdate->semester_id = $semester_id;
+                $objectUpdate->update();
+            }
         }
+
         $subjectGroup = SubjectGroup::select('course_id','name')->distinct()->get();
         return response()->json(['success'=>1,'data'=>SubjectGroupResource::collection($subjectGroup)], 200,[],JSON_NUMERIC_CHECK);
     }
