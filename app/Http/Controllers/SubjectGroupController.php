@@ -27,6 +27,10 @@ class SubjectGroupController extends Controller
     {
         $requestedData = (object)$request->json()->all();
         $course_id = $requestedData->course_id;
+        $check = SubjectGroup::whereCourseId($course_id)->first();
+        if($check){
+            return response()->json(['success'=>2,'data'=>null], 200,[],JSON_NUMERIC_CHECK);
+        }
         $semester_id = $requestedData->semester_id;
         $name = $requestedData->name;
             foreach ($requestedData->subject as $value){
