@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
-use App\Models\Holiday;
+use App\Models\holiday;
 use App\Models\SemesterTimetable;
 use App\Models\User;
 use Carbon\Carbon;
@@ -88,7 +88,7 @@ class AttendanceController extends Controller
                 'present' => count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()),
                 'absent' => $no_of_days - (count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get())),
                 'total_classes' => $no_of_days,
-                'attendance_percentage' => round(((count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()))/$no_of_days)*100,2),
+                'attendance_percentage' =>((count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()))!=0)? round(((count(Attendance::whereUserId($user['id'])->whereAttendance('present')->whereBetween('date',[$receivedStartDate,$receivedEndDate])->get()))/$no_of_days)*100,2):0,
             ];
             $retArr[] = $ret;
         }

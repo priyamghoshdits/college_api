@@ -315,9 +315,18 @@ class UserController extends Controller
         }
 
         $registration = Registration::whereStudentId($user->id)->first();
-        $registration->roll_no = $data->roll_no ?? $registration->roll_no;
-        $registration->registration_no = $data->registration_no ?? $registration->registration_no;
-        $registration->save();
+        if($registration){
+            $registration->roll_no = $data->roll_no ?? $registration->roll_no;
+            $registration->registration_no = $data->registration_no ?? $registration->registration_no;
+            $registration->update();
+        }else{
+            $registration = new Registration();
+            $registration->student_id = $user->id;
+            $registration->roll_no = $data->roll_no ?? null;
+            $registration->registration_no = $data->registration_no ?? null;
+            $registration->save();
+        }
+
 
         if($data->admission_status == 0){
             $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);
