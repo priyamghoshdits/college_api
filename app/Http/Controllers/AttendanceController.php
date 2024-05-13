@@ -20,6 +20,8 @@ class AttendanceController extends Controller
         $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
 
+//        return $requestedData;
+
 //        return response()->json(['success'=>$attendance_by], 200,[],JSON_NUMERIC_CHECK);
         $course_id = $requestedData[0]['course_id'];
         $semester_id = $requestedData[0]['semester_id'];
@@ -119,7 +121,8 @@ class AttendanceController extends Controller
         }else{
             $data = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, 'absent' as attendance from users
                 inner join student_details on users.id =  student_details.student_id
-                where users.user_type_id = 3 and student_details.course_id = ? and student_details.semester_id = ? and student_details.session_id = ?",[$course_id,$semester_id, $session_id]);
+                where users.user_type_id = 3 and student_details.course_id = ? and student_details.admission_status = 1
+                  and student_details.semester_id = ? and student_details.session_id = ?",[$course_id,$semester_id, $session_id]);
 
             return response()->json(['success'=>1,'data' => $data, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }
