@@ -58,13 +58,13 @@ class SemesterTimetableController extends Controller
 
     public function get_semester_timetable_by_teacher_id($teacher_id)
     {
-        $data = SemesterTimetable::select('semester_timetables.id','subjects.name as subject_name','courses.course_name','users.id as teacher_id',
+        $data = SemesterTimetable::select('semester_timetables.id','subjects.name as subject_name','courses.course_name','teacher_id',
             'semesters.name as semester_name','semester_timetables.time_from','semester_timetables.time_to','semester_timetables.room_no')
             ->Join('subjects', 'subjects.id', '=', 'semester_timetables.subject_id')
             ->Join('courses', 'courses.id', '=', 'semester_timetables.course_id')
             ->Join('semesters', 'semesters.id', '=', 'semester_timetables.semester_id')
             ->Join('week_days', 'week_days.id', '=', 'semester_timetables.week_id')
-            ->whereTeacherId($teacher_id)->get();
+            ->where('teacher_id',$teacher_id)->get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
