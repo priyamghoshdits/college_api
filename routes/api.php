@@ -74,6 +74,7 @@ use App\Http\Controllers\RoutesController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\AssignVehicleController;
 use App\Http\Controllers\MarksheetController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,9 @@ Route::post("getMarksheet",[MarksheetController::class,'get_mark_sheet']);
 Route::group(['middleware' => 'auth:sanctum'],function(){
     //LOGOUT
     Route::get("logout",[UserController::class,'logout']);
+
+    //DASHBOARD
+    Route::get("dashboard",[DashboardController::class,'dashboard']);
 
     //SEND STUDENT LOGIN CREDENTIALS
     Route::get("sendLoginCredentials/{id}",[UserController::class,'send_login_credentials']);
