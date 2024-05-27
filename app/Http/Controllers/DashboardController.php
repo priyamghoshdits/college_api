@@ -25,7 +25,7 @@ class DashboardController extends Controller
 
         $total_fees_received = Payment::whereMonth('created_at', '=', $previousMonth)->sum('amount');
 
-        $total_expense = Expense::sum('amount');
+        $total_expense = Expense::whereMonth('created_at',$previousMonth)->sum('amount');
 
         $total_student = count(User::whereUserTypeId(3)->get());
 
