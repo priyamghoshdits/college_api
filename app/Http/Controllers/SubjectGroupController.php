@@ -76,7 +76,7 @@ class SubjectGroupController extends Controller
                     $subject = new SubjectGroup();
                     $subject->course_id = $course_id;
                     $subject->name = $name;
-                    $subject->semester_id = $list['id'];
+                    $subject->semester_id = $old_semester_id;
                     $subject->subject_id = $value['id'];
                     $subject->save();
                 }
