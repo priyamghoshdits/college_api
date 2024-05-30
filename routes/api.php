@@ -409,7 +409,7 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get("getSubjectGroup",[SubjectGroupController::class,'get_subject_group']);
     Route::post("saveSubjectGroup",[SubjectGroupController::class,'save_subject_group']);
     Route::post("updateSubjectGroup",[SubjectGroupController::class,'update_subject_group']);
-    Route::get("deleteSubjectGroup/{course_id?}",[SubjectGroupController::class,'delete_subject_group']);
+    Route::get("deleteSubjectGroup/{course_id?}/{semester_id?}",[SubjectGroupController::class,'delete_subject_group']);
     Route::get("getSubjectGroup/{course_id?}/{semester_id?}",[SubjectGroupController::class,'get_subject_group_by_course_semester']);
     Route::get("getSubject/{course_id?}/{semester_id?}",[SubjectGroupController::class,'get_subjects']);
 
