@@ -18,6 +18,7 @@ class UserTypeSeeder extends Seeder
             ['name' => 'Super Admin'],
             ['name' => 'Teacher'],
             ['name' => 'Students'],
+            ['name' => 'Accountant'],
             ['name' => 'Admin'],
             ['name' => 'Agent'],
         ]);

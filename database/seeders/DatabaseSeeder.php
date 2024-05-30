@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SessionSeeder::class);
         $this->call(UserTypeSeeder::class);
         $this->call(HotelTypeSeeder::class);
-        \App\Models\Category::factory()->count(10)->create();
+        $this->call(CategorySeeder::class);
+//        \App\Models\Category::factory()->count(10)->create();
         \App\Models\User::factory()->count(50)->create();
         $this->call(SubjectSeeder::class);
         $this->call(SemesterSeeder::class);

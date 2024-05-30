@@ -33,9 +33,11 @@ class DashboardController extends Controller
 
         $total_teacher = count(User::whereUserTypeId(2)->get());
 
-        $total_male_student = count(User::whereUserTypeId(3)->whereGender('Male')->get());
+        $total_accountant = count(User::whereUserTypeId(4)->get());
 
-        $total_female_student = count(User::whereUserTypeId(3)->whereGender('Male')->get());
+        $total_male_student = count(User::whereUserTypeId(3)->whereGender('male')->get());
+
+        $total_female_student = count(User::whereUserTypeId(3)->whereGender('female')->get());
 
         $notices = Notice::get();
 
@@ -54,7 +56,8 @@ class DashboardController extends Controller
             'notice' => $notices,
             'studyMaterial' => $totalStudyMaterial,
             'total_assignment' => $total_assignment,
-            'total_female_student' => $total_female_student
+            'total_female_student' => $total_female_student,
+            'total_accountant' => $total_accountant
         ];
         return response()->json(['success'=>1,'data'=>$ret], 200,[],JSON_NUMERIC_CHECK);
     }
