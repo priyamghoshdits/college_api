@@ -16,9 +16,9 @@ class DashboardController extends Controller
 {
     public function dashboard(){
         $currentDate = Carbon::now()->subMonth();
+        $currentYear = Carbon::now()->year;
         $previousMonth = Carbon::parse($currentDate)->format('m');
         $total_books = count(LibraryStock::get());
-//        $total_fees_received = DB::select("SELECT DISTINCT student_id FROM payments where date(created_at) = ?",[]);
 
         $no_of_fees_received = count(Payment::select('student_id')
             ->whereMonth('created_at', '=', $previousMonth)
@@ -45,6 +45,65 @@ class DashboardController extends Controller
 
         $total_assignment = count(Content::orderBy('id', 'DESC')->whereType('assignment')->get());
 
+        //Student LIst
+
+        $January = count(User::whereUserTypeId(3)->whereMonth('created_at',1)->whereYear('created_at',$currentYear)->get());
+        $February = count(User::whereUserTypeId(3)->whereMonth('created_at',2)->whereYear('created_at',$currentYear)->get());
+        $March = count(User::whereUserTypeId(3)->whereMonth('created_at',3)->whereYear('created_at',$currentYear)->get());
+        $April = count(User::whereUserTypeId(3)->whereMonth('created_at',4)->whereYear('created_at',$currentYear)->get());
+        $May = count(User::whereUserTypeId(3)->whereMonth('created_at',05)->whereYear('created_at',$currentYear)->get());
+        $June = User::whereUserTypeId(3)->whereMonth('created_at',6)->whereYear('created_at',$currentYear)->get();
+        $July = User::whereUserTypeId(3)->whereMonth('created_at',7)->whereYear('created_at',$currentYear)->get();
+        $August = User::whereUserTypeId(3)->whereMonth('created_at',8)->whereYear('created_at',$currentYear)->get();
+
+        $studentChart = [
+            (object)[
+                "name" => "January",
+                "series" => [
+                    (object)[
+                        "name" => "January",
+                        "value" => $January
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "February",
+                "series" => [
+                    (object)[
+                        "name" => "February",
+                        "value" => $February
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "March",
+                "series" => [
+                    (object)[
+                        "name" => "March",
+                        "value" => $March
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "April",
+                "series" => [
+                    (object)[
+                        "name" => "April",
+                        "value" => $April
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "May",
+                "series" => [
+                    (object)[
+                        "name" => "May",
+                        "value" => $May
+                    ]
+                ]
+            ],
+        ];
+
         $ret = [
             'total_books' => $total_books,
             'no_of_fees_received' => $no_of_fees_received,
@@ -57,7 +116,8 @@ class DashboardController extends Controller
             'studyMaterial' => $totalStudyMaterial,
             'total_assignment' => $total_assignment,
             'total_female_student' => $total_female_student,
-            'total_accountant' => $total_accountant
+            'total_accountant' => $total_accountant,
+            'student_chart' => $studentChart
         ];
         return response()->json(['success'=>1,'data'=>$ret], 200,[],JSON_NUMERIC_CHECK);
     }
