@@ -76,6 +76,7 @@ use App\Http\Controllers\WeekDaysController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyDetailController;
+use App\Http\Controllers\PlacementDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -510,6 +511,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveCompanyDetails", [CompanyDetailController::class, 'save_company_details']);
     Route::post("updateCompanyDetails", [CompanyDetailController::class, 'update_company_details']);
     Route::get("deleteCompanyDetails/{id?}", [CompanyDetailController::class, 'delete_company_details']);
+
+    //PLACEMENT DETAILS
+    Route::get("getPlacementDetails", [PlacementDetailsController::class, 'get_placement_details']);
+    Route::post("saveCompanyDetails", [PlacementDetailsController::class, 'save_company_details']);
+    Route::post("updateCompanyDetails", [PlacementDetailsController::class, 'update_company_details']);
+    Route::get("deleteCompanyDetails/{id?}", [PlacementDetailsController::class, 'delete_company_details']);
 
     //EXPENSE API
     Route::get("getExpense", [ExpenseController::class, 'get_expense']);
