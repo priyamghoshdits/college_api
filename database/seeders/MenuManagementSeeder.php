@@ -71,6 +71,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Internship Provider' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Internship Details' , 'permission' => true, 'franchise_id' => 1],
 
+            ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Job' , 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Add Company Details' , 'permission' => true, 'franchise_id' => 1],
+//            ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Internship Details' , 'permission' => true, 'franchise_id' => 1],
+
 
             ['user_type_id' => '1' , 'groups' => 1 , 'name' => 'Student Information' , 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1' , 'groups' => 0 , 'name' => 'Student Admission' , 'permission' => true, 'franchise_id' => 1],
