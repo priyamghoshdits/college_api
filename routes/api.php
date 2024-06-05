@@ -514,9 +514,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //PLACEMENT DETAILS
     Route::get("getPlacementDetails", [PlacementDetailsController::class, 'get_placement_details']);
-    Route::post("saveCompanyDetails", [PlacementDetailsController::class, 'save_company_details']);
-    Route::post("updateCompanyDetails", [PlacementDetailsController::class, 'update_company_details']);
-    Route::get("deleteCompanyDetails/{id?}", [PlacementDetailsController::class, 'delete_company_details']);
+    Route::post("savePlacementDetails", [PlacementDetailsController::class, 'save_placement_details']);
+    Route::post("updatePlacementDetails", [PlacementDetailsController::class, 'update_placement_details']);
+    Route::get("deletePlacementDetails/{id?}", [PlacementDetailsController::class, 'delete_placement_details']);
 
     //EXPENSE API
     Route::get("getExpense", [ExpenseController::class, 'get_expense']);

@@ -78,6 +78,9 @@ class RolesSeeder extends Seeder
             ['name' => 'VEHICLE'],
             ['name' => 'ASSIGN VEHICLE'],
 
+            ['name' => 'ADD COMPANY DETAILS'],
+            ['name' => 'PLACEMENT'],
+
 //            ['name' => 'ASSIGNMENT'],
 //            ['name' => 'STUDY MATERIAL'], //35
 
