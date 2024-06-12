@@ -27,6 +27,11 @@ use Laravel\Sanctum\PersonalAccessToken;
 class UserController extends Controller
 {
 
+    public function get_all_user(){
+        $user = User::get();
+        return response()->json(['success'=>1,'data'=>$user], 200);
+    }
+
     public function login(Request $request){
         $requestData = (object)$request->json()->all();
         $user= User::whereEmail($requestData->email)->whereStatus(1)->first();

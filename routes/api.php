@@ -110,6 +110,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //LOGOUT
     Route::get("logout", [UserController::class, 'logout']);
 
+    //AllUser
+    Route::get("getAllUsers", [UserController::class, 'get_all_user']);
+
+
     //DASHBOARD
     Route::get("dashboard", [DashboardController::class, 'dashboard']);
 

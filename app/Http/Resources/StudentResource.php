@@ -25,6 +25,7 @@ class StudentResource extends JsonResource
             'dob' => $this->dob,
             'religion' => $this->religion,
             'mobile_no' => $this->mobile_no,
+            'img_url' => asset('public/user_image/'),
             'image' => $this->image,
             'category_id' => $this->category_id,
             'category_name' => Category::find($this->category_id)->name,
