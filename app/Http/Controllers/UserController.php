@@ -29,6 +29,9 @@ class UserController extends Controller
 
     public function get_all_user(){
         $user = User::get();
+        foreach($user as $item){
+            $item->img_url = asset('public/user_image/');
+        }
         return response()->json(['success'=>1,'data'=>$user], 200);
     }
 
@@ -48,7 +51,10 @@ class UserController extends Controller
         Cache::forget('get_user_log');
         $token = $user->createToken('my-app-token')->plainTextToken;
         $user->token = $token;
-        return response()->json(['success'=>1,'data'=>new LoginResource($user), $token => $token], 200,[],JSON_NUMERIC_CHECK);
+
+        $user->img_url = asset('public/user_image/');
+
+        return response()->json(['success'=>1,'data'=>new LoginResource($user), 'full_data' => $user ,$token => $token], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function create_user(Request $request){
