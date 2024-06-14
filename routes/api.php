@@ -77,6 +77,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyDetailController;
 use App\Http\Controllers\PlacementDetailsController;
+use App\Http\Controllers\AchivementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -315,7 +316,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateLeave", [LeaveController::class, 'update_leave']);
     Route::get("updateApproval/{id}/{status}", [LeaveController::class, 'update_approval']);
 
-    //COURSE API
+    //COURSE
     Route::get("getCourse", [CourseController::class, 'get_course']);
     Route::post("saveCourse", [CourseController::class, 'save_course']);
     Route::post("updateCourse", [CourseController::class, 'update_course']);
@@ -456,7 +457,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateWeekdays", [WeekDaysController::class, 'update_week_days']);
     Route::get("deleteWeekdays/{id}", [WeekDaysController::class, 'delete_week_days']);
 
-
     //CATEGORY
     Route::get("getCategory", [CategoryController::class, 'get_category']);
     Route::post("saveCategory", [CategoryController::class, 'save_category']);
@@ -557,6 +557,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveHomework", [HomeworkController::class, 'save_homework']);
     Route::post("updateHomework", [HomeworkController::class, 'update_homework']);
     Route::get("deleteHomework/{id?}", [HomeworkController::class, 'delete_homework']);
+
+    //ACHIEVEMENT
+    Route::get("getAchievement", [AchivementController::class, 'get_achievement']);
+    Route::post("saveAchievement", [AchivementController::class, 'save_achievement']);
+    Route::post("updateAchievement", [AchivementController::class, 'update_achievement']);
+    Route::get("deleteAchievement/{id?}", [AchivementController::class, 'delete_achievement']);
 
     //STUDENT ENQUIRY
     Route::get("getAdmissionEnquiry", [AdmissionEnquiryController::class, 'get_admission_enquiry']);

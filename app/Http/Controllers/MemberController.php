@@ -38,7 +38,8 @@ class MemberController extends Controller
             ->whereNotIn('user_type_id',[3,1])
             ->where('users.franchise_id',$request->user()->franchise_id)
             ->get();
-        return response()->json(['success'=>1,'data'=> $member], 200,[],JSON_NUMERIC_CHECK);
+
+        return response()->json(['success'=>1,'data'=>MemberResource::collection($member)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_members_by_user_type_id($user_type_id, $month, $year)

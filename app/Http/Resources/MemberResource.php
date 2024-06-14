@@ -26,6 +26,8 @@ class MemberResource extends JsonResource
             'category_name' => Category::find($this->category_id)->name,
             'religion' => $this->religion,
             'mobile_no' => $this->mobile_no,
+            'img_url' => asset('public/user_image/'),
+            'image' => $this->image,
             'emergency_phone_number' => $this->emergency_phone_number,
             'blood_group' => $this->blood_group,
             'user_type_id' => $this->user_type_id,
