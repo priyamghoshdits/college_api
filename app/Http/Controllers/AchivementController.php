@@ -44,8 +44,7 @@ class AchivementController extends Controller
 
     public function update_achievement(Request $request)
     {
-        $requestedData = (object)$request->json()->all();
-        $achievement = Achivement::find($requestedData->id);
+        $achievement = Achivement::find($request['id']);
 
         if ($files = $request->file('file')) {
             if (file_exists(public_path() . '/achievement/' . $achievement->file_name)) {
@@ -53,13 +52,13 @@ class AchivementController extends Controller
             }
         }
 
-        $achievement->course_id = $requestedData->course_id;
-        $achievement->semester_id = $requestedData->semester_id;
-        $achievement->session_id = $requestedData->session_id;
-        $achievement->student_id = $requestedData->student_id;
-        $achievement->award_name = $requestedData->award_name;
-        $achievement->award_date = $requestedData->award_date;
-        $achievement->file_name = $requestedData->id.'_'.$requestedData->file_name;
+        $achievement->course_id = $request['course_id'];
+        $achievement->semester_id = $request['semester_id'];
+        $achievement->session_id = $request['session_id'];
+        $achievement->student_id = $request['student_id'];
+        $achievement->award_name = $request['award_name'];
+        $achievement->award_date = $request['award_date'];
+        $achievement->file_name = $request['id'].'_'.$request['file_name'];
         $achievement->update();
 
         if ($files = $request->file('file')) {
