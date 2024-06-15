@@ -164,7 +164,7 @@ class UserController extends Controller
 
     public function save_student(Request $request)
     {
-        $data = (object)$request->json()->all();
+//        $data = (object)$request->json()->all();
 
         DB::beginTransaction();
         try {
@@ -374,129 +374,129 @@ class UserController extends Controller
     {
         $data = (object)$request->json()->all();
 
-        $user = User::find($data->id);
-        $user->identification_no = $data->identification_no ?? $user->identification_no;
-        $user->first_name = $data->first_name;
-        $user->middle_name = $data->middle_name ?? $user->middle_name;
-        $user->last_name = $data->last_name;
-        $user->gender = $data->gender;
-        $user->dob = $data->dob ?? $user->dob;
-        $user->category_id = $data->category_id;
-        $user->religion = $data->religion ?? $user->religion;
-        $user->mobile_no = $data->mobile_no;
-        $user->image = $data->image ?? null;
-        $user->blood_group = $data->blood_group ?? $user->blood_group;
+        $user = User::find($request->id);
+        $user->identification_no = $request['identification_no'] ?? $user->identification_no;
+        $user->first_name = $request['first_name'];
+        $user->middle_name = $request['middle_name'] ?? $user->middle_name;
+        $user->last_name = $request['last_name'];
+        $user->gender = $request['gender'];
+        $user->dob = $request['dob'] ?? $user->dob;
+        $user->category_id = $request['category_id'];
+        $user->religion = $request['religion'] ?? $user->religion;
+        $user->mobile_no = $request['mobile_no'];
+        $user->image = $request['image'] ?? null;
+        $user->blood_group = $request['blood_group'] ?? $user->blood_group;
         $user->user_type_id = 3;
         $user->franchise_id = $request->user()->franchise_id;
-        $user->email = $data->email;
-        $user->status = ($data->admission_status == 0) ? 0 : 1;
+        $user->email = $request['email'];
+        $user->status = ($request['admission_status'] == 0) ? 0 : 1;
         $user->update();
 
         $cautionMoney = CautionMoney::whereUserId($user->id)->first();
         if ($cautionMoney) {
             $cautionMoney->user_id = $user->id;
-            $cautionMoney->caution_money_payment_date = $data->payment_date;
-            $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
-            $cautionMoney->caution_money_transaction_id = $data->transaction_id;
-            $cautionMoney->caution_money = $data->caution_money;
-            $cautionMoney->caution_money_deduction = $data->deduction ?? $cautionMoney->caution_money_deduction;
-            $cautionMoney->refund_payment_date = $data->refund_payment_date ?? $cautionMoney->refund_payment_date;
-            $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? $cautionMoney->refund_mode_of_payment;
-            $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? $cautionMoney->refund_transaction_id;
-            $cautionMoney->caution_money_refund = $data->caution_money_refund ?? $cautionMoney->caution_money_refund;
+            $cautionMoney->caution_money_payment_date = $request['payment_date'];
+            $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
+            $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+            $cautionMoney->caution_money = $request['caution_money'];
+            $cautionMoney->caution_money_deduction = $request['deduction'] ?? $cautionMoney->caution_money_deduction;
+            $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? $cautionMoney->refund_payment_date;
+            $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? $cautionMoney->refund_mode_of_payment;
+            $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? $cautionMoney->refund_transaction_id;
+            $cautionMoney->caution_money_refund = $request['caution_money_refund'] ?? $cautionMoney->caution_money_refund;
             $cautionMoney->update();
         } else {
             $cautionMoney = new CautionMoney();
             $cautionMoney->user_id = $user->id;
-            $cautionMoney->caution_money_payment_date = $data->payment_date;
-            $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
-            $cautionMoney->caution_money_transaction_id = $data->transaction_id;
-            $cautionMoney->caution_money = $data->caution_money;
-            $cautionMoney->caution_money_deduction = $data->deduction ?? null;
-            $cautionMoney->refund_payment_date = $data->refund_payment_date ?? null;
-            $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? null;
-            $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? null;
+            $cautionMoney->caution_money_payment_date = $request['payment_date'];
+            $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
+            $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+            $cautionMoney->caution_money = $request['caution_money'];
+            $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
+            $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
+            $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? null;
+            $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
             $cautionMoney->caution_money_refund = 0;
             $cautionMoney->save();
         }
 
         $registration = Registration::whereStudentId($user->id)->first();
         if ($registration) {
-            $registration->roll_no = $data->roll_no ?? $registration->roll_no;
-            $registration->registration_no = $data->registration_no ?? $registration->registration_no;
+            $registration->roll_no = $request['roll_no'] ?? $registration->roll_no;
+            $registration->registration_no = $request['registration_no'] ?? $registration->registration_no;
             $registration->update();
         } else {
             $registration = new Registration();
             $registration->student_id = $user->id;
-            $registration->roll_no = $data->roll_no ?? null;
-            $registration->registration_no = $data->registration_no ?? null;
+            $registration->roll_no = $request['roll_no'] ?? null;
+            $registration->registration_no = $request['registration_no'] ?? null;
             $registration->save();
         }
 
 
-        if ($data->admission_status == 0) {
+        if ($request->admission_status == 0) {
             $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);
-            $preAdmissionPayment->payment_date = $data->payment_date;
-            $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
-            $preAdmissionPayment->transaction_id = $data->transaction_id;
-            $preAdmissionPayment->amount = $data->amount;
+            $preAdmissionPayment->payment_date = $request['payment_date'];
+            $preAdmissionPayment->mode_of_payment = $request['mode_of_payment'];
+            $preAdmissionPayment->transaction_id = $request['transaction_id'];
+            $preAdmissionPayment->amount = $request['amount'];
             $preAdmissionPayment->update();
         }
 
-        $student_details = StudentDetail::whereStudentId($data->id)->first();
+        $student_details = StudentDetail::whereStudentId($request['id'])->first();
         if ($student_details) {
             $student_details->student_id = $user->id;
-            $student_details->course_id = $data->course_id;
-            $student_details->semester_id = $data->semester_id;
-            $student_details->current_semester_id = $data->semester_id;
-            $student_details->agent_id = $data->agent_id;
-            $student_details->session_id = $data->session_id;
-            $student_details->admission_date = $data->admission_date ?? $student_details->admission_date;
-            $student_details->father_name = $data->father_name ?? $student_details->father_name;
-            $student_details->father_occupation = $data->father_occupation ?? $student_details->father_occupation;
-            $student_details->father_phone = $data->father_phone ?? $student_details->father_phone;
-            $student_details->mother_name = $data->mother_name ?? $student_details->mother_name;
-            $student_details->mother_occupation = $data->mother_occupation ?? $student_details->mother_occupation;
-            $student_details->material_status = $data->material_status ?? $student_details->material_status;
-            $student_details->guardian_name = $data->guardian_name ?? $student_details->guardian_name;
-            $student_details->guardian_phone = $data->guardian_phone ?? $student_details->guardian_phone;
-            $student_details->guardian_email = $data->guardian_email ?? $student_details->guardian_email;
-            $student_details->admission_status = $data->admission_status;
-            $student_details->emergency_phone_number = $data->emergency_phone_number ?? $student_details->emergency_phone_number;
-            $student_details->current_address = $data->current_address ?? $student_details->current_address;
-            $student_details->permanent_address = $data->permanent_address ?? $student_details->permanent_address;
-            $student_details->mother_phone = $data->mother_phone ?? $student_details->mother_phone;
-            $student_details->guardian_relation = $data->guardian_relation ?? $student_details->guardian_relation;
-            $student_details->guardian_address = $data->guardian_address ?? $student_details->guardian_address;
-            $student_details->guardian_occupation = $data->guardian_occupation ?? $student_details->guardian_occupation;
+            $student_details->course_id = $request['course_id'];
+            $student_details->semester_id = $request['semester_id'];
+            $student_details->current_semester_id = $request['semester_id'];
+            $student_details->agent_id = $request['agent_id'];
+            $student_details->session_id = $request['session_id'];
+            $student_details->admission_date = $request['admission_date'] ?? $student_details->admission_date;
+            $student_details->father_name = $request['father_name'] ?? $student_details->father_name;
+            $student_details->father_occupation = $request['father_occupation'] ?? $student_details->father_occupation;
+            $student_details->father_phone = $request['father_phone'] ?? $student_details->father_phone;
+            $student_details->mother_name = $request['mother_name'] ?? $student_details->mother_name;
+            $student_details->mother_occupation = $request['mother_occupation'] ?? $student_details->mother_occupation;
+            $student_details->material_status = $request['material_status'] ?? $student_details->material_status;
+            $student_details->guardian_name = $request['guardian_name'] ?? $student_details->guardian_name;
+            $student_details->guardian_phone = $request['guardian_phone'] ?? $student_details->guardian_phone;
+            $student_details->guardian_email = $request['guardian_email'] ?? $student_details->guardian_email;
+            $student_details->admission_status = $request['admission_status'];
+            $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? $student_details->emergency_phone_number;
+            $student_details->current_address = $request['current_address'] ?? $student_details->current_address;
+            $student_details->permanent_address = $request['permanent_address'] ?? $student_details->permanent_address;
+            $student_details->mother_phone = $request['mother_phone'] ?? $student_details->mother_phone;
+            $student_details->guardian_relation = $request['guardian_relation'] ?? $student_details->guardian_relation;
+            $student_details->guardian_address = $request['guardian_address'] ?? $student_details->guardian_address;
+            $student_details->guardian_occupation = $request['guardian_occupation'] ?? $student_details->guardian_occupation;
             $student_details->caution_money_id = $cautionMoney->id ?? $student_details->caution_money_id;
             $student_details->update();
         } else {
             $student_details = new StudentDetail();
             $student_details->student_id = $user->id;
-            $student_details->course_id = $data->course_id;
-            $student_details->semester_id = $data->semester_id;
-            $student_details->agent_id = $data->agent_id;
-            $student_details->current_semester_id = $data->semester_id;
-            $student_details->session_id = $data->session_id;
-            $student_details->admission_date = $data->admission_date ?? null;
-            $student_details->father_name = $data->father_name;
-            $student_details->father_occupation = $data->father_occupation;
-            $student_details->father_phone = $data->father_phone;
-            $student_details->mother_name = $data->mother_name;
-            $student_details->mother_occupation = $data->mother_occupation;
-            $student_details->material_status = $data->material_status;
-            $student_details->guardian_name = $data->guardian_name;
-            $student_details->guardian_phone = $data->guardian_phone;
-            $student_details->guardian_email = $data->guardian_email;
-            $student_details->admission_status = $data->admission_status;
-            $student_details->emergency_phone_number = $data->emergency_phone_number;
-            $student_details->current_address = $data->current_address;
-            $student_details->permanent_address = $data->permanent_address;
-            $student_details->mother_phone = $data->mother_phone;
-            $student_details->guardian_relation = $data->guardian_relation;
-            $student_details->guardian_address = $data->guardian_address;
-            $student_details->guardian_occupation = $data->guardian_occupation;
+            $student_details->course_id = $request['course_id'];
+            $student_details->semester_id = $request['semester_id'];
+            $student_details->agent_id = $request['agent_id'];
+            $student_details->current_semester_id = $request['semester_id'];
+            $student_details->session_id = $request['session_id'];
+            $student_details->admission_date = $request['admission_date'] ?? null;
+            $student_details->father_name = $request['father_name'];
+            $student_details->father_occupation = $request['father_occupation'];
+            $student_details->father_phone = $request['father_phone'];
+            $student_details->mother_name = $request['mother_name'];
+            $student_details->mother_occupation = $request['mother_occupation'];
+            $student_details->material_status = $request['material_status'];
+            $student_details->guardian_name = $request['guardian_name'];
+            $student_details->guardian_phone = $request['guardian_phone'];
+            $student_details->guardian_email = $request['guardian_email'];
+            $student_details->admission_status = $request['admission_status'];
+            $student_details->emergency_phone_number = $request['emergency_phone_number'];
+            $student_details->current_address = $request['current_address'];
+            $student_details->permanent_address = $request['permanent_address'];
+            $student_details->mother_phone = $request['mother_phone'];
+            $student_details->guardian_relation = $request['guardian_relation'];
+            $student_details->guardian_address = $request['guardian_address'];
+            $student_details->guardian_occupation = $request['guardian_occupation'];
             $student_details->caution_money_id = $cautionMoney->id;
             $student_details->save();
         }
