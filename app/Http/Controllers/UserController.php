@@ -7,7 +7,6 @@ use App\Http\Resources\MemberResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Attendance;
 use App\Models\CautionMoney;
-use App\Models\Member;
 use App\Models\MemberDetails;
 use App\Models\PreAdmissionPayment;
 use App\Models\Registration;
@@ -21,29 +20,30 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
 
-    public function get_all_user(){
+    public function get_all_user()
+    {
         $user = User::get();
-        foreach($user as $item){
+        foreach ($user as $item) {
             $item->img_url = asset('public/user_image/');
         }
-        return response()->json(['success'=>1,'data'=>$user], 200);
+        return response()->json(['success' => 1, 'data' => $user], 200);
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $requestData = (object)$request->json()->all();
-        $user= User::whereEmail($requestData->email)->whereStatus(1)->first();
+        $user = User::whereEmail($requestData->email)->whereStatus(1)->first();
         if (!$user || !Hash::check($requestData->password, $user->password)) {
-            return response()->json(['success'=>0,'data'=>null, 'message'=>'Wrong credential or user disabled'], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success' => 0, 'data' => null, 'message' => 'Wrong credential or user disabled'], 200, [], JSON_NUMERIC_CHECK);
         }
         $userLog = new UserLog();
         $userLog->email = $requestData->email;
-        $userLog->role = $user? UserType::find($user->user_type_id)->name: null;
+        $userLog->role = $user ? UserType::find($user->user_type_id)->name : null;
         $userLog->ip_address = $request->getClientIp();
         $userLog->media = $request->header('User-Agent');
         $userLog->login_time = Carbon::now();
@@ -54,103 +54,112 @@ class UserController extends Controller
 
         $user->img_url = asset('public/user_image/');
 
-        return response()->json(['success'=>1,'data'=>new LoginResource($user), 'full_data' => $user ,$token => $token], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new LoginResource($user), 'full_data' => $user, $token => $token], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function create_user(Request $request){
+    public function create_user(Request $request)
+    {
         $requestData = (object)$request->json()->all();
         $user = new User();
         $user->first_name = $requestData->first_name;
-        $user->last_name =$requestData->last_name;
-        $user->gender =$requestData->gender;
+        $user->last_name = $requestData->last_name;
+        $user->gender = $requestData->gender;
         $user->franchise_id = $requestData->franchise_id;
         $user->category_id = 5;
-        $user->dob =$requestData->dob;
+        $user->dob = $requestData->dob;
         $user->user_type_id = 1;
-        $user->email =$requestData->email;
-        $user->password =$requestData->password;
+        $user->email = $requestData->email;
+        $user->password = $requestData->password;
         $user->save();
 
-        return response()->json(['success'=>1,'data'=>$user], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $user], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function reset_password(Request $request){
+    public function reset_password(Request $request)
+    {
         $requestData = (object)$request->json()->all();
         $user_id = $request->user()->id;
         $user = User::find($user_id);
         $user->password = $requestData->new_password;
         $user->update();
-        return response()->json(['success'=>1,'data'=>$user], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $user], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function send_login_credentials($id){
-        $pass = rand(100000,999999);
+    public function send_login_credentials($id)
+    {
+        $pass = rand(100000, 999999);
         $data = User::find($id);
         $data->password = $pass;
         $data->update();
 
-        dispatch(function () use($data,$pass){
-            Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
-            , 'password' => $pass) , function ($message) use($data) {
+        dispatch(function () use ($data, $pass) {
+            Mail::send('welcome_password', array('name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name
+            , 'password' => $pass), function ($message) use ($data) {
                 $message->from('rudkarsh@rgoi.in');
                 $message->to($data->email);
                 $message->subject('Password Resend');
             });
         })->afterResponse();
-        return response()->json(['success'=>1,'message'=>"Mail Sent"], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'message' => "Mail Sent"], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function forgot_password($email_id){
-        $pass = rand(100000,999999);
+    public function forgot_password($email_id)
+    {
+        $pass = rand(100000, 999999);
 
         $data = User::whereEmail($email_id)->first();
         $data->password = $pass;
         $data->update();
 
-        dispatch(function () use($data,$pass,$email_id){
-            Mail::send('forgot_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
-            , 'password' => $pass) , function ($message) use($email_id) {
+        dispatch(function () use ($data, $pass, $email_id) {
+            Mail::send('forgot_password', array('name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name
+            , 'password' => $pass), function ($message) use ($email_id) {
                 $message->from('rudkarsh@rgoi.in');
                 $message->to($email_id);
                 $message->subject('Forgot Passowrd');
             });
         })->afterResponse();
-        return response()->json(['success'=>1,'data'=>"Please check your mail"], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => "Please check your mail"], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function logout(Request $request){
-        return response()->json(['success'=>1,'data'=>$request->user()->currentAccessToken()->delete()], 200,[],JSON_NUMERIC_CHECK);
+    public function logout(Request $request)
+    {
+        return response()->json(['success' => 1, 'data' => $request->user()->currentAccessToken()->delete()], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_user_data(Request $request){
-        if($request->user()->user_type_id == 3){
-            $member = User::select('*','student_details.id as student_details_id','users.id as id')
+    public function get_user_data(Request $request)
+    {
+        if ($request->user()->user_type_id == 3) {
+            $member = User::select('*', 'student_details.id as student_details_id', 'users.id as id')
                 ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
                 ->whereId($request->user()->id)
                 ->find();
-            return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success' => 1, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
-            ->where('users.id',$request->user()->id)
+            ->where('users.id', $request->user()->id)
             ->first();
-        return response()->json(['success'=>1,'data'=>new MemberResource($member)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new MemberResource($member)], 200, [], JSON_NUMERIC_CHECK);
 //        return $request->user()->id;
     }
 
-    public function get_user_attendance(Request $request){
+    public function get_user_attendance(Request $request)
+    {
         $today = Carbon::now();
-        $year = count(Attendance::whereUserId($request->user()->id)->whereYear('date',$today->year)->get());
-        $month = count(Attendance::whereUserId($request->user()->id)->whereMonth('date',$today->month)->get());
+        $year = count(Attendance::whereUserId($request->user()->id)->whereYear('date', $today->year)->get());
+        $month = count(Attendance::whereUserId($request->user()->id)->whereMonth('date', $today->month)->get());
         $total_teacher = count(User::whereUserTypeId(2)->get());
-        return response()->json(['success'=>1,'year'=>$year, 'month' =>$month, 'teacher' => $total_teacher], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'year' => $year, 'month' => $month, 'teacher' => $total_teacher], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function delete_personal_access_token(){
+    public function delete_personal_access_token()
+    {
         return PersonalAccessToken::where('last_used_at', '<=', Carbon::now()->subDays(1))->delete();
     }
 
-    public function test_api(Request $request){
-        return response()->json(['success'=>1,'data'=>$request->user()->franchise_id], 200,[],JSON_NUMERIC_CHECK);
+    public function test_api(Request $request)
+    {
+        return response()->json(['success' => 1, 'data' => $request->user()->franchise_id], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function save_student(Request $request)
@@ -160,97 +169,183 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
 
-            $pass = rand(100000,999999);
+            $pass = rand(100000, 999999);
+
+//            $user = new User();
+//            $user->identification_no = $data->identification_no ?? null;
+//            $user->first_name = $data->first_name;
+//            $user->middle_name = $data->middle_name ?? null;
+//            $user->last_name = $data->last_name;
+//            $user->gender = $data->gender ?? null;
+//            $user->dob = $data->dob ?? null;
+//            $user->category_id = $data->category_id;
+//            $user->religion = $data->religion ?? null;
+//            $user->mobile_no = $data->mobile_no ?? null;
+//            $user->image = $data->image ?? null;
+//            $user->blood_group = $data->blood_group ?? null;
+//            $user->user_type_id = 3;
+//            $user->franchise_id = $data->franchise_id ?? $request->user()->franchise_id;
+//            $user->email = $data->email;
+//            $user->password = $pass;
+//            $user->status = ($data->admission_status == 0) ? 0 : 1;
+//            $user->save();
+//
+//            $email_id = $data->email;
+//            $mobile_no = $data->mobile_no;
+//
+//            if ($data->admission_status == 0) {
+//                $preAdmissionPayment = new PreAdmissionPayment();
+//                $preAdmissionPayment->user_id = $user->id;
+//                if (isset($data->payment_date)) {
+//                    $preAdmissionPayment->payment_date = $data->payment_date;
+//                    $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
+//                    $preAdmissionPayment->transaction_id = $data->transaction_id;
+//                    $preAdmissionPayment->amount = $data->amount;
+//                    $preAdmissionPayment->save();
+//                }
+//            }
+//
+//            $registration = new Registration();
+//            $registration->student_id = $user->id;
+//            $registration->roll_no = $data->roll_no ?? null;
+//            $registration->registration_no = $data->registration_no ?? null;
+//            $registration->save();
+//
+//            $student_details = new StudentDetail();
+//            $student_details->student_id = $user->id;
+//            $student_details->course_id = $data->course_id;
+//            $student_details->semester_id = $data->semester_id;
+//            $student_details->agent_id = $data->agent_id;
+//            $student_details->current_semester_id = $data->semester_id;
+//            $student_details->session_id = $data->session_id ?? null;
+//            $student_details->admission_date = $data->admission_date ?? null;
+//            $student_details->father_name = $data->father_name ?? null;
+//            $student_details->father_occupation = $data->father_occupation ?? null;
+//            $student_details->father_phone = $data->father_phone ?? null;
+//            $student_details->mother_name = $data->mother_name ?? null;
+//            $student_details->mother_occupation = $data->mother_occupation ?? null;
+//            $student_details->material_status = $data->material_status ?? null;
+//            $student_details->guardian_name = $data->guardian_name ?? null;
+//            $student_details->guardian_phone = $data->guardian_phone ?? null;
+//            $student_details->guardian_email = $data->guardian_email ?? null;
+////        $student_details->admission_status = $data->admission_status ;
+//            $student_details->admission_status = $data->admission_status ?? null;
+//            $student_details->emergency_phone_number = $data->emergency_phone_number ?? null;
+//            $student_details->current_address = $data->current_address ?? null;
+//            $student_details->permanent_address = $data->permanent_address ?? null;
+//            $student_details->mother_phone = $data->mother_phone ?? null;
+//            $student_details->guardian_relation = $data->guardian_relation ?? null;
+//            $student_details->guardian_address = $data->guardian_address ?? null;
+//            $student_details->guardian_occupation = $data->guardian_occupation ?? null;
+//            $student_details->pre_admission_payment_id = ($data->admission_status == 0) ? $preAdmissionPayment->id : null;
+//            $student_details->save();
+//
+//            if ($data->admission_status == 1) {
+//                $cautionMoney = new CautionMoney();
+//                $cautionMoney->user_id = $user->id;
+//                $cautionMoney->caution_money_payment_date = $data->payment_date;
+//                $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
+//                $cautionMoney->caution_money_transaction_id = $data->transaction_id;
+//                $cautionMoney->caution_money = $data->caution_money;
+//                $cautionMoney->caution_money_deduction = $data->deduction ?? null;
+//                $cautionMoney->refund_payment_date = $data->refund_payment_date ?? null;
+//                $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? null;
+//                $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? null;
+//                $cautionMoney->caution_money_refund = 0;
+//                $cautionMoney->save();
+//            }
+
+
 
             $user = new User();
-            $user->identification_no = $data->identification_no ?? null;
-            $user->first_name = $data->first_name ;
-            $user->middle_name = $data->middle_name ?? null ;
-            $user->last_name = $data->last_name ;
-            $user->gender = $data->gender ?? null;
-            $user->dob = $data->dob  ?? null;
-            $user->category_id  = $data->category_id  ;
-            $user->religion = $data->religion  ?? null;
-            $user->mobile_no = $data->mobile_no ?? null ;
-            $user->image = $data->image ?? null ;
-            $user->blood_group = $data->blood_group  ?? null;
-            $user->user_type_id  = 3 ;
-            $user->franchise_id  = $data->franchise_id??$request->user()->franchise_id ;
-            $user->email  = $data->email ;
-            $user->password =  $pass;
-            $user->status = ($data->admission_status == 0)?0:1;
+            $user->identification_no = $request['identification_no'] ?? null;
+            $user->first_name = $request['first_name'];
+            $user->middle_name = $request['middle_name'] ?? null;
+            $user->last_name = $request['last_name'];
+            $user->gender = $request['gender'] ?? null;
+            $user->dob = $request['dob'] ?? null;
+            $user->category_id = $request['category_id'];
+            $user->religion = $request['religion'] ?? null;
+            $user->mobile_no = $request['mobile_no'] ?? null;
+            $user->image = $request['image'] ?? null;
+            $user->blood_group = $request['blood_group'] ?? null;
+            $user->user_type_id = 3;
+            $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
+            $user->email = $request['email'];
+            $user->password = $pass;
+            $user->status = ($request['admission_status'] == 0) ? 0 : 1;
             $user->save();
+//
+            $email_id = $request['email'];
+            $mobile_no = $request['mobile_no'];
 
-            $email_id = $data->email;
-            $mobile_no = $data->mobile_no;
-
-            if($data->admission_status == 0){
+            if ($request['admission_status'] == 0) {
                 $preAdmissionPayment = new PreAdmissionPayment();
-                $preAdmissionPayment->user_id = $user->id;
-                if(isset($data->payment_date)){
-                    $preAdmissionPayment->payment_date = $data->payment_date;
-                    $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
-                    $preAdmissionPayment->transaction_id = $data->transaction_id;
-                    $preAdmissionPayment->amount = $data->amount;
+                $preAdmissionPayment->user_id = $user['id'];
+                if (isset($request['payment_date'])) {
+                    $preAdmissionPayment->payment_date = $request['payment_date'];
+                    $preAdmissionPayment->mode_of_payment = $request['mode_of_payment'];
+                    $preAdmissionPayment->transaction_id = $request['transaction_id'];
+                    $preAdmissionPayment->amount = $request['amount'];
                     $preAdmissionPayment->save();
                 }
             }
 
             $registration = new Registration();
-            $registration->student_id = $user->id;
-            $registration->roll_no = $data->roll_no ?? null;
-            $registration->registration_no = $data->registration_no ?? null;
+            $registration->student_id = $user['id'];
+            $registration->roll_no = $request['roll_no'] ?? null;
+            $registration->registration_no = $request['registration_no'] ?? null;
             $registration->save();
 
             $student_details = new StudentDetail();
-            $student_details->student_id  = $user->id ;
-            $student_details->course_id  = $data->course_id ;
-            $student_details->semester_id  = $data->semester_id ;
-            $student_details->agent_id  = $data->agent_id ;
-            $student_details->current_semester_id  = $data->semester_id ;
-            $student_details->session_id = $data->session_id  ?? null;
-            $student_details->admission_date = $data->admission_date  ?? null;
-            $student_details->father_name = $data->father_name  ?? null;
-            $student_details->father_occupation = $data->father_occupation  ?? null;
-            $student_details->father_phone = $data->father_phone  ?? null;
-            $student_details->mother_name = $data->mother_name  ?? null;
-            $student_details->mother_occupation = $data->mother_occupation  ?? null;
-            $student_details->material_status = $data->material_status  ?? null;
-            $student_details->guardian_name = $data->guardian_name  ?? null;
-            $student_details->guardian_phone = $data->guardian_phone  ?? null;
-            $student_details->guardian_email = $data->guardian_email  ?? null;
-//        $student_details->admission_status = $data->admission_status ;
-            $student_details->admission_status = $data->admission_status ?? null ;
-            $student_details->emergency_phone_number = $data->emergency_phone_number ?? null ;
-            $student_details->current_address = $data->current_address ?? null ;
-            $student_details->permanent_address = $data->permanent_address ?? null ;
-            $student_details->mother_phone = $data->mother_phone ?? null ;
-            $student_details->guardian_relation = $data->guardian_relation ?? null ;
-            $student_details->guardian_address = $data->guardian_address ?? null ;
-            $student_details->guardian_occupation = $data->guardian_occupation ?? null ;
-            $student_details->pre_admission_payment_id = ($data->admission_status==0)? $preAdmissionPayment->id: null;
+            $student_details->student_id = $user['id'];
+            $student_details->course_id = $request['course_id'];
+            $student_details->semester_id = $request['semester_id'];
+            $student_details->agent_id = $request['agent_id'];
+            $student_details->current_semester_id = $request['semester_id'];
+            $student_details->session_id = $request['session_id'] ?? null;
+            $student_details->admission_date = $request['admission_date'] ?? null;
+            $student_details->father_name = $request['father_name'] ?? null;
+            $student_details->father_occupation = $request['father_occupation'] ?? null;
+            $student_details->father_phone = $request['father_phone'] ?? null;
+            $student_details->mother_name = $request['mother_name'] ?? null;
+            $student_details->mother_occupation = $request['mother_occupation'] ?? null;
+            $student_details->material_status = $request['material_status'] ?? null;
+            $student_details->guardian_name = $request['guardian_name'] ?? null;
+            $student_details->guardian_phone = $request['guardian_phone'] ?? null;
+            $student_details->guardian_email = $request['guardian_email'] ?? null;
+//        $student_details->admission_status = $request->admission_status ;
+            $student_details->admission_status = $request['admission_status'] ?? null;
+            $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? null;
+            $student_details->current_address = $request['current_address'] ?? null;
+            $student_details->permanent_address = $request['permanent_address'] ?? null;
+            $student_details->mother_phone = $request['mother_phone'] ?? null;
+            $student_details->guardian_relation = $request['guardian_relation'] ?? null;
+            $student_details->guardian_address = $request['guardian_address'] ?? null;
+            $student_details->guardian_occupation = $request['guardian_occupation'] ?? null;
+            $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
             $student_details->save();
 
-            if($data->admission_status == 1){
+            if ($request->admission_status == 1) {
                 $cautionMoney = new CautionMoney();
                 $cautionMoney->user_id = $user->id;
-                $cautionMoney->caution_money_payment_date = $data->payment_date;
-                $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
-                $cautionMoney->caution_money_transaction_id = $data->transaction_id;
-                $cautionMoney->caution_money = $data->caution_money;
-                $cautionMoney->caution_money_deduction = $data->deduction ?? null;
-                $cautionMoney->refund_payment_date = $data->refund_payment_date ?? null;
-                $cautionMoney->refund_mode_of_payment = $data->refund_mode_of_payment ?? null;
-                $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? null;
+                $cautionMoney->caution_money_payment_date = $request['payment_date'];
+                $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
+                $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+                $cautionMoney->caution_money = $request['caution_money'];
+                $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
+                $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
+                $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? null;
+                $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
                 $cautionMoney->caution_money_refund = 0;
                 $cautionMoney->save();
             }
 
             DB::commit();
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 200);
+            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 200);
         }
 
         $member = User::select('*', 'users.id as id')
@@ -258,13 +353,13 @@ class UserController extends Controller
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
-            ->where('users.id',$user->id)
+            ->where('users.id', $user->id)
             ->first();
 
-        if($student_details->admission_status == 1){
-            dispatch(function () use($data,$pass,$email_id,$mobile_no){
-                Mail::send('welcome_password',array('name'=>$data->first_name." ".$data->middle_name." ".$data->last_name
-                , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
+        if ($student_details->admission_status == 1) {
+            dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
+                Mail::send('welcome_password', array('name' => $user->first_name . " " . $user->middle_name . " " . $user->last_name
+                , 'password' => $pass, 'phone_no' => $mobile_no), function ($message) use ($email_id) {
                     $message->from('rudkarsh@rgoi.in');
                     $message->to($email_id);
                     $message->subject('Test mail');
@@ -272,7 +367,7 @@ class UserController extends Controller
             })->afterResponse();
         }
 
-        return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function update_student(Request $request)
@@ -281,24 +376,24 @@ class UserController extends Controller
 
         $user = User::find($data->id);
         $user->identification_no = $data->identification_no ?? $user->identification_no;
-        $user->first_name = $data->first_name ;
-        $user->middle_name = $data->middle_name ?? $user->middle_name ;
-        $user->last_name = $data->last_name ;
-        $user->gender = $data->gender ;
+        $user->first_name = $data->first_name;
+        $user->middle_name = $data->middle_name ?? $user->middle_name;
+        $user->last_name = $data->last_name;
+        $user->gender = $data->gender;
         $user->dob = $data->dob ?? $user->dob;
-        $user->category_id  = $data->category_id  ;
+        $user->category_id = $data->category_id;
         $user->religion = $data->religion ?? $user->religion;
-        $user->mobile_no = $data->mobile_no ;
-        $user->image = $data->image ?? null ;
+        $user->mobile_no = $data->mobile_no;
+        $user->image = $data->image ?? null;
         $user->blood_group = $data->blood_group ?? $user->blood_group;
-        $user->user_type_id  = 3 ;
-        $user->franchise_id  = $request->user()->franchise_id ;
-        $user->email  = $data->email ;
-        $user->status = ($data->admission_status == 0)?0:1;
+        $user->user_type_id = 3;
+        $user->franchise_id = $request->user()->franchise_id;
+        $user->email = $data->email;
+        $user->status = ($data->admission_status == 0) ? 0 : 1;
         $user->update();
 
         $cautionMoney = CautionMoney::whereUserId($user->id)->first();
-        if($cautionMoney){
+        if ($cautionMoney) {
             $cautionMoney->user_id = $user->id;
             $cautionMoney->caution_money_payment_date = $data->payment_date;
             $cautionMoney->caution_money_mode_of_payment = $data->mode_of_payment;
@@ -310,7 +405,7 @@ class UserController extends Controller
             $cautionMoney->refund_transaction_id = $data->refund_transaction_id ?? $cautionMoney->refund_transaction_id;
             $cautionMoney->caution_money_refund = $data->caution_money_refund ?? $cautionMoney->caution_money_refund;
             $cautionMoney->update();
-        }else{
+        } else {
             $cautionMoney = new CautionMoney();
             $cautionMoney->user_id = $user->id;
             $cautionMoney->caution_money_payment_date = $data->payment_date;
@@ -326,11 +421,11 @@ class UserController extends Controller
         }
 
         $registration = Registration::whereStudentId($user->id)->first();
-        if($registration){
+        if ($registration) {
             $registration->roll_no = $data->roll_no ?? $registration->roll_no;
             $registration->registration_no = $data->registration_no ?? $registration->registration_no;
             $registration->update();
-        }else{
+        } else {
             $registration = new Registration();
             $registration->student_id = $user->id;
             $registration->roll_no = $data->roll_no ?? null;
@@ -339,7 +434,7 @@ class UserController extends Controller
         }
 
 
-        if($data->admission_status == 0){
+        if ($data->admission_status == 0) {
             $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);
             $preAdmissionPayment->payment_date = $data->payment_date;
             $preAdmissionPayment->mode_of_payment = $data->mode_of_payment;
@@ -349,13 +444,13 @@ class UserController extends Controller
         }
 
         $student_details = StudentDetail::whereStudentId($data->id)->first();
-        if($student_details){
-            $student_details->student_id  = $user->id ;
-            $student_details->course_id  = $data->course_id ;
-            $student_details->semester_id  = $data->semester_id ;
-            $student_details->current_semester_id  = $data->semester_id ;
-            $student_details->agent_id  = $data->agent_id ;
-            $student_details->session_id = $data->session_id ;
+        if ($student_details) {
+            $student_details->student_id = $user->id;
+            $student_details->course_id = $data->course_id;
+            $student_details->semester_id = $data->semester_id;
+            $student_details->current_semester_id = $data->semester_id;
+            $student_details->agent_id = $data->agent_id;
+            $student_details->session_id = $data->session_id;
             $student_details->admission_date = $data->admission_date ?? $student_details->admission_date;
             $student_details->father_name = $data->father_name ?? $student_details->father_name;
             $student_details->father_occupation = $data->father_occupation ?? $student_details->father_occupation;
@@ -366,7 +461,7 @@ class UserController extends Controller
             $student_details->guardian_name = $data->guardian_name ?? $student_details->guardian_name;
             $student_details->guardian_phone = $data->guardian_phone ?? $student_details->guardian_phone;
             $student_details->guardian_email = $data->guardian_email ?? $student_details->guardian_email;
-            $student_details->admission_status = $data->admission_status ;
+            $student_details->admission_status = $data->admission_status;
             $student_details->emergency_phone_number = $data->emergency_phone_number ?? $student_details->emergency_phone_number;
             $student_details->current_address = $data->current_address ?? $student_details->current_address;
             $student_details->permanent_address = $data->permanent_address ?? $student_details->permanent_address;
@@ -376,33 +471,33 @@ class UserController extends Controller
             $student_details->guardian_occupation = $data->guardian_occupation ?? $student_details->guardian_occupation;
             $student_details->caution_money_id = $cautionMoney->id ?? $student_details->caution_money_id;
             $student_details->update();
-        }else{
+        } else {
             $student_details = new StudentDetail();
-            $student_details->student_id  = $user->id ;
-            $student_details->course_id  = $data->course_id ;
-            $student_details->semester_id  = $data->semester_id ;
-            $student_details->agent_id  = $data->agent_id ;
-            $student_details->current_semester_id  = $data->semester_id ;
-            $student_details->session_id = $data->session_id ;
+            $student_details->student_id = $user->id;
+            $student_details->course_id = $data->course_id;
+            $student_details->semester_id = $data->semester_id;
+            $student_details->agent_id = $data->agent_id;
+            $student_details->current_semester_id = $data->semester_id;
+            $student_details->session_id = $data->session_id;
             $student_details->admission_date = $data->admission_date ?? null;
-            $student_details->father_name = $data->father_name ;
-            $student_details->father_occupation = $data->father_occupation ;
-            $student_details->father_phone = $data->father_phone ;
-            $student_details->mother_name = $data->mother_name ;
-            $student_details->mother_occupation = $data->mother_occupation ;
-            $student_details->material_status = $data->material_status ;
-            $student_details->guardian_name = $data->guardian_name ;
-            $student_details->guardian_phone = $data->guardian_phone ;
-            $student_details->guardian_email = $data->guardian_email ;
-            $student_details->admission_status = $data->admission_status ;
-            $student_details->emergency_phone_number = $data->emergency_phone_number ;
-            $student_details->current_address = $data->current_address ;
-            $student_details->permanent_address = $data->permanent_address ;
-            $student_details->mother_phone = $data->mother_phone ;
-            $student_details->guardian_relation = $data->guardian_relation ;
-            $student_details->guardian_address = $data->guardian_address ;
-            $student_details->guardian_occupation = $data->guardian_occupation ;
-            $student_details->caution_money_id =  $cautionMoney->id ;
+            $student_details->father_name = $data->father_name;
+            $student_details->father_occupation = $data->father_occupation;
+            $student_details->father_phone = $data->father_phone;
+            $student_details->mother_name = $data->mother_name;
+            $student_details->mother_occupation = $data->mother_occupation;
+            $student_details->material_status = $data->material_status;
+            $student_details->guardian_name = $data->guardian_name;
+            $student_details->guardian_phone = $data->guardian_phone;
+            $student_details->guardian_email = $data->guardian_email;
+            $student_details->admission_status = $data->admission_status;
+            $student_details->emergency_phone_number = $data->emergency_phone_number;
+            $student_details->current_address = $data->current_address;
+            $student_details->permanent_address = $data->permanent_address;
+            $student_details->mother_phone = $data->mother_phone;
+            $student_details->guardian_relation = $data->guardian_relation;
+            $student_details->guardian_address = $data->guardian_address;
+            $student_details->guardian_occupation = $data->guardian_occupation;
+            $student_details->caution_money_id = $cautionMoney->id;
             $student_details->save();
         }
 
@@ -411,34 +506,35 @@ class UserController extends Controller
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
-            ->where('users.id',$user->id)
+            ->where('users.id', $user->id)
             ->first();
 
-        return response()->json(['success'=>1,'data'=>new StudentResource($member)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function save_member(Request $request){
+    public function save_member(Request $request)
+    {
         $data = (object)$request->json()->all();
-        $pass = rand(100000,999999);
+        $pass = rand(100000, 999999);
         DB::beginTransaction();
         try {
             $user = new User();
-            $user->identification_no = $data->identification_no ;
-            $user->first_name = $data->first_name ;
-            $user->middle_name = $data->middle_name ?? null ;
-            $user->last_name = $data->last_name ;
-            $user->gender = $data->gender ;
-            $user->dob = $data->dob ;
-            $user->category_id  = $data->category_id  ;
-            $user->religion = $data->religion ;
-            $user->mobile_no = $data->mobile_no ;
-            $user->image = $data->image ?? null ;
-            $user->blood_group = $data->blood_group ;
-            $user->user_type_id  = $data->user_type_id ;
-            $user->franchise_id  = $data->franchise_id ?? $request->user()->franchise_id ;
-            $user->email  = $data->email ;
-            $user->password = $pass ;
-            $user->status = 1 ;
+            $user->identification_no = $data->identification_no;
+            $user->first_name = $data->first_name;
+            $user->middle_name = $data->middle_name ?? null;
+            $user->last_name = $data->last_name;
+            $user->gender = $data->gender;
+            $user->dob = $data->dob;
+            $user->category_id = $data->category_id;
+            $user->religion = $data->religion;
+            $user->mobile_no = $data->mobile_no;
+            $user->image = $data->image ?? null;
+            $user->blood_group = $data->blood_group;
+            $user->user_type_id = $data->user_type_id;
+            $user->franchise_id = $data->franchise_id ?? $request->user()->franchise_id;
+            $user->email = $data->email;
+            $user->password = $pass;
+            $user->status = 1;
             $user->save();
 
             $email_id = $data->email;
@@ -466,61 +562,63 @@ class UserController extends Controller
             $member_details->save();
             DB::commit();
 
-            dispatch(function () use($user,$pass,$email_id,$mobile_no){
-                Mail::send('welcome_password',array('name'=>$user->first_name." ".$user->middle_name." ".$user->last_name
-                , 'password' => $pass, 'phone_no' => $mobile_no) , function ($message) use($email_id) {
+            dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
+                Mail::send('welcome_password', array('name' => $user->first_name . " " . $user->middle_name . " " . $user->last_name
+                , 'password' => $pass, 'phone_no' => $mobile_no), function ($message) use ($email_id) {
                     $message->from('rudkarsh@rgoi.in');
                     $message->to($email_id);
                     $message->subject('Test mail');
                 });
             })->afterResponse();
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 200);
+            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 200);
         }
 
-        return response()->json(['success'=>1,'data'=>new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function update_member_own(Request $request){
+    public function update_member_own(Request $request)
+    {
         $data = (object)$request->json()->all();
         $user = User::find($request->user()->id);
-        $user->first_name = $data->first_name ;
-        $user->middle_name = $data->middle_name ;
-        $user->last_name = $data->last_name ;
-        $user->gender = $data->gender ;
-        $user->dob = $data->dob ;
-        $user->religion = $data->religion ;
-        $user->mobile_no = $data->mobile_no ;
-        $user->blood_group = $data->blood_group ;
+        $user->first_name = $data->first_name;
+        $user->middle_name = $data->middle_name;
+        $user->last_name = $data->last_name;
+        $user->gender = $data->gender;
+        $user->dob = $data->dob;
+        $user->religion = $data->religion;
+        $user->mobile_no = $data->mobile_no;
+        $user->blood_group = $data->blood_group;
         $user->update();
-        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function update_member(Request $request){
+    public function update_member(Request $request)
+    {
         $data = (object)$request->json()->all();
         $user = User::find($data->id);
-        $user->identification_no = $data->identification_no ;
-        $user->first_name = $data->first_name ;
-        $user->middle_name = $data->middle_name ?? null ;
-        $user->last_name = $data->last_name ;
-        $user->gender = $data->gender ;
-        $user->dob = $data->dob ;
-        $user->category_id  = $data->category_id  ;
-        $user->religion = $data->religion ;
-        $user->mobile_no = $data->mobile_no ;
-        $user->image = $data->image ?? null ;
-        $user->blood_group = $data->blood_group ;
-        $user->user_type_id  = $data->user_type_id ;
-        $user->franchise_id  = $request->user()->franchise_id ;
-        $user->email  = $data->email;
+        $user->identification_no = $data->identification_no;
+        $user->first_name = $data->first_name;
+        $user->middle_name = $data->middle_name ?? null;
+        $user->last_name = $data->last_name;
+        $user->gender = $data->gender;
+        $user->dob = $data->dob;
+        $user->category_id = $data->category_id;
+        $user->religion = $data->religion;
+        $user->mobile_no = $data->mobile_no;
+        $user->image = $data->image ?? null;
+        $user->blood_group = $data->blood_group;
+        $user->user_type_id = $data->user_type_id;
+        $user->franchise_id = $request->user()->franchise_id;
+        $user->email = $data->email;
         $user->password = $data->password ?? $data->password;
-        $user->status = $data->status ?? 1 ;
+        $user->status = $data->status ?? 1;
         $user->update();
 
         $member_details = MemberDetails::whereUserId($data->id)->first();
-        if($member_details){
+        if ($member_details) {
             $member_details->date_of_joining = $data->date_of_joining ?? $member_details->date_of_joining;
             $member_details->department_id = $data->department_id ?? $member_details->department_id;
             $member_details->designation_id = $data->designation_id ?? $member_details->designation_id;
@@ -539,7 +637,7 @@ class UserController extends Controller
             $member_details->current_address = $data->current_address ?? $member_details->current_address;
             $member_details->permanent_address = $data->permanent_address ?? $member_details->permanent_address;
             $member_details->update();
-        }else{
+        } else {
             $member_details = new MemberDetails();
             $member_details->user_id = $user->id;
             $member_details->date_of_joining = $data->date_of_joining;
@@ -563,19 +661,20 @@ class UserController extends Controller
         }
 
 
-        return response()->json(['success'=>1,'data'=> new MemberResource($user)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_student_by_date(Request $request){
+    public function get_student_by_date(Request $request)
+    {
         $requestedData = (object)$request->json()->all();
         $startDate = $requestedData->from_date;
         $endDate = $requestedData->to_date;
 
         $users = User::join('student_details', 'users.id', '=', 'student_details.student_id')
-            ->whereBetween('admission_date',[$startDate,$endDate])
+            ->whereBetween('admission_date', [$startDate, $endDate])
             ->whereAdmissionStatus(1)
             ->get();
-        return response()->json(['success'=>1,'data'=>StudentResource::collection($users)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => StudentResource::collection($users)], 200, [], JSON_NUMERIC_CHECK);
     }
 
 
