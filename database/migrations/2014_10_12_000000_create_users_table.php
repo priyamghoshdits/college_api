@@ -19,11 +19,15 @@ return new class extends Migration
             $table->string('last_name',50)->nullable(false);
             $table->string('gender',50)->nullable(true);
             $table->string('dob',50)->nullable(true);
+            $table->string('dob_proof',50)->nullable(true);
+            $table->string('blood_group',50)->nullable(true);
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('religion',50)->nullable(true);
             $table->string('mobile_no',50)->nullable(true);
             $table->string('image',50)->nullable(true);
-            $table->string('blood_group',30)->nullable(true);
+            $table->string("aadhaar_card_proof")->nullable(true);
+            $table->string('admission_slip',30)->nullable(true);
+            $table->string('blood_group_proof',30)->nullable(true);
             $table->string('commission_flat',30)->nullable(true);
             $table->string('commission_percentage',30)->nullable(true);
             $table->foreignId('user_type_id')->references('id')->on('user_types')->onDelete('cascade');

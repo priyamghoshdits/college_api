@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -267,15 +268,61 @@ class UserController extends Controller
             $user->category_id = $request['category_id'];
             $user->religion = $request['religion'] ?? null;
             $user->mobile_no = $request['mobile_no'] ?? null;
-            $user->image = $request['image'] ?? null;
+//            $user->image = $request['image'] ?? null;
             $user->blood_group = $request['blood_group'] ?? null;
             $user->user_type_id = 3;
             $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
             $user->email = $request['email'];
             $user->password = $pass;
             $user->status = ($request['admission_status'] == 0) ? 0 : 1;
+
+            if ($files = $request->file('image')) {
+                // Define upload path
+                $destinationPath = public_path('/user_image/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $user->image = $file_name;
+            }
+
+            if ($aadhaar_card_proofs = $request->file('aadhaar_card_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $aadhaar_card_proofs->getClientOriginalName();
+                $aadhaar_card_proofs->move($destinationPath, $file_name);
+                $user->aadhaar_card_proof = $file_name;
+            }
+
+            if ($admission_slips = $request->file('admission_slip')) {
+                // Define upload path
+                $destinationPath = public_path('/admission_slip/'); // upload path
+                // Upload Orginal Image
+                $file_name = $admission_slips->getClientOriginalName();
+                $admission_slips->move($destinationPath, $file_name);
+                $user->admission_slip = $file_name;
+            }
+
+            if ($blood_group_proofs = $request->file('blood_group_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/blood_group_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $blood_group_proofs->getClientOriginalName();
+                $blood_group_proofs->move($destinationPath, $file_name);
+                $user->blood_group_proof = $file_name;
+            }
+
+            if ($dob_proofs = $request->file('dob_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/dob_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $dob_proofs->getClientOriginalName();
+                $dob_proofs->move($destinationPath, $file_name);
+                $user->dob_proof = $file_name;
+            }
+
             $user->save();
-//
+
             $email_id = $request['email'];
             $mobile_no = $request['mobile_no'];
 
@@ -372,7 +419,7 @@ class UserController extends Controller
 
     public function update_student(Request $request)
     {
-        $data = (object)$request->json()->all();
+//        $data = (object)$request->json()->all();
 
         $user = User::find($request->id);
         $user->identification_no = $request['identification_no'] ?? $user->identification_no;
@@ -384,12 +431,73 @@ class UserController extends Controller
         $user->category_id = $request['category_id'];
         $user->religion = $request['religion'] ?? $user->religion;
         $user->mobile_no = $request['mobile_no'];
-        $user->image = $request['image'] ?? null;
+//        $user->image = $request['image'] ?? null;
         $user->blood_group = $request['blood_group'] ?? $user->blood_group;
         $user->user_type_id = 3;
         $user->franchise_id = $request->user()->franchise_id;
         $user->email = $request['email'];
         $user->status = ($request['admission_status'] == 0) ? 0 : 1;
+
+        if ($files = $request->file('image')) {
+            if (file_exists(public_path().'/user_image/'.$user->image)) {
+                File::delete(public_path().'/user_image/'.$user->image);
+            }
+            // Define upload path
+            $destinationPath = public_path('/user_image/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $user->image = $file_name;
+        }
+
+        if ($aadhaar_card_proofs = $request->file('aadhaar_card_proof')) {
+            if (file_exists(public_path().'/aadhaar_card_proof/'.$user->aadhaar_card_proof)) {
+                File::delete(public_path().'/aadhaar_card_proof/'.$user->aadhaar_card_proof);
+            }
+            // Define upload path
+            $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $aadhaar_card_proofs->getClientOriginalName();
+            $aadhaar_card_proofs->move($destinationPath, $file_name);
+            $user->aadhaar_card_proof = $file_name;
+        }
+
+        if ($admission_slips = $request->file('admission_slip')) {
+            if (file_exists(public_path().'/admission_slip/'.$user->admission_slip)) {
+                File::delete(public_path().'/admission_slip/'.$user->admission_slip);
+            }
+            // Define upload path
+            $destinationPath = public_path('/admission_slip/'); // upload path
+            // Upload Orginal Image
+            $file_name = $admission_slips->getClientOriginalName();
+            $admission_slips->move($destinationPath, $file_name);
+            $user->admission_slip = $file_name;
+        }
+
+        if ($blood_group_proofs = $request->file('blood_group_proof')) {
+            if (file_exists(public_path().'/blood_group_proof/'.$user->blood_group_proof)) {
+                File::delete(public_path().'/blood_group_proof/'.$user->blood_group_proof);
+            }
+            // Define upload path
+            $destinationPath = public_path('/blood_group_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $blood_group_proofs->getClientOriginalName();
+            $blood_group_proofs->move($destinationPath, $file_name);
+            $user->blood_group_proof = $file_name;
+        }
+
+        if ($dob_proofs = $request->file('dob_proof')) {
+            if (file_exists(public_path().'/dob_proof/'.$user->dob_proof)) {
+                File::delete(public_path().'/dob_proof/'.$user->dob_proof);
+            }
+            // Define upload path
+            $destinationPath = public_path('/blood_group_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $dob_proofs->getClientOriginalName();
+            $dob_proofs->move($destinationPath, $file_name);
+            $user->dob_proof = $file_name;
+        }
+
         $user->update();
 
         $cautionMoney = CautionMoney::whereUserId($user->id)->first();

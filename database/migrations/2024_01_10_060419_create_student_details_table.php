@@ -23,7 +23,9 @@ return new class extends Migration
 
             $table->string("emergency_phone_number")->nullable(true);
             $table->string("current_address")->nullable(true);
+
             $table->string("permanent_address")->nullable(true);
+
             $table->string("mother_phone")->nullable(true);
             $table->string("guardian_relation")->nullable(true);
             $table->string("guardian_occupation")->nullable(true);
