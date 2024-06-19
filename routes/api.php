@@ -426,7 +426,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveStaffAttendance", [StaffAttendanceController::class, 'save_attendance']);
     Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}/{session_id}", [AttendanceController::class, 'get_student_attendance']);
     Route::get("getStudentOwnAttendance/{course_id}/{semester_id}/{date}/{user_id}", [AttendanceController::class, 'get_student_attendance_own']);
-    Route::post("updateClassStatus", [AttendanceController::class, 'update_class_status']);
+    Route::post("updateClassStart", [AttendanceController::class, 'update_class_start']);
+    Route::post("updateClassEnd", [AttendanceController::class, 'update_class_end']);
 
     //FRANCHISE
     Route::get("getFranchise", [FranchiseController::class, 'get_franchise']);

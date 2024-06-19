@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ClassStatusResource;
 use App\Models\Attendance;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
@@ -17,9 +18,20 @@ use Illuminate\Support\Facades\DB;
 class AttendanceController extends Controller
 {
 
-    public function update_class_status(Request $request){
-        $requestedData = (object)$request->json()->all();
-        
+    public function update_class_start(Request $request){
+        $classStatus = ClassStatus::find($request[0]);
+        $classStatus->started_by = $request->user()->user_type_id;
+        $classStatus->time_on = Carbon::now()->format('h:i:s A');
+        $classStatus->update();
+        return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function update_class_end(Request $request){
+        $classStatus = ClassStatus::find($request[0]);
+        $classStatus->ended_by = $request->user()->user_type_id;
+        $classStatus->ended_on = Carbon::now()->format('h:i:s A');
+        $classStatus->update();
+        return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function save_attendance(Request $request)
@@ -66,10 +78,7 @@ class AttendanceController extends Controller
                 $attendance->save();
             }
         }
-
-
-
-        return response()->json(['success'=>1,'class_status' => ClassStatus::find($classStatus_id)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'class_status' =>new ClassStatusResource(ClassStatus::find($classStatus_id))], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function attendance_percentage(Request $request){
@@ -138,7 +147,7 @@ class AttendanceController extends Controller
 
         if(count($attendanceTable)>0){
             $class_status = ClassStatus::find($attendanceTable[0]->class_status_id);
-            return response()->json(['success'=>0, 'class_status' => $class_status ,'data' => $attendanceTable, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>0, 'class_status' => new ClassStatusResource($class_status) ,'data' => $attendanceTable, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }else{
             $data = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, 'absent' as attendance from users
                 inner join student_details on users.id =  student_details.student_id
