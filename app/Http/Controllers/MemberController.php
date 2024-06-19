@@ -288,6 +288,44 @@ class MemberController extends Controller
         return response()->json(['success'=>1, 'data' => new LoginResource($user)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function testFile(){
+        // Path to the public directory or any other directory you want to explore
+        $path = public_path('/aadhaar_card_proof/New folder');
+
+        // Get all files and directories
+        $allFiles = File::allFiles($path);
+        $directories = File::directories($path);
+
+        // Prepare an array to hold the result
+        $result = [
+            'directories' => [],
+            'files' => []
+        ];
+
+        // Process directories
+        foreach ($directories as $directory) {
+            $result['directories'][] = basename($directory);
+        }
+
+        // Process files
+        foreach ($allFiles as $file) {
+            $result['files'][] = $file->getFilename();
+        }
+
+        // Return the list of files and directories (for demonstration purposes, we're just returning a JSON response)
+        return response()->json($result);
+
+//        $directories = File::directories(public_path('/aadhaar_card_proof'));
+//
+//        // Prepare directory names
+//        $directoryNames = array_map(function($dir) {
+//            return basename($dir);
+//        }, $directories);
+//
+//        // Return the list of directories (for demonstration purposes, we're just returning a JSON response)
+//        return response()->json($directoryNames);
+    }
+
     public function testUser(){
         $month = 02;
         $user_type_id = 02;

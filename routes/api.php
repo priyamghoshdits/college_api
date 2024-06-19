@@ -78,6 +78,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyDetailController;
 use App\Http\Controllers\PlacementDetailsController;
 use App\Http\Controllers\AchivementController;
+use App\Http\Controllers\StaffExperienceController;
+use App\Models\EducationQualification;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +105,7 @@ Route::get("clearCache", [RolesAndPermissionController::class, 'clear_cache']);
 
 
 Route::get("testF", [MemberController::class, 'testUser']);
+Route::get("testFile", [MemberController::class, 'testFile']);
 
 Route::post("getMarksheet", [MarksheetController::class, 'get_mark_sheet']);
 
@@ -134,7 +137,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //MARKSHEET
     Route::post("saveMarksheet", [MarksheetController::class, 'save_mark_sheet']);
-//    Route::get("getMarksheet",[MarksheetController::class,'get_mark_sheet']);
+    //    Route::get("getMarksheet",[MarksheetController::class,'get_mark_sheet']);
 
     //HOLIDAY
     Route::post("saveHolidayForWholeYear", [HolidayController::class, 'holiday_for_whole_year']);
@@ -176,6 +179,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveLibraryDetails", [LibraryStockController::class, 'save_library_details']);
     Route::post("updateLibraryDetails", [LibraryStockController::class, 'update_library_details']);
     Route::get("deleteLibraryDetails/{id}", [LibraryStockController::class, 'delete_library_details']);
+
+    //EDUCATION QUALIFICATION
+    Route::get("getEducationQualification", [EducationQualification::class, 'get_education_qualification']);
+    Route::post("saveEducationQualification", [EducationQualification::class, 'save_education_qualification']);
+    Route::post("updateEducationQualification", [EducationQualification::class, 'update_education_qualification']);
+    Route::get("deleteEducationQualification/{id}", [EducationQualification::class, 'delete_education_qualification']);
 
     //LIBRARY DIGITAL BOOKS
     Route::get("getLibraryDigitalBook", [LibraryDigitalBookController::class, 'get_digital_library_books']);
@@ -347,7 +356,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateQuestions", [QuestionController::class, 'update_questions']);
     Route::get("updateStatus/{id}", [QuestionController::class, 'updateStatus']);
     Route::post("deleteQuestion", [QuestionController::class, 'delete_questions']);
-//    Route::get("deleteSubjectDetails/{id?}",[QuestionController::class,'delete_subject_details']);
+    //    Route::get("deleteSubjectDetails/{id?}",[QuestionController::class,'delete_subject_details']);
 
     //FEES TYPE
     Route::get("getFeesType", [FeesTypeController::class, 'get_fees_type']);
@@ -368,6 +377,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveDiscount", [DiscountController::class, 'save_discount']);
     Route::post("updateDiscount", [DiscountController::class, 'update_discount']);
     Route::get("deleteDiscount/{id}", [DiscountController::class, 'delete_discount']);
+
+    //EXPERIENCE
+    Route::get("get_experience", [StaffExperienceController::class, 'get_experience']);
+    Route::post("save_experience", [StaffExperienceController::class, 'save_experience']);
+    Route::post("update_experience", [StaffExperienceController::class, 'update_experience']);
+    Route::get("delete_experience/{id}", [StaffExperienceController::class, 'delete_experience']);
 
     //DEPARTMENT
     Route::get("getDepartment", [DepartmentController::class, 'get_department']);
@@ -650,5 +665,3 @@ Route::get("tmail", [FeesTypeController::class, 'testMail']);
 Route::get("testMigration", [MemberController::class, 'test_migration']);
 
 // count(json_decode($data->semester_by_course(3)->content(),true)['data']); semester controller
-
-
