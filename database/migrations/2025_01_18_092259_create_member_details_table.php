@@ -31,6 +31,11 @@ return new class extends Migration
             $table->string("bank_name")->nullable(true);
             $table->string("ifsc_code")->nullable(true);
             $table->string("bank_branch_name")->nullable(true);
+
+            $table->string("pan_number")->nullable(true);
+            $table->string("pan_proof")->nullable(true);
+            $table->string("caste_certificate_proof")->nullable(true);
+            $table->string("joining_letter_proof")->nullable(true);
             $table->timestamps();
         });
     }

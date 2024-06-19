@@ -51,6 +51,7 @@ class MemberResource extends JsonResource
             'department_id' => $this->department_id,
             'designation_name' => Designation::find($this->designation_id)->name ?? null,
             'department_name' => Department::find($this->department_id)->name ?? null,
+            'pan_number' => $this->pan_number,
         ];
     }
 }

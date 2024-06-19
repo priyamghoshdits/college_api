@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
+use App\Models\ClassStatus;
 use App\Models\holiday;
 use App\Models\SemesterTimetable;
 use App\Models\User;
@@ -15,19 +16,35 @@ use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
+
+    public function update_class_status(Request $request){
+        $requestedData = (object)$request->json()->all();
+        
+    }
+
     public function save_attendance(Request $request)
     {
         $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
-
-//        return $requestedData;
-
-//        return response()->json(['success'=>$attendance_by], 200,[],JSON_NUMERIC_CHECK);
         $course_id = $requestedData[0]['course_id'];
         $semester_id = $requestedData[0]['semester_id'];
         $subject_id = $requestedData[0]['subject_id'];
         $date = $requestedData[0]['date'];
         $session_id = $requestedData[0]['session_id'];
+
+        $attendanceUpdates = Attendance::whereCourseId($course_id)->whereSemesterId($semester_id)->where('date',$date)->whereSubjectId($subject_id)->first();
+        if(!$attendanceUpdates){
+            $classStatus = new ClassStatus();
+            $classStatus->started_by = null;
+            $classStatus->time_on = null;
+            $classStatus->ended_by = null;
+            $classStatus->ended_on = null;
+            $classStatus->save();
+
+            $classStatus_id = $classStatus->id;
+        }else{
+            $classStatus_id = $attendanceUpdates->class_status_id;
+        }
 
         foreach ($requestedData as $list){
             $attendanceUpdate = Attendance::whereCourseId($course_id)->whereSemesterId($semester_id)->where('date',$date)->whereSubjectId($subject_id)->whereUserId($list['user_id'])->first();
@@ -45,11 +62,14 @@ class AttendanceController extends Controller
                 $attendance->user_type_id = 3;
                 $attendance->attendance = $list['attendance'];
                 $attendance->date = $date;
+                $attendance->class_status_id = $classStatus_id;
                 $attendance->save();
             }
         }
 
-        return response()->json(['success'=>1], 200,[],JSON_NUMERIC_CHECK);
+
+
+        return response()->json(['success'=>1,'class_status' => ClassStatus::find($classStatus_id)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function attendance_percentage(Request $request){
@@ -110,21 +130,22 @@ class AttendanceController extends Controller
                 ->whereSessionId($session_id)->whereSubjectId($subject_id)->whereWeekId($day)->first();
         }
 
-        $attendanceTable = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, ifnull(attendances.attendance,'absent') as attendance, attendances.date, attendances.subject_id from users
+        $attendanceTable = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, ifnull(attendances.attendance,'absent') as attendance, attendances.date, attendances.subject_id, attendances.class_status_id  from users
             left join attendances on attendances.user_id = users.id
             inner join student_details on users.id =  student_details.student_id
             where users.user_type_id = 3 and student_details.course_id = ? and student_details.semester_id = ? and student_details.session_id = ?
               and attendances.date = ? and attendances.subject_id = ? and student_details.admission_status = 1",[$course_id, $semester_id, $session_id ,$date, $subject_id]);
 
         if(count($attendanceTable)>0){
-            return response()->json(['success'=>0,'data' => $attendanceTable, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
+            $class_status = ClassStatus::find($attendanceTable[0]->class_status_id);
+            return response()->json(['success'=>0, 'class_status' => $class_status ,'data' => $attendanceTable, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }else{
             $data = DB::select("select users.id as user_id, users.first_name, users.middle_name, users.last_name, users.middle_name, users.last_name, 'absent' as attendance from users
                 inner join student_details on users.id =  student_details.student_id
                 where users.user_type_id = 3 and student_details.course_id = ? and student_details.admission_status = 1
                   and student_details.semester_id = ? and student_details.session_id = ?",[$course_id,$semester_id, $session_id]);
 
-            return response()->json(['success'=>1,'data' => $data, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>1,'data' => $data, 'class_status' => null, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }
 
 //        select users.id, users.first_name, users.middle_name, users.last_name,ifnull(table1.attendance,'Absent') as attendances from (SELECT * FROM attendances where date = "2024-01-11") as table1

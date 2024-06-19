@@ -26,15 +26,20 @@ return new class extends Migration
 
             $table->string("permanent_address")->nullable(true);
 
-            $table->string("mother_phone")->nullable(true);
             $table->string("guardian_relation")->nullable(true);
             $table->string("guardian_occupation")->nullable(true);
 
             $table->string("father_name")->nullable(true);
             $table->string("father_occupation")->nullable(true);
             $table->string("father_phone")->nullable(true);
+            $table->string("father_income_proof")->nullable(true);
+
+            $table->string("mother_phone")->nullable(true);
             $table->string("mother_name")->nullable(true);
             $table->string("mother_occupation")->nullable(true);
+            $table->string("mother_income_proof")->nullable(true);
+
+
             $table->string("guardian_name")->nullable(true);
             $table->string("guardian_phone")->nullable(true);
             $table->string("material_status")->nullable(true);

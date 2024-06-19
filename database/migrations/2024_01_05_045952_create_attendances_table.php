@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('user_type_id')->references('id')->on('user_types')->onDelete('cascade');
             $table->string('attendance')->nullable(false);
             $table->date('date')->nullable(false);
+            $table->integer('class_status_id')->nullable(false);
             $table->timestamps();
         });
     }
