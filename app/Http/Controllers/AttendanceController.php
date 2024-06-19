@@ -20,7 +20,7 @@ class AttendanceController extends Controller
 
     public function update_class_start(Request $request){
         $classStatus = ClassStatus::find($request[0]);
-        $classStatus->started_by = $request->user()->user_type_id;
+        $classStatus->started_by = $request->user()->id;
         $classStatus->time_on = Carbon::now()->format('h:i:s A');
         $classStatus->update();
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
@@ -28,7 +28,7 @@ class AttendanceController extends Controller
 
     public function update_class_end(Request $request){
         $classStatus = ClassStatus::find($request[0]);
-        $classStatus->ended_by = $request->user()->user_type_id;
+        $classStatus->ended_by = $request->user()->id;
         $classStatus->ended_on = Carbon::now()->format('h:i:s A');
         $classStatus->update();
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);

@@ -379,10 +379,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deleteDiscount/{id}", [DiscountController::class, 'delete_discount']);
 
     //EXPERIENCE
-    Route::get("get_experience", [StaffExperienceController::class, 'get_experience']);
-    Route::post("save_experience", [StaffExperienceController::class, 'save_experience']);
-    Route::post("update_experience", [StaffExperienceController::class, 'update_experience']);
-    Route::get("delete_experience/{id}", [StaffExperienceController::class, 'delete_experience']);
+    Route::get("getExperience", [StaffExperienceController::class, 'get_experience']);
+    Route::post("saveExperience", [StaffExperienceController::class, 'save_experience']);
+    Route::post("updateExperience", [StaffExperienceController::class, 'update_experience']);
+    Route::get("deleteExperience/{id}", [StaffExperienceController::class, 'delete_experience']);
 
     //DEPARTMENT
     Route::get("getDepartment", [DepartmentController::class, 'get_department']);
