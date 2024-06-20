@@ -80,6 +80,8 @@ use App\Http\Controllers\PlacementDetailsController;
 use App\Http\Controllers\AchivementController;
 use App\Http\Controllers\StaffExperienceController;
 use App\Http\Controllers\EducationQualificationController;
+use App\Http\Controllers\PaperSetterController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -357,6 +359,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("updateStatus/{id}", [QuestionController::class, 'updateStatus']);
     Route::post("deleteQuestion", [QuestionController::class, 'delete_questions']);
     //    Route::get("deleteSubjectDetails/{id?}",[QuestionController::class,'delete_subject_details']);
+
+    //PAPER SETTER
+    Route::get("getPaperSetter", [PaperSetterController::class, 'get_PaperSetter']);
+    Route::post("savePaperSetter", [PaperSetterController::class, 'save_PaperSetter']);
+    Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
+    Route::post("deletePaperSetter", [PaperSetterController::class, 'delete_PaperSetter']);
 
     //FEES TYPE
     Route::get("getFeesType", [FeesTypeController::class, 'get_fees_type']);
