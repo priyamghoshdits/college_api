@@ -13,14 +13,25 @@ return new class extends Migration
     {
         Schema::create('education_qualifications', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->nullable(false);
-            $table->string('class');
-            $table->string('board');
-            $table->string('marks_obtain');
-            $table->string('percentage');
-            $table->string('division');
-            $table->string('main_subject');
-            $table->string('year_of_passing');
+            $table->string('student_id')->nullable(false);
+            $table->string('board_ten');
+            $table->string('marks_obtained_ten');
+            $table->string('percentage_ten');
+            $table->string('division_ten');
+            $table->string('main_subject_ten');
+            $table->string('year_of_passing_ten');
+            $table->string('board_twelve');
+            $table->string('marks_obtained_twelve');
+            $table->string('percentage_twelve');
+            $table->string('division_twelve');
+            $table->string('main_subject_twelve');
+            $table->string('year_of_passing_twelve');
+            $table->string('board_graduation');
+            $table->string('marks_obtained_graduation');
+            $table->string('percentage_graduation');
+            $table->string('division_graduation');
+            $table->string('main_subject_graduation');
+            $table->string('year_of_passing_graduation');
             $table->timestamps();
         });
     }

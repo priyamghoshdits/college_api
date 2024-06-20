@@ -79,8 +79,7 @@ use App\Http\Controllers\CompanyDetailController;
 use App\Http\Controllers\PlacementDetailsController;
 use App\Http\Controllers\AchivementController;
 use App\Http\Controllers\StaffExperienceController;
-use App\Models\EducationQualification;
-
+use App\Http\Controllers\EducationQualificationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -181,10 +180,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deleteLibraryDetails/{id}", [LibraryStockController::class, 'delete_library_details']);
 
     //EDUCATION QUALIFICATION
-    Route::get("getEducationQualification", [EducationQualification::class, 'get_education_qualification']);
-    Route::post("saveEducationQualification", [EducationQualification::class, 'save_education_qualification']);
-    Route::post("updateEducationQualification", [EducationQualification::class, 'update_education_qualification']);
-    Route::get("deleteEducationQualification/{id}", [EducationQualification::class, 'delete_education_qualification']);
+    Route::get("searchEducationQualification/{student_id}", [EducationQualificationController::class, 'search_education_qualification']);
+    Route::post("saveEducationQualification", [EducationQualificationController::class, 'save_education_qualification']);
+    Route::post("updateEducationQualification", [EducationQualificationController::class, 'update_education_qualification']);
+    Route::get("deleteEducationQualification/{id}", [EducationQualificationController::class, 'delete_education_qualification']);
 
     //LIBRARY DIGITAL BOOKS
     Route::get("getLibraryDigitalBook", [LibraryDigitalBookController::class, 'get_digital_library_books']);
