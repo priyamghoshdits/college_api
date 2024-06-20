@@ -11,7 +11,7 @@ class StaffExperienceController extends Controller
 {
     public function get_experience(Request $request)
     {
-        $data = StaffExperience::whereFranchiseId($request->user()->franchise_id)->get();
+        $data = StaffExperience::get();
         return response()->json(['success' => 1, 'data' => StaffExperienceResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
@@ -23,7 +23,7 @@ class StaffExperienceController extends Controller
         $data->experience = $request->experience;
         $data->organization = $request->organization;
         $data->from_date = $request->from_date;
-        $data->end_date = $request->end_date;
+        $data->to_date = $request->to_date;
 
         if ($files = $request->file('experience_proof')) {
             $destinationPath = public_path('/staff_experience_proof/');
@@ -39,11 +39,12 @@ class StaffExperienceController extends Controller
     public function update_experience(Request $request)
     {
         $data = StaffExperience::find($request->id);
+        $data->staff_id = $request->staff_id;
         $data->designation = $request->designation;
         $data->experience = $request->experience;
         $data->organization = $request->organization;
         $data->from_date = $request->from_date;
-        $data->end_date = $request->end_date;
+        $data->to_date = $request->to_date;
 
         if ($files = $request->file('experience_proof')) {
             if (file_exists(public_path() . '/staff_experience_proof/' . $data->experience_proof)) {

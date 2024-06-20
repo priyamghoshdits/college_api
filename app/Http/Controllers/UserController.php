@@ -394,6 +394,17 @@ class UserController extends Controller
                 $student_details->mother_income_proof = $file_name;
             }
 
+
+            if ($registration_proofs = $request->file('registration_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/registration_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $registration_proofs->getClientOriginalName();
+                $registration_proofs->move($destinationPath, $file_name);
+                $student_details->registration_proof = $file_name;
+            }
+
+
             $student_details->save();
 
             if ($request->admission_status == 1) {
@@ -624,6 +635,18 @@ class UserController extends Controller
                 $file_name = $mother_income_proof->getClientOriginalName();
                 $mother_income_proof->move($destinationPath, $file_name);
                 $student_details->mother_income_proof = $file_name;
+            }
+
+            if ($registration_proofs = $request->file('registration_proof')) {
+                if (file_exists(public_path() . '/registration_proof/' . $user->registration_proof)) {
+                    File::delete(public_path() . '/registration_proof/' . $user->registration_proof);
+                }
+                // Define upload path
+                $destinationPath = public_path('/registration_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $registration_proofs->getClientOriginalName();
+                $registration_proofs->move($destinationPath, $file_name);
+                $student_details->registration_proof = $file_name;
             }
 
             $student_details->update();

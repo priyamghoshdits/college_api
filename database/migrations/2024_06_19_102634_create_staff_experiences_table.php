@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('organization', 255)->nullable();
             $table->string('experience', 255)->nullable();
             $table->string('from_date')->nullable();
-            $table->string('end_date')->nullable();
+            $table->string('to_date')->nullable();
             $table->string('experience_proof')->nullable();
             $table->timestamps();
         });

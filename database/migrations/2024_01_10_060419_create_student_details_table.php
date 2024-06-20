@@ -39,6 +39,8 @@ return new class extends Migration
             $table->string("mother_occupation")->nullable(true);
             $table->string("mother_income_proof")->nullable(true);
 
+            $table->string("registration_proof")->nullable(true);
+
 
             $table->string("guardian_name")->nullable(true);
             $table->string("guardian_phone")->nullable(true);
