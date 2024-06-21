@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PaperSetterResource;
 use App\Models\PaperSetter;
 use App\Http\Requests\StorePaperSetterRequest;
 use App\Http\Requests\UpdatePaperSetterRequest;
@@ -13,7 +14,6 @@ class PaperSetterController extends Controller
 
     public function save_PaperSetter(Request $request)
     {
-        // return $request->all();
         foreach ($request['paper_array'] as $list) {
             $data = new PaperSetter();
             $data->staff_id = $list['staff_id'];
@@ -22,11 +22,23 @@ class PaperSetterController extends Controller
             $data->university_name = $list['university_name'];
             $data->referance_no = $list['referance_no'];
             $data->ref_date = $list['ref_date'];
-            $data->paper_file = $list['paper_file'] ?? 'N/A';
-
+            $data->paper_file = $list['paper_file'];
             $data->save();
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+
+    public function search_paper_setting(Request $request){
+        $requestedData = (object)$request->json()->all();
+        if($requestedData->staff_id != null){
+            $data = PaperSetter::whereBetween('ref_date', [$requestedData->from_date, $requestedData->to_date])->get();
+        }else{
+            $data = PaperSetter::whereBetween('ref_date', [$requestedData->from_date, $requestedData->to_date])
+                ->whereStaffId('staff_id',$requestedData->staff_id)
+                ->get();
+        }
+        return response()->json(['success' => 1, 'data' =>new PaperSetterResource($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
 

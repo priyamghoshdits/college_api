@@ -135,8 +135,9 @@ class UserController extends Controller
         if ($request->user()->user_type_id == 3) {
             $member = User::select('*', 'student_details.id as student_details_id', 'users.id as id')
                 ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
-                ->whereId($request->user()->id)
-                ->find();
+                ->leftjoin('registrations', 'registrations.student_id', '=', 'users.id')
+                ->where('users.id',$request->user()->id)
+                ->first();
             return response()->json(['success' => 1, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
@@ -851,11 +852,29 @@ class UserController extends Controller
         $user->middle_name = $data->middle_name;
         $user->last_name = $data->last_name;
         $user->gender = $data->gender;
+//        $user->admission_date = $data->admission_date;
         $user->dob = $data->dob;
         $user->religion = $data->religion;
         $user->mobile_no = $data->mobile_no;
         $user->blood_group = $data->blood_group;
         $user->update();
+
+        $studentDetails = StudentDetail::whereStudentId($request->user()->id)->first();
+        if($studentDetails){
+            $studentDetails->admission_date = $data->admission_date;
+            $studentDetails->emergency_phone_number = $data->emergency_phone_number;
+            $studentDetails->material_status = $data->material_status;
+
+            $studentDetails->update();
+        }else{
+            $studentDetails = new StudentDetail();
+            $studentDetails->student_id = $request->user()->id;
+            $studentDetails->admission_date = $data->admission_date;
+            $studentDetails->emergency_phone_number = $data->emergency_phone_number;
+            $studentDetails->material_status = $data->material_status;
+
+            $studentDetails->save();
+        }
         return response()->json(['success' => 1], 200, [], JSON_NUMERIC_CHECK);
     }
 
