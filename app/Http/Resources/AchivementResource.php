@@ -25,7 +25,7 @@ class AchivementResource extends JsonResource
             'student_name' => User::find($this->student_id)->first_name .' '. User::find($this->student_id)->middle_name.' '. User::find($this->student_id)->last_name,
             'award_name' => $this->award_name,
             'award_date' => $this->award_date,
-            'file_name' => $this->file_name,
+            'file_name' => $this->file_name != null ? asset("achievement/{$this->file_name}") : null,
         ];
     }
 }

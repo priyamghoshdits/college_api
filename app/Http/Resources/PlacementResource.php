@@ -15,6 +15,7 @@ class PlacementResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'subject_details_id' => $this->id,
             'course_id' => $this->course_id,
             'course_name' => Course::find($this->course_id)->course_name,

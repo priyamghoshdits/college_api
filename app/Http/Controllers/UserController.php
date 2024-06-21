@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AchivementResource;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
+use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StudentResource;
+use App\Models\Achivement;
 use App\Models\Attendance;
 use App\Models\CautionMoney;
+use App\Models\EducationQualification;
 use App\Models\MemberDetails;
+use App\Models\PlacementDetails;
 use App\Models\PreAdmissionPayment;
 use App\Models\Registration;
 use App\Models\StudentDetail;
@@ -136,9 +141,14 @@ class UserController extends Controller
             $member = User::select('*', 'student_details.id as student_details_id', 'users.id as id')
                 ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
                 ->leftjoin('registrations', 'registrations.student_id', '=', 'users.id')
-                ->where('users.id',$request->user()->id)
+                ->where('users.id', $request->user()->id)
                 ->first();
-            return response()->json(['success' => 1, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
+
+            $education_details = EducationQualification::whereStudentId($request->user()->id)->first();
+            $achievement = Achivement::whereStudentId($request->user()->id)->get();
+            $placement = PlacementDetails::whereUserId($request->user()->id)->get();
+
+            return response()->json(['success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement)], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
             ->where('users.id', $request->user()->id)
@@ -852,7 +862,7 @@ class UserController extends Controller
         $user->middle_name = $data->middle_name;
         $user->last_name = $data->last_name;
         $user->gender = $data->gender;
-//        $user->admission_date = $data->admission_date;
+        //        $user->admission_date = $data->admission_date;
         $user->dob = $data->dob;
         $user->religion = $data->religion;
         $user->mobile_no = $data->mobile_no;
@@ -860,13 +870,13 @@ class UserController extends Controller
         $user->update();
 
         $studentDetails = StudentDetail::whereStudentId($request->user()->id)->first();
-        if($studentDetails){
+        if ($studentDetails) {
             $studentDetails->admission_date = $data->admission_date;
             $studentDetails->emergency_phone_number = $data->emergency_phone_number;
             $studentDetails->material_status = $data->material_status;
 
             $studentDetails->update();
-        }else{
+        } else {
             $studentDetails = new StudentDetail();
             $studentDetails->student_id = $request->user()->id;
             $studentDetails->admission_date = $data->admission_date;
@@ -877,6 +887,43 @@ class UserController extends Controller
         }
         return response()->json(['success' => 1], 200, [], JSON_NUMERIC_CHECK);
     }
+
+
+    public function update_member_own_education(Request $request)
+    {
+        $requestedData = (object)$request->json()->all();
+        $educationQualification = EducationQualification::where('student_id', $requestedData->student_id)->first();
+        $educationQualification->student_id = $requestedData->student_id;
+
+        //10
+        $educationQualification->board_ten = $requestedData->board_ten;
+        $educationQualification->marks_obtained_ten = $requestedData->marks_obtained_ten;
+        $educationQualification->percentage_ten = $requestedData->percentage_ten;
+        $educationQualification->division_ten = $requestedData->division_ten;
+        $educationQualification->main_subject_ten = $requestedData->main_subject_ten;
+        $educationQualification->year_of_passing_ten = $requestedData->year_of_passing_ten;
+
+        //12
+        $educationQualification->board_twelve = $requestedData->board_twelve;
+        $educationQualification->marks_obtained_twelve = $requestedData->marks_obtained_twelve;
+        $educationQualification->percentage_twelve = $requestedData->percentage_twelve;
+        $educationQualification->division_twelve = $requestedData->division_twelve;
+        $educationQualification->main_subject_twelve = $requestedData->main_subject_twelve;
+        $educationQualification->year_of_passing_twelve = $requestedData->year_of_passing_twelve;
+
+        //Graduation
+        $educationQualification->board_graduation = $requestedData->board_graduation;
+        $educationQualification->marks_obtained_graduation = $requestedData->marks_obtained_graduation;
+        $educationQualification->percentage_graduation = $requestedData->percentage_graduation;
+        $educationQualification->division_graduation = $requestedData->division_graduation;
+        $educationQualification->main_subject_graduation = $requestedData->main_subject_graduation;
+        $educationQualification->year_of_passing_graduation = $requestedData->year_of_passing_graduation;
+
+        $educationQualification->update();
+
+        return response()->json(['success' => 1, 'data' => $educationQualification], 200, [], JSON_NUMERIC_CHECK);
+    }
+
 
     public function update_member(Request $request)
     {

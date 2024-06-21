@@ -176,6 +176,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveMember", [UserController::class, 'save_member']);
     Route::post("updateMember", [UserController::class, 'update_member']);
     Route::post("updateMemberOwn", [UserController::class, 'update_member_own']);
+    Route::post("updateMemberOwnEducation", [UserController::class, 'update_member_own_education']);
 
     //LIBRARY
     Route::get("getLibraryDetails", [LibraryStockController::class, 'get_library_details']);
@@ -563,6 +564,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePlacementDetails", [PlacementDetailsController::class, 'update_placement_details']);
     Route::get("deletePlacementDetails/{id?}", [PlacementDetailsController::class, 'delete_placement_details']);
 
+    // OWN PLACEMENT DETAILS
+    Route::get("getOwnPlacementDetails", [PlacementDetailsController::class, 'get_own_placement_details']);
+    Route::post("saveOwnPlacementDetails", [PlacementDetailsController::class, 'save_own_placement_details']);
+    Route::post("updateOwnPlacementDetails", [PlacementDetailsController::class, 'update_own_placement_details']);
+
     //EXPENSE API
     Route::get("getExpense", [ExpenseController::class, 'get_expense']);
     Route::post("saveExpense", [ExpenseController::class, 'save_expense']);
@@ -604,6 +610,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveAchievement", [AchivementController::class, 'save_achievement']);
     Route::post("updateAchievement", [AchivementController::class, 'update_achievement']);
     Route::get("deleteAchievement/{id?}", [AchivementController::class, 'delete_achievement']);
+
+    //OWN ACHIEVEMENT
+    // Route::get("getOwnAchievement", [AchivementController::class, 'get_own_achievement']);
+    Route::post("saveOwnAchievement", [AchivementController::class, 'save_own_achievement']);
+    Route::post("updateOwnAchievement", [AchivementController::class, 'update_own_achievement']);
+    Route::get("deleteOwnAchievement/{id?}", [AchivementController::class, 'delete_own_achievement']);
 
     //STUDENT ENQUIRY
     Route::get("getAdmissionEnquiry", [AdmissionEnquiryController::class, 'get_admission_enquiry']);
