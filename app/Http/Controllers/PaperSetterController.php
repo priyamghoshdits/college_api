@@ -31,14 +31,14 @@ class PaperSetterController extends Controller
 
     public function search_paper_setting(Request $request){
         $requestedData = (object)$request->json()->all();
-        if($requestedData->staff_id != null){
+        if($requestedData->staff_id == null){
             $data = PaperSetter::whereBetween('ref_date', [$requestedData->from_date, $requestedData->to_date])->get();
         }else{
             $data = PaperSetter::whereBetween('ref_date', [$requestedData->from_date, $requestedData->to_date])
-                ->whereStaffId('staff_id',$requestedData->staff_id)
+                ->whereStaffId($requestedData->staff_id)
                 ->get();
         }
-        return response()->json(['success' => 1, 'data' =>new PaperSetterResource($data)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => PaperSetterResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
 
@@ -53,20 +53,36 @@ class PaperSetterController extends Controller
         }
         return response()->json(['success' => 1, 'file_name' => $file_name], 200);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+
+    public function update_PaperSetter(Request $request)
     {
-        //
+        $data = new PaperSetter();
+        $data->staff_id = $request['staff_id'];
+        $data->examination_name = $request['examination_name'];
+        $data->subject_name = $request['subject_name'];
+        $data->university_name = $request['university_name'];
+        $data->referance_no = $request['referance_no'];
+        $data->ref_date = $request['ref_date'];
+
+        if ($files = $request->file('file')) {
+            $destinationPath = public_path('/paper_file/');
+            $profileImage1 = $files->getClientOriginalName();
+            $files->move($destinationPath, $profileImage1);
+            $data->paper_file = $files->getClientOriginalName();
+        }
+        $data->update();
+
+        return response()->json(['success' => 1, 'data' => $data], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePaperSetterRequest $request)
+    public function delete_PaperSetter($id)
     {
-        //
+        $paperSetter = PaperSetter::find($id);
+        $paperSetter->delete();
+
+        $paperSetter = PaperSetter::get();
+        return response()->json(['success' => 1, 'data' =>PaperSetterResource::collection($paperSetter)], 200);
     }
 
     /**
