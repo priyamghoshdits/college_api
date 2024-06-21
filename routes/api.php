@@ -80,6 +80,7 @@ use App\Http\Controllers\PlacementDetailsController;
 use App\Http\Controllers\AchivementController;
 use App\Http\Controllers\StaffExperienceController;
 use App\Http\Controllers\EducationQualificationController;
+use App\Http\Controllers\JournalPublicationController;
 use App\Http\Controllers\PaperSetterController;
 use App\Http\Controllers\PromotionController;
 
@@ -368,11 +369,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::post("deletePaperSetter", [PaperSetterController::class, 'delete_PaperSetter']);
 
-    //PAPER SETTER
+    //PROMOTION
     Route::get("getPromotion", [PromotionController::class, 'get_promotion']);
     Route::post("savePromotion", [PromotionController::class, 'save_promotion']);
     Route::post("updatePromotion", [PromotionController::class, 'update_promotion']);
-    Route::post("deletePromotion", [PromotionController::class, 'delete_promotion']);
+    Route::get("deletePromotion/{id}", [PromotionController::class, 'delete_promotion']);
+
+    //JOURNAL PUBLICATION
+    Route::get("getJournalPublication", [JournalPublicationController::class, 'get_journal_Publication']);
+    Route::post("saveJournalPublication", [JournalPublicationController::class, 'save_journal_Publication']);
+    Route::post("updateJournalPublication", [JournalPublicationController::class, 'update_journal_Publication']);
+    Route::get("deleteJournalPublication/{id}", [JournalPublicationController::class, 'delete_journal_Publication']);
 
     //FEES TYPE
     Route::get("getFeesType", [FeesTypeController::class, 'get_fees_type']);
