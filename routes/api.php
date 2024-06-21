@@ -81,6 +81,7 @@ use App\Http\Controllers\AchivementController;
 use App\Http\Controllers\StaffExperienceController;
 use App\Http\Controllers\EducationQualificationController;
 use App\Http\Controllers\PaperSetterController;
+use App\Http\Controllers\PromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -363,8 +364,15 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //PAPER SETTER
     Route::get("getPaperSetter", [PaperSetterController::class, 'get_PaperSetter']);
     Route::post("savePaperSetter", [PaperSetterController::class, 'save_PaperSetter']);
+    Route::post("saveUploadFile", [PaperSetterController::class, 'save_upload_file']);
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::post("deletePaperSetter", [PaperSetterController::class, 'delete_PaperSetter']);
+
+    //PAPER SETTER
+    Route::get("getPromotion", [PromotionController::class, 'get_promotion']);
+    Route::post("savePromotion", [PromotionController::class, 'save_promotion']);
+    Route::post("updatePromotion", [PromotionController::class, 'update_promotion']);
+    Route::post("deletePromotion", [PromotionController::class, 'delete_promotion']);
 
     //FEES TYPE
     Route::get("getFeesType", [FeesTypeController::class, 'get_fees_type']);
