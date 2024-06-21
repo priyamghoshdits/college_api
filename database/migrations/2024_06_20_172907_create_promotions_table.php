@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
             $table->string('sl')->nullable(true);
-            $table->string('staff_id')->nullable(true);
+            $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('from')->nullable(true);
             $table->string('to')->nullable(true);
+            $table->string('promotion_date')->nullable(true);
             $table->string('file')->nullable(true);
             $table->timestamps();
         });
