@@ -29,7 +29,7 @@ class AttendanceController extends Controller
     public function get_class($subject_id){
         $today = Carbon::now()->format('Y-m-d');
         $getClass = Attendance::select('class')->whereSubjectId($subject_id)->where('date',$today)->get();
-        return response()->json(['success'=>1,'class_status' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_class_end(Request $request){
@@ -44,46 +44,118 @@ class AttendanceController extends Controller
     {
         $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
-        $course_id = $requestedData[0]['course_id'];
-        $semester_id = $requestedData[0]['semester_id'];
-        $subject_id = $requestedData[0]['subject_id'];
-        $date = $requestedData[0]['date'];
-        $session_id = $requestedData[0]['session_id'];
+        $today = Carbon::now()->format('Y-m-d');
+        $class_no = Attendance::whereSubjectId($requestedData[0]['subject_id'])->where('date',$today)->orderBy('id','DESC')->first();
+        if($class_no && $requestedData[0]['_class'] == 'new'){
+            $class = (int)$class_no->class + 1;
+//            return $class;
+            $course_id = $requestedData[0]['course_id'];
+            $semester_id = $requestedData[0]['semester_id'];
+            $subject_id = $requestedData[0]['subject_id'];
+            $date = $requestedData[0]['date'];
+            $session_id = $requestedData[0]['session_id'];
 
-        $attendanceUpdates = Attendance::whereCourseId($course_id)->whereSemesterId($semester_id)->where('date',$date)->whereSubjectId($subject_id)->first();
-        if(!$attendanceUpdates){
-            $classStatus = new ClassStatus();
-            $classStatus->started_by = null;
-            $classStatus->time_on = null;
-            $classStatus->ended_by = null;
-            $classStatus->ended_on = null;
-            $classStatus->save();
+            $attendanceUpdates = Attendance::whereCourseId($course_id)
+                ->whereSemesterId($semester_id)
+                ->where('date',$date)
+                ->whereSubjectId($subject_id)
+                ->whereClass($class)
+                ->first();
+            if(!$attendanceUpdates){
+                $classStatus = new ClassStatus();
+                $classStatus->started_by = null;
+                $classStatus->time_on = null;
+                $classStatus->ended_by = null;
+                $classStatus->ended_on = null;
+                $classStatus->save();
 
-            $classStatus_id = $classStatus->id;
-        }else{
-            $classStatus_id = $attendanceUpdates->class_status_id;
-        }
-
-        foreach ($requestedData as $list){
-            $attendanceUpdate = Attendance::whereCourseId($course_id)->whereSemesterId($semester_id)->where('date',$date)->whereSubjectId($subject_id)->whereUserId($list['user_id'])->first();
-            if($attendanceUpdate){
-                $attendanceUpdate->attendance = $list['attendance'];
-                $attendanceUpdate->update();
+                $classStatus_id = $classStatus->id;
             }else{
-                $attendance = new Attendance();
-                $attendance->course_id = $course_id;
-                $attendance->semester_id = $semester_id;
-                $attendance->subject_id = $subject_id;
-                $attendance->session_id = $session_id;
-                $attendance->attendance_by = $attendance_by;
-                $attendance->user_id = $list['user_id'];
-                $attendance->user_type_id = 3;
-                $attendance->attendance = $list['attendance'];
-                $attendance->date = $date;
-                $attendance->class_status_id = $classStatus_id;
-                $attendance->save();
+                $classStatus_id = $attendanceUpdates->class_status_id;
+            }
+
+            foreach ($requestedData as $list){
+//                $attendanceUpdate = Attendance::whereCourseId($course_id)
+//                    ->whereSemesterId($semester_id)->where('date',$date)
+//                    ->whereSubjectId($subject_id)
+//                    ->whereUserId($list['user_id'])
+//                    ->whereClass($class)
+//                    ->first();
+//                if($attendanceUpdate){
+//                    $attendanceUpdate->attendance = $list['attendance'];
+//                    $attendanceUpdate->update();
+//                }else{
+                    $attendance = new Attendance();
+                    $attendance->course_id = $course_id;
+                    $attendance->semester_id = $semester_id;
+                    $attendance->subject_id = $subject_id;
+                    $attendance->session_id = $session_id;
+                    $attendance->attendance_by = $attendance_by;
+                    $attendance->user_id = $list['user_id'];
+                    $attendance->user_type_id = 3;
+                    $attendance->attendance = $list['attendance'];
+                    $attendance->date = $date;
+                    $attendance->class = $class;
+                    $attendance->class_status_id = $classStatus_id;
+                    $attendance->save();
+//                }
+            }
+
+        }else{
+            $course_id = $requestedData[0]['course_id'];
+            $semester_id = $requestedData[0]['semester_id'];
+            $subject_id = $requestedData[0]['subject_id'];
+            $date = $requestedData[0]['date'];
+            $session_id = $requestedData[0]['session_id'];
+            $class = $requestedData[0]['_class'];
+
+            $attendanceUpdates = Attendance::whereCourseId($course_id)
+                ->whereSemesterId($semester_id)
+                ->where('date',$date)
+                ->whereSubjectId($subject_id)
+                ->whereClass($class)
+                ->first();
+            if(!$attendanceUpdates){
+                $classStatus = new ClassStatus();
+                $classStatus->started_by = null;
+                $classStatus->time_on = null;
+                $classStatus->ended_by = null;
+                $classStatus->ended_on = null;
+                $classStatus->save();
+
+                $classStatus_id = $classStatus->id;
+            }else{
+                $classStatus_id = $attendanceUpdates->class_status_id;
+            }
+
+            foreach ($requestedData as $list){
+                $attendanceUpdate = Attendance::whereCourseId($course_id)
+                    ->whereSemesterId($semester_id)->where('date',$date)
+                    ->whereSubjectId($subject_id)
+                    ->whereUserId($list['user_id'])
+                    ->whereClass($class)
+                    ->first();
+                if($attendanceUpdate){
+                    $attendanceUpdate->attendance = $list['attendance'];
+                    $attendanceUpdate->update();
+                }else{
+                    $attendance = new Attendance();
+                    $attendance->course_id = $course_id;
+                    $attendance->semester_id = $semester_id;
+                    $attendance->subject_id = $subject_id;
+                    $attendance->session_id = $session_id;
+                    $attendance->attendance_by = $attendance_by;
+                    $attendance->user_id = $list['user_id'];
+                    $attendance->user_type_id = 3;
+                    $attendance->attendance = $list['attendance'];
+                    $attendance->date = $date;
+                    $attendance->class = $class;
+                    $attendance->class_status_id = $classStatus_id;
+                    $attendance->save();
+                }
             }
         }
+
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource(ClassStatus::find($classStatus_id))], 200,[],JSON_NUMERIC_CHECK);
     }
 
@@ -133,7 +205,7 @@ class AttendanceController extends Controller
         return response()->json(['success'=>1, 'data' =>$retArr], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function get_student_attendance($course_id, $semester_id, $date, $subject_id, $session_id)
+    public function get_student_attendance($course_id, $semester_id, $date, $subject_id, $session_id, $class)
     {
         $day = Carbon::parse($date)->dayOfWeek;
 
@@ -149,9 +221,9 @@ class AttendanceController extends Controller
             left join attendances on attendances.user_id = users.id
             inner join student_details on users.id =  student_details.student_id
             where users.user_type_id = 3 and student_details.course_id = ? and student_details.semester_id = ? and student_details.session_id = ?
-              and attendances.date = ? and attendances.subject_id = ? and student_details.admission_status = 1",[$course_id, $semester_id, $session_id ,$date, $subject_id]);
+              and attendances.date = ? and attendances.subject_id = ? and student_details.admission_status = 1 and class = ?",[$course_id, $semester_id, $session_id ,$date, $subject_id, $class]);
 
-        if(count($attendanceTable)>0){
+        if(count($attendanceTable)>0 || $class != 'new'){
             $class_status = ClassStatus::find($attendanceTable[0]->class_status_id);
             return response()->json(['success'=>0, 'class_status' => new ClassStatusResource($class_status) ,'data' => $attendanceTable, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }else{
