@@ -389,7 +389,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("searchConsultancy/{staff_id}", [ConsultancyController::class, 'search_consultancy']);
     Route::post("saveConsultation", [ConsultancyController::class, 'save_consultation']);
     Route::post("updateConsultation", [ConsultancyController::class, 'update_consultation']);
-    Route::get("deleteJournalPublication/{id}", [ConsultancyController::class, 'delete_journal_Publication']);
+    Route::get("deleteConsultation/{id}", [ConsultancyController::class, 'delete_consultation']);
 
     //FEES TYPE
     Route::get("getFeesType", [FeesTypeController::class, 'get_fees_type']);

@@ -64,12 +64,13 @@ class ConsultancyController extends Controller
         return response()->json(['success' => 1, 'data' =>ConsultancyResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Consultancy $consultancy)
+    public function delete_consultation($id)
     {
-        //
+        $data = Consultancy::find($id);
+        $data->delete();
+
+        $data = Consultancy::get();
+        return response()->json(['success' => 1, 'data' =>ConsultancyResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
