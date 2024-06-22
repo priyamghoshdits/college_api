@@ -378,6 +378,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deletePromotion/{id}", [PromotionController::class, 'delete_promotion']);
 
     //JOURNAL PUBLICATION
+    Route::get("searchJournalPublication/{staff_id?}", [JournalPublicationController::class, 'search_journal_publication']);
     Route::get("getJournalPublication", [JournalPublicationController::class, 'get_journal_Publication']);
     Route::post("saveJournalPublication", [JournalPublicationController::class, 'save_journal_Publication']);
     Route::post("updateJournalPublication", [JournalPublicationController::class, 'update_journal_Publication']);
