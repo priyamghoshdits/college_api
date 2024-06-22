@@ -621,7 +621,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deleteAchievement/{id?}", [AchivementController::class, 'delete_achievement']);
 
     //BOOK PUBLICATION
-    Route::get("getBookPublication", [BookPublicationController::class, 'get_book_publication']);
+    Route::get("getBookPublication/{staff_id?}", [BookPublicationController::class, 'get_book_publication']);
     Route::post("saveBookPublication", [BookPublicationController::class, 'save_book_publication']);
     Route::post("updateBookPublication", [BookPublicationController::class, 'update_book_publication']);
     Route::get("deleteBookPublication/{id?}", [BookPublicationController::class, 'delete_book_publication']);

@@ -17,7 +17,7 @@ class BookPublicationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'staff_id' => $this->id,
+            'staff_id' => $this->staff_id,
             'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
             'book_name' => $this->book_name,
             'ISBN_number' => $this->ISBN_number,
