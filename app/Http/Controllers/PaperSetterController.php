@@ -31,7 +31,7 @@ class PaperSetterController extends Controller
 
     public function search_paper_setting(Request $request){
         $requestedData = (object)$request->json()->all();
-        if($requestedData->staff_id == null){
+        if($requestedData->staff_id == null || $requestedData->staff_id == "null"){
             $data = PaperSetter::whereBetween('ref_date', [$requestedData->from_date, $requestedData->to_date])->get();
         }else{
             $data = PaperSetter::whereBetween('ref_date', [$requestedData->from_date, $requestedData->to_date])
