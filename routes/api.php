@@ -83,6 +83,7 @@ use App\Http\Controllers\EducationQualificationController;
 use App\Http\Controllers\JournalPublicationController;
 use App\Http\Controllers\PaperSetterController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\ConsultancyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -383,6 +384,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveJournalPublication", [JournalPublicationController::class, 'save_journal_Publication']);
     Route::post("updateJournalPublication", [JournalPublicationController::class, 'update_journal_Publication']);
     Route::get("deleteJournalPublication/{id}", [JournalPublicationController::class, 'delete_journal_Publication']);
+
+    //CONSULTATION
+    Route::get("searchConsultancy/{staff_id}", [ConsultancyController::class, 'search_consultancy']);
+    Route::post("saveConsultation", [ConsultancyController::class, 'save_consultation']);
+    Route::post("updateConsultation", [ConsultancyController::class, 'update_consultation']);
+    Route::get("deleteJournalPublication/{id}", [ConsultancyController::class, 'delete_journal_Publication']);
 
     //FEES TYPE
     Route::get("getFeesType", [FeesTypeController::class, 'get_fees_type']);
