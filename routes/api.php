@@ -78,6 +78,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyDetailController;
 use App\Http\Controllers\PlacementDetailsController;
 use App\Http\Controllers\AchivementController;
+use App\Http\Controllers\BookPublicationController;
 use App\Http\Controllers\StaffExperienceController;
 use App\Http\Controllers\EducationQualificationController;
 use App\Http\Controllers\JournalPublicationController;
@@ -618,6 +619,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveAchievement", [AchivementController::class, 'save_achievement']);
     Route::post("updateAchievement", [AchivementController::class, 'update_achievement']);
     Route::get("deleteAchievement/{id?}", [AchivementController::class, 'delete_achievement']);
+
+    //BOOK PUBLICATION
+    Route::get("getBookPublication", [BookPublicationController::class, 'get_book_publication']);
+    Route::post("saveBookPublication", [BookPublicationController::class, 'save_book_publication']);
+    Route::post("updateBookPublication", [BookPublicationController::class, 'update_book_publication']);
+    Route::get("deleteBookPublication/{id?}", [BookPublicationController::class, 'delete_book_publication']);
 
     //OWN ACHIEVEMENT
     // Route::get("getOwnAchievement", [AchivementController::class, 'get_own_achievement']);
