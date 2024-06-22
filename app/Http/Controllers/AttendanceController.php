@@ -26,6 +26,12 @@ class AttendanceController extends Controller
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_class($subject_id){
+        $today = Carbon::now()->format('Y-m-d');
+        $getClass = Attendance::select('class')->whereSubjectId($subject_id)->where('date',$today)->get();
+        return response()->json(['success'=>1,'class_status' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function update_class_end(Request $request){
         $classStatus = ClassStatus::find($request[0]);
         $classStatus->ended_by = $request->user()->id;
