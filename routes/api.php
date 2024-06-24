@@ -380,7 +380,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'save_seminar_workshop_faculty']);
     Route::post("updateSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'update_seminar_workshop_faculty']);
     Route::get("deleteSeminarWorkshopFaculty/{id}", [SeminarWorkshopFacultyController::class, 'delete_seminar_workshop_faculty']);
-    Route::post("searchPaperSetting", [SeminarWorkshopFacultyController::class, 'search_paper_setting']);
+    Route::post("searchSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'search_seminar_workshop_faculty']);
 
 
     //ANSWER SCRIPT EVALUATOR

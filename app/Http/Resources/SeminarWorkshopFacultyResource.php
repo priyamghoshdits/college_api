@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Resources;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class SeminarWorkshopFacultyResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'staff_id' => $this->staff_id,
+            'staff_name' => User::find($this->staff_id)->first_name.' '.User::find($this->staff_id)->middle_name.' '.User::find($this->staff_id)->last_name,
+            'title_of_seminar' => $this->title_of_seminar,
+            'type_of_seminar' => $this->type_of_seminar,
+            'organized_by' => $this->organized_by,
+            'duration' => $this->duration,
+            'date' => $this->date,
+            'achievement' => $this->achievement,
+        ];
+    }
+}
