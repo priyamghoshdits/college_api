@@ -88,6 +88,7 @@ use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
 use App\Http\Controllers\ExaminerController;
 use App\Http\Controllers\AnswerscriptEvaluatorController;
+use App\Http\Controllers\SeminarWorkshopFacultyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -369,12 +370,18 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //    Route::get("deleteSubjectDetails/{id?}",[QuestionController::class,'delete_subject_details']);
 
     //PAPER SETTER
-    Route::get("getPaperSetter", [PaperSetterController::class, 'get_PaperSetter']);
     Route::post("savePaperSetter", [PaperSetterController::class, 'save_PaperSetter']);
     Route::post("saveUploadFile", [PaperSetterController::class, 'save_upload_file']);
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::get("deletePaperSetter/{id}", [PaperSetterController::class, 'delete_PaperSetter']);
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
+
+    //SEMINAR WORKSHOP FACULTY DEVELOPMENT PROGRAMME
+    Route::post("saveSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'save_seminar_workshop_faculty']);
+    Route::post("updateSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'update_seminar_workshop_faculty']);
+    Route::get("deleteSeminarWorkshopFaculty/{id}", [SeminarWorkshopFacultyController::class, 'delete_seminar_workshop_faculty']);
+    Route::post("searchPaperSetting", [SeminarWorkshopFacultyController::class, 'search_paper_setting']);
+
 
     //ANSWER SCRIPT EVALUATOR
     Route::post("saveAnswerScriptEvaluator", [AnswerscriptEvaluatorController::class, 'save_answer_script_evaluator']);
