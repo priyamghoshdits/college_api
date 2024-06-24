@@ -375,7 +375,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
 
     //PG PHD GUIDE
-    Route::get("getPgPhdGuide", [PgPhdGuideController::class, 'get_pg_phd_guide']);
+    Route::get("getPgPhdGuide/{staff_id?}", [PgPhdGuideController::class, 'get_pg_phd_guide']);
     Route::post("savePgPhdGuide", [PgPhdGuideController::class, 'save_pg_phd_guide']);
     Route::post("saveUploadFilePg", [PgPhdGuideController::class, 'save_upload_file_pg']);
     Route::post("updatePgPhdGuide", [PgPhdGuideController::class, 'update_pg_phd_guide']);
