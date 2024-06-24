@@ -88,11 +88,8 @@ use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
 use App\Http\Controllers\ExaminerController;
 use App\Http\Controllers\AnswerscriptEvaluatorController;
-<<<<<<< HEAD
 use App\Http\Controllers\UniversitySynopsisController;
-=======
 use App\Http\Controllers\SeminarWorkshopFacultyController;
->>>>>>> 9a16d01498f07a4151432d631a5e8511382ffe5a
 
 /*
 |--------------------------------------------------------------------------
