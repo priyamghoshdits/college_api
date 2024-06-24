@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('paper_setters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('examination_name')->nullable(null);
-            $table->string('subject_name')->nullable(null);
-            $table->string('university_name')->nullable(null);
-            $table->string('referance_no')->nullable(null);
-            $table->string('ref_date')->nullable(null);
-            $table->string('paper_file')->nullable(null);
+            $table->string('examination_name')->nullable(true);
+            $table->string('subject_name')->nullable(true);
+            $table->string('university_name')->nullable(true);
+            $table->string('referance_no')->nullable(true);
+            $table->string('ref_date')->nullable(true);
+            $table->string('paper_file')->nullable(true);
             $table->timestamps();
         });
     }

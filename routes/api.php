@@ -86,6 +86,7 @@ use App\Http\Controllers\PaperSetterController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
+use App\Http\Controllers\ExaminerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -373,6 +374,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::get("deletePaperSetter/{id}", [PaperSetterController::class, 'delete_PaperSetter']);
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
+
+    //EXAMINER
+    Route::post("saveExaminer", [ExaminerController::class, 'save_examiner']);
+    Route::post("saveUploadFileExaminer", [ExaminerController::class, 'save_upload_file']);
+    Route::post("updateExaminer", [ExaminerController::class, 'update_examiner']);
+    Route::get("deleteExaminer/{id}", [ExaminerController::class, 'delete_examiner']);
+    Route::post("searchExaminer", [ExaminerController::class, 'search_examiner']);
 
     //PG PHD GUIDE
     Route::get("getPgPhdGuide", [PgPhdGuideController::class, 'get_pg_phd_guide']);
