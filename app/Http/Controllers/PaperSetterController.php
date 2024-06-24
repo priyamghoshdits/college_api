@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 
 class PaperSetterController extends Controller
 {
-
-
     public function save_PaperSetter(Request $request)
     {
         foreach ($request['paper_array'] as $list) {
@@ -57,7 +55,7 @@ class PaperSetterController extends Controller
 
     public function update_PaperSetter(Request $request)
     {
-        $data = new PaperSetter();
+        $data = PaperSetter::find($request['id']);
         $data->staff_id = $request['staff_id'];
         $data->examination_name = $request['examination_name'];
         $data->subject_name = $request['subject_name'];
