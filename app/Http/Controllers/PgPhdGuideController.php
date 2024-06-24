@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class PgPhdGuideController extends Controller
 {
 
+    public function get_pg_phd_guide($staff_id = null)
+    {
+        if ($staff_id) {
+            $PgPhdGuide = PgPhdGuide::where('staff_id', $staff_id)->get();
+        } else {
+            $PgPhdGuide = PgPhdGuide::get();
+        }
+        return response()->json(['success' => 1, 'data' => PgPhdGuideResource::collection($PgPhdGuide)], 200);
+    }
+
     public function save_upload_file_pg(Request $request)
     {
         $file_name = '';
@@ -44,7 +54,7 @@ class PgPhdGuideController extends Controller
     {
         foreach ($request['pgphdguid_array'] as $list) {
 
-            $pg_php_guide = PgPhdGuide::find($list->id);
+            $pg_php_guide = PgPhdGuide::find($list['id']);
             if (!$pg_php_guide) {
                 $data = new PgPhdGuide();
                 $data->staff_id = $list['staff_id'];
