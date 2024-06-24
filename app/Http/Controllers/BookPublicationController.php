@@ -10,7 +10,7 @@ class BookPublicationController extends Controller
 {
     public function get_book_publication($staff_id = null)
     {
-        if ($staff_id) {
+        if ($staff_id !== 'null') {
             $book_publication = BookPublication::where('staff_id', $staff_id)->get();
         } else {
             $book_publication = BookPublication::get();
