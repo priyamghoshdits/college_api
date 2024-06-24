@@ -10,6 +10,7 @@ use App\Http\Resources\PayrollEarningResource;
 use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
+use App\Models\AssignSemesterTeacher;
 use App\Models\CautionMoney;
 use App\Models\EducationQualification;
 use App\Models\GeneratedPayroll;
@@ -18,6 +19,7 @@ use App\Models\Leave;
 use App\Models\LeaveType;
 use App\Models\PayrollDeduction;
 use App\Models\PayrollEarnings;
+use App\Models\PayslipUpload;
 use App\Models\PlacementDetails;
 use App\Models\StaffAttendance;
 use App\Models\StudentDetail;
@@ -40,6 +42,24 @@ class MemberController extends Controller
             ->get();
 
         return response()->json(['success' => 1, 'data' => MemberResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function get_staff_for_payslips($course_id){
+        $teacher_id_payslip= [];
+        $teacher_id= [];
+        $assignSemesterTeacher = AssignSemesterTeacher::whereCourseId($course_id)->get();
+        foreach ($assignSemesterTeacher as $temp){
+            $teacher_id[] = $temp['teacher_id'];
+        }
+        $payslip = PayslipUpload::whereId($teacher_id)->get();
+        foreach ($payslip as $temp){
+            $teacher_id_payslip[] = $temp['teacher_id'];
+        }
+        $user = User::whereIn('id', $teacher_id)->whereNotIn('id',$teacher_id_payslip)->get();
+
+        $return_data = $user->merge($payslip);
+
+        return response()->json(['success' => 1, 'data' => $return_data], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function get_student_full_details($id)
