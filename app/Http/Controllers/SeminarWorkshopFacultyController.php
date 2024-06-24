@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SeminarWorkshopFacultyResource;
 use App\Models\SeminarWorkshopFaculty;
 use App\Http\Requests\StoreSeminarWorkshopFacultyRequest;
 use App\Http\Requests\UpdateSeminarWorkshopFacultyRequest;
@@ -64,12 +65,17 @@ class SeminarWorkshopFacultyController extends Controller
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SeminarWorkshopFaculty $seminarWorkshopFaculty)
+    public function search_seminar_workshop_faculty(Request $request)
     {
-        //
+        $requestedData = (object)$request->json()->all();
+        if($requestedData->staff_id == null || $requestedData->staff_id == "null"){
+            $data = SeminarWorkshopFaculty::whereBetween('date', [$requestedData->from_date, $requestedData->to_date])->get();
+        }else{
+            $data = SeminarWorkshopFaculty::whereBetween('date', [$requestedData->from_date, $requestedData->to_date])
+                ->whereStaffId($requestedData->staff_id)
+                ->get();
+        }
+        return response()->json(['success' => 1, 'data' => SeminarWorkshopFacultyResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
