@@ -87,6 +87,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
 use App\Http\Controllers\ExaminerController;
+use App\Http\Controllers\AnswerscriptEvaluatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -374,6 +375,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::get("deletePaperSetter/{id}", [PaperSetterController::class, 'delete_PaperSetter']);
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
+
+    //ANSWER SCRIPT EVALUATOR
+    Route::post("saveAnswerScriptEvaluator", [AnswerscriptEvaluatorController::class, 'save_answer_script_evaluator']);
+    Route::post("saveUploadFile", [AnswerscriptEvaluatorController::class, 'save_upload_file_ans_evaluator']);
+    Route::post("updateAnswerScriptEvaluator", [AnswerscriptEvaluatorController::class, 'update_answer_script_evaluator']);
+    Route::get("deleteAnswerScriptEvaluator/{id}", [AnswerscriptEvaluatorController::class, 'delete_answer_script_evaluator']);
+    Route::post("searchAnswerScriptEvaluator", [AnswerscriptEvaluatorController::class, 'search_answer_script_evaluator']);
 
     //EXAMINER
     Route::post("saveExaminer", [ExaminerController::class, 'save_examiner']);
