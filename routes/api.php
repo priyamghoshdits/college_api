@@ -88,6 +88,7 @@ use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
 use App\Http\Controllers\ExaminerController;
 use App\Http\Controllers\AnswerscriptEvaluatorController;
+use App\Http\Controllers\UniversitySynopsisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -396,7 +397,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveUploadFilePg", [PgPhdGuideController::class, 'save_upload_file_pg']);
     Route::post("updatePgPhdGuide", [PgPhdGuideController::class, 'update_pg_phd_guide']);
     Route::get("deletePgPhdGuide/{id}", [PgPhdGuideController::class, 'delete_pg_phd_guide']);
-    // Route::post("searchPaperSetting", [PgPhdGuideController::class, 'search_paper_setting']);
+
+    //PG PHD GUIDE
+    Route::get("getUniversitySynopsis/{staff_id?}", [UniversitySynopsisController::class, 'get_university_synopsis']);
+    Route::post("saveUniversitySynopsis", [UniversitySynopsisController::class, 'save_university_synopsis']);
+    Route::post("saveUniversitySynopsisFile", [UniversitySynopsisController::class, 'save_university_synopsis_file']);
+    Route::post("updateUniversitySynopsis", [UniversitySynopsisController::class, 'update_university_synopsis']);
+    Route::get("deleteUniversitySynopsis/{id}", [UniversitySynopsisController::class, 'delete_university_synopsis']);
 
     //PROMOTION
     Route::get("getPromotion", [PromotionController::class, 'get_promotion']);
