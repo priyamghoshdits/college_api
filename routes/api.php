@@ -88,11 +88,8 @@ use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
 use App\Http\Controllers\ExaminerController;
 use App\Http\Controllers\AnswerscriptEvaluatorController;
-<<<<<<< HEAD
 use App\Http\Controllers\UniversitySynopsisController;
-=======
 use App\Http\Controllers\SeminarWorkshopFacultyController;
->>>>>>> 9a16d01498f07a4151432d631a5e8511382ffe5a
 
 /*
 |--------------------------------------------------------------------------
@@ -408,7 +405,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePgPhdGuide", [PgPhdGuideController::class, 'update_pg_phd_guide']);
     Route::get("deletePgPhdGuide/{id}", [PgPhdGuideController::class, 'delete_pg_phd_guide']);
 
-    //PG PHD GUIDE
+    // UNIVERSITY SYNOPSIS
     Route::get("getUniversitySynopsis/{staff_id?}", [UniversitySynopsisController::class, 'get_university_synopsis']);
     Route::post("saveUniversitySynopsis", [UniversitySynopsisController::class, 'save_university_synopsis']);
     Route::post("saveUniversitySynopsisFile", [UniversitySynopsisController::class, 'save_university_synopsis_file']);
