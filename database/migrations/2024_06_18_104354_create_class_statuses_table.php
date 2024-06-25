@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('class_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('topic')->nullable(true);
             $table->string('started_by')->nullable(true);
             $table->string('time_on')->nullable(true);
             $table->string('ended_by')->nullable(true);

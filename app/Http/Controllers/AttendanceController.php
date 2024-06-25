@@ -11,6 +11,7 @@ use App\Models\holiday;
 use App\Models\SemesterTimetable;
 use App\Models\User;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Contracts\Mail\Attachable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,9 +20,10 @@ class AttendanceController extends Controller
 {
 
     public function update_class_start(Request $request){
+        $timezone = new DateTimeZone('Asia/Kolkata');
         $classStatus = ClassStatus::find($request[0]);
         $classStatus->started_by = $request->user()->id;
-        $classStatus->time_on = Carbon::now()->format('h:i:s A');
+        $classStatus->time_on = Carbon::now($timezone)->format('h:i:s A');
         $classStatus->update();
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -33,9 +35,10 @@ class AttendanceController extends Controller
     }
 
     public function update_class_end(Request $request){
+        $timezone = new DateTimeZone('Asia/Kolkata');
         $classStatus = ClassStatus::find($request[0]);
         $classStatus->ended_by = $request->user()->id;
-        $classStatus->ended_on = Carbon::now()->format('h:i:s A');
+        $classStatus->ended_on = Carbon::now($timezone)->format('h:i:s A');
         $classStatus->update();
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -48,7 +51,6 @@ class AttendanceController extends Controller
         $class_no = Attendance::whereSubjectId($requestedData[0]['subject_id'])->where('date',$today)->orderBy('id','DESC')->first();
         if($class_no && $requestedData[0]['_class'] == 'new'){
             $class = (int)$class_no->class + 1;
-//            return $class;
             $course_id = $requestedData[0]['course_id'];
             $semester_id = $requestedData[0]['semester_id'];
             $subject_id = $requestedData[0]['subject_id'];
@@ -63,6 +65,7 @@ class AttendanceController extends Controller
                 ->first();
             if(!$attendanceUpdates){
                 $classStatus = new ClassStatus();
+                $classStatus->topic = $requestedData[0]['topic_name'];
                 $classStatus->started_by = null;
                 $classStatus->time_on = null;
                 $classStatus->ended_by = null;
@@ -149,7 +152,7 @@ class AttendanceController extends Controller
                     $attendance->user_type_id = 3;
                     $attendance->attendance = $list['attendance'];
                     $attendance->date = $date;
-                    $attendance->class = $class;
+                    $attendance->class = 1;
                     $attendance->class_status_id = $classStatus_id;
                     $attendance->save();
                 }
