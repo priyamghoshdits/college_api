@@ -82,8 +82,23 @@ class RolesSeeder extends Seeder
             ['name' => 'PLACEMENT'],
             ['name' => 'ACHIEVEMENT'],
 
-//            ['name' => 'ASSIGNMENT'],
-//            ['name' => 'STUDY MATERIAL'], //35
+
+            ['name' => 'STAFF EXPERIENCE'],
+            ['name' => 'SAMINER WORKSHOP'],
+            ['name' => 'EXAMINERS'],
+            ['name' => 'ANSWER SCRIPT EVALUATOR'],
+            ['name' => 'SPONSORED PROJECT'],
+            ['name' => 'JOURNAL PUBLICATION'],
+            ['name' => 'PAPER SETTER'],
+            ['name' => 'PG PHD GUIDE'],
+            ['name' => 'UNIVERSITY SYNOPSIS'],
+            ['name' => 'DEGREE'],
+            ['name' => 'STAFF EDUCATION'],
+            ['name' => 'BOOK PUBLICATION'],
+            ['name' => 'STAFF PROMOTION'],
+
+            //            ['name' => 'ASSIGNMENT'],
+            //            ['name' => 'STUDY MATERIAL'], //35
 
         ]);
     }

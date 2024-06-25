@@ -88,8 +88,10 @@ use App\Http\Controllers\ConsultancyController;
 use App\Http\Controllers\PgPhdGuideController;
 use App\Http\Controllers\ExaminerController;
 use App\Http\Controllers\AnswerscriptEvaluatorController;
+use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\UniversitySynopsisController;
 use App\Http\Controllers\SeminarWorkshopFacultyController;
+use App\Http\Controllers\StaffEducationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -411,6 +413,19 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveUniversitySynopsisFile", [UniversitySynopsisController::class, 'save_university_synopsis_file']);
     Route::post("updateUniversitySynopsis", [UniversitySynopsisController::class, 'update_university_synopsis']);
     Route::get("deleteUniversitySynopsis/{id}", [UniversitySynopsisController::class, 'delete_university_synopsis']);
+
+    // STAFF EDUCATION
+    Route::get("getStaffEducation/{staff_id?}", [StaffEducationController::class, 'get_staff_education']);
+    Route::post("saveStaffEducation", [StaffEducationController::class, 'save_staff_education']);
+    Route::post("saveStaffEducationFile", [StaffEducationController::class, 'save_staff_education_file']);
+    Route::post("updateStaffEducation", [StaffEducationController::class, 'update_staff_education']);
+    Route::get("deleteStaffEducation/{id}", [StaffEducationController::class, 'delete_staff_education']);
+
+    // DEGREE
+    Route::get("getDegree", [DegreeController::class, 'get_degree']);
+    Route::post("saveDegree", [DegreeController::class, 'save_degree']);
+    Route::post("updateDegree", [DegreeController::class, 'update_degree']);
+    Route::get("deleteDegree/{id}", [DegreeController::class, 'delete_degree']);
 
     //PROMOTION
     Route::get("getPromotion", [PromotionController::class, 'get_promotion']);
