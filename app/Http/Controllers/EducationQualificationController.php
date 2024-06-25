@@ -153,6 +153,15 @@ class EducationQualificationController extends Controller
     public function delete_education_qualification($id)
     {
         $educationQualification = EducationQualification::find($id);
+        if (file_exists(public_path() . '/student_education/' . $educationQualification->file_ten)) {
+            File::delete(public_path() . '/student_education/' . $educationQualification->file_ten);
+        }
+        if (file_exists(public_path() . '/student_education/' . $educationQualification->file_twelve)) {
+            File::delete(public_path() . '/student_education/' . $educationQualification->file_twelve);
+        }
+        if (file_exists(public_path() . '/student_education/' . $educationQualification->file_graduation)) {
+            File::delete(public_path() . '/student_education/' . $educationQualification->file_graduation);
+        }
         $educationQualification->delete();
         return response()->json(['success'=>1,'data'=>$educationQualification], 200,[],JSON_NUMERIC_CHECK);
     }
