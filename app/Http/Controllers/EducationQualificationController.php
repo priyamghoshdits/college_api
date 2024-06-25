@@ -17,34 +17,59 @@ class EducationQualificationController extends Controller
 
     public function save_education_qualification(Request $request)
     {
-        $requestedData = (object)$request->json()->all();
         $educationQualification = new EducationQualification();
-        $educationQualification->student_id = $requestedData->student_id;
-
+        $educationQualification->student_id = $request['student_id'];
 
         //10
-        $educationQualification->board_ten = $requestedData->board_ten;
-        $educationQualification->marks_obtained_ten = $requestedData->marks_obtained_ten;
-        $educationQualification->percentage_ten = $requestedData->percentage_ten;
-        $educationQualification->division_ten = $requestedData->division_ten;
-        $educationQualification->main_subject_ten = $requestedData->main_subject_ten;
-        $educationQualification->year_of_passing_ten = $requestedData->year_of_passing_ten;
+        $educationQualification->board_ten = $request['board_ten'];
+        $educationQualification->marks_obtained_ten = $request['marks_obtained_ten'];
+        $educationQualification->percentage_ten = $request['percentage_ten'];
+        $educationQualification->division_ten = $request['division_ten'];
+        $educationQualification->main_subject_ten = $request['main_subject_ten'];
+        $educationQualification->year_of_passing_ten = $request['year_of_passing_ten'];
+
+        if ($files = $request->file('file_ten')) {
+            // Define upload path
+            $destinationPath = public_path('/student_education/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $educationQualification->file_ten = $file_name;
+        }
 
         //12
-        $educationQualification->board_twelve = $requestedData->board_twelve;
-        $educationQualification->marks_obtained_twelve = $requestedData->marks_obtained_twelve;
-        $educationQualification->percentage_twelve = $requestedData->percentage_twelve;
-        $educationQualification->division_twelve = $requestedData->division_twelve;
-        $educationQualification->main_subject_twelve = $requestedData->main_subject_twelve;
-        $educationQualification->year_of_passing_twelve = $requestedData->year_of_passing_twelve;
+        $educationQualification->board_twelve = $request['board_twelve'];
+        $educationQualification->marks_obtained_twelve = $request['marks_obtained_twelve'];
+        $educationQualification->percentage_twelve = $request->['percentage_twelve'];
+        $educationQualification->division_twelve = $request['division_twelve'];
+        $educationQualification->main_subject_twelve = $request['main_subject_twelve'];
+        $educationQualification->year_of_passing_twelve = $request['year_of_passing_twelve'];
+
+        if ($files = $request->file('file_twelve')) {
+            // Define upload path
+            $destinationPath = public_path('/student_education/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $educationQualification->file_twelve = $file_name;
+        }
 
         //Graduation
-        $educationQualification->board_graduation = $requestedData->board_graduation;
-        $educationQualification->marks_obtained_graduation = $requestedData->marks_obtained_graduation;
-        $educationQualification->percentage_graduation = $requestedData->percentage_graduation;
-        $educationQualification->division_graduation = $requestedData->division_graduation;
-        $educationQualification->main_subject_graduation = $requestedData->main_subject_graduation;
-        $educationQualification->year_of_passing_graduation = $requestedData->year_of_passing_graduation;
+        $educationQualification->board_graduation = $request['board_graduation'];
+        $educationQualification->marks_obtained_graduation = $request['marks_obtained_graduation'];
+        $educationQualification->percentage_graduation = $request['percentage_graduation'];
+        $educationQualification->division_graduation = $request['division_graduation'];
+        $educationQualification->main_subject_graduation = $request['main_subject_graduation'];
+        $educationQualification->year_of_passing_graduation = $request['year_of_passing_graduation'];
+
+        if ($files = $request->file('file_graduation')) {
+            // Define upload path
+            $destinationPath = public_path('/student_education/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $educationQualification->file_graduation = $file_name;
+        }
 
         $educationQualification->save();
 

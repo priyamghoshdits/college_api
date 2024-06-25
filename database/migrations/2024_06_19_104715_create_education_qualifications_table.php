@@ -20,18 +20,23 @@ return new class extends Migration
             $table->string('division_ten');
             $table->string('main_subject_ten');
             $table->string('year_of_passing_ten');
+            $table->string('file_ten');
+
             $table->string('board_twelve');
             $table->string('marks_obtained_twelve');
             $table->string('percentage_twelve');
             $table->string('division_twelve');
             $table->string('main_subject_twelve');
             $table->string('year_of_passing_twelve');
+            $table->string('file_twelve');
+
             $table->string('board_graduation');
             $table->string('marks_obtained_graduation');
             $table->string('percentage_graduation');
             $table->string('division_graduation');
             $table->string('main_subject_graduation');
             $table->string('year_of_passing_graduation');
+            $table->string('file_graduation');
             $table->timestamps();
         });
     }
