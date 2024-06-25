@@ -13,7 +13,7 @@ class EducationQualificationController extends Controller
     public function search_education_qualification($student_id)
     {
         $educationQualification = EducationQualification::whereStudentId($student_id)->first();
-        return response()->json(['success'=>1,'data'=>$educationQualification], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $educationQualification], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function save_education_qualification(Request $request)
@@ -41,7 +41,7 @@ class EducationQualificationController extends Controller
         //12
         $educationQualification->board_twelve = $request['board_twelve'];
         $educationQualification->marks_obtained_twelve = $request['marks_obtained_twelve'];
-        $educationQualification->percentage_twelve = $request->['percentage_twelve'];
+        $educationQualification->percentage_twelve = $request['percentage_twelve'];
         $educationQualification->division_twelve = $request['division_twelve'];
         $educationQualification->main_subject_twelve = $request['main_subject_twelve'];
         $educationQualification->year_of_passing_twelve = $request['year_of_passing_twelve'];
@@ -74,7 +74,7 @@ class EducationQualificationController extends Controller
 
         $educationQualification->save();
 
-        return response()->json(['success'=>1,'data'=>$educationQualification], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $educationQualification], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function update_education_qualification(Request $request)
@@ -93,7 +93,7 @@ class EducationQualificationController extends Controller
         $educationQualification->main_subject_ten = $request['main_subject_ten'];
         $educationQualification->year_of_passing_ten = $request['year_of_passing_ten'];
 
-        if ($files = $request->file('file_ten')){
+        if ($files = $request->file('file_ten')) {
             if (file_exists(public_path() . '/student_education/' . $educationQualification->file_ten)) {
                 File::delete(public_path() . '/student_education/' . $educationQualification->file_ten);
             }
@@ -113,7 +113,7 @@ class EducationQualificationController extends Controller
         $educationQualification->main_subject_twelve = $request['main_subject_twelve'];
         $educationQualification->year_of_passing_twelve = $request['year_of_passing_twelve'];
 
-        if ($files = $request->file('file_twelve')){
+        if ($files = $request->file('file_twelve')) {
             if (file_exists(public_path() . '/student_education/' . $educationQualification->file_twelve)) {
                 File::delete(public_path() . '/student_education/' . $educationQualification->file_twelve);
             }
@@ -133,7 +133,7 @@ class EducationQualificationController extends Controller
         $educationQualification->main_subject_graduation = $request['main_subject_graduation'];
         $educationQualification->year_of_passing_graduation = $request['year_of_passing_graduation'];
 
-        if ($files = $request->file('file_graduation')){
+        if ($files = $request->file('file_graduation')) {
             if (file_exists(public_path() . '/student_education/' . $educationQualification->file_graduation)) {
                 File::delete(public_path() . '/student_education/' . $educationQualification->file_graduation);
             }
@@ -147,7 +147,7 @@ class EducationQualificationController extends Controller
 
         $educationQualification->update();
 
-        return response()->json(['success'=>1,'data'=>$educationQualification], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $educationQualification], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function delete_education_qualification($id)
@@ -163,7 +163,7 @@ class EducationQualificationController extends Controller
             File::delete(public_path() . '/student_education/' . $educationQualification->file_graduation);
         }
         $educationQualification->delete();
-        return response()->json(['success'=>1,'data'=>$educationQualification], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $educationQualification], 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
