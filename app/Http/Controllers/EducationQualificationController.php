@@ -18,6 +18,11 @@ class EducationQualificationController extends Controller
 
     public function save_education_qualification(Request $request)
     {
+        $edu = EducationQualification::whereStudentId()->first();
+        if($edu){
+            return response()->json(['success' => 2, 'data' => null, 'message' => 'This student already exists please update'], 200, [], JSON_NUMERIC_CHECK);
+        }
+
         $educationQualification = new EducationQualification();
         $educationQualification->student_id = $request['student_id'];
 
