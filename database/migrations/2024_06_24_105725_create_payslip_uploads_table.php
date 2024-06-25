@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payslip_uploads', function (Blueprint $table) {
             $table->id();
             $table->string('staff_id')->nullable(false);
-            $table->string('date');
+            $table->string('month');
             $table->string('file_name');
             $table->timestamps();
         });

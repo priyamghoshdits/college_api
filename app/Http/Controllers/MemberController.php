@@ -7,6 +7,7 @@ use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\PayrollDeductionResource;
 use App\Http\Resources\PayrollEarningResource;
+use App\Http\Resources\PayslipUploadResource;
 use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
@@ -44,22 +45,53 @@ class MemberController extends Controller
         return response()->json(['success' => 1, 'data' => MemberResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_staff_for_payslips($course_id){
-        $teacher_id_payslip= [];
-        $teacher_id= [];
+    public function get_staff_for_payslips($course_id, $month)
+    {
+        $teacher_id_payslip = [];
+        $teacher_id = [];
         $assignSemesterTeacher = AssignSemesterTeacher::whereCourseId($course_id)->get();
-        foreach ($assignSemesterTeacher as $temp){
+        foreach ($assignSemesterTeacher as $temp) {
             $teacher_id[] = $temp['teacher_id'];
         }
-        $payslip = PayslipUpload::whereId($teacher_id)->get();
-        foreach ($payslip as $temp){
-            $teacher_id_payslip[] = $temp['teacher_id'];
+        $payslip = PayslipUpload::whereIn('id',$teacher_id)->where('month', $month)->get();
+        foreach ($payslip as $temp) {
+            $teacher_id_payslip[] = $temp['staff_id'];
         }
-        $user = User::whereIn('id', $teacher_id)->whereNotIn('id',$teacher_id_payslip)->get();
+        $user = User::select(DB::raw('id as staff_id, null as month, null as file_name'))->whereIn('id', $teacher_id)->get();
+        $user1 = collect($user)->whereNotIn('staff_id', $teacher_id_payslip);
 
-        $return_data = $user->merge($payslip);
+        $return_data = $user1->merge($payslip);
 
-        return response()->json(['success' => 1, 'data' => $return_data], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => $payslip, 'data' => PayslipUploadResource::collection($return_data)], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function upload_payslip(Request $request)
+    {
+        $payslip = PayslipUpload::whereStaffId($request['staff_id'])->where('month', $request['month'])->first();
+        if ($payslip) {
+            if ($files = $request->file('file')) {
+                if (file_exists(public_path() . '/manual_payslips/' . $payslip->file_name)) {
+                    File::delete(public_path() . '/manual_payslips/' . $payslip->file_name);
+                }
+                $payslip->file_name = $files->getClientOriginalName();
+                $payslip->update();
+            }
+        } else {
+            if ($files = $request->file('file')) {
+                // Define upload path
+                $destinationPath = public_path('/manual_payslips/'); // upload path
+                // Upload Orginal Image
+                $fileName = $files->getClientOriginalName();
+                $files->move($destinationPath, $fileName);
+
+                $payslip = new PayslipUpload();
+                $payslip->staff_id = $request['staff_id'];
+                $payslip->month = $request['month'];
+                $payslip->file_name = $fileName;
+                $payslip->save();
+            }
+        }
+        return response()->json(['success' => 1, 'data' => $payslip], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function get_student_full_details($id)

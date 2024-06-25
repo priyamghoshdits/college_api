@@ -517,7 +517,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("getStudentOwnAttendance/{course_id}/{semester_id}/{date}/{user_id}", [AttendanceController::class, 'get_student_attendance_own']);
     Route::post("updateClassStart", [AttendanceController::class, 'update_class_start']);
     Route::post("updateClassEnd", [AttendanceController::class, 'update_class_end']);
-    Route::get("getStaffForPayslip/{course_id}", [MemberController::class, 'get_staff_for_payslips']);
+    Route::get("getStaffForPayslip/{course_id}/{month}", [MemberController::class, 'get_staff_for_payslips']);
+    Route::post("uploadPayslips", [MemberController::class, 'upload_payslip']);
 
 
     //FRANCHISE
