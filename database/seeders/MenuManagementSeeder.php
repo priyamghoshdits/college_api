@@ -37,6 +37,22 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
 
 
+            ['user_type_id' => '1', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff Experience', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Seminar / Workshop / Faculty Development Programme', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Examiners', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Answer Script Evaluator', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Sponsored project/Consultancy', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Journal Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Paper Setter', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Pg Phd Guide', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'University Synopsis', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
+
+
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -156,6 +172,22 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
+
+
+            ['user_type_id' => '2', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff Experience', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Seminar / Workshop / Faculty Development Programme', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Examiners', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Answer Script Evaluator', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Sponsored project/Consultancy', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Journal Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Paper Setter', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Pg Phd Guide', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'University Synopsis', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -281,6 +313,22 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
 
 
+            ['user_type_id' => '3', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff Experience', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Seminar / Workshop / Faculty Development Programme', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Examiners', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Answer Script Evaluator', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Sponsored project/Consultancy', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Journal Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Paper Setter', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Pg Phd Guide', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'University Synopsis', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
+
+
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -375,7 +423,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
 
 
-//            USER 4
+            //            USER 4
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Academics', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Subject Group', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Assign Semester Teacher', 'permission' => true, 'franchise_id' => 1],
@@ -401,6 +449,22 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
+
+
+            ['user_type_id' => '4', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff Experience', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Seminar / Workshop / Faculty Development Programme', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Examiners', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Answer Script Evaluator', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Sponsored project/Consultancy', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Journal Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Paper Setter', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Pg Phd Guide', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'University Synopsis', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -496,7 +560,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
 
-//            USER 5
+            //            USER 5
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Academics', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Subject Group', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Assign Semester Teacher', 'permission' => true, 'franchise_id' => 1],
@@ -522,6 +586,22 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
+
+
+            ['user_type_id' => '5', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff Experience', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Seminar / Workshop / Faculty Development Programme', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Examiners', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Answer Script Evaluator', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Sponsored project/Consultancy', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Journal Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Paper Setter', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Pg Phd Guide', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'University Synopsis', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -644,6 +724,22 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
+
+
+            ['user_type_id' => '6', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff Experience', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Seminar / Workshop / Faculty Development Programme', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Examiners', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Answer Script Evaluator', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Sponsored project/Consultancy', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Journal Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Paper Setter', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Pg Phd Guide', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'University Synopsis', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
