@@ -82,6 +82,7 @@ class EducationQualificationController extends Controller
         return response()->json(['success' => 1, 'data' => $educationQualification], 200, [], JSON_NUMERIC_CHECK);
     }
 
+
     public function update_education_qualification(Request $request)
     {
 

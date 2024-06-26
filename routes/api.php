@@ -418,6 +418,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     // STAFF EDUCATION
     Route::get("getStaffEducation/{staff_id?}", [StaffEducationController::class, 'get_staff_education']);
     Route::post("saveStaffEducation", [StaffEducationController::class, 'save_staff_education']);
+    Route::post("saveStaffEducationOwn", [StaffEducationController::class, 'save_staff_education_own']);
     Route::post("saveStaffEducationFile", [StaffEducationController::class, 'save_staff_education_file']);
     Route::post("updateStaffEducation", [StaffEducationController::class, 'update_staff_education']);
     Route::get("deleteStaffEducation/{id}", [StaffEducationController::class, 'delete_staff_education']);

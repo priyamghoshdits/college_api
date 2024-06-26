@@ -46,6 +46,10 @@ class StaffEducationController extends Controller
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 
+    public function save_staff_education_own(Request $request){
+
+    }
+
     public function update_staff_education(Request $request)
     {
         foreach ($request['staff_education_array'] as $list) {
