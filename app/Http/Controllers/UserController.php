@@ -151,10 +151,10 @@ class UserController extends Controller
             return response()->json(['success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement)], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
+            ->leftjoin('member_details', 'users.id', '=', 'member_details.user_id')
             ->where('users.id', $request->user()->id)
             ->first();
         return response()->json(['success' => 1, 'data' => new MemberResource($member)], 200, [], JSON_NUMERIC_CHECK);
-        //        return $request->user()->id;
     }
 
     public function get_user_attendance(Request $request)
@@ -766,7 +766,7 @@ class UserController extends Controller
 
             if ($files = $request->file('dob_proof')) {
                 // Define upload path
-                $destinationPath = public_path('/blood_group_proof/'); // upload path
+                $destinationPath = public_path('/dob_proof/'); // upload path
                 // Upload Orginal Image
                 $file_name = $files->getClientOriginalName();
                 $files->move($destinationPath, $file_name);

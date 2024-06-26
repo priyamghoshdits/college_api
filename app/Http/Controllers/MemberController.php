@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AchivementResource;
+use App\Http\Resources\BookPublicationResource;
+use App\Http\Resources\JournalPublicationResource;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\PayrollDeductionResource;
 use App\Http\Resources\PayrollEarningResource;
 use App\Http\Resources\PayslipUploadResource;
 use App\Http\Resources\PlacementResource;
+use App\Http\Resources\StaffEducationResource;
+use App\Http\Resources\StaffExperienceResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
 use App\Models\AssignSemesterTeacher;
+use App\Models\BookPublication;
 use App\Models\CautionMoney;
 use App\Models\EducationQualification;
 use App\Models\GeneratedPayroll;
 use App\Models\Holiday;
+use App\Models\JournalPublication;
 use App\Models\Leave;
 use App\Models\LeaveType;
 use App\Models\PayrollDeduction;
@@ -23,6 +29,8 @@ use App\Models\PayrollEarnings;
 use App\Models\PayslipUpload;
 use App\Models\PlacementDetails;
 use App\Models\StaffAttendance;
+use App\Models\StaffEducation;
+use App\Models\StaffExperience;
 use App\Models\StudentDetail;
 use App\Models\User;
 use Carbon\Carbon;
@@ -94,10 +102,34 @@ class MemberController extends Controller
         return response()->json(['success' => 1, 'data' => $payslip], 200, [], JSON_NUMERIC_CHECK);
     }
 
+    public function get_member_full_details($id){
+        $member_details = new MemberResource(User::leftjoin('member_details', 'member_details.user_id', '=', 'users.id')
+            ->where('users.id',$id)
+            ->first());
+
+        $educational_qualification = StaffEducationResource::collection(StaffEducation::whereStaffId($id)->get());
+
+        $staff_experience = StaffExperienceResource::collection(StaffExperience::whereStaffId($id)->get());
+
+        $journal_publication = JournalPublicationResource::collection(JournalPublication::whereStaffId($id)->get());
+
+        $book_publication = BookPublicationResource::collection(BookPublication::whereStaffId($id)->get());
+
+        return response()->json([
+            'success' => 1,
+            'member_data' => $member_details,
+            'educational_qualification' => $educational_qualification,
+            'staff_experience' => $staff_experience,
+            'journal_publication' => $journal_publication,
+            'book_publication' => $book_publication,
+        ], 200, [], JSON_NUMERIC_CHECK);
+    }
+
     public function get_student_full_details($id)
     {
-        $student_details = new StudentResource(User::join('student_details', 'student_details.student_id', '=', 'users.id')
+        $student_details = new StudentResource(User::leftjoin('student_details', 'student_details.student_id', '=', 'users.id')
             ->leftjoin('registrations', 'registrations.student_id', '=', 'users.id')
+            ->where('users.id',$id)
             ->first());
         $education_details = EducationQualification::whereStudentId($id)->first();
         $achievement = AchivementResource::collection(Achivement::whereStudentId($id)->get());
