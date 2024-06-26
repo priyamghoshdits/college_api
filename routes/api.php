@@ -185,7 +185,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveMember", [UserController::class, 'save_member']);
     Route::post("updateMember", [UserController::class, 'update_member']);
     Route::post("updateMemberOwn", [UserController::class, 'update_member_own']);
-    Route::post("updateMemberOwnEducation", [UserController::class, 'update_member_own_education']);
+    Route::post("updateMemberOwnEducation", [UserController::class, 'update_student_own_education']);
 
     //LIBRARY
     Route::get("getLibraryDetails", [LibraryStockController::class, 'get_library_details']);
