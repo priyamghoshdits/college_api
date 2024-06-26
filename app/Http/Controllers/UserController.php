@@ -23,7 +23,6 @@ use App\Models\UserLog;
 use App\Models\UserType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -276,7 +275,6 @@ class UserController extends Controller
             //            }
 
 
-
             $user = new User();
             $user->identification_no = $request['identification_no'] ?? null;
             $user->first_name = $request['first_name'];
@@ -294,7 +292,6 @@ class UserController extends Controller
             $user->email = $request['email'];
             $user->password = $pass;
             $user->status = ($request['admission_status'] == 0) ? 0 : 1;
-
 
 
             if ($files = $request->file('image')) {
@@ -872,6 +869,54 @@ class UserController extends Controller
         $user->religion = $data->religion ?? $user->religion;
         $user->mobile_no = $data->mobile_no ?? $user->mobile_no;
         $user->blood_group = $data->blood_group ?? $user->blood_group;
+
+        if ($files = $request->file('profile_image')) {
+            if (file_exists(public_path() . '/user_image/' . $user->image)) {
+                File::delete(public_path() . '/user_image/' . $user->image);
+            }
+            // Define upload path
+            $destinationPath = public_path('/user_image/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $user->image = $file_name;
+        }
+
+        if ($files = $request->file('aadhaar_card_proof')) {
+            if (file_exists(public_path() . '/aadhaar_card_proof/' . $user->aadhaar_card_proof)) {
+                File::delete(public_path() . '/aadhaar_card_proof/' . $user->aadhaar_card_proof);
+            }
+            // Define upload path
+            $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $user->aadhaar_card_proof = $file_name;
+        }
+
+        if ($files = $request->file('dob_proof')) {
+            if (file_exists(public_path() . '/dob_proof/' . $user->dob_proof)) {
+                File::delete(public_path() . '/dob_proof/' . $user->dob_proof);
+            }
+            // Define upload path
+            $destinationPath = public_path('/dob_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $user->dob_proof = $file_name;
+        }
+        if ($files = $request->file('blood_group_proof')) {
+            if (file_exists(public_path() . '/dob_proof/' . $user->blood_group_proof)) {
+                File::delete(public_path() . '/dob_proof/' . $user->blood_group_proof);
+            }
+            // Define upload path
+            $destinationPath = public_path('/blood_group_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
+            $user->blood_group_proof = $file_name;
+        }
+
         $user->update();
 
         if ($user->user_type_id == 3) {
@@ -912,6 +957,41 @@ class UserController extends Controller
                 $member_details->current_address = $data->current_address ?? $member_details->current_address;
                 $member_details->permanent_address = $data->permanent_address ?? $member_details->permanent_address;
                 $member_details->pan_number = $data->pan_number ?? $member_details->pan_number;
+
+                if ($files = $request->file('pan_proof')) {
+                    if (file_exists(public_path() . '/pan_proof/' . $member_details->pan_proof)) {
+                        File::delete(public_path() . '/pan_proof/' . $member_details->pan_proof);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/pan_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $member_details->pan_proof = $file_name;
+                }
+                if ($files = $request->file('caste_certificate_proof')) {
+                    if (file_exists(public_path() . '/caste_certificate_proof/' . $member_details->caste_certificate_proof)) {
+                        File::delete(public_path() . '/caste_certificate_proof/' . $member_details->caste_certificate_proof);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/caste_certificate_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $member_details->caste_certificate_proof = $file_name;
+                }
+                if ($files = $request->file('joining_letter_proof')) {
+                    if (file_exists(public_path() . '/joining_letter_proof/' . $member_details->joining_letter_proof)) {
+                        File::delete(public_path() . '/joining_letter_proof/' . $member_details->joining_letter_proof);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/joining_letter_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $member_details->joining_letter_proof = $file_name;
+                }
+
                 $member_details->update();
             } else {
                 $member_details = new MemberDetails();
@@ -934,6 +1014,32 @@ class UserController extends Controller
                 $member_details->current_address = $data->current_address;
                 $member_details->permanent_address = $data->permanent_address;
                 $member_details->pan_number = $data->pan_number;
+
+                if ($files = $request->file('pan_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/pan_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $member_details->pan_proof = $file_name;
+                }
+                if ($files = $request->file('caste_certificate_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/caste_certificate_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $member_details->caste_certificate_proof = $file_name;
+                }
+                if ($files = $request->file('joining_letter_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/joining_letter_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $member_details->joining_letter_proof = $file_name;
+                }
+
                 $member_details->save();
             }
         }
@@ -1018,6 +1124,41 @@ class UserController extends Controller
             $member_details->qualification = $data->qualification ?? $member_details->qualification;
             $member_details->current_address = $data->current_address ?? $member_details->current_address;
             $member_details->permanent_address = $data->permanent_address ?? $member_details->permanent_address;
+
+            if ($files = $request->file('pan_proof')) {
+                if (file_exists(public_path() . '/pan_proof/' . $member_details->pan_proof)) {
+                    File::delete(public_path() . '/pan_proof/' . $member_details->pan_proof);
+                }
+                // Define upload path
+                $destinationPath = public_path('/pan_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->pan_proof = $file_name;
+            }
+            if ($files = $request->file('caste_certificate_proof')) {
+                if (file_exists(public_path() . '/caste_certificate_proof/' . $member_details->caste_certificate_proof)) {
+                    File::delete(public_path() . '/caste_certificate_proof/' . $member_details->caste_certificate_proof);
+                }
+                // Define upload path
+                $destinationPath = public_path('/caste_certificate_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->caste_certificate_proof = $file_name;
+            }
+            if ($files = $request->file('joining_letter_proof')) {
+                if (file_exists(public_path() . '/joining_letter_proof/' . $member_details->joining_letter_proof)) {
+                    File::delete(public_path() . '/joining_letter_proof/' . $member_details->joining_letter_proof);
+                }
+                // Define upload path
+                $destinationPath = public_path('/joining_letter_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->joining_letter_proof = $file_name;
+            }
+
             $member_details->update();
         } else {
             $member_details = new MemberDetails();
@@ -1039,6 +1180,32 @@ class UserController extends Controller
             $member_details->qualification = $data->qualification;
             $member_details->current_address = $data->current_address;
             $member_details->permanent_address = $data->permanent_address;
+
+            if ($files = $request->file('pan_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/pan_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->pan_proof = $file_name;
+            }
+            if ($files = $request->file('caste_certificate_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/caste_certificate_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->caste_certificate_proof = $file_name;
+            }
+            if ($files = $request->file('joining_letter_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/joining_letter_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->joining_letter_proof = $file_name;
+            }
+
             $member_details->save();
         }
 
