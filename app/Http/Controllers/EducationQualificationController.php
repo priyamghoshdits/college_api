@@ -87,7 +87,7 @@ class EducationQualificationController extends Controller
 
         $requestedData = (object)$request->json()->all();
 
-        $educationQualification = EducationQualification::find($requestedData->id);
+        $educationQualification = EducationQualification::find($request['id']);
         $educationQualification->student_id = $request['student_id'];
 
         //10

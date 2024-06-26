@@ -6,6 +6,7 @@ use App\Http\Resources\AchivementResource;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\PlacementResource;
+use App\Http\Resources\StaffEducationResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
 use App\Models\Attendance;
@@ -15,12 +16,14 @@ use App\Models\MemberDetails;
 use App\Models\PlacementDetails;
 use App\Models\PreAdmissionPayment;
 use App\Models\Registration;
+use App\Models\StaffEducation;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserLog;
 use App\Models\UserType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -154,7 +157,10 @@ class UserController extends Controller
             ->leftjoin('member_details', 'users.id', '=', 'member_details.user_id')
             ->where('users.id', $request->user()->id)
             ->first();
-        return response()->json(['success' => 1, 'data' => new MemberResource($member)], 200, [], JSON_NUMERIC_CHECK);
+
+        $educations = StaffEducation::whereStaffId($request->user()->id)->get();
+
+        return response()->json(['success' => 1, 'data' => new MemberResource($member), 'educations' => StaffEducationResource::collection($educations)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function get_user_attendance(Request $request)
@@ -858,38 +864,84 @@ class UserController extends Controller
     {
         $data = (object)$request->json()->all();
         $user = User::find($request->user()->id);
-        $user->first_name = $data->first_name;
-        $user->middle_name = $data->middle_name;
-        $user->last_name = $data->last_name;
-        $user->gender = $data->gender;
-        //        $user->admission_date = $data->admission_date;
-        $user->dob = $data->dob;
-        $user->religion = $data->religion;
-        $user->mobile_no = $data->mobile_no;
-        $user->blood_group = $data->blood_group;
+        $user->first_name = $data->first_name ?? $user->first_name;
+        $user->middle_name = $data->middle_name ?? $user->middle_name;
+        $user->last_name = $data->last_name ?? $user->last_name;
+        $user->gender = $data->gender ?? $user->gender;
+        $user->dob = $data->dob ?? $user->dob;
+        $user->religion = $data->religion ?? $user->religion;
+        $user->mobile_no = $data->mobile_no ?? $user->mobile_no;
+        $user->blood_group = $data->blood_group ?? $user->blood_group;
         $user->update();
 
-        $studentDetails = StudentDetail::whereStudentId($request->user()->id)->first();
-        if ($studentDetails) {
-            $studentDetails->admission_date = $data->admission_date;
-            $studentDetails->emergency_phone_number = $data->emergency_phone_number;
-            $studentDetails->material_status = $data->material_status;
+        if ($user->user_type_id == 3) {
+            $studentDetails = StudentDetail::whereStudentId($request->user()->id)->first();
+            if ($studentDetails) {
+                $studentDetails->admission_date = $data->admission_date;
+                $studentDetails->emergency_phone_number = $data->emergency_phone_number;
+                $studentDetails->material_status = $data->material_status;
 
-            $studentDetails->update();
+                $studentDetails->update();
+            } else {
+                $studentDetails = new StudentDetail();
+                $studentDetails->student_id = $request->user()->id;
+                $studentDetails->admission_date = $data->admission_date;
+                $studentDetails->emergency_phone_number = $data->emergency_phone_number;
+                $studentDetails->material_status = $data->material_status;
+
+                $studentDetails->save();
+            }
         } else {
-            $studentDetails = new StudentDetail();
-            $studentDetails->student_id = $request->user()->id;
-            $studentDetails->admission_date = $data->admission_date;
-            $studentDetails->emergency_phone_number = $data->emergency_phone_number;
-            $studentDetails->material_status = $data->material_status;
-
-            $studentDetails->save();
+            $member_details = MemberDetails::whereUserId($request->user()->id)->first();
+            if ($member_details) {
+                $member_details->date_of_joining = $data->date_of_joining ?? $member_details->date_of_joining;
+                $member_details->department_id = $data->department_id ?? $member_details->department_id;
+                $member_details->designation_id = $data->designation_id ?? $member_details->designation_id;
+                $member_details->epf_number = $data->epf_number ?? $member_details->epf_number;
+                $member_details->gross_salary = $data->gross_salary ?? $member_details->gross_salary;
+                $member_details->emergency_phone_number = $data->emergency_phone_number ?? $member_details->emergency_phone_number;
+                $member_details->location = $data->location ?? $member_details->location;
+                $member_details->contract_type = $data->contract_type ?? $member_details->contract_type;
+                $member_details->bank_account_number = $data->bank_account_number ?? $member_details->bank_account_number;
+                $member_details->bank_name = $data->bank_name ?? $member_details->bank_name;
+                $member_details->ifsc_code = $data->ifsc_code ?? $member_details->ifsc_code;
+                $member_details->bank_branch_name = $data->bank_branch_name ?? $member_details->bank_branch_name;
+                $member_details->material_status = $data->material_status ?? $member_details->material_status;
+                $member_details->work_experience = $data->work_experience ?? $member_details->work_experience;
+                $member_details->qualification = $data->qualification ?? $member_details->qualification;
+                $member_details->current_address = $data->current_address ?? $member_details->current_address;
+                $member_details->permanent_address = $data->permanent_address ?? $member_details->permanent_address;
+                $member_details->pan_number = $data->pan_number ?? $member_details->pan_number;
+                $member_details->update();
+            } else {
+                $member_details = new MemberDetails();
+                $member_details->user_id = $user->id;
+                $member_details->date_of_joining = $data->date_of_joining;
+                $member_details->department_id = $data->department_id;
+                $member_details->designation_id = $data->designation_id;
+                $member_details->epf_number = $data->epf_number;
+                $member_details->gross_salary = $data->gross_salary;
+                $member_details->emergency_phone_number = $data->emergency_phone_number;
+                $member_details->location = $data->location;
+                $member_details->contract_type = $data->contract_type;
+                $member_details->bank_account_number = $data->bank_account_number;
+                $member_details->bank_name = $data->bank_name;
+                $member_details->ifsc_code = $data->ifsc_code;
+                $member_details->bank_branch_name = $data->bank_branch_name;
+                $member_details->material_status = $data->material_status;
+                $member_details->work_experience = $data->work_experience;
+                $member_details->qualification = $data->qualification;
+                $member_details->current_address = $data->current_address;
+                $member_details->permanent_address = $data->permanent_address;
+                $member_details->pan_number = $data->pan_number;
+                $member_details->save();
+            }
         }
         return response()->json(['success' => 1], 200, [], JSON_NUMERIC_CHECK);
     }
 
 
-    public function update_member_own_education(Request $request)
+    public function update_student_own_education(Request $request)
     {
         $requestedData = (object)$request->json()->all();
         $educationQualification = EducationQualification::where('student_id', $requestedData->student_id)->first();
