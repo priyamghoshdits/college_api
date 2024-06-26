@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AchivementResource;
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\ManualFeesResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StaffEducationResource;
@@ -11,7 +12,9 @@ use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
 use App\Models\Attendance;
 use App\Models\CautionMoney;
+use App\Models\CourseGroup;
 use App\Models\EducationQualification;
+use App\Models\ManualFees;
 use App\Models\MemberDetails;
 use App\Models\PlacementDetails;
 use App\Models\PreAdmissionPayment;
@@ -40,6 +43,48 @@ class UserController extends Controller
             $item->img_url = asset('public/user_image/');
         }
         return response()->json(['success' => 1, 'data' => $user], 200);
+    }
+
+    public function save_student_manual_fees(Request $request){
+        $manualFees = ManualFees::find($request['id']);
+        if($manualFees){
+            $manualFees->course_id = $request['course_id'];
+            $manualFees->semester_id = $request['semester_id'];
+            $manualFees->student_id = $request->user()->id;
+            $manualFees->date_of_payment = $request['date_of_payment'];
+            $manualFees->amount = $request['amount'];
+
+            if ($files = $request->file('file')) {
+                if (file_exists(public_path() . '/manual_fees/' . $manualFees->file_name)) {
+                    File::delete(public_path() . '/manual_fees/' . $manualFees->file_name);
+                }
+                $destinationPath = public_path('/manual_fees/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $manualFees->file_name = $profileImage1;
+            }
+
+            $manualFees->update();
+        }else{
+            $manualFees = new ManualFees();
+            $manualFees->course_id = $request['course_id'];
+            $manualFees->semester_id = $request['semester_id'];
+            $manualFees->student_id = $request['student_id'];
+            $manualFees->date_of_payment = $request['date_of_payment'];
+            $manualFees->amount = $request['amount'];
+
+            if ($files = $request->file('file')) {
+                $destinationPath = public_path('/manual_fees/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $manualFees->file_name = $profileImage1;
+            }
+
+            $manualFees->save();
+        }
+
+
+        return response()->json(['success' => 1, 'data' =>new ManualFeesResource($manualFees)], 200);
     }
 
     public function login(Request $request)
@@ -145,12 +190,16 @@ class UserController extends Controller
                 ->leftjoin('registrations', 'registrations.student_id', '=', 'users.id')
                 ->where('users.id', $request->user()->id)
                 ->first();
-
             $education_details = EducationQualification::whereStudentId($request->user()->id)->first();
             $achievement = Achivement::whereStudentId($request->user()->id)->get();
             $placement = PlacementDetails::whereUserId($request->user()->id)->get();
+            $manualFeesList = ManualFees::whereStudentId($request->user()->id)->get();
 
-            return response()->json(['success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement)], 200, [], JSON_NUMERIC_CHECK);
+            return response()->json(['success' => 1, 'data' => new StudentResource($member)
+                , 'education_details' => $education_details
+                , 'achievement' => AchivementResource::collection($achievement)
+                , 'placement' => PlacementResource::collection($placement)
+                , 'manualFeesList' => ManualFeesResource::collection($manualFeesList)], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
             ->leftjoin('member_details', 'users.id', '=', 'member_details.user_id')

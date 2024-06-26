@@ -11,7 +11,7 @@ class SessionController extends Controller
 {
     public function get_session(Request $request)
     {
-        $data = Session::whereFranchiseId($request->user()->franchise_id)->get();
+        $data = Session::get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 

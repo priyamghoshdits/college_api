@@ -92,6 +92,7 @@ use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\UniversitySynopsisController;
 use App\Http\Controllers\SeminarWorkshopFacultyController;
 use App\Http\Controllers\StaffEducationController;
+use App\Http\Controllers\ManualFeesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -186,6 +187,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateMember", [UserController::class, 'update_member']);
     Route::post("updateMemberOwn", [UserController::class, 'update_member_own']);
     Route::post("updateMemberOwnEducation", [UserController::class, 'update_student_own_education']);
+    Route::post("saveStudentManualFees", [UserController::class, 'save_student_manual_fees']);
 
     //LIBRARY
     Route::get("getLibraryDetails", [LibraryStockController::class, 'get_library_details']);
@@ -308,6 +310,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateSession", [SessionController::class, 'update_session']);
     Route::get("deleteSession/{id}", [SessionController::class, 'delete_session']);
 
+    //MANUAL FEES
+    Route::post("searchManualFees", [ManualFeesController::class, 'search_manual_fees']);
+    Route::post("saveManualFees", [ManualFeesController::class, 'save_manual_fees']);
+//    Route::post("updateSession", [ManualFeesController::class, 'update_session']);
+    Route::get("deleteManualFees/{id}", [ManualFeesController::class, 'delete_manual_fees']);
+
     //ROUTES
     Route::get("getRoutes", [RoutesController::class, 'get_routes']);
     Route::post("saveRoutes", [RoutesController::class, 'save_routes']);
@@ -422,6 +430,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveStaffEducationFile", [StaffEducationController::class, 'save_staff_education_file']);
     Route::post("updateStaffEducation", [StaffEducationController::class, 'update_staff_education']);
     Route::get("deleteStaffEducation/{id}", [StaffEducationController::class, 'delete_staff_education']);
+
+    //
+
 
     // DEGREE
     Route::get("getDegree", [DegreeController::class, 'get_degree']);
