@@ -18,11 +18,8 @@ use App\Models\BookPublication;
 use App\Models\CautionMoney;
 use App\Models\CourseGroup;
 use App\Models\EducationQualification;
-<<<<<<< HEAD
 use App\Models\JournalPublication;
-=======
 use App\Models\ManualFees;
->>>>>>> c4dad4ccea07090f75c5eedd1c0c3397daa34014
 use App\Models\MemberDetails;
 use App\Models\PlacementDetails;
 use App\Models\PreAdmissionPayment;
