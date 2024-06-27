@@ -20,22 +20,39 @@ class ManualScholarshipController extends Controller
             $data->amount = $list['amount'];
             $data->save();
         }
+        return response()->json(['success'=>1,'data' =>null], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update_manual_scholarship(Request $request)
     {
-        //
+        foreach ($request['scholarship_array'] as $list) {
+            $data = ManualScholarship::find($list['id']);
+            if($data){
+                $data->course_id = $list['course_id'];
+                $data->semester_id = $list['semester_id'];
+                $data->student_id = $list['student_id'];
+                $data->type_of_scholarship = $list['type_of_scholarship'];
+                $data->amount = $list['amount'];
+                $data->update();
+            }else{
+                $data = new ManualScholarship();
+                $data->course_id = $list['course_id'];
+                $data->semester_id = $list['semester_id'];
+                $data->student_id = $list['student_id'];
+                $data->type_of_scholarship = $list['type_of_scholarship'];
+                $data->amount = $list['amount'];
+                $data->save();
+            }
+        }
+        return response()->json(['success'=>1,'data' =>null], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreManualScholarshipRequest $request)
+    public function delete_manual_scholarship($id)
     {
-        //
+        $data = ManualScholarship::find($id);
+        $data->delete();
+
+        return response()->json(['success'=>1,'data' =>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
