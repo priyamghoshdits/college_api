@@ -93,6 +93,7 @@ use App\Http\Controllers\UniversitySynopsisController;
 use App\Http\Controllers\SeminarWorkshopFacultyController;
 use App\Http\Controllers\StaffEducationController;
 use App\Http\Controllers\ManualFeesController;
+use App\Http\Controllers\ManualScholarshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -313,7 +314,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //MANUAL FEES
     Route::post("searchManualFees", [ManualFeesController::class, 'search_manual_fees']);
     Route::post("saveManualFees", [ManualFeesController::class, 'save_manual_fees']);
-//    Route::post("updateSession", [ManualFeesController::class, 'update_session']);
+    //    Route::post("updateSession", [ManualFeesController::class, 'update_session']);
     Route::get("deleteManualFees/{id}", [ManualFeesController::class, 'delete_manual_fees']);
 
     //ROUTES
@@ -431,8 +432,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateStaffEducation", [StaffEducationController::class, 'update_staff_education']);
     Route::get("deleteStaffEducation/{id}", [StaffEducationController::class, 'delete_staff_education']);
 
-    //
 
+    // MANUAL SCHOLARSHIP
+    Route::post("getManualScholarship", [ManualScholarshipController::class, 'get_manual_scholarship']);
+    Route::post("saveManualScholarship", [ManualScholarshipController::class, 'save_manual_scholarship']);
+    Route::post("updateManualScholarship", [ManualScholarshipController::class, 'update_manual_scholarship']);
+    Route::get("deleteManualScholarship/{id}", [ManualScholarshipController::class, 'delete_manual_scholarship']);
 
     // DEGREE
     Route::get("getDegree", [DegreeController::class, 'get_degree']);
