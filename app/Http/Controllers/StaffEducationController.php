@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StaffEducationResource;
 use App\Models\StaffEducation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StaffEducationController extends Controller
@@ -46,8 +47,48 @@ class StaffEducationController extends Controller
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function save_staff_education_own(Request $request){
+    public function save_staff_education_own(Request $request)
+    {
+        $staff = StaffEducation::find($request['id']);
 
+        if ($staff) {
+            $staff->degree = $request['degree'];
+            $staff->specialization = $request['specialization'];
+            $staff->university_name = $request['university_name'];
+            $staff->percentage = $request['percentage'];
+            $staff->grade = $request['grade'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/staff_education/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $file_name = $files->getClientOriginalName();
+                $staff->file_name = $file_name;
+            }
+
+            $staff->update();
+        } else {
+            $data = new StaffEducation();
+            $data->staff_id = $request->user()->id;
+            $data->degree = $request['degree'];
+            $data->specialization = $request['specialization'];
+            $data->university_name = $request['university_name'];
+            $data->percentage = $request['percentage'];
+            $data->grade = $request['grade'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/staff_education/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $file_name = $files->getClientOriginalName();
+                $data->file_name = $file_name;
+            }
+
+            $data->save();
+        }
+
+        $educations = StaffEducation::whereStaffId($request->user()->id)->get();
+        return response()->json(['success' => 1, 'data' => null, 'educations' => StaffEducationResource::collection($educations)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function update_staff_education(Request $request)

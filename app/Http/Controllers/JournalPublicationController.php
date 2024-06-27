@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\JournalPublicationResource;
 use App\Models\JournalPublication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JournalPublicationController extends Controller
 {
@@ -12,6 +13,38 @@ class JournalPublicationController extends Controller
     {
         $data = JournalPublication::get();
         return response()->json(['success' => 1, 'data' => $data], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function save_journal_Publication_own(Request $request)
+    {
+        $journal_data = JournalPublication::find($request['id']);
+        if ($journal_data) {
+            $journal_data->journal_name = $request['journal_name'];
+            $journal_data->publication = $request['publication'];
+            $journal_data->ugc_affiliation = $request['ugc_affiliation'];
+            $journal_data->university_name = $request['university_name'];
+            $journal_data->volume_page_number = $request['volume_page_number'];
+            $journal_data->issn_number = $request['issn_number'];
+            $journal_data->topic_name = $request['topic_name'];
+            $journal_data->impact_factor = $request['impact_factor'];
+            $journal_data->update();
+        } else {
+            $journal = new JournalPublication();
+            $journal->staff_id = $request->user()->id;
+            $journal->journal_name = $request['journal_name'];
+            $journal->publication = $request['publication'];
+            $journal->ugc_affiliation = $request['ugc_affiliation'];
+            $journal->university_name = $request['university_name'];
+            $journal->volume_page_number = $request['volume_page_number'];
+            $journal->issn_number = $request['issn_number'];
+            $journal->topic_name = $request['topic_name'];
+            $journal->impact_factor = $request['impact_factor'];
+            $journal->save();
+        }
+
+        $journals = JournalPublication::whereStaffId($request->user()->id)->get();
+
+        return response()->json(['success' => 1, 'data' => JournalPublicationResource::collection($journals)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function save_journal_Publication(Request $request)
@@ -38,7 +71,7 @@ class JournalPublicationController extends Controller
     {
         foreach ($request['journal_publication_array'] as $list) {
             $journal = JournalPublication::find($list['id']);
-            if($journal){
+            if ($journal) {
                 $journal->staff_id = $list['staff_id'];
                 $journal->journal_name = $list['journal_name'];
                 $journal->publication = $list['publication'];
@@ -49,7 +82,7 @@ class JournalPublicationController extends Controller
                 $journal->topic_name = $list['topic_name'];
                 $journal->impact_factor = $list['impact_factor'];
                 $journal->update();
-            }else{
+            } else {
                 $journal = new JournalPublication();
                 $journal->staff_id = $list['staff_id'];
                 $journal->journal_name = $list['journal_name'];
@@ -73,18 +106,19 @@ class JournalPublicationController extends Controller
         $data->delete();
 
         $data = JournalPublication::get();
+        $journals = JournalPublication::whereStaffId(Auth::id())->get();
 
-        return response()->json(['success' => 1, 'data' => JournalPublicationResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => JournalPublicationResource::collection($data), 'journals' => JournalPublicationResource::collection($journals)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function search_journal_publication($staff_id = null){
+    public function search_journal_publication($staff_id = null)
+    {
 
-        if($staff_id != "null"){
+        if ($staff_id != "null") {
             $data = JournalPublication::whereStaffId($staff_id)->get();
-        }else{
+        } else {
             $data = JournalPublication::get();
         }
-        return response()->json(['success' => 1, 'data' =>JournalPublicationResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => JournalPublicationResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
-
 }
