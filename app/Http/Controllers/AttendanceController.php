@@ -30,7 +30,7 @@ class AttendanceController extends Controller
 
     public function get_class($subject_id){
         $today = Carbon::now()->format('Y-m-d');
-        $getClass = Attendance::select('class')->whereSubjectId($subject_id)->where('date',$today)->get();
+        $getClass = Attendance::select('class')->whereSubjectId($subject_id)->where('date',$today)->distinct()->get();
         return response()->json(['success'=>1,'data' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
     }
 
