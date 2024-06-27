@@ -69,7 +69,7 @@ class UserController extends Controller
             $manualFees = new ManualFees();
             $manualFees->course_id = $request['course_id'];
             $manualFees->semester_id = $request['semester_id'];
-            $manualFees->student_id = $request['student_id'];
+            $manualFees->student_id = $request->user()->id;
             $manualFees->date_of_payment = $request['date_of_payment'];
             $manualFees->amount = $request['amount'];
 
@@ -83,8 +83,8 @@ class UserController extends Controller
             $manualFees->save();
         }
 
-
-        return response()->json(['success' => 1, 'data' =>new ManualFeesResource($manualFees)], 200);
+        $manualFees = ManualFees::whereStudentId($request->user()->id)->get();
+        return response()->json(['success' => 1, 'data' => ManualFeesResource::collection($manualFees)], 200);
     }
 
     public function login(Request $request)
