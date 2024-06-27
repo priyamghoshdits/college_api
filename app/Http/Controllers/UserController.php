@@ -3,23 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AchivementResource;
+use App\Http\Resources\BookPublicationResource;
+use App\Http\Resources\JournalPublicationResource;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\ManualFeesResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StaffEducationResource;
+use App\Http\Resources\StaffExperienceResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
 use App\Models\Attendance;
+use App\Models\BookPublication;
 use App\Models\CautionMoney;
 use App\Models\CourseGroup;
 use App\Models\EducationQualification;
+<<<<<<< HEAD
+use App\Models\JournalPublication;
+=======
 use App\Models\ManualFees;
+>>>>>>> c4dad4ccea07090f75c5eedd1c0c3397daa34014
 use App\Models\MemberDetails;
 use App\Models\PlacementDetails;
 use App\Models\PreAdmissionPayment;
 use App\Models\Registration;
 use App\Models\StaffEducation;
+use App\Models\StaffExperience;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserLog;
@@ -207,8 +216,11 @@ class UserController extends Controller
             ->first();
 
         $educations = StaffEducation::whereStaffId($request->user()->id)->get();
+        $publications = BookPublication::whereStaffId($request->user()->id)->get();
+        $experience = StaffExperience::whereStaffId($request->user()->id)->get();
+        $journls = JournalPublication::whereStaffId($request->user()->id)->get();
 
-        return response()->json(['success' => 1, 'data' => new MemberResource($member), 'educations' => StaffEducationResource::collection($educations)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new MemberResource($member), 'educations' => StaffEducationResource::collection($educations), 'publications' => BookPublicationResource::collection($publications), 'experience' => StaffExperienceResource::collection($experience), 'journal' => JournalPublicationResource::collection($journls)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function get_user_attendance(Request $request)

@@ -34,6 +34,35 @@ class BookPublicationController extends Controller
         return response()->json(['success' => 1, 'data' => new BookPublicationResource($book_publication)], 200, [], JSON_NUMERIC_CHECK);
     }
 
+    public function save_book_publication_own(Request $request)
+    {
+        $publication = BookPublication::find($request['id']);
+
+        if ($publication) {
+            $publication->book_name = $request['book_name'];
+            $publication->ISBN_number = $request['ISBN_number'];
+            $publication->name_of_publisher = $request['name_of_publisher'];
+            $publication->chapter_full_book = $request['chapter_full_book'];
+            $publication->chapter_name = $request['chapter_name'];
+            $publication->page_number = $request['page_number'];
+            $publication->update();
+        } else {
+            $book_publication = new BookPublication();
+            $book_publication->staff_id = $request->user()->id;
+            $book_publication->book_name = $request['book_name'];
+            $book_publication->ISBN_number = $request['ISBN_number'];
+            $book_publication->name_of_publisher = $request['name_of_publisher'];
+            $book_publication->chapter_full_book = $request['chapter_full_book'];
+            $book_publication->chapter_name = $request['chapter_name'];
+            $book_publication->page_number = $request['page_number'];
+            $book_publication->save();
+        }
+
+        $publications = BookPublication::whereStaffId($request->user()->id)->get();
+
+        return response()->json(['success' => 1, 'data' => BookPublicationResource::collection($publications)], 200, [], JSON_NUMERIC_CHECK);
+    }
+
     public function update_book_publication(Request $request)
     {
         foreach ($request->book_publication_array as $value) {

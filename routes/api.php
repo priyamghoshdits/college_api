@@ -450,6 +450,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("searchJournalPublication/{staff_id?}", [JournalPublicationController::class, 'search_journal_publication']);
     Route::get("getJournalPublication", [JournalPublicationController::class, 'get_journal_Publication']);
     Route::post("saveJournalPublication", [JournalPublicationController::class, 'save_journal_Publication']);
+    Route::post("saveJournalPublicationOwn", [JournalPublicationController::class, 'save_journal_Publication_own']);
     Route::post("updateJournalPublication", [JournalPublicationController::class, 'update_journal_Publication']);
     Route::get("deleteJournalPublication/{id}", [JournalPublicationController::class, 'delete_journal_Publication']);
 
@@ -482,6 +483,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //EXPERIENCE
     Route::get("getExperience", [StaffExperienceController::class, 'get_experience']);
     Route::post("saveExperience", [StaffExperienceController::class, 'save_experience']);
+    Route::post("saveExperienceOwn", [StaffExperienceController::class, 'save_experience_own']);
     Route::post("updateExperience", [StaffExperienceController::class, 'update_experience']);
     Route::get("deleteExperience/{id}", [StaffExperienceController::class, 'delete_experience']);
 
@@ -694,6 +696,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //BOOK PUBLICATION
     Route::get("getBookPublication/{staff_id?}", [BookPublicationController::class, 'get_book_publication']);
     Route::post("saveBookPublication", [BookPublicationController::class, 'save_book_publication']);
+    Route::post("saveBookPublicationOwn", [BookPublicationController::class, 'save_book_publication_own']);
     Route::post("updateBookPublication", [BookPublicationController::class, 'update_book_publication']);
     Route::get("deleteBookPublication/{id?}", [BookPublicationController::class, 'delete_book_publication']);
 
