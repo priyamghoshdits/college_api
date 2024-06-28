@@ -57,7 +57,7 @@ class MemberController extends Controller
         return response()->json(['success' => 1, 'data' => MemberResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_staff_for_payslips($course_id, $month)
+    public function get_staff_for_payslips($course_id, $month, $year)
     {
         $teacher_id_payslip = [];
         $teacher_id = [];
@@ -65,7 +65,7 @@ class MemberController extends Controller
         foreach ($assignSemesterTeacher as $temp) {
             $teacher_id[] = $temp['teacher_id'];
         }
-        $payslip = PayslipUpload::whereIn('id',$teacher_id)->where('month', $month)->get();
+        $payslip = PayslipUpload::whereIn('id',$teacher_id)->where('month', $month)->where('year',$year)->get();
         foreach ($payslip as $temp) {
             $teacher_id_payslip[] = $temp['staff_id'];
         }
@@ -74,12 +74,15 @@ class MemberController extends Controller
 
         $return_data = $user1->merge($payslip);
 
-        return response()->json(['success' => $payslip, 'data' => PayslipUploadResource::collection($return_data)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => PayslipUploadResource::collection($return_data)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function upload_payslip(Request $request)
     {
-        $payslip = PayslipUpload::whereStaffId($request['staff_id'])->where('month', $request['month'])->first();
+        $payslip = PayslipUpload::whereStaffId($request['staff_id'])
+            ->where('month', $request['month'])
+            ->where('year', $request['year'])
+            ->first();
         if ($payslip) {
             if ($files = $request->file('file')) {
                 if (file_exists(public_path() . '/manual_payslips/' . $payslip->file_name)) {
@@ -99,6 +102,7 @@ class MemberController extends Controller
                 $payslip = new PayslipUpload();
                 $payslip->staff_id = $request['staff_id'];
                 $payslip->month = $request['month'];
+                $payslip->year = $request['year'];
                 $payslip->file_name = $fileName;
                 $payslip->save();
             }

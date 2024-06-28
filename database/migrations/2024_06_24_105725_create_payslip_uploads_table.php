@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('staff_id')->nullable(false);
             $table->string('month');
+            $table->string('year');
             $table->string('file_name');
             $table->timestamps();
         });
