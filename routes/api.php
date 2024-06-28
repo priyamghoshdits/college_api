@@ -545,7 +545,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     // ATTENDANCE SAVE
     Route::post("saveAttendance", [AttendanceController::class, 'save_attendance']);
-    Route::get("getClass/{subject_id}", [AttendanceController::class, 'get_class']);
+    Route::get("getClass/{subject_id}/{date?}", [AttendanceController::class, 'get_class']);
     Route::get("getStaffAttendance/{user_type_id}/{date}", [StaffAttendanceController::class, 'get_staff_attendance']);
     Route::post("saveStaffAttendance", [StaffAttendanceController::class, 'save_attendance']);
     Route::get("getStudentAttendance/{course_id}/{semester_id}/{date}/{subject_id}/{session_id}/{class}", [AttendanceController::class, 'get_student_attendance']);

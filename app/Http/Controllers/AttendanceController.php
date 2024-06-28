@@ -28,8 +28,8 @@ class AttendanceController extends Controller
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function get_class($subject_id){
-        $today = Carbon::now()->format('Y-m-d');
+    public function get_class($subject_id,$date){
+        $today = ($date == 'null') ? Carbon::now()->format('Y-m-d') : $date;
         $getClass = Attendance::select('class')->whereSubjectId($subject_id)->where('date',$today)->distinct()->get();
         return response()->json(['success'=>1,'data' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -47,8 +47,16 @@ class AttendanceController extends Controller
     {
         $attendance_by = $request->user()->id;
         $requestedData = $request->json()->all();
-        $today = Carbon::now()->format('Y-m-d');
-        $class_no = Attendance::whereSubjectId($requestedData[0]['subject_id'])->where('date',$today)->orderBy('id','DESC')->first();
+        $today = ($requestedData[0]['date'] == 'null') ? Carbon::now()->format('Y-m-d') : $requestedData[0]['date'];
+
+        $class_no = Attendance::whereSubjectId($requestedData[0]['subject_id'])
+            ->whereCourseId($requestedData[0]['course_id'])
+            ->whereSemesterId($requestedData[0]['semester_id'])
+            ->whereSessionId($requestedData[0]['session_id'])
+            ->where('date',$today)
+            ->orderBy('id','DESC')
+            ->first();
+
         if($class_no && $requestedData[0]['_class'] == 'new'){
             $class = (int)$class_no->class + 1;
             $course_id = $requestedData[0]['course_id'];
