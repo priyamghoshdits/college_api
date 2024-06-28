@@ -6,6 +6,8 @@ use App\Http\Resources\AchivementResource;
 use App\Http\Resources\BookPublicationResource;
 use App\Http\Resources\JournalPublicationResource;
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\ManualFeesResource;
+use App\Http\Resources\ManualScholarshipResource;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\PayrollDeductionResource;
 use App\Http\Resources\PayrollEarningResource;
@@ -24,6 +26,8 @@ use App\Models\Holiday;
 use App\Models\JournalPublication;
 use App\Models\Leave;
 use App\Models\LeaveType;
+use App\Models\ManualFees;
+use App\Models\ManualScholarship;
 use App\Models\PayrollDeduction;
 use App\Models\PayrollEarnings;
 use App\Models\PayslipUpload;
@@ -134,13 +138,17 @@ class MemberController extends Controller
         $education_details = EducationQualification::whereStudentId($id)->first();
         $achievement = AchivementResource::collection(Achivement::whereStudentId($id)->get());
         $placement = PlacementResource::collection(PlacementDetails::whereUserId($id)->get());
+        $feesDetails = ManualFeesResource::collection(ManualFees::whereStudentId($id)->get());
+        $scholarship = ManualScholarshipResource::collection(ManualScholarship::whereStudentId($id)->get());
 
         return response()->json([
             'success' => 1,
             'student_data' => $student_details,
             'achievement' => $achievement,
             'placement' => $placement,
-            'education_qualification' => $education_details
+            'education_qualification' => $education_details,
+            'fees_details' => $feesDetails,
+            'scholarship' => $scholarship
         ], 200, [], JSON_NUMERIC_CHECK);
     }
 
