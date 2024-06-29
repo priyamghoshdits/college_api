@@ -27,6 +27,14 @@ class JournalPublicationController extends Controller
             $journal_data->issn_number = $request['issn_number'];
             $journal_data->topic_name = $request['topic_name'];
             $journal_data->impact_factor = $request['impact_factor'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/journal_Publication/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $journal_data->file_name = $files->getClientOriginalName();
+            }
+
             $journal_data->update();
         } else {
             $journal = new JournalPublication();
@@ -39,12 +47,32 @@ class JournalPublicationController extends Controller
             $journal->issn_number = $request['issn_number'];
             $journal->topic_name = $request['topic_name'];
             $journal->impact_factor = $request['impact_factor'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/journal_Publication/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $journal->file_name = $files->getClientOriginalName();
+            }
+
             $journal->save();
         }
 
         $journals = JournalPublication::whereStaffId($request->user()->id)->get();
 
         return response()->json(['success' => 1, 'data' => JournalPublicationResource::collection($journals)], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function save_journal_Publication_file(Request $request)
+    {
+        $file_name = '';
+        if ($files = $request->file('file_name')) {
+            $destinationPath = public_path('/journal_Publication/');
+            $profileImage1 = $files->getClientOriginalName();
+            $files->move($destinationPath, $profileImage1);
+            $file_name = $files->getClientOriginalName();
+        }
+        return response()->json(['success' => 1, 'file_name' => $file_name], 200);
     }
 
     public function save_journal_Publication(Request $request)
@@ -59,10 +87,10 @@ class JournalPublicationController extends Controller
             $journal->volume_page_number = $list['volume_page_number'];
             $journal->issn_number = $list['issn_number'];
             $journal->topic_name = $list['topic_name'];
+            $journal->file_name = $list['file_name'];
             $journal->impact_factor = $list['impact_factor'];
             $journal->save();
         }
-
 
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
@@ -81,6 +109,7 @@ class JournalPublicationController extends Controller
                 $journal->issn_number = $list['issn_number'];
                 $journal->topic_name = $list['topic_name'];
                 $journal->impact_factor = $list['impact_factor'];
+                $journal->file_name = $list['file_name'] ?? $journal->file_name;
                 $journal->update();
             } else {
                 $journal = new JournalPublication();
@@ -93,6 +122,7 @@ class JournalPublicationController extends Controller
                 $journal->issn_number = $list['issn_number'];
                 $journal->topic_name = $list['topic_name'];
                 $journal->impact_factor = $list['impact_factor'];
+                $journal->file_name = $list['file_name'];
                 $journal->save();
             }
         }
