@@ -25,6 +25,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Payslip', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Download Payslip', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Leave Type', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Allocate Leave', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Apply Leave', 'permission' => true, 'franchise_id' => 1],
@@ -35,7 +37,6 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
@@ -54,6 +55,7 @@ class MenuManagementSeeder extends Seeder
 
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Admin Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
 
@@ -61,6 +63,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Library', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Issue Book', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Book List', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Return Over Period', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Discount Book Fine', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Upload Digital Book', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Download Digital Book', 'permission' => true, 'franchise_id' => 1],
 
@@ -80,6 +85,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Inventory', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Item Category', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Item Supplier', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Item Store', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Add Item Stock', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Issue Item', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Internship', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Internship Provider', 'permission' => true, 'franchise_id' => 1],
@@ -90,7 +99,16 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Placement', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Student Information', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Student Group', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Pre Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Upload Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Download Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+        
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -100,6 +118,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Subject Details', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Subject Question', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Exam', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Update Marks', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Generate Mark Sheet', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Virtual Class Meeting', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Virtual Class', 'permission' => true, 'franchise_id' => 1],
@@ -125,12 +145,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Attendance report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Examination report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Fees Due Report', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Others', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Agent', 'permission' => true, 'franchise_id' => 1],
@@ -139,11 +162,14 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Icard', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Agent Student Entry', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Agent Payment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Franchise', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'User Logs', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Download Center', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Upload Content', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
 
 
             //USER 2
@@ -162,6 +188,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Payslip', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Download Payslip', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Leave Type', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Allocate Leave', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Apply Leave', 'permission' => true, 'franchise_id' => 1],
@@ -172,7 +200,6 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
@@ -191,6 +218,7 @@ class MenuManagementSeeder extends Seeder
 
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Admin Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
 
@@ -198,6 +226,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Library', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Issue Book', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Book List', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Return Over Period', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Discount Book Fine', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Upload Digital Book', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Download Digital Book', 'permission' => true, 'franchise_id' => 1],
 
@@ -217,6 +248,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Inventory', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Item Category', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Item Supplier', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Item Store', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Add Item Stock', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Issue Item', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Internship', 'permission' => true, 'franchise_id' => 1],
@@ -228,7 +263,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Placement', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Student Information', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Student Group', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Pre Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Upload Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Download Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -238,6 +281,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Subject Details', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Subject Question', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Exam', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Update Marks', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Generate Mark Sheet', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Virtual Class Meeting', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Virtual Class', 'permission' => true, 'franchise_id' => 1],
@@ -264,12 +309,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Attendance report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Examination report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Fees Due Report', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Others', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Agent', 'permission' => true, 'franchise_id' => 1],
@@ -278,11 +326,14 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Icard', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Agent Student Entry', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Agent Payment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Franchise', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'User Logs', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Download Center', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Upload Content', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
 
 
             //USER 3
@@ -301,6 +352,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Payslip', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Download Payslip', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Leave Type', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Allocate Leave', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Apply Leave', 'permission' => true, 'franchise_id' => 1],
@@ -311,7 +364,6 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
@@ -330,6 +382,7 @@ class MenuManagementSeeder extends Seeder
 
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Admin Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
 
@@ -337,6 +390,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Library', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Issue Book', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Book List', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Return Over Period', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Discount Book Fine', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Upload Digital Book', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Download Digital Book', 'permission' => true, 'franchise_id' => 1],
 
@@ -356,6 +412,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Inventory', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Item Category', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Item Supplier', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Item Store', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Add Item Stock', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Issue Item', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Internship', 'permission' => true, 'franchise_id' => 1],
@@ -367,7 +427,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Placement', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Student Information', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Student Group', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Pre Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Upload Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Download Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -377,6 +445,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Subject Details', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Subject Question', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Exam', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Update Marks', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Generate Mark Sheet', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Virtual Class Meeting', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Virtual Class', 'permission' => true, 'franchise_id' => 1],
@@ -402,12 +472,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Attendance report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Examination report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Fees Due Report', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Others', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Agent', 'permission' => true, 'franchise_id' => 1],
@@ -421,6 +494,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Upload Content', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
 
 
             //            USER 4
@@ -439,6 +513,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Payslip', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Download Payslip', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Leave Type', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Allocate Leave', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Apply Leave', 'permission' => true, 'franchise_id' => 1],
@@ -449,7 +525,6 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
@@ -468,6 +543,7 @@ class MenuManagementSeeder extends Seeder
 
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Admin Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
 
@@ -475,6 +551,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Library', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Issue Book', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Book List', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Return Over Period', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Discount Book Fine', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Upload Digital Book', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Download Digital Book', 'permission' => true, 'franchise_id' => 1],
 
@@ -494,6 +573,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Inventory', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Item Category', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Item Supplier', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Item Store', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Add Item Stock', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Issue Item', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Internship', 'permission' => true, 'franchise_id' => 1],
@@ -505,7 +588,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Placement', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Student Information', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Student Group', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Pre Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Upload Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Download Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -515,6 +606,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Subject Details', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Subject Question', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Exam', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Update Marks', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Generate Mark Sheet', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Virtual Class Meeting', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Virtual Class', 'permission' => true, 'franchise_id' => 1],
@@ -540,12 +633,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Attendance report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Examination report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Fees Due Report', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Others', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Agent', 'permission' => true, 'franchise_id' => 1],
@@ -559,6 +655,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Upload Content', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
 
             //            USER 5
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Academics', 'permission' => true, 'franchise_id' => 1],
@@ -576,6 +673,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Payslip', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Download Payslip', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Leave Type', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Allocate Leave', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Apply Leave', 'permission' => true, 'franchise_id' => 1],
@@ -586,7 +685,6 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
@@ -605,6 +703,7 @@ class MenuManagementSeeder extends Seeder
 
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Admin Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
 
@@ -612,6 +711,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Library', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Issue Book', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Book List', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Return Over Period', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Discount Book Fine', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Upload Digital Book', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Download Digital Book', 'permission' => true, 'franchise_id' => 1],
 
@@ -631,6 +733,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Inventory', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Item Category', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Item Supplier', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Item Store', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Add Item Stock', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Issue Item', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Internship', 'permission' => true, 'franchise_id' => 1],
@@ -642,7 +748,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Placement', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Student Information', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Student Group', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Pre Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Upload Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Download Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -652,6 +766,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Subject Details', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Subject Question', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Exam', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Update Marks', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Generate Mark Sheet', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Virtual Class Meeting', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Virtual Class', 'permission' => true, 'franchise_id' => 1],
@@ -677,12 +793,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Attendance report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Examination report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Fees Due Report', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Others', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Agent', 'permission' => true, 'franchise_id' => 1],
@@ -696,6 +815,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Upload Content', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
 
 
             // USER 6
@@ -714,6 +834,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Payslip', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Download Payslip', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Leave Type', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Allocate Leave', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Apply Leave', 'permission' => true, 'franchise_id' => 1],
@@ -724,7 +846,6 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Holiday', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Payroll', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Payroll Types', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff Promotion', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Staff Information', 'permission' => true, 'franchise_id' => 1],
@@ -743,6 +864,7 @@ class MenuManagementSeeder extends Seeder
 
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Admin Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Period Attendance', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Show Attendance', 'permission' => true, 'franchise_id' => 1],
 
@@ -750,6 +872,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Library', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Issue Book', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Book List', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Return Over Period', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Discount Book Fine', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Upload Digital Book', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Download Digital Book', 'permission' => true, 'franchise_id' => 1],
 
@@ -769,6 +894,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Inventory', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Item Category', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Add Item', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Item Supplier', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Item Store', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Add Item Stock', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Issue Item', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Internship', 'permission' => true, 'franchise_id' => 1],
@@ -780,7 +909,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Placement', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Student Information', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Student Group', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Pre Admission', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Upload Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Download Certificate', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Achievement', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -790,6 +927,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Subject Details', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Subject Question', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Exam', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Virtual Class Meeting', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Virtual Class', 'permission' => true, 'franchise_id' => 1],
@@ -815,12 +954,15 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Attendance report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Examination report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Fees Collection report', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Update Marks', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Generate Mark Sheet', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Others', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Agent', 'permission' => true, 'franchise_id' => 1],
@@ -834,6 +976,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Upload Content', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
         ]);
     }
 }
