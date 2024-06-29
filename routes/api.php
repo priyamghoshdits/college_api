@@ -94,6 +94,7 @@ use App\Http\Controllers\SeminarWorkshopFacultyController;
 use App\Http\Controllers\StaffEducationController;
 use App\Http\Controllers\ManualFeesController;
 use App\Http\Controllers\ManualScholarshipController;
+use App\Http\Controllers\ApiScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -388,6 +389,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::get("deletePaperSetter/{id}", [PaperSetterController::class, 'delete_PaperSetter']);
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
+
+    //API SCORE
+    Route::post("saveApiScore", [ApiScoreController::class, 'save_api_score']);
+    Route::post("updateLibraryDigitalBook", [ApiScoreController::class, 'update_digital_library_books']);
+    Route::post("saveUploadFileApiScore", [ApiScoreController::class, 'save_upload_file_api_score']);
+    Route::post("searchApiScore", [ApiScoreController::class, 'search_api_search']);
 
     //SEMINAR WORKSHOP FACULTY DEVELOPMENT PROGRAMME
     Route::post("saveSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'save_seminar_workshop_faculty']);
