@@ -392,7 +392,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //API SCORE
     Route::post("saveApiScore", [ApiScoreController::class, 'save_api_score']);
-    Route::post("updateLibraryDigitalBook", [ApiScoreController::class, 'update_digital_library_books']);
+    Route::post("updateApiScore", [ApiScoreController::class, 'update_api_score']);
+    Route::get("deleteApiScore/{id}", [ApiScoreController::class, 'delete_api_score']);
     Route::post("saveUploadFileApiScore", [ApiScoreController::class, 'save_upload_file_api_score']);
     Route::post("searchApiScore", [ApiScoreController::class, 'search_api_search']);
 

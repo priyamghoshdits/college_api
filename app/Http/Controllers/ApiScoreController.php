@@ -53,16 +53,17 @@ class ApiScoreController extends Controller
             $files->move($destinationPath, $profileImage1);
             $data->file_name = $files->getClientOriginalName();
         }
-
-        return response()->json(['success' => 1, 'data' => ApiScoreResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
+        $data->update();
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ApiScore $apiScore)
+    public function delete_api_score(Request $request, $id)
     {
-        //
+        $data = ApiScore::find($id);
+        $data->delete();
+
+        $api_scores = ApiScore::get();
+        return response()->json(['success' => 1, 'data' => ApiScoreResource::collection($api_scores)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
