@@ -392,6 +392,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //API SCORE
     Route::post("saveApiScore", [ApiScoreController::class, 'save_api_score']);
+    Route::post("saveApiScoreOwn", [ApiScoreController::class, 'save_api_score_own']);
     Route::post("updateApiScore", [ApiScoreController::class, 'update_api_score']);
     Route::get("deleteApiScore/{id}", [ApiScoreController::class, 'delete_api_score']);
     Route::post("saveUploadFileApiScore", [ApiScoreController::class, 'save_upload_file_api_score']);
@@ -421,6 +422,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //PG PHD GUIDE
     Route::get("getPgPhdGuide/{staff_id?}", [PgPhdGuideController::class, 'get_pg_phd_guide']);
     Route::post("savePgPhdGuide", [PgPhdGuideController::class, 'save_pg_phd_guide']);
+    Route::post("savePgPhdGuideOwn", [PgPhdGuideController::class, 'save_pg_phd_guide_own']);
     Route::post("saveUploadFilePg", [PgPhdGuideController::class, 'save_upload_file_pg']);
     Route::post("updatePgPhdGuide", [PgPhdGuideController::class, 'update_pg_phd_guide']);
     Route::get("deletePgPhdGuide/{id}", [PgPhdGuideController::class, 'delete_pg_phd_guide']);

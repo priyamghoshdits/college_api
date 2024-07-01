@@ -16,15 +16,12 @@ class PgPhdGuideResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $student_details = StudentDetail::where('student_id', $this->student_id)->first();
         return [
             'id' => $this->id,
             'staff_id' => $this->staff_id,
             'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
-            'course_id' => $student_details->course_id,
-            'semester_id' => $student_details->semester_id,
-            'student_id' => $this->student_id,
-            'student_name' => User::find($this->student_id)->first_name . ' ' . User::find($this->student_id)->middle_name . ' ' . User::find($this->student_id)->last_name,
+            'course' => $this->course,
+            'student_name' => $this->student_name,
             'course' => $this->course,
             'title_name' => $this->title_name,
             'guide' => $this->guide,

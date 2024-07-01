@@ -7,6 +7,7 @@ use App\Models\ApiScore;
 use App\Http\Requests\StoreApiScoreRequest;
 use App\Http\Requests\UpdateApiScoreRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiScoreController extends Controller
 {
@@ -20,6 +21,40 @@ class ApiScoreController extends Controller
             $file_name = $files->getClientOriginalName();
         }
         return response()->json(['success' => 1, 'file_name' => $file_name], 200);
+    }
+
+    public function save_api_score_own(Request $request)
+    {
+        $api_data = ApiScore::find($request['id']);
+        if ($api_data) {
+            $api_data->assignment_year = $request['assignment_year'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/api_score/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $api_data->file_name = $files->getClientOriginalName();
+            }
+
+            $api_data->update();
+        } else {
+            $data = new ApiScore();
+            $data->staff_id = $request->user()->id;
+            $data->assignment_year = $request['assignment_year'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/api_score/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $data->file_name = $files->getClientOriginalName();
+            }
+
+            $data->save();
+        }
+
+        $apiScore = ApiScore::whereStaffId($request->user()->id)->get();
+
+        return response()->json(['success' => 1, 'data' => ApiScoreResource::collection($apiScore)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function save_api_score(Request $request)
@@ -62,7 +97,11 @@ class ApiScoreController extends Controller
         $data = ApiScore::find($id);
         $data->delete();
 
-        $api_scores = ApiScore::get();
+        if (Auth::user()->user_typr_id == 1) {
+            $api_scores = ApiScore::get();
+        } else {
+            $api_scores = ApiScore::whereStaffId(Auth::id())->get();
+        }
         return response()->json(['success' => 1, 'data' => ApiScoreResource::collection($api_scores)], 200, [], JSON_NUMERIC_CHECK);
     }
 

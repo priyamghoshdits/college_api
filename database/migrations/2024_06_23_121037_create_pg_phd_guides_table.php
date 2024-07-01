@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pg_phd_guides', function (Blueprint $table) {
             $table->id();
             $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('student_name')->nullable();
             $table->string('course')->nullable();
             $table->string('title_name')->nullable();
             $table->string('guide')->nullable();

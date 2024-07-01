@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AchivementResource;
+use App\Http\Resources\ApiScoreResource;
 use App\Http\Resources\BookPublicationResource;
 use App\Http\Resources\JournalPublicationResource;
 use App\Http\Resources\LoginResource;
 use App\Http\Resources\ManualFeesResource;
 use App\Http\Resources\MemberResource;
+use App\Http\Resources\PgPhdGuideResource;
 use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StaffEducationResource;
 use App\Http\Resources\StaffExperienceResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Achivement;
+use App\Models\ApiScore;
 use App\Models\Attendance;
 use App\Models\BookPublication;
 use App\Models\CautionMoney;
@@ -21,6 +24,7 @@ use App\Models\EducationQualification;
 use App\Models\JournalPublication;
 use App\Models\ManualFees;
 use App\Models\MemberDetails;
+use App\Models\PgPhdGuide;
 use App\Models\PlacementDetails;
 use App\Models\PreAdmissionPayment;
 use App\Models\Registration;
@@ -51,9 +55,10 @@ class UserController extends Controller
         return response()->json(['success' => 1, 'data' => $user], 200);
     }
 
-    public function save_student_manual_fees(Request $request){
+    public function save_student_manual_fees(Request $request)
+    {
         $manualFees = ManualFees::find($request['id']);
-        if($manualFees){
+        if ($manualFees) {
             $manualFees->course_id = $request['course_id'];
             $manualFees->semester_id = $request['semester_id'];
             $manualFees->student_id = $request->user()->id;
@@ -71,7 +76,7 @@ class UserController extends Controller
             }
 
             $manualFees->update();
-        }else{
+        } else {
             $manualFees = new ManualFees();
             $manualFees->course_id = $request['course_id'];
             $manualFees->semester_id = $request['semester_id'];
@@ -201,11 +206,9 @@ class UserController extends Controller
             $placement = PlacementDetails::whereUserId($request->user()->id)->get();
             $manualFeesList = ManualFees::whereStudentId($request->user()->id)->get();
 
-            return response()->json(['success' => 1, 'data' => new StudentResource($member)
-                , 'education_details' => $education_details
-                , 'achievement' => AchivementResource::collection($achievement)
-                , 'placement' => PlacementResource::collection($placement)
-                , 'manualFeesList' => ManualFeesResource::collection($manualFeesList)], 200, [], JSON_NUMERIC_CHECK);
+            return response()->json([
+                'success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement), 'manualFeesList' => ManualFeesResource::collection($manualFeesList)
+            ], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
             ->leftjoin('member_details', 'users.id', '=', 'member_details.user_id')
@@ -216,8 +219,24 @@ class UserController extends Controller
         $publications = BookPublication::whereStaffId($request->user()->id)->get();
         $experience = StaffExperience::whereStaffId($request->user()->id)->get();
         $journls = JournalPublication::whereStaffId($request->user()->id)->get();
+        $pg_phd = PgPhdGuide::whereStaffId($request->user()->id)->get();
+        $apiScoreList = ApiScore::whereStaffId($request->user()->id)->get();
 
-        return response()->json(['success' => 1, 'data' => new MemberResource($member), 'educations' => StaffEducationResource::collection($educations), 'publications' => BookPublicationResource::collection($publications), 'experience' => StaffExperienceResource::collection($experience), 'journal' => JournalPublicationResource::collection($journls)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(
+            [
+                'success' => 1,
+                'data' => new MemberResource($member),
+                'educations' => StaffEducationResource::collection($educations),
+                'publications' => BookPublicationResource::collection($publications),
+                'experience' => StaffExperienceResource::collection($experience),
+                'journal' => JournalPublicationResource::collection($journls),
+                'pgPhd' => PgPhdGuideResource::collection($pg_phd),
+                'apiScoreList' => ApiScoreResource::collection($apiScoreList)
+            ],
+            200,
+            [],
+            JSON_NUMERIC_CHECK
+        );
     }
 
     public function get_user_attendance(Request $request)

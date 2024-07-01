@@ -5,9 +5,59 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PgPhdGuideResource;
 use App\Models\PgPhdGuide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PgPhdGuideController extends Controller
 {
+
+    public function save_pg_phd_guide_own(Request $request)
+    {
+        $pg_php = PgPhdGuide::find($request->id);
+        if ($pg_php) {
+            $pg_php->student_name = $request['student_name'];
+            $pg_php->course = $request['course'];
+            $pg_php->title_name = $request['title_name'];
+            $pg_php->guide = $request['guide'];
+            $pg_php->co_guide = $request['co_guide'];
+            $pg_php->referance_no = $request['referance_no'];
+            $pg_php->ref_date = $request['ref_date'];
+            $pg_php->status = $request['status'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/pg_phd_guide_file/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $pg_php->file_name = $files->getClientOriginalName();
+            }
+
+            $pg_php->update();
+        } else {
+            $data = new PgPhdGuide();
+            $data->staff_id = $request->user()->id;
+            $data->student_name = $request['student_name'];
+            $data->course = $request['course'];
+            $data->title_name = $request['title_name'];
+            $data->guide = $request['guide'];
+            $data->co_guide = $request['co_guide'];
+            $data->referance_no = $request['referance_no'];
+            $data->ref_date = $request['ref_date'];
+            $data->status = $request['status'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/pg_phd_guide_file/');
+                $profileImage1 = $files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage1);
+                $data->file_name = $files->getClientOriginalName();
+            }
+
+            $data->save();
+        }
+
+        $pgPhd = PgPhdGuide::whereStaffId($request->user()->id)->get();
+
+        return response()->json(['success' => 1, 'data' => PgPhdGuideResource::collection($pgPhd)], 200, [], JSON_NUMERIC_CHECK);
+    }
+
 
     public function get_pg_phd_guide($staff_id = null)
     {
@@ -36,7 +86,7 @@ class PgPhdGuideController extends Controller
         foreach ($request['pgphdguid_array'] as $list) {
             $data = new PgPhdGuide();
             $data->staff_id = $list['staff_id'];
-            $data->student_id = $list['student_id'];
+            $data->student_name = $list['student_name'];
             $data->course = $list['course'];
             $data->title_name = $list['title_name'];
             $data->guide = $list['guide'];
@@ -58,7 +108,7 @@ class PgPhdGuideController extends Controller
             if (!$pg_php_guide) {
                 $data = new PgPhdGuide();
                 $data->staff_id = $list['staff_id'];
-                $data->student_id = $list['student_id'];
+                $data->student_name = $list['student_name'];
                 $data->course = $list['course'];
                 $data->title_name = $list['title_name'];
                 $data->guide = $list['guide'];
@@ -70,7 +120,7 @@ class PgPhdGuideController extends Controller
                 $data->save();
             } else {
                 $pg_php_guide->staff_id = $list['staff_id'];
-                $pg_php_guide->student_id = $list['student_id'];
+                $pg_php_guide->student_name = $list['student_name'];
                 $pg_php_guide->course = $list['course'];
                 $pg_php_guide->title_name = $list['title_name'];
                 $pg_php_guide->guide = $list['guide'];
@@ -90,7 +140,11 @@ class PgPhdGuideController extends Controller
         $paperSetter = PgPhdGuide::find($id);
         $paperSetter->delete();
 
-        $paperSetter = PgPhdGuide::get();
+        if (Auth::user()->user_type_id == 1) {
+            $paperSetter = PgPhdGuide::get();
+        } else {
+            $paperSetter = PgPhdGuide::whereStaffId(Auth::id())->get();
+        }
         return response()->json(['success' => 1, 'data' => PgPhdGuideResource::collection($paperSetter)], 200);
     }
 }
