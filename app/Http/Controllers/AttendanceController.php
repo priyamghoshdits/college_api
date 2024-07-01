@@ -251,14 +251,42 @@ class AttendanceController extends Controller
 //        where users.user_type_id = 3;
     }
 
-    public function get_student_attendance_own($course_id, $semester_id, $date, $user_id)
+    public function get_student_attendance_own($course_id, $semester_id, $date, $user_id, $member_id)
     {
-        $attendance = DB::select("select attendances.id,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
+        $attendance = null;
+        if(($user_id != 'null') && ($member_id != 'null')){
+            $attendance = DB::select("select attendances.user_id , CONCAT(student_user.first_name, ' ', student_user.last_name) as student_name , attendances.id,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
             inner join courses on courses.id = attendances.course_id
             inner join semesters on semesters.id = attendances.semester_id
             inner join subjects on subjects.id = attendances.subject_id
             inner join users on attendances.attendance_by = users.id
+            where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ? and attendances.attendance_by = ? and attendances.user_id = ?",[$course_id, $semester_id, $date, $member_id, $user_id]);
+        }else if(($user_id == 'null') && ($member_id == 'null')){
+            $attendance = DB::select("select attendances.user_id, CONCAT(student_user.first_name, ' ', student_user.last_name) as student_name ,  attendances.id,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
+            inner join courses on courses.id = attendances.course_id
+            inner join semesters on semesters.id = attendances.semester_id
+            inner join subjects on subjects.id = attendances.subject_id
+            inner join users on attendances.attendance_by = users.id
+            inner join users as student_user on student_user.id = attendances.user_id
+            where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ?",[$course_id, $semester_id, $date]);
+        }else if($member_id != 'null'){
+            $attendance = DB::select("select attendances.user_id, CONCAT(student_user.first_name, ' ', student_user.last_name) as student_name ,  attendances.id,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
+            inner join courses on courses.id = attendances.course_id
+            inner join semesters on semesters.id = attendances.semester_id
+            inner join subjects on subjects.id = attendances.subject_id
+            inner join users on attendances.attendance_by = users.id
+            inner join users as student_user on student_user.id = attendances.user_id
+            where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ? and attendances.attendance_by = ?",[$course_id, $semester_id, $date, $member_id]);
+        }else if($user_id != 'null'){
+            $attendance = DB::select("select attendances.user_id, attendances.id, CONCAT(student_user.first_name, ' ', student_user.last_name) as student_name ,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
+            inner join courses on courses.id = attendances.course_id
+            inner join semesters on semesters.id = attendances.semester_id
+            inner join subjects on subjects.id = attendances.subject_id
+            inner join users on attendances.attendance_by = users.id
+            inner join users as student_user on student_user.id = attendances.user_id
             where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ? and attendances.user_id = ?",[$course_id, $semester_id, $date, $user_id]);
+        }
+
         return response()->json(['success'=>1,'data' => $attendance], 200,[],JSON_NUMERIC_CHECK);
     }
 
