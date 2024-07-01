@@ -97,6 +97,41 @@ class RolesSeeder extends Seeder
             ['name' => 'BOOK PUBLICATION'],
             ['name' => 'STAFF PROMOTION'],
 
+
+
+            //new
+
+            // ['name' => 'STUDENT GROUP'],
+            // ['name' => 'CREATE GROUP'],
+            ['name' => 'API SCORE'],
+            ['name' => 'PROMOTE STUDENTS'],
+            ['name' => 'PRE ADMISSION'],
+            ['name' => 'ACHIEVEMENT'],
+            ['name' => 'EDUCATION QUALIFICATION'],
+            ['name' => 'CERTIFICATE TYPES'],
+            ['name' => 'UPLOAD CERTIFICATE'],
+            ['name' => 'DOWNLOAD CERTIFICATE'],
+            ['name' => 'SEND LOGIN CREDENTIAL'],
+            ['name' => 'CAUTION MONEY'],
+            ['name' => 'ADMIN PERIOD ATTENDANCE'],
+            ['name' => 'SHOW ATTENDANCE'],
+            ['name' => 'BOOK LIST'],
+            ['name' => 'RETURN OVER PERIOD'],
+            ['name' => 'DISCOUNT BOOK FINE'],
+            ['name' => 'UPLOAD DIGITAL BOOK'],
+            ['name' => 'DOWNLOAD DIGITAL BOOK'],
+            ['name' => 'CAUTION MONEY'],
+            ['name' => 'ADD HOMEWORK'],
+            ['name' => 'UPDATE MARKS'],
+            ['name' => 'GENERATE MARK SHEET'],
+            ['name' => 'ASSIGNMENT'],
+            ['name' => 'STUDY MATERIAL'],
+            ['name' => 'SYLLABUS'],
+            ['name' => 'PAYSLIP'],
+            ['name' => 'SEMINAR WORKSHOP'],
+            ['name' => 'MANUAL FEES'],
+            ['name' => 'MANUAL SCHOLARSHIP']
+
             //            ['name' => 'ASSIGNMENT'],
             //            ['name' => 'STUDY MATERIAL'], //35
 
