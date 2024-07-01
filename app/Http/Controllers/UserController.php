@@ -241,7 +241,6 @@ class UserController extends Controller
 
     public function save_student(Request $request)
     {
-        //        $data = (object)$request->json()->all();
 
         DB::beginTransaction();
         try {
