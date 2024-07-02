@@ -1171,7 +1171,7 @@ class UserController extends Controller
 
     public function update_member(Request $request)
     {
-        $data = (object)$request->json()->all();
+        $data = $request;
         $user = User::find($data->id);
         $user->identification_no = $data->identification_no;
         $user->first_name = $data->first_name;
