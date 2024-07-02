@@ -29,6 +29,7 @@ class PgPhdGuideResource extends JsonResource
             'referance_no' => $this->referance_no,
             'ref_date' => $this->ref_date,
             'file_name' => $this->file_name,
+            'file_url' => $this->file_name != null ? asset("pg_phd_guide_file/{$this->file_name}") : null,
             'status' => $this->status,
             'status_name' => $this->status == 1 ? 'Complete' : 'Ongoing',
         ];

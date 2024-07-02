@@ -25,6 +25,8 @@ class BookPublicationResource extends JsonResource
             'chapter_full_book' => $this->chapter_full_book,
             'chapter_name' => $this->chapter_name,
             'page_number' => $this->page_number,
+            'file_name' => $this->file_name,
+            'file_url' => $this->file_name != null ? asset("book_publication/{$this->file_name}") : null,
         ];
     }
 }

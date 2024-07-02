@@ -13,7 +13,7 @@ class JournalPublicationResource extends JsonResource
         return [
             'id' => $this->id,
             'staff_id' => $this->staff_id,
-            'staff_name' => User::find($this->staff_id)->first_name .' '.User::find($this->staff_id)->middle_name.' '.User::find($this->staff_id)->last_name,
+            'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
             'journal_name' => $this->journal_name,
             'publication' => $this->publication,
             'topic_name' => $this->topic_name,
@@ -22,6 +22,7 @@ class JournalPublicationResource extends JsonResource
             'volume_page_number' => $this->volume_page_number,
             'issn_number' => $this->issn_number,
             'impact_factor' => $this->impact_factor,
+            'file_url' => $this->file_name != null ? asset("journal_Publication/{$this->file_name}") : null,
         ];
     }
 }

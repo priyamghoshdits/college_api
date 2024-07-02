@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('chapter_full_book')->nullable();
             $table->string('chapter_name')->nullable();
             $table->string('page_number')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
         });
     }

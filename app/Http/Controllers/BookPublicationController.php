@@ -18,6 +18,18 @@ class BookPublicationController extends Controller
         return response()->json(['success' => 1, 'data' => BookPublicationResource::collection($book_publication)], 200);
     }
 
+    public function save_upload_file_publication(Request $request)
+    {
+        $file_name = '';
+        if ($files = $request->file('file_name')) {
+            $destinationPath = public_path('/book_publication/');
+            $profileImage1 = $files->getClientOriginalName();
+            $files->move($destinationPath, $profileImage1);
+            $file_name = $files->getClientOriginalName();
+        }
+        return response()->json(['success' => 1, 'file_name' => $file_name], 200);
+    }
+
     public function save_book_publication(Request $request)
     {
         foreach ($request->book_publication_array as $value) {
@@ -29,6 +41,7 @@ class BookPublicationController extends Controller
             $book_publication->chapter_full_book = $value['chapter_full_book'];
             $book_publication->chapter_name = $value['chapter_name'];
             $book_publication->page_number = $value['page_number'];
+            $book_publication->file_name = $value['file_name'];
             $book_publication->save();
         }
         return response()->json(['success' => 1, 'data' => new BookPublicationResource($book_publication)], 200, [], JSON_NUMERIC_CHECK);
@@ -45,6 +58,14 @@ class BookPublicationController extends Controller
             $publication->chapter_full_book = $request['chapter_full_book'];
             $publication->chapter_name = $request['chapter_name'];
             $publication->page_number = $request['page_number'];
+
+            if ($files = $request->file('file_name')) {
+                $destinationPath = public_path('/book_publication/');
+                $fileName = $files->getClientOriginalName();
+                $files->move($destinationPath, $fileName);
+                $publication->file_name = $fileName;
+            }
+
             $publication->update();
         } else {
             $book_publication = new BookPublication();
@@ -55,6 +76,15 @@ class BookPublicationController extends Controller
             $book_publication->chapter_full_book = $request['chapter_full_book'];
             $book_publication->chapter_name = $request['chapter_name'];
             $book_publication->page_number = $request['page_number'];
+
+            if ($files = $request->file('file_name')) {
+                // return $files;
+                $destinationPath = public_path('/book_publication/');
+                $fileName = $files->getClientOriginalName();
+                $files->move($destinationPath, $fileName);
+                $book_publication->file_name = $fileName;
+            }
+
             $book_publication->save();
         }
 
@@ -65,31 +95,26 @@ class BookPublicationController extends Controller
 
     public function update_book_publication(Request $request)
     {
-        foreach ($request->book_publication_array as $value) {
+        $book_publication_data = BookPublication::find($request['id']);
 
-            $book_publication_data = BookPublication::find($value['id']);
+        $book_publication_data->staff_id = $request['staff_id'];
+        $book_publication_data->book_name = $request['book_name'];
+        $book_publication_data->ISBN_number = $request['ISBN_number'];
+        $book_publication_data->name_of_publisher = $request['name_of_publisher'];
+        $book_publication_data->chapter_full_book = $request['chapter_full_book'];
+        $book_publication_data->chapter_name = $request['chapter_name'];
+        $book_publication_data->page_number = $request['page_number'];
 
-            if (!$book_publication_data) {
-                $book_publication = new BookPublication();
-                $book_publication->staff_id = $value['staff_id'];
-                $book_publication->book_name = $value['book_name'];
-                $book_publication->ISBN_number = $value['ISBN_number'];
-                $book_publication->name_of_publisher = $value['name_of_publisher'];
-                $book_publication->chapter_full_book = $value['chapter_full_book'];
-                $book_publication->chapter_name = $value['chapter_name'];
-                $book_publication->page_number = $value['page_number'];
-                $book_publication->save();
-            } else {
-                $book_publication_data->staff_id = $value['staff_id'];
-                $book_publication_data->book_name = $value['book_name'];
-                $book_publication_data->ISBN_number = $value['ISBN_number'];
-                $book_publication_data->name_of_publisher = $value['name_of_publisher'];
-                $book_publication_data->chapter_full_book = $value['chapter_full_book'];
-                $book_publication_data->chapter_name = $value['chapter_name'];
-                $book_publication_data->page_number = $value['page_number'];
-                $book_publication_data->update();
-            }
+        if ($files = $request->file('file_name')) {
+            // return $files;
+            $destinationPath = public_path('/book_publication/');
+            $fileName = $files->getClientOriginalName();
+            $files->move($destinationPath, $fileName);
+            $book_publication_data->file_name = $fileName;
         }
+
+        $book_publication_data->update();
+
         return response()->json(['success' => 1, 'data' => null], 200);
     }
 

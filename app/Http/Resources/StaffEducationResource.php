@@ -22,6 +22,7 @@ class StaffEducationResource extends JsonResource
             'percentage' => $this->percentage,
             'grade' => $this->grade,
             'file_name' => $this->file_name,
+            'file_url' => $this->file_name != null ? asset("staff_education/{$this->file_name}") : null,
         ];
     }
 }

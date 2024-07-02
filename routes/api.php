@@ -712,6 +712,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //BOOK PUBLICATION
     Route::get("getBookPublication/{staff_id?}", [BookPublicationController::class, 'get_book_publication']);
     Route::post("saveBookPublication", [BookPublicationController::class, 'save_book_publication']);
+    Route::post("saveBookPublicationFile", [BookPublicationController::class, 'save_upload_file_publication']);
     Route::post("saveBookPublicationOwn", [BookPublicationController::class, 'save_book_publication_own']);
     Route::post("updateBookPublication", [BookPublicationController::class, 'update_book_publication']);
     Route::get("deleteBookPublication/{id?}", [BookPublicationController::class, 'delete_book_publication']);
