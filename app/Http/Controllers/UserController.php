@@ -574,15 +574,15 @@ class UserController extends Controller
             $user->image = $file_name;
         }
 
-        if ($aadhaar_card_proofs = $request->file('aadhaar_card_proof')) {
+        if ($files = $request->file('aadhaar_card_proof')) {
             if (file_exists(public_path() . '/aadhaar_card_proof/' . $user->aadhaar_card_proof)) {
                 File::delete(public_path() . '/aadhaar_card_proof/' . $user->aadhaar_card_proof);
             }
             // Define upload path
             $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
             // Upload Orginal Image
-            $file_name = $aadhaar_card_proofs->getClientOriginalName();
-            $aadhaar_card_proofs->move($destinationPath, $file_name);
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
             $user->aadhaar_card_proof = $file_name;
         }
 
@@ -610,15 +610,15 @@ class UserController extends Controller
             $user->blood_group_proof = $file_name;
         }
 
-        if ($dob_proofs = $request->file('dob_proof')) {
+        if ($files = $request->file('dob_proof')) {
             if (file_exists(public_path() . '/dob_proof/' . $user->dob_proof)) {
                 File::delete(public_path() . '/dob_proof/' . $user->dob_proof);
             }
             // Define upload path
-            $destinationPath = public_path('/blood_group_proof/'); // upload path
+            $destinationPath = public_path('/dob_proof/'); // upload path
             // Upload Orginal Image
-            $file_name = $dob_proofs->getClientOriginalName();
-            $dob_proofs->move($destinationPath, $file_name);
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath, $file_name);
             $user->dob_proof = $file_name;
         }
 
@@ -1294,7 +1294,6 @@ class UserController extends Controller
 
             $member_details->save();
         }
-
 
         return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);
     }
