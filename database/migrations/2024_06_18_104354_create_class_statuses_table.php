@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('topic')->nullable(true);
             $table->string('started_by')->nullable(true);
             $table->string('time_on')->nullable(true);
+            $table->string('start_latitude')->nullable(true);
+            $table->string('start_longitude')->nullable(true);
+            $table->string('stop_latitude')->nullable(true);
+            $table->string('stop_longitude')->nullable(true);
             $table->string('ended_by')->nullable(true);
             $table->string('ended_on')->nullable(true);
             $table->timestamps();
