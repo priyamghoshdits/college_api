@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\DB;
 class AttendanceController extends Controller
 {
 
-    public function update_class_start(Request $request){
+    public function update_class_start(Request $request,$id,$latitude,$longitude){
         $timezone = new DateTimeZone('Asia/Kolkata');
-        $classStatus = ClassStatus::find($request[0]);
+        $classStatus = ClassStatus::find($id);
         $classStatus->started_by = $request->user()->id;
         $classStatus->time_on = Carbon::now($timezone)->format('h:i:s A');
+        $classStatus->start_latitude = $latitude;
+        $classStatus->start_longitude = $longitude;
         $classStatus->update();
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -34,10 +36,12 @@ class AttendanceController extends Controller
         return response()->json(['success'=>1,'data' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function update_class_end(Request $request){
+    public function update_class_end(Request $request,$id,$latitude,$longitude){
         $timezone = new DateTimeZone('Asia/Kolkata');
-        $classStatus = ClassStatus::find($request[0]);
+        $classStatus = ClassStatus::find($id);
         $classStatus->ended_by = $request->user()->id;
+        $classStatus->stop_latitude = $latitude;
+        $classStatus->stop_longitude = $longitude;
         $classStatus->ended_on = Carbon::now($timezone)->format('h:i:s A');
         $classStatus->update();
         return response()->json(['success'=>1,'class_status' =>new ClassStatusResource($classStatus)], 200,[],JSON_NUMERIC_CHECK);
@@ -86,16 +90,6 @@ class AttendanceController extends Controller
             }
 
             foreach ($requestedData as $list){
-//                $attendanceUpdate = Attendance::whereCourseId($course_id)
-//                    ->whereSemesterId($semester_id)->where('date',$date)
-//                    ->whereSubjectId($subject_id)
-//                    ->whereUserId($list['user_id'])
-//                    ->whereClass($class)
-//                    ->first();
-//                if($attendanceUpdate){
-//                    $attendanceUpdate->attendance = $list['attendance'];
-//                    $attendanceUpdate->update();
-//                }else{
                     $attendance = new Attendance();
                     $attendance->course_id = $course_id;
                     $attendance->semester_id = $semester_id;
@@ -109,7 +103,6 @@ class AttendanceController extends Controller
                     $attendance->class = $class;
                     $attendance->class_status_id = $classStatus_id;
                     $attendance->save();
-//                }
             }
 
         }else{
