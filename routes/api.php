@@ -445,6 +445,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     // MANUAL SCHOLARSHIP
     Route::post("getManualScholarship", [ManualScholarshipController::class, 'get_manual_scholarship']);
+    Route::post("saveManualScholarshipOwn", [ManualScholarshipController::class, 'save_manual_scholarship_own']);
     Route::post("saveManualScholarship", [ManualScholarshipController::class, 'save_manual_scholarship']);
     Route::post("updateManualScholarship", [ManualScholarshipController::class, 'update_manual_scholarship']);
     Route::get("deleteManualScholarship/{id}", [ManualScholarshipController::class, 'delete_manual_scholarship']);
