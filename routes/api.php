@@ -95,6 +95,7 @@ use App\Http\Controllers\StaffEducationController;
 use App\Http\Controllers\ManualFeesController;
 use App\Http\Controllers\ManualScholarshipController;
 use App\Http\Controllers\ApiScoreController;
+use App\Http\Controllers\PaperPosterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -389,6 +390,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::get("deletePaperSetter/{id}", [PaperSetterController::class, 'delete_PaperSetter']);
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
+
+    //PAPER POSTER
+    Route::post("savePaperPoster", [PaperPosterController::class, 'save_paper_poster']);
+    Route::post("saveUploadFile", [PaperPosterController::class, 'save_upload_file']);
+    Route::post("updatePaperPoster", [PaperPosterController::class, 'update_paper_poster']);
+    Route::get("deletePaperPoster/{id}", [PaperPosterController::class, 'delete_paper_poster']);
 
     //API SCORE
     Route::post("saveApiScore", [ApiScoreController::class, 'save_api_score']);
