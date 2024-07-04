@@ -23,6 +23,7 @@ use App\Models\CourseGroup;
 use App\Models\EducationQualification;
 use App\Models\JournalPublication;
 use App\Models\ManualFees;
+use App\Models\ManualScholarship;
 use App\Models\MemberDetails;
 use App\Models\PgPhdGuide;
 use App\Models\PlacementDetails;
@@ -205,9 +206,11 @@ class UserController extends Controller
             $achievement = Achivement::whereStudentId($request->user()->id)->get();
             $placement = PlacementDetails::whereUserId($request->user()->id)->get();
             $manualFeesList = ManualFees::whereStudentId($request->user()->id)->get();
+            $manualScholarshipList = ManualScholarship::whereStudentId($request->user()->id)->get();
 
             return response()->json([
-                'success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement), 'manualFeesList' => ManualFeesResource::collection($manualFeesList)
+                'success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement), 'manualFeesList' => ManualFeesResource::collection($manualFeesList),
+                'manualScholarshipList' => $manualScholarshipList
             ], 200, [], JSON_NUMERIC_CHECK);
         }
         $member = User::select('*')
