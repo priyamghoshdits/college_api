@@ -96,6 +96,7 @@ use App\Http\Controllers\ManualFeesController;
 use App\Http\Controllers\ManualScholarshipController;
 use App\Http\Controllers\ApiScoreController;
 use App\Http\Controllers\PaperPosterController;
+use App\Http\Controllers\ErpSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +134,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //AllUser
     Route::get("getAllUsers", [UserController::class, 'get_all_user']);
 
+    //ERP SETTINGS
+    Route::get("getErpSettings", [ErpSettingsController::class, 'get_erp_settings']);
 
     //DASHBOARD
     Route::get("dashboard", [DashboardController::class, 'dashboard']);
