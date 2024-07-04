@@ -399,6 +399,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveUploadFile", [PaperPosterController::class, 'save_upload_file']);
     Route::post("updatePaperPoster", [PaperPosterController::class, 'update_paper_poster']);
     Route::get("deletePaperPoster/{id}", [PaperPosterController::class, 'delete_paper_poster']);
+    Route::post("searchPaperPoster", [PaperPosterController::class, 'search_paper_setting']);
 
     //API SCORE
     Route::post("saveApiScore", [ApiScoreController::class, 'save_api_score']);

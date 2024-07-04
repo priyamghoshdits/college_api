@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PaperPosterResource;
 use App\Models\PaperPoster;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class PaperPosterController extends Controller
     public function save_upload_file(Request $request)
     {
         $file_name = '';
-        if ($files = $request->file('paper_poster')) {
+        if ($files = $request->file('file_name')) {
             $destinationPath = public_path('/paper_poster/');
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
@@ -56,7 +57,7 @@ class PaperPosterController extends Controller
         $paper_poster->duration = $request['duration'];
         $paper_poster->acivement = $request['acivement'];
 
-        if ($files = $request->file('paper_poster')) {
+        if ($files = $request->file('file_name')) {
             $destinationPath = public_path('/paper_poster/');
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
@@ -73,5 +74,18 @@ class PaperPosterController extends Controller
         $paper_poster = PaperPoster::find($id);
         $paper_poster->delete();
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function search_paper_setting(Request $request)
+    {
+        $requestedData = (object)$request->json()->all();
+        if ($requestedData->staff_id == null || $requestedData->staff_id == "null") {
+            $data = PaperPoster::whereBetween('date_from', [$requestedData->from_date, $requestedData->to_date])->get();
+        } else {
+            $data = PaperPoster::whereBetween('date_from', [$requestedData->from_date, $requestedData->to_date])
+                ->whereStaffId($requestedData->staff_id)
+                ->get();
+        }
+        return response()->json(['success' => 1, 'data' => PaperPosterResource::collection($data)], 200, [], JSON_NUMERIC_CHECK);
     }
 }
