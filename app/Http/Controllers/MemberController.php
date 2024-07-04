@@ -194,13 +194,14 @@ class MemberController extends Controller
         return response()->json(['success' => 1, 'data' => MemberResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_students(Request $request)
+    public function get_students(Request $request, $session_id)
     {
         $member = User::select('*', 'student_details.id as student_details_id', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->leftjoin('pre_admission_payments', 'pre_admission_payments.id', '=', 'student_details.pre_admission_payment_id')
             ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
+            ->whereSessionId($session_id)
             ->where('users.franchise_id', $request->user()->franchise_id)
             ->get();
 

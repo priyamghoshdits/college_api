@@ -130,7 +130,8 @@ class RolesSeeder extends Seeder
             ['name' => 'PAYSLIP'],
             ['name' => 'SEMINAR WORKSHOP'],
             ['name' => 'MANUAL FEES'],
-            ['name' => 'MANUAL SCHOLARSHIP']
+            ['name' => 'MANUAL SCHOLARSHIP'],
+            ['name' => 'PAPER POSTER']
 
             //            ['name' => 'ASSIGNMENT'],
             //            ['name' => 'STUDY MATERIAL'], //35

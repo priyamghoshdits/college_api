@@ -285,7 +285,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("getAllMembers", [MemberController::class, 'get_all_members']);
     Route::get("getMembers/{user_type_id}/{month}/{year}", [MemberController::class, 'get_members_by_user_type_id']);
     Route::get("getTeachers", [MemberController::class, 'get_teachers']);
-    Route::get("getStudents", [MemberController::class, 'get_students']);
+    Route::get("getStudents/{session_id}", [MemberController::class, 'get_students']);
     Route::get("getStudentFullDetails/{id}", [MemberController::class, 'get_student_full_details']);
     Route::get("getMemberFullDetails/{id}", [MemberController::class, 'get_member_full_details']);
     Route::post("getStudentsForCautionMoney", [MemberController::class, 'get_students_for_caution_money']);
