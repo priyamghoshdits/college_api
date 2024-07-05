@@ -367,7 +367,7 @@ class UserController extends Controller
             //            $user->image = $request['image'] ?? null;
             $user->blood_group = $request['blood_group'] ?? null;
             $user->user_type_id = 3;
-            $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
+            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
             $user->email = $request['email'];
             $user->password = $pass;
             $user->status = ($request['admission_status'] == 0) ? 0 : 1;
@@ -445,7 +445,7 @@ class UserController extends Controller
             $student_details->student_id = $user['id'];
             $student_details->course_id = $request['course_id'];
             $student_details->semester_id = $request['semester_id'];
-            $student_details->agent_id = $request['agent_id'];
+            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
             $student_details->current_semester_id = $request['semester_id'];
             $student_details->session_id = $request['session_id'] ?? null;
             $student_details->admission_date = $request['admission_date'] ?? null;
@@ -468,6 +468,7 @@ class UserController extends Controller
             $student_details->guardian_address = $request['guardian_address'] ?? null;
             $student_details->guardian_occupation = $request['guardian_occupation'] ?? null;
             $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
+            $student_details->abc_id = $request['abc_id'] ?? null;
 
             if ($father_income_proofs = $request->file('father_income_proof')) {
                 // Define upload path
@@ -496,7 +497,31 @@ class UserController extends Controller
                 $registration_proofs->move($destinationPath, $file_name);
                 $student_details->registration_proof = $file_name;
             }
-
+            
+            if ($abc_file = $request->file('abc_file')) {
+                // Define upload path
+                $destinationPath = public_path('/abc_file/'); // upload path
+                // Upload Orginal Image
+                $file_name = $abc_file->getClientOriginalName();
+                $abc_file->move($destinationPath, $file_name);
+                $student_details->abc_file = $file_name;
+            }
+            if ($student_signature = $request->file('student_signature')) {
+                // Define upload path
+                $destinationPath = public_path('/student_signature/'); // upload path
+                // Upload Orginal Image
+                $file_name = $student_signature->getClientOriginalName();
+                $student_signature->move($destinationPath, $file_name);
+                $student_details->student_signature = $file_name;
+            }
+            if ($admission_allotment = $request->file('admission_allotment')) {
+                // Define upload path
+                $destinationPath = public_path('/admission_allotment/'); // upload path
+                // Upload Orginal Image
+                $file_name = $admission_allotment->getClientOriginalName();
+                $admission_allotment->move($destinationPath, $file_name);
+                $student_details->admission_allotment = $file_name;
+            }
 
             $student_details->save();
 

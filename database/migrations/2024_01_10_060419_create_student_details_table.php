@@ -51,6 +51,10 @@ return new class extends Migration
             //0 for pre-admission, 1 for admitted, 2 for passed, 3 left
             $table->integer('pre_admission_payment_id')->nullable(true);
             $table->integer('caution_money_id')->nullable(true);
+            $table->string('abc_id')->nullable();
+            $table->string('abc_file')->nullable();
+            $table->string('student_signature')->nullable();
+            $table->string('admission_allotment')->nullable();
             $table->timestamps();
         });
     }
