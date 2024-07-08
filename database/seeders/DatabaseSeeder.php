@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WeekDaysSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(MenuManagementSeeder::class);
+        $this->call(ErpSettingsSeeder::class);
         $user = new User();
         $user->identification_no = "sdfdsfds";
         $user->first_name = "werewtret";
