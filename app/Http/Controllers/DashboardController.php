@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achivement;
+use App\Models\Attendance;
 use App\Models\Content;
 use App\Models\Expense;
 use App\Models\LibraryStock;
 use App\Models\Notice;
 use App\Models\Payment;
+use App\Models\StudentDetail;
 use App\Models\User;
+use App\Models\VirtualClass;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -221,6 +226,160 @@ class DashboardController extends Controller
             'total_accountant' => $total_accountant,
             'student_chart' => $studentChart
         ];
+        return response()->json(['success' => 1, 'data' => $ret], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function dashboard_for_student()
+    {
+        $currentYear = Carbon::now()->year;
+        $student_data = StudentDetail::whereStudentId(Auth::id())->first();
+        $notices = Notice::get();
+        $total_books = count(LibraryStock::get());
+        $total_assignment = count(Content::orderBy('id', 'DESC')->whereType('assignment')->get());
+        $totalStudyMaterial = count(Content::orderBy('id', 'DESC')->whereType('study-material')->get());
+        $total_achivement = Achivement::whereStudent_id(Auth::id())->count();
+
+        $live_class_list = VirtualClass::whereCourseId($student_data->course_id)->whereSemesterId($student_data->semester_id)->get();
+
+
+        $January = Attendance::whereMonth('date', 1)->whereYear('date', $currentYear)->count();
+        $February = Attendance::whereMonth('date', 2)->whereYear('date', $currentYear)->count();
+        $March = Attendance::whereMonth('date', 3)->whereYear('date', $currentYear)->count();
+        $April = Attendance::whereMonth('date', 4)->whereYear('date', $currentYear)->count();
+        $May = Attendance::whereMonth('date', 5)->whereYear('date', $currentYear)->count();
+        $June = Attendance::whereMonth('date', 6)->whereYear('date', $currentYear)->count();
+        $July = Attendance::whereMonth('date', 7)->whereYear('date', $currentYear)->count();
+        $August = Attendance::whereMonth('date', 8)->whereYear('date', $currentYear)->count();
+        $September = Attendance::whereMonth('date', 9)->whereYear('date', $currentYear)->count();
+        $October = Attendance::whereMonth('date', 10)->whereYear('date', $currentYear)->count();
+        $November = Attendance::whereMonth('date', 11)->whereYear('date', $currentYear)->count();
+        $December = Attendance::whereMonth('date', 12)->whereYear('date', $currentYear)->count();
+
+        // return $July;
+
+        $studentChart = [
+            (object)[
+                "name" => "January",
+                "series" => [
+                    (object)[
+                        "name" => "January",
+                        "value" => $January
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "February",
+                "series" => [
+                    (object)[
+                        "name" => "February",
+                        "value" => $February
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "March",
+                "series" => [
+                    (object)[
+                        "name" => "March",
+                        "value" => $March
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "April",
+                "series" => [
+                    (object)[
+                        "name" => "April",
+                        "value" => $April
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "May",
+                "series" => [
+                    (object)[
+                        "name" => "May",
+                        "value" => $May
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "June",
+                "series" => [
+                    (object)[
+                        "name" => "June",
+                        "value" => $June
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "July",
+                "series" => [
+                    (object)[
+                        "name" => "July",
+                        "value" => $July
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "August",
+                "series" => [
+                    (object)[
+                        "name" => "August",
+                        "value" => $August
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "September",
+                "series" => [
+                    (object)[
+                        "name" => "September",
+                        "value" => $September
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "October",
+                "series" => [
+                    (object)[
+                        "name" => "October",
+                        "value" => $October
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "November",
+                "series" => [
+                    (object)[
+                        "name" => "November",
+                        "value" => $November
+                    ]
+                ]
+            ],
+            (object)[
+                "name" => "December",
+                "series" => [
+                    (object)[
+                        "name" => "December",
+                        "value" => $December
+                    ]
+                ]
+            ],
+        ];
+
+
+        $ret = [
+            'total_books' => $total_books,
+            'notice' => $notices,
+            'live_class_list' => $live_class_list,
+            'student_chart' => $studentChart,
+            'total_assignment' => $total_assignment,
+            'studyMaterial' => $totalStudyMaterial,
+            'total_achivement' => $total_achivement
+
+        ];
+
         return response()->json(['success' => 1, 'data' => $ret], 200, [], JSON_NUMERIC_CHECK);
     }
 }

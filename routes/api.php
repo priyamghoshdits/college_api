@@ -136,10 +136,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("getAllUsers", [UserController::class, 'get_all_user']);
 
     //ERP SETTINGS
-    
+
 
     //DASHBOARD
     Route::get("dashboard", [DashboardController::class, 'dashboard']);
+    Route::get("dashboardForStudent", [DashboardController::class, 'dashboard_for_student']);
 
     //SEND STUDENT LOGIN CREDENTIALS
     Route::get("sendLoginCredentials/{id}", [UserController::class, 'send_login_credentials']);
