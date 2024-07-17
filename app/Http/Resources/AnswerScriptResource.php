@@ -20,6 +20,7 @@ class AnswerScriptResource extends JsonResource
             'referance_no' => $this->referance_no,
             'ref_date' => $this->ref_date,
             'paper_file' => $this->paper_file,
+            'file_url' => $this->paper_file != null ? asset("answer_script_evaluator/{$this->paper_file}") : null,
         ];
     }
 }

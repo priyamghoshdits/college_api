@@ -32,6 +32,7 @@ class UniversitySynopsisResource extends JsonResource
             'ref_date' => $this->ref_date,
             'file_name' => $this->file_name,
             'date_evaluation' => $this->date_evaluation,
+            'file_url' => $this->file_name != null ? asset("university_synopsis/{$this->file_name}") : null,
         ];
     }
 }
