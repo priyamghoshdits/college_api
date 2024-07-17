@@ -14,7 +14,7 @@ class SeminarWorkshopFacultyController extends Controller
     {
         foreach ($request['post_array'] as $list) {
             $data = new SeminarWorkshopFaculty();
-            $data->staff_id = $list['staff_id'];
+            $data->staff_id = $list['staff_id'] ?? $request->user()->id;
             $data->title_of_seminar = $list['title_of_seminar'];
             $data->type_of_seminar = $list['type_of_seminar'];
             $data->organized_by = $list['organized_by'];
@@ -31,8 +31,8 @@ class SeminarWorkshopFacultyController extends Controller
     {
         foreach ($request['post_array'] as $list) {
             $data = SeminarWorkshopFaculty::find($list['id']);
-            if($data){
-                $data->staff_id = $list['staff_id'];
+            if ($data) {
+                $data->staff_id = $list['staff_id'] ?? $request->user()->id;
                 $data->title_of_seminar = $list['title_of_seminar'];
                 $data->type_of_seminar = $list['type_of_seminar'];
                 $data->organized_by = $list['organized_by'];
@@ -40,9 +40,9 @@ class SeminarWorkshopFacultyController extends Controller
                 $data->date = $list['date'];
                 $data->achievement = $list['achievement'];
                 $data->update();
-            }else{
+            } else {
                 $data = new SeminarWorkshopFaculty();
-                $data->staff_id = $list['staff_id'];
+                $data->staff_id = $list['staff_id'] ?? $request->user()->id;
                 $data->title_of_seminar = $list['title_of_seminar'];
                 $data->type_of_seminar = $list['type_of_seminar'];
                 $data->organized_by = $list['organized_by'];
@@ -68,9 +68,9 @@ class SeminarWorkshopFacultyController extends Controller
     public function search_seminar_workshop_faculty(Request $request)
     {
         $requestedData = (object)$request->json()->all();
-        if($requestedData->staff_id == null || $requestedData->staff_id == "null"){
+        if ($requestedData->staff_id == null || $requestedData->staff_id == "null") {
             $data = SeminarWorkshopFaculty::whereBetween('date', [$requestedData->from_date, $requestedData->to_date])->get();
-        }else{
+        } else {
             $data = SeminarWorkshopFaculty::whereBetween('date', [$requestedData->from_date, $requestedData->to_date])
                 ->whereStaffId($requestedData->staff_id)
                 ->get();
