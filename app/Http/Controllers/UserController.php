@@ -695,7 +695,7 @@ class UserController extends Controller
 
 
         if ($request->admission_status == 0) {
-            $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id);
+            $preAdmissionPayment = PreAdmissionPayment::whereUserId($user->id)->first();
             $preAdmissionPayment->payment_date = $request['payment_date'];
             $preAdmissionPayment->mode_of_payment = $request['mode_of_payment'];
             $preAdmissionPayment->transaction_id = $request['transaction_id'];
