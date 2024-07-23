@@ -5,13 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\ErpSettings;
 use App\Http\Requests\StoreErpSettingsRequest;
 use App\Http\Requests\UpdateErpSettingsRequest;
+use Illuminate\Http\Request;
 
 class ErpSettingsController extends Controller
 {
     public function get_erp_settings()
     {
         $data = ErpSettings::first();
-        return response()->json(['success'=>1, 'data' => $data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => $data], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function update_erp_settings(Request $request)
+    {
+        $erpSetting = ErpSettings::find(1);
+
+        if ($erpSetting) {
+            $erpSetting->title = $request->title;
+            $erpSetting->session_id = $request->session_id;
+            $erpSetting->update();
+        } else {
+            $erpSetting = new ErpSettings();
+            $erpSetting->title = $request->title;
+            $erpSetting->session_id = $request->session_id;
+            $erpSetting->save();
+        }
+
+        return response()->json(['success' => 1, 'data' => $erpSetting]);
     }
 
     /**

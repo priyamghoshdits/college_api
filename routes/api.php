@@ -127,6 +127,7 @@ Route::get("testFile", [MemberController::class, 'testFile']);
 Route::post("getMarksheet", [MarksheetController::class, 'get_mark_sheet']);
 
 Route::get("getErpSettings", [ErpSettingsController::class, 'get_erp_settings']);
+Route::post("updateErpSettings", [ErpSettingsController::class, 'update_erp_settings']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     //LOGOUT

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('erp_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('fav_icon');
+            $table->string('title')->nullable();
+            $table->string('fav_icon')->nullable();
+            $table->string('session_id')->nullable();
             $table->timestamps();
         });
     }
