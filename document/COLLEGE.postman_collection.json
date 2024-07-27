@@ -1,0 +1,8118 @@
+{
+	"info": {
+		"_postman_id": "412247ab-e048-4259-ad24-c342dc7d2ae3",
+		"name": "COLLEGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33983717"
+	},
+	"item": [
+		{
+			"name": "STUDENT / MEMBERS",
+			"item": [
+				{
+					"name": "CREATE STUDENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|cTwjFbjngt1sq4Ae5WOacGg0F7xP5d2XTONVqqhK9d7fb1ff",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"identification_no\": \"dsadsadfdsf\",\n\t\"first_name\" : \"test\",\n\t\"middle_name\" : \"\",\n\t\"last_name\" : \"dasdsa\",\n\t\"gender\" : \"male\",\n\t\"dob\" : \"2024-01-12\",\n\t\"category_id\" : \"1\",\n\t\"religion\" : \"hindu\",\n\t\"cast\" : \"sc\",\n\t\"mobile_no\" : \"23423432\",\n\t\"blood_group\" : \"A+\",\n\t\"email\" : \"test1@gmail.com\",\n\t\"password\" : \"12345\",\n\t\"course_id\" : \"2\",\n\t\"semester_id\" : \"1\",\n\t\"session_id\" : \"1\",\n\t\"admission_status\" : \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveStudent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveStudent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MEMBER STATUS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|cTwjFbjngt1sq4Ae5WOacGg0F7xP5d2XTONVqqhK9d7fb1ff",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/memberStatus/12",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"memberStatus",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE MEMBER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|cTwjFbjngt1sq4Ae5WOacGg0F7xP5d2XTONVqqhK9d7fb1ff",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"identification_no\": \"dsadsadfdsf\",\n\t\"first_name\" : \"test\",\n\t\"middle_name\" : \"\",\n\t\"last_name\" : \"dasdsa\",\n\t\"gender\" : \"male\",\n\t\"dob\" : \"2024-01-12\",\n\t\"category_id\" : \"1\",\n\t\"religion\" : \"hindu\",\n\t\"cast\" : \"sc\",\n\t\"mobile_no\" : \"23423432\",\n\t\"blood_group\" : \"A+\",\n\t\"user_type_id\" : \"1\",\n\t\"email\" : \"test341111@gmail.com\",\n\t\"password\" : \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveMember",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveMember"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE MEMBER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|cTwjFbjngt1sq4Ae5WOacGg0F7xP5d2XTONVqqhK9d7fb1ff",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteMember/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteMember",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE STUDENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|cTwjFbjngt1sq4Ae5WOacGg0F7xP5d2XTONVqqhK9d7fb1ff",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\" : 55,\n\t\"identification_no\": \"dsadsadfdsf\",\n\t\"first_name\" : \"test\",\n\t\"middle_name\" : \"\",\n\t\"last_name\" : \"dasdsa\",\n\t\"gender\" : \"male\",\n\t\"dob\" : \"2024-01-12\",\n\t\"category_id\" : \"1\",\n\t\"religion\" : \"hindu\",\n\t\"cast\" : \"sc\",\n\t\"mobile_no\" : \"23423432\",\n\t\"blood_group\" : \"A+\",\n\t\"email\" : \"test1@gmail.com\",\n\t\"password\" : \"12345\",\n\t\"course_id\" : \"2\",\n\t\"semester_id\" : \"1\",\n\t\"session_id\" : \"1\",\n\t\"admission_status\" : \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateStudent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateStudent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMUNICATION",
+			"item": [
+				{
+					"name": "SEND MAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mailCommunication",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mailCommunication"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATTENDANCE",
+			"item": [
+				{
+					"name": "SAVE ATTENDANCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"course_id\": 2 ,\n\t\t\"semester_id\": 2,\n\t\t\"subject_id\": 1,\n\t\t\"date\": \"2024-01-11\",\n\t\t\"user_id\": 3,\n\t\t\"attendance\": \"present\"\n\t}\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveAttendance",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveAttendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET STUDENT ATTENDANCE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getStudentAttendance",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getStudentAttendance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RANDOM API",
+			"item": [
+				{
+					"name": "GET TOTAL PAID BY A STUDENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/studentTotalPaid/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"studentTotalPaid",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SEMESTER BY COURSE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSemesterByCourse/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSemesterByCourse",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FEES STRUCTURE",
+			"item": [
+				{
+					"name": "SAVE FEES STRUCTURE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"course_id\": 2,\n\t\"fees_type_id\": 1,\n\t\"due_date\": \"2024-01-11\",\n\t\"amount\": 10000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveFeesStructure?=",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveFeesStructure"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET FEES STRUCTURE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getFeesStructure",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getFeesStructure"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CATEGORY",
+			"item": [
+				{
+					"name": "GET CATEGORY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getCategory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE CATEGORY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"gg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveCategory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CATEGORY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\" : \"aa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateCategory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CATEGORY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteCategory/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteCategory",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WEEK DAYS",
+			"item": [
+				{
+					"name": "DELETE WEEK DAYS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteWeekdays/8",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteWeekdays",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE WEEK DAYS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 8,\n\t\"name\" : \"new\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateWeekdays",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateWeekdays"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE WEEK DAYS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveWeekdays",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveWeekdays"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET WEEK DAYS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getWeekdays",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getWeekdays"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FEES TYPE",
+			"item": [
+				{
+					"name": "DELETE FEES TYPE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteFeesType/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteFeesType",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE FEES TYPE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"abcd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateFeesType",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateFeesType"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE FEES TYPE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"semester\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveFeesType",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveFeesType"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET FEES TYPE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getFeesType",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getFeesType"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER LOGIN",
+			"item": [
+				{
+					"name": "USER LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|C7YFV3zYUIoRynerhsopNMsV6jyIQjb5FhOJLrgycdaa202b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"admin@admin.com\",\n\t\"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rgoi.in/college_api/public/api/login",
+							"protocol": "https",
+							"host": [
+								"rgoi",
+								"in"
+							],
+							"path": [
+								"college_api",
+								"public",
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLEAR PERSONAL ACCESS TOKEN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|C7YFV3zYUIoRynerhsopNMsV6jyIQjb5FhOJLrgycdaa202b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/clearPersonalAccessToken",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"clearPersonalAccessToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER LOGOUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|35BQTSYyIpHIrIBACEohTzNDHL3cD17Crl709lLr2aac96fe",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER CREATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"identification_no\": \"1\",\n\t\"first_name\": \"test\",\n\t\"last_name\": \"last\",\n\t\"gender\": \"male\",\n\t\"dob\": \"2024-10-10\",\n\t\"franchise_id\": 1,\n\t\"category_id\": 1,\n\t\"email\": \"admin@admin.com\",\n\t\"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/createUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"createUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PAYMENT",
+			"item": [
+				{
+					"name": "DELETE PAYMENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deletePayment/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deletePayment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PAYMENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 4,\n\t\"student_id\": 3,\n\t\"amount\": 1000,\n\t\"mode\": 1,\n\t\"description\": \"fsdfds\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updatePayment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updatePayment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE PAYMENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"student_id\": 1,\n\t\"amount\": 500,\n\t\"course_id\": 2,\n\t\"semester_id\": 1,\n\t\"paid_on\": \"2024-01-10\",\n\t\"mode\": \"online\",\n\t\"description\": \"fsdfds\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/savePayment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"savePayment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PAYMENT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getPayment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getPayment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LEAVE",
+			"item": [
+				{
+					"name": "UPDATE LEAVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"user_id\": 4,\n\t\"course_id\": 1,\n\t\"semester_id\": 1,\n\t\"from_date\": \"2024-01-30\",\n\t\"to_date\": \"2024-01-09\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateLeave",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateLeave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE LEAVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteLeave/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteLeave",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET LEAVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getLeave",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getLeave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE LEAVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": 2,\n\t\"course_id\": 1,\n\t\"semester_id\": 1,\n\t\"from_date\": \"2024-01-09\",\n\t\"to_date\": \"2024-01-09\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveLeave",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveLeave"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SEMESTER TIMETABLE",
+			"item": [
+				{
+					"name": "GET SEMESTER TIME TABLE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSemesterTimeTableByTeacherId/12",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSemesterTimeTableByTeacherId",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SEMESTER TIME TABLE BY COURSE AND SEMESTER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSemesterTimeTableByCourseAndSemesterId/2/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSemesterTimeTableByCourseAndSemesterId",
+								"2",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE SEMESTER TIME TABLE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"course_id\": 2,\n\t\"semester_id\": 1,\n\t\"details\" : [\n\t\t{\n\t\t\t\"week_id\" : 6,\n\t\t\t\"subject_id\": 1,\n\t\t\t\"teacher_id\": 12,\n\t\t\t\"time_from\" : \"9:00\",\n\t\t\t\"time_to\" : \"10:00\",\n\t\t\t\"room_no\" : \"100\"\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveSemesterTimeTable",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveSemesterTimeTable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUBJECTS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSubject/1/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSubject",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET TEACHERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getTeachersAssign/1/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getTeachersAssign",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUBJECT GROUPS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSubjectGroup/2/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSubjectGroup",
+								"2",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MEMBER",
+			"item": [
+				{
+					"name": "GET ALL TEACHERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getTeachers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getTeachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL STUDENTS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "35|G7ZHhl43WylAQHhoHv3urA0Y2hvtw87eDpkDOagTf3e1bf48",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "https://rgoi.in/college_api/public/api/getStudents",
+							"protocol": "https",
+							"host": [
+								"rgoi",
+								"in"
+							],
+							"path": [
+								"college_api",
+								"public",
+								"api",
+								"getStudents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL MEMBERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "17|mGhPoxL1uR1jhFXQQ2R3SeUqpArF9qLVw5pHxzEB042df767",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getAllMembers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getAllMembers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ASSIGN SEMESTER TEACHER",
+			"item": [
+				{
+					"name": "GET ASSIGN TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getAssignedSemesterTeacher",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getAssignedSemesterTeacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE ASSIGN TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"course_id\": 1,\n\t\"semester_id\": 1,\n\t\"teacher\" :[\n\t\t{\"id\": 1},\n\t\t{\"id\": 9},\n\t\t{\"id\": 11},\n\t\t{\"id\": 12}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateSemesterTeacher",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateSemesterTeacher"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SUBJECT GROUP",
+			"item": [
+				{
+					"name": "UPDATE SUBJECT GROUP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "35|G7ZHhl43WylAQHhoHv3urA0Y2hvtw87eDpkDOagTf3e1bf48",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/9.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"course_id\": 1,\n\t\"name\": \"test1\",\n\t\"old_semester\": 2,\n\t\"semester\": 2,\n\t\"subject\": [\n\t\t{\n\t\t\t\"id\": 1\n\t\t},\n\t\t{\n\t\t\t\"id\": 2\n\t\t},\n\t\t{\n\t\t\t\"id\": 3\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rgoi.in/college_api/public/api/updateSubjectGroup",
+							"protocol": "https",
+							"host": [
+								"rgoi",
+								"in"
+							],
+							"path": [
+								"college_api",
+								"public",
+								"api",
+								"updateSubjectGroup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUBJECT GROUP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSubjectGroup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSubjectGroup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE SUBJECT GROUP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "35|G7ZHhl43WylAQHhoHv3urA0Y2hvtw87eDpkDOagTf3e1bf48",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"course_id\": \"1\",\n\t\"name\": \"test1\",\n\t\"semester_id\": \"2\",\n\t\"subject\": [\n\t\t{\n\t\t\t\"id\": 1\n\t\t},\n\t\t{\n\t\t\t\"id\": 2\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rgoi.in/college_api/public/api/saveSubjectGroup",
+							"protocol": "https",
+							"host": [
+								"rgoi",
+								"in"
+							],
+							"path": [
+								"college_api",
+								"public",
+								"api",
+								"saveSubjectGroup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SUBJECT",
+			"item": [
+				{
+					"name": "SAVE SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"subject5\",\n\t\"subject_code\" : \"s5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveSubject",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveSubject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSubject",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSubject"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SEMESTER",
+			"item": [
+				{
+					"name": "DELETE SEMESTER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteSemester/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteSemester",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SEMESTER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getSemester",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getSemester"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE SEMESTER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"sem 11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveSemester",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveSemester"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COURSE",
+			"item": [
+				{
+					"name": "DELETE COURSE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteCourse/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteCourse",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE COURSE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"course_name\": \"test\",\n\t\"duration\": 1,\n\t\"semester\":[\n\t\t{\n\t\t\t\"semester_id\": 1\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 2\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 3\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 4\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 5\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 6\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 7\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 8\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateCourse",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateCourse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET COURSE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getCourse",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getCourse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE COURSE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": []
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.5.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"course_name\": \"test1\",\n\t\"duration\": 1,\n\t\"semester\":[\n\t\t{\n\t\t\t\"semester_id\": 1\n\t\t},\n\t\t{\n\t\t\t\"semester_id\": 2\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveCourse",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveCourse"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "STAFF",
+			"item": [
+				{
+					"name": "STAFF EXPERIENCE",
+					"item": [
+						{
+							"name": "SAVE EXPERIENCE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "staff_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "designation",
+											"value": "gffg",
+											"type": "text"
+										},
+										{
+											"key": "experience",
+											"value": "52",
+											"type": "text"
+										},
+										{
+											"key": "organization",
+											"value": "dsf",
+											"type": "text"
+										},
+										{
+											"key": "from_date",
+											"value": "2024-01-25",
+											"type": "text"
+										},
+										{
+											"key": "to_date",
+											"value": "2024-07-25",
+											"type": "text"
+										},
+										{
+											"key": "experience_proof",
+											"type": "file",
+											"src": "/C:/Users/digit/Downloads/WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveExperience",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveExperience"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE EXPERINCE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "6",
+											"type": "text"
+										},
+										{
+											"key": "staff_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "designation",
+											"value": "gffg",
+											"type": "text"
+										},
+										{
+											"key": "experience",
+											"value": "52",
+											"type": "text"
+										},
+										{
+											"key": "organization",
+											"value": "dsf",
+											"type": "text"
+										},
+										{
+											"key": "from_date",
+											"value": "2024-01-25",
+											"type": "text"
+										},
+										{
+											"key": "to_date",
+											"value": "2024-07-25",
+											"type": "text"
+										},
+										{
+											"key": "experience_proof",
+											"type": "file",
+											"src": "/C:/Users/digit/Downloads/WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateExperience",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateExperience"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET EXPERINCE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getExperience",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getExperience"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE EXPERINCE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getExperience/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getExperience",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF SEMINAR WORKSHOP FACULTY",
+					"item": [
+						{
+							"name": "SAVE SEMINAR WORKSHOP FACULTY",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"post_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"title_of_seminar\": \"qwe\",\r\n            \"type_of_seminar\": \"qwe\",\r\n            \"organized_by\": \"qwe\",\r\n            \"duration\": \"wqe\",\r\n            \"date\": \"2024-07-25\",\r\n            \"achievement\": \"fdg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 5,\r\n            \"title_of_seminar\": \"fdg\",\r\n            \"type_of_seminar\": \"dfg\",\r\n            \"organized_by\": \"fdg\",\r\n            \"duration\": \"dfg\",\r\n            \"date\": \"2024-07-26\",\r\n            \"achievement\": \"fdg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveSeminarWorkshopFaculty",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveSeminarWorkshopFaculty"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE SEMINAR WORKSHOP FACULTY",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"post_array\": [\r\n        {\r\n            \"id\": 2,\r\n            \"staff_id\": 3,\r\n            \"title_of_seminar\": \"qwe\",\r\n            \"type_of_seminar\": \"qwe\",\r\n            \"organized_by\": \"qwe\",\r\n            \"duration\": \"wqe\",\r\n            \"date\": \"2024-07-25\",\r\n            \"achievement\": \"fdg\"\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"staff_id\": 5,\r\n            \"title_of_seminar\": \"fdg\",\r\n            \"type_of_seminar\": \"dfg\",\r\n            \"organized_by\": \"fdg\",\r\n            \"duration\": \"dfg\",\r\n            \"date\": \"2024-07-26\",\r\n            \"achievement\": \"fdg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateSeminarWorkshopFaculty",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateSeminarWorkshopFaculty"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET SEMINAR WORKSHOP FACULTY",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"staff_id\": null,\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchSeminarWorkshopFaculty",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchSeminarWorkshopFaculty"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE SEMINAR WORKSHOP FACULTY",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteSeminarWorkshopFaculty/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteSeminarWorkshopFaculty",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF EDUCATION",
+					"item": [
+						{
+							"name": "SAVE EDUCATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"staff_education_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"degree\": \"1\",\r\n            \"specialization\": \"sdf\",\r\n            \"university_name\": \"sdfsd\",\r\n            \"percentage\": 80,\r\n            \"grade \": null,\r\n            \"file_name \": null,\r\n            \"grade\": \"A\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 8,\r\n            \"degree\": \"2\",\r\n            \"specialization\": \"rtrt\",\r\n            \"university_name\": \"dfd\",\r\n            \"percentage\": 90,\r\n            \"grade \": null,\r\n            \"file_name \": null,\r\n            \"grade\": \"A+\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveStaffEducation",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveStaffEducation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE EDUCATION FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_name",
+											"type": "file",
+											"src": "/C:/Users/digit/Downloads/WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveStaffEducationFile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveStaffEducationFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE EDUCATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"staff_education_array\": [\r\n        {\r\n            \"id\": 3,\r\n            \"staff_id\": 5,\r\n            \"degree\": \"3\",\r\n            \"specialization\": \"dfgf\",\r\n            \"university_name\": \"dfg\",\r\n            \"percentage\": \"60\",\r\n            \"grade \": null,\r\n            \"file_name \": null,\r\n            \"grade\": \"dfgf\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.32.49 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateStaffEducation",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateStaffEducation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET EDUCATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getStaffEducation",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getStaffEducation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET EDUCATION BY STAFF",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getStaffEducation/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getStaffEducation",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE EDUCATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getExperience/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getExperience",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF EXAMINERS",
+					"item": [
+						{
+							"name": "SAVE EXAMINERS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paper_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"examination_name\": \"gdfg\",\r\n            \"type_of_examiner\": \"dgdf\",\r\n            \"university_name\": \"fgfd\",\r\n            \"referance_no\": \"bvcb\",\r\n            \"ref_date\": \"2024-07-25\",\r\n            \"paper_file\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\",\r\n            \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 5,\r\n            \"examination_name\": \"fgfdg\",\r\n            \"subject_name\": null,\r\n            \"university_name\": \"fdgdfg\",\r\n            \"referance_no\": \"dfgfd\",\r\n            \"ref_date\": \"2024-07-25\",\r\n            \"paper_file\": \"WhatsApp Image 2024-07-12 at 7.32.49 PM.jpeg\",\r\n            \"type_of_examiner\": \"dfgd\",\r\n            \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.32.49 PM.jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveExaminer",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveExaminer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE EXAMINERS FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "paper_file",
+											"type": "file",
+											"src": "/C:/Users/digit/Downloads/WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUploadFileExaminer",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUploadFileExaminer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE EXAMINERS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "staff_id",
+											"value": "25",
+											"type": "text"
+										},
+										{
+											"key": "examination_name",
+											"value": "sad",
+											"type": "text"
+										},
+										{
+											"key": "type_of_examiner",
+											"value": "sad",
+											"type": "text"
+										},
+										{
+											"key": "university_name",
+											"value": "sad",
+											"type": "text"
+										},
+										{
+											"key": "referance_no",
+											"value": "asd",
+											"type": "text"
+										},
+										{
+											"key": "ref_date",
+											"value": "asd",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateExaminer",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateExaminer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET EXAMINERS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-26\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchExaminer",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchExaminer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET EXAMINERS BY STAFF",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getStaffEducation/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getStaffEducation",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE EXAMINERS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteExaminer/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteExaminer",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF API SCORE",
+					"item": [
+						{
+							"name": "SAVE API SCORE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paper_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"assignment_year\": 2024,\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 5,\r\n            \"assignment_year\": 2023,\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveApiScore",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveApiScore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE API SCORE FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "paper_file",
+											"type": "file",
+											"src": "/C:/Users/digit/Downloads/WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUploadFileApiScore",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUploadFileApiScore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE API SCORE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "staff_id",
+											"value": "25",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "assignment_year",
+											"value": "2024",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateApiScore",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateApiScore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET API SCORE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"staff_id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchApiScore",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchApiScore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE API SCORE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteApiScore/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteApiScore",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF ANSWER SCRIPT EVALUATOR",
+					"item": [
+						{
+							"name": "SAVE ANSWER SCRIPT EVALUATOR",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paper_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"examination_name\": \"gdfg\",\r\n            \"subject_name\": \"dfg\",\r\n            \"university_name\": \"dfg\",\r\n            \"referance_no\": \"fdg\",\r\n            \"ref_date\": \"2024-07-27\",\r\n            \"paper_file\": \"WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg\",\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"examination_name\": \"fdg\",\r\n            \"subject_name\": \"dfg\",\r\n            \"university_name\": \"dfg\",\r\n            \"referance_no\": \"dfg\",\r\n            \"ref_date\": \"2024-07-28\",\r\n            \"paper_file\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\",\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveAnswerScriptEvaluator",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveAnswerScriptEvaluator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE ANSWER SCRIPT EVALUATOR FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "paper_file",
+											"type": "file",
+											"src": "/C:/Users/digit/Downloads/WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUploadFile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUploadFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE ANSWER SCRIPT EVALUATOR",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "staff_id",
+											"value": "25",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "examination_name",
+											"value": "sdf",
+											"type": "text"
+										},
+										{
+											"key": "subject_name",
+											"value": "sdf",
+											"type": "text"
+										},
+										{
+											"key": "university_name",
+											"value": "sdf",
+											"type": "text"
+										},
+										{
+											"key": "referance_no",
+											"value": "f54",
+											"type": "text"
+										},
+										{
+											"key": "ref_date",
+											"value": "2024-07-27",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateApiScore",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateApiScore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET ANSWER SCRIPT EVALUATOR",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchAnswerScriptEvaluator",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchAnswerScriptEvaluator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE ANSWER SCRIPT EVALUATOR",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteAnswerScriptEvaluator/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteAnswerScriptEvaluator",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF SPONSORED PROJECT",
+					"item": [
+						{
+							"name": "SAVE SPONSORED PROJECT",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"consultationArray\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 62,\r\n            \"project_consultancy\": \"fsd\",\r\n            \"sponsored_by\": \"sdfs\",\r\n            \"consultant\": \"sfs\",\r\n            \"amount\": 5999,\r\n            \"duration\": \"3\",\r\n            \"status\": \"ongoing\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 5,\r\n            \"project_consultancy\": \"asd\",\r\n            \"sponsored_by\": \"asd\",\r\n            \"consultant\": \"asd\",\r\n            \"amount\": 8998,\r\n            \"duration\": \"qwe\",\r\n            \"status\": \"ongoing\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveAnswerScriptEvaluator",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveAnswerScriptEvaluator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE SPONSORED PROJECT",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"consultationArray\": [\r\n        {\r\n            \"id\": 2,\r\n            \"staff_id\": 62,\r\n            \"project_consultancy\": \"fsd\",\r\n            \"sponsored_by\": \"sdfs\",\r\n            \"consultant\": \"sfs\",\r\n            \"amount\": 5999,\r\n            \"duration\": \"3\",\r\n            \"status\": \"ongoing\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"staff_id\": 5,\r\n            \"project_consultancy\": \"asd\",\r\n            \"sponsored_by\": \"asd\",\r\n            \"consultant\": \"asd\",\r\n            \"amount\": 8998,\r\n            \"duration\": \"qwe\",\r\n            \"status\": \"ongoing\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateApiScore",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateApiScore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET SPONSORED PROJECT",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchConsultancy/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchConsultancy",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE SPONSORED PROJECT",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteConsultation/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteConsultation",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF JOURNAL PUBLICATION",
+					"item": [
+						{
+							"name": "SAVE JOURNAL PUBLICATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"journal_publication_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"journal_name\": \"dsfsdf\",\r\n            \"publication\": \"sdf\",\r\n            \"ugc_affiliation\": \"yes\",\r\n            \"university_name\": \"sdf\",\r\n            \"volume_page_number\": \"sdf\",\r\n            \"issn_number\": \"sdf\",\r\n            \"topic_name\": \"sdf\",\r\n            \"impact_factor\": \"dsf\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"journal_name\": \"sdf\",\r\n            \"publication\": \"wer\",\r\n            \"ugc_affiliation\": \"no\",\r\n            \"university_name\": \"werwe\",\r\n            \"volume_page_number\": \"rwer\",\r\n            \"issn_number\": \"wer\",\r\n            \"topic_name\": \"erwr\",\r\n            \"impact_factor\": \"ewrewr\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveJournalPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveJournalPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE JOURNAL PUBLICATION FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_name",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveJournalPublicationFile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveJournalPublicationFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE JOURNAL PUBLICATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"journal_publication_array\": [\r\n        {\r\n            \"id\": 2,\r\n            \"staff_id\": 2,\r\n            \"journal_name\": \"dsfsdf\",\r\n            \"publication\": \"sdf\",\r\n            \"ugc_affiliation\": \"yes\",\r\n            \"university_name\": \"sdf\",\r\n            \"volume_page_number\": \"sdf\",\r\n            \"issn_number\": \"sdf\",\r\n            \"topic_name\": \"sdf\",\r\n            \"impact_factor\": \"dsf\",\r\n            \"file_name\": null\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"journal_name\": \"vxcv\",\r\n            \"publication\": \"xcvx\",\r\n            \"ugc_affiliation\": \"yes\",\r\n            \"university_name\": \"dgfdg\",\r\n            \"volume_page_number\": \"fdgfd\",\r\n            \"issn_number\": \"fdgfd\",\r\n            \"topic_name\": \"gfdg\",\r\n            \"impact_factor\": \"dfgfd\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateJournalPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateJournalPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET JOURNAL PUBLICATION",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchJournalPublication/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchJournalPublication",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE JOURNAL PUBLICATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteJournalPublication/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteJournalPublication",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF PAPER POSTER",
+					"item": [
+						{
+							"name": "SAVE PAPER POSTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"journal_publication_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"journal_name\": \"dsfsdf\",\r\n            \"publication\": \"sdf\",\r\n            \"ugc_affiliation\": \"yes\",\r\n            \"university_name\": \"sdf\",\r\n            \"volume_page_number\": \"sdf\",\r\n            \"issn_number\": \"sdf\",\r\n            \"topic_name\": \"sdf\",\r\n            \"impact_factor\": \"dsf\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.32.48 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"journal_name\": \"sdf\",\r\n            \"publication\": \"wer\",\r\n            \"ugc_affiliation\": \"no\",\r\n            \"university_name\": \"werwe\",\r\n            \"volume_page_number\": \"rwer\",\r\n            \"issn_number\": \"wer\",\r\n            \"topic_name\": \"erwr\",\r\n            \"impact_factor\": \"ewrewr\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveJournalPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveJournalPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE PAPER POSTER FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_name",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveJournalPublicationFile?file_name",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveJournalPublicationFile"
+									],
+									"query": [
+										{
+											"key": "file_name",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE PAPER POSTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"journal_publication_array\": [\r\n        {\r\n            \"id\": 2,\r\n            \"staff_id\": 2,\r\n            \"journal_name\": \"dsfsdf\",\r\n            \"publication\": \"sdf\",\r\n            \"ugc_affiliation\": \"yes\",\r\n            \"university_name\": \"sdf\",\r\n            \"volume_page_number\": \"sdf\",\r\n            \"issn_number\": \"sdf\",\r\n            \"topic_name\": \"sdf\",\r\n            \"impact_factor\": \"dsf\",\r\n            \"file_name\": null\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"journal_name\": \"vxcv\",\r\n            \"publication\": \"xcvx\",\r\n            \"ugc_affiliation\": \"yes\",\r\n            \"university_name\": \"dgfdg\",\r\n            \"volume_page_number\": \"fdgfd\",\r\n            \"issn_number\": \"fdgfd\",\r\n            \"topic_name\": \"gfdg\",\r\n            \"impact_factor\": \"dfgfd\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateJournalPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateJournalPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET PAPER POSTER",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchJournalPublication/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchJournalPublication",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE PAPER POSTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteJournalPublication/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteJournalPublication",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF PAPER SETTER",
+					"item": [
+						{
+							"name": "SAVE PAPER SETTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paper_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"examination_name\": \"sdf\",\r\n            \"subject_name\": \"dsf\",\r\n            \"university_name\": \"sdf\",\r\n            \"referance_no\": \"dsf\",\r\n            \"ref_date\": \"2024-07-26\",\r\n            \"paper_file\": null,\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"examination_name\": \"fdgf\",\r\n            \"subject_name\": \"dfg\",\r\n            \"university_name\": \"dfg\",\r\n            \"referance_no\": \"dfg\",\r\n            \"ref_date\": \"2024-07-26\",\r\n            \"paper_file\": null,\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/savePaperSetter",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"savePaperSetter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE PAPER SETTER FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paper_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"examination_name\": \"sdf\",\r\n            \"subject_name\": \"dsf\",\r\n            \"university_name\": \"sdf\",\r\n            \"referance_no\": \"dsf\",\r\n            \"ref_date\": \"2024-07-26\",\r\n            \"paper_file\": null,\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"examination_name\": \"fdgf\",\r\n            \"subject_name\": \"dfg\",\r\n            \"university_name\": \"dfg\",\r\n            \"referance_no\": \"dfg\",\r\n            \"ref_date\": \"2024-07-26\",\r\n            \"paper_file\": null,\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUploadFile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUploadFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE PAPER SETTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paper_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"examination_name\": \"sdf\",\r\n            \"subject_name\": \"dsf\",\r\n            \"university_name\": \"sdf\",\r\n            \"referance_no\": \"dsf\",\r\n            \"ref_date\": \"2024-07-26\",\r\n            \"paper_file\": null,\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 3,\r\n            \"examination_name\": \"fdgf\",\r\n            \"subject_name\": \"dfg\",\r\n            \"university_name\": \"dfg\",\r\n            \"referance_no\": \"dfg\",\r\n            \"ref_date\": \"2024-07-26\",\r\n            \"paper_file\": null,\r\n            // \"upload_file\": \"C:\\\\fakepath\\\\WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updatePaperSetter",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updatePaperSetter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET PAPER SETTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/searchPaperSetter/6",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"searchPaperSetter",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE PAPER POSTER",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deletePaperSetter/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deletePaperSetter",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF UNIVERSITY SYNOPSIS",
+					"item": [
+						{
+							"name": "SAVE UNIVERSITY SYNOPSIS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"university_synopsis_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"course_id\": \"1\",\r\n            \"semester_id\": \"1\",\r\n            \"staff_id\": 2,\r\n            \"student_id\": 64,\r\n            \"institute_name\": \"sds\",\r\n            \"title\": \"sdsd\",\r\n            \"course\": \"sads\",\r\n            \"referance_no\": \"sdsda\",\r\n            \"ref_date \": null,\r\n            \"file_name \": null,\r\n            \"date_evaluation\": \"2024-07-27\",\r\n            \"session_id\": \"2\",\r\n            \"ref_date\": \"2024-07-28\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"course_id\": \"1\",\r\n            \"semester_id\": \"1\",\r\n            \"staff_id\": 5,\r\n            \"student_id\": 63,\r\n            \"institute_name\": \"sadas\",\r\n            \"title\": \"asdasd\",\r\n            \"course\": \"asdsa\",\r\n            \"referance_no\": \"ewr\",\r\n            \"ref_date \": null,\r\n            \"file_name \": null,\r\n            \"date_evaluation\": \"2024-07-29\",\r\n            \"session_id\": \"2\",\r\n            \"ref_date\": \"2024-07-27\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUniversitySynopsis",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUniversitySynopsis"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE UNIVERSITY SYNOPSIS FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_name",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUniversitySynopsisFile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUniversitySynopsisFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE UNIVERSITY SYNOPSIS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"university_synopsis_array\": [\r\n        {\r\n            \"id\": 2,\r\n            \"course_id\": 1,\r\n            \"semester_id\": 1,\r\n            \"staff_id\": 2,\r\n            \"student_id\": 64,\r\n            \"institute_name\": \"sds\",\r\n            \"title\": \"sdsd\",\r\n            \"course\": \"sads\",\r\n            \"referance_no\": \"sdsda\",\r\n            \"ref_date \": null,\r\n            \"file_name \": null,\r\n            \"date_evaluation\": \"2024-07-27\",\r\n            \"ref_date\": \"2024-07-28\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateJournalPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateJournalPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET UNIVERSITY SYNOPSIS",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getUniversitySynopsis/5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getUniversitySynopsis",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE UNIVERSITY SYNOPSIS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteUniversitySynopsis/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteUniversitySynopsis",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF BOOK PUBLICATION",
+					"item": [
+						{
+							"name": "SAVE BOOK PUBLICATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"book_publication_array\": [\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 2,\r\n            \"book_name\": \"dfd\",\r\n            \"ISBN_number\": \"sdf\",\r\n            \"name_of_publisher\": \"dfd\",\r\n            \"chapter_full_book\": \"sdf\",\r\n            \"chapter_name\": \"gfg\",\r\n            \"page_number\": \"30\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM.jpeg\"\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"staff_id\": 8,\r\n            \"book_name\": \"sdf\",\r\n            \"ISBN_number\": \"df\",\r\n            \"name_of_publisher\": \"sdf\",\r\n            \"chapter_full_book\": \"dfs\",\r\n            \"chapter_name\": \"sdf\",\r\n            \"page_number\": \"60\",\r\n            \"file_name\": \"WhatsApp Image 2024-07-12 at 7.33.53 PM(1).jpeg\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveBookPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveBookPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SAVE BOOK PUBLICATION FILE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_name",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveUniversitySynopsisFile",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveUniversitySynopsisFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE BOOK PUBLICATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "staff_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "ISBN_number",
+											"value": "dfg",
+											"type": "text"
+										},
+										{
+											"key": "book_name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "name_of_publisher",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "chapter_full_book",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "chapter_name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "page_number",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "file_name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateJournalPublication",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateJournalPublication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET BOOK PUBLICATION",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"staff_id\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getBookPublication/12",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getBookPublication",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE BOOK PUBLICATION",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteBookPublication/4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteBookPublication",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "STAFF DEGREE",
+					"item": [
+						{
+							"name": "SAVE DEGREE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"fdsf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/saveDegree",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"saveDegree"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE DEGREE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"trtretrt 1111dfd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/updateDegree",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"updateDegree"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET DEGREE",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/getDegree",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"getDegree"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE DEGREE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/deleteDegree/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"deleteDegree",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "HOSTEL",
+			"item": [
+				{
+					"name": "ADD HOSTEL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"dsfasdf\",\r\n    \"hostel_type_id\": \"1\",\r\n    \"address\": \"fgdg\",\r\n    \"description\": \"fdgdfg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveHostels",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveHostels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOSTEL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"dsfasdf\",\r\n    \"hostel_type_id\": \"1\",\r\n    \"address\": \"fgdg\",\r\n    \"description\": \"fdgdfg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateHostels",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateHostels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HOSTEL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteHostels/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteHostels",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET HOSTEL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getHostels",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getHostels"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ROOM TYPE",
+			"item": [
+				{
+					"name": "ADD ROOM TYPE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"fdf\",\r\n    \"description\": \"sdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveRoomType",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveRoomType"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ROOM TYPE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"dgg\",\r\n    \"description\": \"dfgf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateHostels",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateHostels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ROOM TYPE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteRoomType/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteRoomType",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ROOM TYPE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getRoomType",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getRoomType"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HOSTEL ROOM",
+			"item": [
+				{
+					"name": "ADD HOSTEL ROOM",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"sdfd\",\r\n    \"hostel_id\": \"2\",\r\n    \"room_type_id\": \"2\",\r\n    \"no_of_bed\": \"1\",\r\n    \"cost_per_bed\": \"3000\",\r\n    \"description\": \"df\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveRoomDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveRoomDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOSTEL ROOM",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"dsfd\",\r\n    \"hostel_id\": 2,\r\n    \"room_type_id\": 2,\r\n    \"no_of_bed\": 2,\r\n    \"cost_per_bed\": 3000,\r\n    \"description\": \"dfsdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateRoomDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateRoomDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HOSTEL ROOM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteRoomDetails/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteRoomDetails",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET HOSTEL ROOM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getRoomDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getRoomDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INTERNSHIP",
+			"item": [
+				{
+					"name": "ADD INTERNSHIP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"internship_provider_id\": \"2\",\r\n    \"user_id\": 63,\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-31\",\r\n    \"course_id\": \"1\",\r\n    \"semester_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveInternshipDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveInternshipDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE INTERNSHIP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"internship_provider_id\": 2,\r\n    \"user_id\": 63,\r\n    \"from_date\": \"2024-07-01\",\r\n    \"to_date\": \"2024-07-01\",\r\n    \"course_id\": \"1\",\r\n    \"semester_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateInternshipDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateInternshipDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE INTERNSHIP",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteInternshipDetails/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteInternshipDetails",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET INTERNSHIP",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getInternshipDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getInternshipDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "INTERNSHIP PROVIDER",
+			"item": [
+				{
+					"name": "ADD INTERNSHIP PROVIDER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"dfdsf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveInternshipProvider",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveInternshipProvider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE INTERNSHIP PROVIDER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"dsfd\",\r\n    \"hostel_id\": 2,\r\n    \"room_type_id\": 2,\r\n    \"no_of_bed\": 2,\r\n    \"cost_per_bed\": 3000,\r\n    \"description\": \"dfsdf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateRoomDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateRoomDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE INTERNSHIP PROVIDER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteInternshipProvider/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteInternshipProvider",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET INTERNSHIP PROVIDER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getInternshipProvider",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getInternshipProvider"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMPANY",
+			"item": [
+				{
+					"name": "ADD COMPANY",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"dsf\",\r\n    \"phone\": \"9798741323\",\r\n    \"contact_person_name\": \"ds\",\r\n    \"address\": \"sd\",\r\n    \"description\": \"sd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveCompanyDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveCompanyDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE COMPANY",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"dsf\",\r\n    \"phone\": 9798741323,\r\n    \"contact_person_name\": \"ds\",\r\n    \"address\": \"sd\",\r\n    \"description\": \"sd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateCompanyDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateCompanyDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE COMPANY",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteCompanyDetails/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteCompanyDetails",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET COMPANY",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getCompanyDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getCompanyDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PLACEMENT",
+			"item": [
+				{
+					"name": "ADD PLACEMENT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"company_id\": \"2\",\r\n    \"user_id\": 64,\r\n    \"placement_date\": \"2024-07-27\",\r\n    \"course_id\": \"1\",\r\n    \"session_id\": \"2\",\r\n    \"semester_id\": \"1\",\r\n    \"description\": \"fdgf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/savePlacementDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"savePlacementDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PLACEMENT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"company_id\": 2,\r\n    \"user_id\": 64,\r\n    \"placement_date\": \"2024-07-27\",\r\n    \"course_id\": 1,\r\n    \"session_id\": \"2\",\r\n    \"semester_id\": 1,\r\n    \"description\": \"fdgf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updatePlacementDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updatePlacementDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE PLACEMENT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deletePlacementDetails/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deletePlacementDetails",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PLACEMENT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getPlacementDetails",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getPlacementDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HOMEWORK",
+			"item": [
+				{
+					"name": "ADD HOMEWORK",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"course_id\": 1,\r\n    \"semester_id\": 1,\r\n    \"subject_id\": 1,\r\n    \"homework_date\": \"2024-07-27\",\r\n    \"submission_date\": \"2024-07-28\",\r\n    \"file\": \"file select\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveHomework",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveHomework"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOMEWORK",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"course_id\": 1,\r\n    \"semester_id\": 1,\r\n    \"subject_id\": 1,\r\n    \"homework_date\": \"2024-07-27\",\r\n    \"submission_date\": \"2024-07-28\",\r\n    \"file\": \"file select\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateHomework",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateHomework"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HOMEWORK",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteHomework/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteHomework",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET HOMEWORK",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getHomework",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getHomework"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HOMEWORK Copy",
+			"item": [
+				{
+					"name": "ADD HOMEWORK",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"course_id\": 1,\r\n    \"semester_id\": 1,\r\n    \"subject_id\": 1,\r\n    \"homework_date\": \"2024-07-27\",\r\n    \"submission_date\": \"2024-07-28\",\r\n    \"file\": \"file select\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/saveHomework",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"saveHomework"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE HOMEWORK",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"course_id\": 1,\r\n    \"semester_id\": 1,\r\n    \"subject_id\": 1,\r\n    \"homework_date\": \"2024-07-27\",\r\n    \"submission_date\": \"2024-07-28\",\r\n    \"file\": \"file select\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/updateHomework",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"updateHomework"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HOMEWORK",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/deleteHomework/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"deleteHomework",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET HOMEWORK",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|pJ7OMS5Nqs8w8h2K4krXTprEYG5Vb37C0G6rmx9Qbe1fc464",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/getHomework",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"getHomework"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET ALL USERS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "17|mGhPoxL1uR1jhFXQQ2R3SeUqpArF9qLVw5pHxzEB042df767",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "insomnia/9.2.0"
+					}
+				],
+				"url": {
+					"raw": "https://rgoi.in/college_api/public/api/getAllUsers",
+					"protocol": "https",
+					"host": [
+						"rgoi",
+						"in"
+					],
+					"path": [
+						"college_api",
+						"public",
+						"api",
+						"getAllUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CHATS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "insomnia/8.6.1"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/getChat",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"getChat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE CHAT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "User-Agent",
+						"value": "insomnia/8.6.1"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": 2,\n\t\"sender_id\": 1,\n\t\"time\": \"10:12 am\",\n\t\"text\": \"Are we meeting today? Project has been already finished and I have results to show you.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/saveChat",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"saveChat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLEAR CACHE SERVER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "insomnia/8.6.1"
+					}
+				],
+				"url": {
+					"raw": "https://rgoi.in/college_api/public/api/clearCache",
+					"protocol": "https",
+					"host": [
+						"rgoi",
+						"in"
+					],
+					"path": [
+						"college_api",
+						"public",
+						"api",
+						"clearCache"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLEAR CACHE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "insomnia/8.6.1"
+					}
+				],
+				"url": {
+					"raw": "https://rgoi.in/college_api/public/api/clearCache",
+					"protocol": "https",
+					"host": [
+						"rgoi",
+						"in"
+					],
+					"path": [
+						"college_api",
+						"public",
+						"api",
+						"clearCache"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
