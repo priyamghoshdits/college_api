@@ -97,6 +97,7 @@ use App\Http\Controllers\ManualScholarshipController;
 use App\Http\Controllers\ApiScoreController;
 use App\Http\Controllers\PaperPosterController;
 use App\Http\Controllers\ErpSettingsController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -203,6 +204,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveLibraryDetails", [LibraryStockController::class, 'save_library_details']);
     Route::post("updateLibraryDetails", [LibraryStockController::class, 'update_library_details']);
     Route::get("deleteLibraryDetails/{id}", [LibraryStockController::class, 'delete_library_details']);
+
+    // EVENT
+    Route::get("getEvent", [EventController::class, 'get_event']);
+    Route::post("saveEvent", [EventController::class, 'save_event']);
+    Route::post("updateEvent", [EventController::class, 'update_event']);
+    Route::get("deleteEvent/{id}", [EventController::class, 'delete_event']);
 
     //EDUCATION QUALIFICATION
     Route::get("searchEducationQualification/{student_id}", [EducationQualificationController::class, 'search_education_qualification']);
