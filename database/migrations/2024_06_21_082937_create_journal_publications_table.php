@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('issn_number')->nullable(true);
             $table->string('topic_name')->nullable(true);
             $table->string('impact_factor')->nullable(true);
+            $table->string('acceptance_year')->nullable(true);
             $table->string('file_name')->nullable(true);
             $table->timestamps();
         });

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('organized_by')->nullable(true);
             $table->string('duration')->nullable(true);
             $table->string('date')->nullable(true);
+            $table->string('end_date')->nullable(true);
+            $table->string('file_name')->nullable(true);
             $table->string('achievement')->nullable(true);
             $table->timestamps();
         });

@@ -27,6 +27,7 @@ class JournalPublicationController extends Controller
             $journal_data->issn_number = $request['issn_number'];
             $journal_data->topic_name = $request['topic_name'];
             $journal_data->impact_factor = $request['impact_factor'];
+            $journal_data->acceptance_year = $request['acceptance_year'];
 
             if ($files = $request->file('file_name')) {
                 $destinationPath = public_path('/journal_Publication/');
@@ -47,6 +48,7 @@ class JournalPublicationController extends Controller
             $journal->issn_number = $request['issn_number'];
             $journal->topic_name = $request['topic_name'];
             $journal->impact_factor = $request['impact_factor'];
+            $journal->acceptance_year = $request['acceptance_year'];
 
             if ($files = $request->file('file_name')) {
                 $destinationPath = public_path('/journal_Publication/');
@@ -89,6 +91,7 @@ class JournalPublicationController extends Controller
             $journal->topic_name = $list['topic_name'];
             $journal->file_name = $list['file_name'];
             $journal->impact_factor = $list['impact_factor'];
+            $journal->acceptance_year = $list['acceptance_year'];
             $journal->save();
         }
 
@@ -109,6 +112,7 @@ class JournalPublicationController extends Controller
                 $journal->issn_number = $list['issn_number'];
                 $journal->topic_name = $list['topic_name'];
                 $journal->impact_factor = $list['impact_factor'];
+                $journal->acceptance_year = $list['acceptance_year'];
                 $journal->file_name = $list['file_name'] ?? $journal->file_name;
                 $journal->update();
             } else {
@@ -122,6 +126,7 @@ class JournalPublicationController extends Controller
                 $journal->issn_number = $list['issn_number'];
                 $journal->topic_name = $list['topic_name'];
                 $journal->impact_factor = $list['impact_factor'];
+                $journal->acceptance_year = $list['acceptance_year'];
                 $journal->file_name = $list['file_name'];
                 $journal->save();
             }

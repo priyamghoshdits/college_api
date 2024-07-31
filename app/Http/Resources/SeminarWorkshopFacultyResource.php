@@ -19,7 +19,9 @@ class SeminarWorkshopFacultyResource extends JsonResource
             'organized_by' => $this->organized_by,
             'duration' => $this->duration,
             'date' => $this->date,
+            'end_date' => $this->end_date,
             'achievement' => $this->achievement,
+            'file_url' => $this->file_name != null ? asset("seminar_workshop/{$this->file_name}") : null,
         ];
     }
 }

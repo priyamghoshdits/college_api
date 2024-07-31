@@ -20,10 +20,24 @@ class SeminarWorkshopFacultyController extends Controller
             $data->organized_by = $list['organized_by'];
             $data->duration = $list['duration'];
             $data->date = $list['date'];
+            $data->end_date = $list['end_date'];
+            $data->file_name = $list['file_name'];
             $data->achievement = $list['achievement'];
             $data->save();
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function save_seminar_workshop_faculty_file(Request $request)
+    {
+        $file_name = '';
+        if ($files = $request->file('file_name')) {
+            $destinationPath = public_path('/seminar_workshop/');
+            $profileImage1 = $files->getClientOriginalName();
+            $files->move($destinationPath, $profileImage1);
+            $file_name = $files->getClientOriginalName();
+        }
+        return response()->json(['success' => 1, 'file_name' => $file_name], 200);
     }
 
 
@@ -38,6 +52,8 @@ class SeminarWorkshopFacultyController extends Controller
                 $data->organized_by = $list['organized_by'];
                 $data->duration = $list['duration'];
                 $data->date = $list['date'];
+                $data->end_date = $list['end_date'];
+                $data->file_name = $list['file_name'];
                 $data->achievement = $list['achievement'];
                 $data->update();
             } else {
@@ -47,7 +63,8 @@ class SeminarWorkshopFacultyController extends Controller
                 $data->type_of_seminar = $list['type_of_seminar'];
                 $data->organized_by = $list['organized_by'];
                 $data->duration = $list['duration'];
-                $data->date = $list['date'];
+                $data->end_date = $list['end_date'];
+                $data->file_name = $list['file_name'];
                 $data->achievement = $list['achievement'];
                 $data->save();
             }

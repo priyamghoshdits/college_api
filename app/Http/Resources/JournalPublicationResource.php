@@ -22,6 +22,7 @@ class JournalPublicationResource extends JsonResource
             'volume_page_number' => $this->volume_page_number,
             'issn_number' => $this->issn_number,
             'impact_factor' => $this->impact_factor,
+            'acceptance_year' => $this->acceptance_year,
             'file_url' => $this->file_name != null ? asset("journal_Publication/{$this->file_name}") : null,
         ];
     }

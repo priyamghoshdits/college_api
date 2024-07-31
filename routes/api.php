@@ -421,6 +421,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //SEMINAR WORKSHOP FACULTY DEVELOPMENT PROGRAMME
     Route::post("saveSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'save_seminar_workshop_faculty']);
+    Route::post("saveSeminarWorkshopFacultyFile", [SeminarWorkshopFacultyController::class, 'save_seminar_workshop_faculty_file']);
     Route::post("updateSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'update_seminar_workshop_faculty']);
     Route::get("deleteSeminarWorkshopFaculty/{id}", [SeminarWorkshopFacultyController::class, 'delete_seminar_workshop_faculty']);
     Route::post("searchSeminarWorkshopFaculty", [SeminarWorkshopFacultyController::class, 'search_seminar_workshop_faculty']);
