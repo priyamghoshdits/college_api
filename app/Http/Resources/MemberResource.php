@@ -35,6 +35,7 @@ class MemberResource extends JsonResource
             'email' => $this->email,
             'epf_number' => $this->epf_number,
             'basic_salary' => $this->basic_salary,
+            'gross_salary' => $this->gross_salary,
             'location' => $this->location,
             'contract_type' => $this->contract_type,
             'bank_account_number' => $this->bank_account_number,

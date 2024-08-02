@@ -874,15 +874,15 @@ class UserController extends Controller
             $member_details->save();
             DB::commit();
 
-            dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
-                Mail::send('welcome_password', array(
-                    'name' => $user->first_name . " " . $user->middle_name . " " . $user->last_name, 'password' => $pass, 'phone_no' => $mobile_no
-                ), function ($message) use ($email_id) {
-                    $message->from('rudkarsh@rgoi.in');
-                    $message->to($email_id);
-                    $message->subject('Test mail');
-                });
-            })->afterResponse();
+            // dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
+            //     Mail::send('welcome_password', array(
+            //         'name' => $user->first_name . " " . $user->middle_name . " " . $user->last_name, 'password' => $pass, 'phone_no' => $mobile_no
+            //     ), function ($message) use ($email_id) {
+            //         $message->from('rudkarsh@rgoi.in');
+            //         $message->to($email_id);
+            //         $message->subject('Test mail');
+            //     });
+            // })->afterResponse();
 
             //            dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
             //                Mail::send('welcome_password', array(
