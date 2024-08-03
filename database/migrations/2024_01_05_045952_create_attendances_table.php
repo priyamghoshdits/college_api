@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('semester_id')->nullable(true);
             $table->integer('subject_id')->nullable(true);
             $table->integer('session_id')->nullable(true);
+            $table->integer('class_type')->nullable(true);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('attendance_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('user_type_id')->references('id')->on('user_types')->onDelete('cascade');

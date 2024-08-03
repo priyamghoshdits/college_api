@@ -97,6 +97,7 @@ class AttendanceController extends Controller
                     $attendance->session_id = $session_id;
                     $attendance->attendance_by = $attendance_by;
                     $attendance->user_id = $list['user_id'];
+                    $attendance->class_type = $list['class_type'];
                     $attendance->user_type_id = 3;
                     $attendance->attendance = $list['attendance'];
                     $attendance->date = $date;
@@ -148,6 +149,7 @@ class AttendanceController extends Controller
                     $attendance->semester_id = $semester_id;
                     $attendance->subject_id = $subject_id;
                     $attendance->session_id = $session_id;
+                    $attendance->class_type = $list['class_type'];
                     $attendance->attendance_by = $attendance_by;
                     $attendance->user_id = $list['user_id'];
                     $attendance->user_type_id = 3;
@@ -238,10 +240,6 @@ class AttendanceController extends Controller
 
             return response()->json(['success'=>1,'data' => $data, 'class_status' => null, 'semester_time_table'=>$semesterTimeTable?1:0], 200,[],JSON_NUMERIC_CHECK);
         }
-
-//        select users.id, users.first_name, users.middle_name, users.last_name,ifnull(table1.attendance,'Absent') as attendances from (SELECT * FROM attendances where date = "2024-01-11") as table1
-//        right join users on users.id = table1.user_id
-//        where users.user_type_id = 3;
     }
 
     public function get_student_attendance_own($course_id, $semester_id, $date, $user_id, $member_id)
