@@ -12,6 +12,7 @@ class ClassStatusResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'topic_name' => $this->topic ?? null,
             'started_by' => $this->started_by ?? null,
             'started_by_name' => $this->started_by ? User::find($this->started_by)->first_name.' '.User::find($this->started_by)->middle_name.' '.User::find($this->started_by)->last_name : null,
             'time_on' => $this->time_on,

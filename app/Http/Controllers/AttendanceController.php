@@ -122,6 +122,7 @@ class AttendanceController extends Controller
                 ->first();
             if(!$attendanceUpdates){
                 $classStatus = new ClassStatus();
+                $classStatus->topic = $requestedData[0]['topic_name'];
                 $classStatus->started_by = null;
                 $classStatus->time_on = null;
                 $classStatus->ended_by = null;
