@@ -25,6 +25,7 @@ class PlacementResource extends JsonResource
             'session_name' => Session::find($this->session_id)->name,
             'company_id' => $this->company_id,
             'company_name' => CompanyDetail::find($this->company_id)->name,
+            'organization_name' => $this->organization_name,
             'user_id' => $this->user_id,
             'user_name' => User::find($this->user_id)->first_name.' '.User::find($this->user_id)->middle_name.' '.User::find($this->user_id)->last_name,
             'placement_date' => $this->placement_date,

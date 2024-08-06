@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('semester_id')->references('id')->on('semesters')->onDelete('cascade');
             $table->foreignId('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->foreignId('company_id')->references('id')->on('company_details')->onDelete('cascade');
+            $table->string('organization_name')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('placement_date');
             $table->string('description');

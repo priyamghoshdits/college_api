@@ -26,6 +26,7 @@ class PlacementDetailsController extends Controller
         $placementDetails->semester_id = $requestData->semester_id;
         $placementDetails->session_id = $requestData->session_id;
         $placementDetails->company_id = $requestData->company_id;
+        $placementDetails->organization_name = $requestData->organization_name;
         $placementDetails->user_id = $requestData->user_id;
         $placementDetails->placement_date = $requestData->placement_date;
         $placementDetails->description = $requestData->description;
@@ -41,6 +42,7 @@ class PlacementDetailsController extends Controller
         $placementDetails->semester_id = $requestData->semester_id;
         $placementDetails->session_id = $requestData->session_id;
         $placementDetails->company_id = $requestData->company_id;
+        $placementDetails->organization_name = $requestData->organization_name;
         $placementDetails->user_id = $requestData->user_id;
         $placementDetails->placement_date = $requestData->placement_date;
         $placementDetails->description = $requestData->description;
@@ -67,6 +69,7 @@ class PlacementDetailsController extends Controller
         $placementDetails->session_id = $student_details['session_id'];
 
         $placementDetails->company_id = $request->company_id;
+        $placementDetails->organization_name = $request->organization_name;
         $placementDetails->user_id = $request->user()->id;
         $placementDetails->placement_date = $request->placement_date;
         $placementDetails->description = $request->description;
@@ -81,6 +84,7 @@ class PlacementDetailsController extends Controller
         $placementDetails = PlacementDetails::find($request->id);
 
         $placementDetails->company_id = $request->company_id;
+        $placementDetails->organization_name = $request->organization_name;
         $placementDetails->placement_date = $request->placement_date;
         $placementDetails->description = $request->description;
         $placementDetails->update();
