@@ -399,14 +399,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //PAPER SETTER
     Route::post("savePaperSetter", [PaperSetterController::class, 'save_PaperSetter']);
-    Route::post("saveUploadFile", [PaperSetterController::class, 'save_upload_file']);
+    Route::post("saveUploadFilePaperSetter", [PaperSetterController::class, 'save_upload_file']);
     Route::post("updatePaperSetter", [PaperSetterController::class, 'update_PaperSetter']);
     Route::get("deletePaperSetter/{id}", [PaperSetterController::class, 'delete_PaperSetter']);
     Route::post("searchPaperSetting", [PaperSetterController::class, 'search_paper_setting']);
 
     //PAPER POSTER
     Route::post("savePaperPoster", [PaperPosterController::class, 'save_paper_poster']);
-    Route::post("saveUploadFile", [PaperPosterController::class, 'save_upload_file']);
+    Route::post("saveUploadFilePaperPoster", [PaperPosterController::class, 'save_upload_file']);
     Route::post("updatePaperPoster", [PaperPosterController::class, 'update_paper_poster']);
     Route::get("deletePaperPoster/{id}", [PaperPosterController::class, 'delete_paper_poster']);
     Route::post("searchPaperPoster", [PaperPosterController::class, 'search_paper_setting']);

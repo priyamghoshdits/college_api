@@ -83,7 +83,7 @@ class QuestionController extends Controller
         $requestedData = (object)$request->json()->all();
         $subject_details_id = $requestedData->subject_details_id;
         foreach ($requestedData->questions as $list){
-            if($list['id']){
+            if(isset($list['id'])){
                 $data = Question::find($list['id']);
                 $data->question = $list['question'];
                 $data->option_1 = $list['option_1'];
@@ -92,6 +92,7 @@ class QuestionController extends Controller
                 $data->option_4 = $list['option_4'];
                 $data->marks = $list['marks'];
                 $data->answer = $list['answer'];
+                $data->franchise_id =  $request->user()->franchise_id;
                 $data->update();
             }else{
                 $data = new Question();
@@ -103,6 +104,7 @@ class QuestionController extends Controller
                 $data->option_4 = $list['option_4'];
                 $data->marks = $list['marks'];
                 $data->answer = $list['answer'];
+                $data->franchise_id =  $request->user()->franchise_id;
                 $data->save();
             }
         }

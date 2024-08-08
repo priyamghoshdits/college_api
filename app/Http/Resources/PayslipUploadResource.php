@@ -16,6 +16,7 @@ class PayslipUploadResource extends JsonResource
             'staff_name' =>User::find($this->staff_id)->first_name.' '.User::find($this->staff_id)->middle_name.' '.User::find($this->staff_id)->last_name,
             'month' => $this->month,
             'file_name' => $this->file_name,
+            'file_url' => $this->file_name != null ? asset("manual_payslips/{$this->file_name}") : null,
         ];
     }
 }

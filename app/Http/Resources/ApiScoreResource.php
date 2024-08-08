@@ -16,7 +16,7 @@ class ApiScoreResource extends JsonResource
             'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
             'assignment_year' => $this->assignment_year,
             'file_name' => $this->file_name,
-            'file_url' => $this->file_name != null ? asset("staff_experience_proof/{$this->file_name}") : null,
+            'file_url' => $this->file_name != null ? asset("api_score/{$this->file_name}") : null,
         ];
     }
 }

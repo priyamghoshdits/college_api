@@ -61,11 +61,11 @@ class MemberController extends Controller
     {
         $teacher_id_payslip = [];
         $teacher_id = [];
-        $assignSemesterTeacher = AssignSemesterTeacher::whereCourseId($course_id)->get();
+        $assignSemesterTeacher = AssignSemesterTeacher::get();
         foreach ($assignSemesterTeacher as $temp) {
             $teacher_id[] = $temp['teacher_id'];
         }
-        $payslip = PayslipUpload::whereIn('id',$teacher_id)->where('month', $month)->where('year',$year)->get();
+        $payslip = PayslipUpload::whereIn('staff_id',$teacher_id)->where('month', $month)->where('year',$year)->get();
         foreach ($payslip as $temp) {
             $teacher_id_payslip[] = $temp['staff_id'];
         }

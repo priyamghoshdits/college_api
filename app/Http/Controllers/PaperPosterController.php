@@ -11,7 +11,7 @@ class PaperPosterController extends Controller
     public function save_upload_file(Request $request)
     {
         $file_name = '';
-        if ($files = $request->file('file_name')) {
+        if ($files = $request->file('paper_poster')) {
             $destinationPath = public_path('/paper_poster/');
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
@@ -57,7 +57,7 @@ class PaperPosterController extends Controller
         $paper_poster->duration = $request['duration'];
         $paper_poster->acivement = $request['acivement'];
 
-        if ($files = $request->file('file_name')) {
+        if ($files = $request->file('paper_poster')) {
             $destinationPath = public_path('/paper_poster/');
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
