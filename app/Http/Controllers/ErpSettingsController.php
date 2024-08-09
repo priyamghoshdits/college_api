@@ -17,18 +17,11 @@ class ErpSettingsController extends Controller
 
     public function update_erp_settings(Request $request)
     {
+        $data = (object)$request->json()->all();
         $erpSetting = ErpSettings::find(1);
-
-        if ($erpSetting) {
-            $erpSetting->title = $request->title;
-            $erpSetting->session_id = $request->session_id;
-            $erpSetting->update();
-        } else {
-            $erpSetting = new ErpSettings();
-            $erpSetting->title = $request->title;
-            $erpSetting->session_id = $request->session_id;
-            $erpSetting->save();
-        }
+        $erpSetting->title = $data->title;
+        $erpSetting->session_id = $data->session_id;
+        $erpSetting->update();
 
         return response()->json(['success' => 1, 'data' => $erpSetting]);
     }
