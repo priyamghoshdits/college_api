@@ -58,7 +58,7 @@ class ItemStockController extends Controller
     public function get_quantity_by_item_id($item_id)
     {
         $data = ItemStock::whereInventoryItemId($item_id)->first();
-        return response()->json(['success'=>1,'data'=> $data->quantity], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> $data?$data->quantity:0], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
