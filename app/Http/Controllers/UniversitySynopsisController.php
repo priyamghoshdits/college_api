@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UniversitySynopsisResource;
 use App\Models\UniversitySynopsis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UniversitySynopsisController extends Controller
 {
@@ -89,4 +90,39 @@ class UniversitySynopsisController extends Controller
         $university_synopsis_data = UniversitySynopsis::get();
         return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($university_synopsis_data)], 200);
     }
+
+    public function save_university_synopsis_app(Request $request)
+    {
+        $data = $request->json()->all();
+        foreach ($data as $list){
+            if($list['id'] != null){
+                $universitySynopsys = UniversitySynopsis::find($list['id']);
+                $universitySynopsys->staff_id = $list['staff_id'];
+                $universitySynopsys->student_id = $list['student_id'];
+                $universitySynopsys->institute_name = $list['institute_name'];
+                $universitySynopsys->title = $list['title'];
+                $universitySynopsys->course = $list['course'];
+                $universitySynopsys->referance_no = $list['referance_no'];
+                $universitySynopsys->ref_date = $list['ref_date'];
+                $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->date_evaluation = $list['date_evaluation'];
+                $universitySynopsys->update();
+            }else{
+                $universitySynopsys = new UniversitySynopsis();
+                $universitySynopsys->staff_id = $list['staff_id'];
+                $universitySynopsys->student_id = $list['student_id'];
+                $universitySynopsys->institute_name = $list['institute_name'];
+                $universitySynopsys->title = $list['title'];
+                $universitySynopsys->course = $list['course'];
+                $universitySynopsys->referance_no = $list['referance_no'];
+                $universitySynopsys->ref_date = $list['ref_date'];
+                $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->date_evaluation = $list['date_evaluation'];
+                $universitySynopsys->save();
+            }
+        }
+
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
+    }
+
 }

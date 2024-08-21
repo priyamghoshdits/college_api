@@ -261,6 +261,10 @@ class UserController extends Controller
         return response()->json(['success' => 1, 'data' => $request->user()->franchise_id], 200, [], JSON_NUMERIC_CHECK);
     }
 
+    function sanitizeInput($input) {
+        return ($input === 'null' || $input === '') ? null : $input;
+    }
+
     public function save_student(Request $request)
     {
         // return "form id: " . $request->user_id;
@@ -277,23 +281,24 @@ class UserController extends Controller
                 $pass = rand(100000, 999999);
 
                 $user = new User();
-                $user->identification_no = $request['identification_no'] ?? null;
-                $user->first_name = $request['first_name'];
-                $user->middle_name = $request['middle_name'] ?? null;
-                $user->last_name = $request['last_name'];
-                $user->gender = $request['gender'] ?? null;
-                $user->dob = $request['dob'] ?? null;
-                $user->category_id = $request['category_id'];
-                $user->religion = $request['religion'] ?? null;
-                $user->mobile_no = $request['mobile_no'] ?? null;
-                $user->blood_group = $request['blood_group'] ?? null;
+                $user->identification_no = $this->sanitizeInput($request['identification_no'] ?? null);
+                $user->first_name = $this->sanitizeInput($request['first_name']);
+                $user->middle_name = $this->sanitizeInput($request['middle_name'] ?? null);
+                $user->last_name = $this->sanitizeInput($request['last_name']);
+                $user->gender = $this->sanitizeInput($request['gender'] ?? null);
+                $user->dob = $this->sanitizeInput($request['dob'] ?? null);
+                $user->category_id = $this->sanitizeInput($request['category_id']);
+                $user->religion = $this->sanitizeInput($request['religion'] ?? null);
+                $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
+                $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
                 $user->user_type_id = 3;
-                $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
-                $user->email = $request['email'];
+                $user->franchise_id = $this->sanitizeInput($request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id']);
+                $user->email = $this->sanitizeInput($request['email']);
                 $user->password = $pass;
                 $user->status = ($request['admission_status'] == 0) ? 0 : 1;
                 $user->save();
-                $user_id = $user['id'];
+
+                $user_id = $user->id;
 
                 $student_details = new StudentDetail();
                 $student_details->student_id = $user_id;
@@ -472,19 +477,19 @@ class UserController extends Controller
                 }
 
                 $student_details = StudentDetail::where('student_id', $user_id)->first();
-                $student_details->father_name = $request['father_name'] ?? null;
-                $student_details->father_occupation = $request['father_occupation'] ?? null;
-                $student_details->father_phone = $request['father_phone'] ?? null;
-                $student_details->mother_name = $request['mother_name'] ?? null;
-                $student_details->mother_occupation = $request['mother_occupation'] ?? null;
-                $student_details->guardian_name = $request['guardian_name'] ?? null;
-                $student_details->guardian_phone = $request['guardian_phone'] ?? null;
-                $student_details->guardian_email = $request['guardian_email'] ?? null;
+                $student_details->father_name =$this->sanitizeInput($request['father_name'] ?? null);
+                $student_details->father_occupation = $this->sanitizeInput($request['father_occupation'] ?? null);
+                $student_details->father_phone = $this->sanitizeInput($request['father_phone'] ?? null);
+                $student_details->mother_name = $this->sanitizeInput($request['mother_name'] ?? null);
+                $student_details->mother_occupation = $this->sanitizeInput($request['mother_occupation'] ?? null);
+                $student_details->guardian_name = $this->sanitizeInput($request['guardian_name'] ?? null);
+                $student_details->guardian_phone = $this->sanitizeInput($request['guardian_phone'] ?? null);
+                $student_details->guardian_email = $this->sanitizeInput($request['guardian_email'] ?? null);
                 //        $student_details->admission_status = $request->admission_status ;
-                $student_details->mother_phone = $request['mother_phone'] ?? null;
-                $student_details->guardian_relation = $request['guardian_relation'] ?? null;
-                $student_details->guardian_address = $request['guardian_address'] ?? null;
-                $student_details->guardian_occupation = $request['guardian_occupation'] ?? null;
+                $student_details->mother_phone = $this->sanitizeInput($request['mother_phone'] ?? null);
+                $student_details->guardian_relation = $this->sanitizeInput($request['guardian_relation'] ?? null);
+                $student_details->guardian_address = $this->sanitizeInput($request['guardian_address'] ?? null);
+                $student_details->guardian_occupation = $this->sanitizeInput($request['guardian_occupation'] ?? null);
                 $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
 
                 $student_details->update();
@@ -518,19 +523,19 @@ class UserController extends Controller
             $pass = rand(100000, 999999);
 
             $user = User::find($request['id']);
-            $user->identification_no = $request['identification_no'] ?? null;
-            $user->first_name = $request['first_name'];
-            $user->middle_name = $request['middle_name'] ?? null;
-            $user->last_name = $request['last_name'];
-            $user->gender = $request['gender'] ?? null;
-            $user->dob = $request['dob'] ?? null;
-            $user->category_id = $request['category_id'];
-            $user->religion = $request['religion'] ?? null;
-            $user->mobile_no = $request['mobile_no'] ?? null;
-            $user->blood_group = $request['blood_group'] ?? null;
+            $user->identification_no = $this->sanitizeInput($request['identification_no'] ?? null);
+            $user->first_name = $this->sanitizeInput($request['first_name']);
+            $user->middle_name = $this->sanitizeInput($request['middle_name'] ?? null);
+            $user->last_name = $this->sanitizeInput($request['last_name']);
+            $user->gender = $this->sanitizeInput($request['gender'] ?? null);
+            $user->dob = $this->sanitizeInput($request['dob'] ?? null);
+            $user->category_id = $this->sanitizeInput($request['category_id']);
+            $user->religion = $this->sanitizeInput($request['religion'] ?? null);
+            $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
+            $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
             $user->user_type_id = 3;
             $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
-            $user->email = $request['email'];
+            $user->email = $this->sanitizeInput($request['email']);
             $user->password = $pass;
             $user->status = ($request['admission_status'] == 0) ? 0 : 1;
             $user->update();

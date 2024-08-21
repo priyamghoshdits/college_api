@@ -126,4 +126,37 @@ class BookPublicationController extends Controller
         $book_publication = BookPublication::get();
         return response()->json(['success' => 1, 'data' => BookPublicationResource::collection($book_publication)], 200);
     }
+
+    public function save_book_publication_app(Request $request)
+    {
+        $data = $request->json()->all();
+
+        foreach ($data as $value) {
+            if($value['id'] != null){
+                $book_publication = BookPublication::find($value['id']);
+                $book_publication->staff_id = $value['staff_id'];
+                $book_publication->book_name = $value['book_name'];
+                $book_publication->ISBN_number = $value['ISBN_number'];
+                $book_publication->name_of_publisher = $value['name_of_publisher'];
+                $book_publication->chapter_full_book = $value['chapter_full_book'];
+                $book_publication->chapter_name = $value['chapter_name'];
+                $book_publication->page_number = $value['page_number'];
+                $book_publication->file_name = $value['file_name'];
+                $book_publication->update();
+            }else{
+                $book_publication = new BookPublication();
+                $book_publication->staff_id = $value['staff_id'];
+                $book_publication->book_name = $value['book_name'];
+                $book_publication->ISBN_number = $value['ISBN_number'];
+                $book_publication->name_of_publisher = $value['name_of_publisher'];
+                $book_publication->chapter_full_book = $value['chapter_full_book'];
+                $book_publication->chapter_name = $value['chapter_name'];
+                $book_publication->page_number = $value['page_number'];
+                $book_publication->file_name = $value['file_name'];
+                $book_publication->save();
+            }
+
+        }
+        return response()->json(['success' => 1, 'data' => new BookPublicationResource($book_publication)], 200, [], JSON_NUMERIC_CHECK);
+    }
 }

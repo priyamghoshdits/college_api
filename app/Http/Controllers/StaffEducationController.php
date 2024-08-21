@@ -128,4 +128,36 @@ class StaffEducationController extends Controller
         $staff_education_data = StaffEducation::get();
         return response()->json(['success' => 1, 'data' => StaffEducationResource::collection($staff_education_data)], 200);
     }
+
+    public function save_staff_education_app(Request $request)
+    {
+        $data = $request->json()->all();
+//        return $data;
+        foreach ($data as $list) {
+//            return $list['staff_id'];
+            if($list['id'] != null){
+                $staffEducation = StaffEducation::find($list['id']);
+                $staffEducation->staff_id = $list['staff_id'];
+                $staffEducation->degree = $list['degree'];
+                $staffEducation->specialization = $list['specialization'];
+                $staffEducation->university_name = $list['university_name'];
+                $staffEducation->percentage = $list['percentage'];
+                $staffEducation->grade = $list['grade'];
+                $staffEducation->file_name = $list['file_name'];
+                $staffEducation->update();
+            }else{
+                $staffEducation = new StaffEducation();
+                $staffEducation->staff_id = $list['staff_id'];
+                $staffEducation->degree = $list['degree'];
+                $staffEducation->specialization = $list['specialization'];
+                $staffEducation->university_name = $list['university_name'];
+                $staffEducation->percentage = $list['percentage'];
+                $staffEducation->grade = $list['grade'];
+                $staffEducation->file_name = $list['file_name'];
+                $staffEducation->save();
+            }
+
+        }
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
+    }
 }

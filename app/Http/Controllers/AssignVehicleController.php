@@ -30,7 +30,7 @@ class AssignVehicleController extends Controller
             $assignVehicle->save();
         }
         $routes = DB::select("select DISTINCT route_id from assign_vehicles where route_id = ?",[$route_id]);
-        return response()->json(['success'=>1,'data'=>new AssignVehicleResource($routes)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>AssignVehicleResource::collection($routes)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function update_assign_vehicle(Request $request)

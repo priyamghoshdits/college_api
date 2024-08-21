@@ -455,6 +455,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveUniversitySynopsisFile", [UniversitySynopsisController::class, 'save_university_synopsis_file']);
     Route::post("updateUniversitySynopsis", [UniversitySynopsisController::class, 'update_university_synopsis']);
     Route::get("deleteUniversitySynopsis/{id}", [UniversitySynopsisController::class, 'delete_university_synopsis']);
+    Route::post("saveUniversitySynopsisApp", [UniversitySynopsisController::class, 'save_university_synopsis_app']);
 
     // STAFF EDUCATION
     Route::get("getStaffEducation/{staff_id?}", [StaffEducationController::class, 'get_staff_education']);
@@ -463,6 +464,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveStaffEducationFile", [StaffEducationController::class, 'save_staff_education_file']);
     Route::post("updateStaffEducation", [StaffEducationController::class, 'update_staff_education']);
     Route::get("deleteStaffEducation/{id}", [StaffEducationController::class, 'delete_staff_education']);
+    Route::post("saveStaffEducationApp", [StaffEducationController::class, 'save_staff_education_app']);
 
 
     // MANUAL SCHOLARSHIP
@@ -471,6 +473,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveManualScholarship", [ManualScholarshipController::class, 'save_manual_scholarship']);
     Route::post("updateManualScholarship", [ManualScholarshipController::class, 'update_manual_scholarship']);
     Route::get("deleteManualScholarship/{id}", [ManualScholarshipController::class, 'delete_manual_scholarship']);
+    Route::post("saveManualScholarshipApp", [ManualScholarshipController::class, 'save_manual_scholarship_app']);
 
     // DEGREE
     Route::get("getDegree", [DegreeController::class, 'get_degree']);
@@ -739,6 +742,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveBookPublicationOwn", [BookPublicationController::class, 'save_book_publication_own']);
     Route::post("updateBookPublication", [BookPublicationController::class, 'update_book_publication']);
     Route::get("deleteBookPublication/{id?}", [BookPublicationController::class, 'delete_book_publication']);
+    Route::post("saveBookPublicationApp", [BookPublicationController::class, 'save_book_publication_app']);
 
     //OWN ACHIEVEMENT
     // Route::get("getOwnAchievement", [AchivementController::class, 'get_own_achievement']);

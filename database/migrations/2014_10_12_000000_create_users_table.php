@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('dob', 50)->nullable(true);
             $table->string('dob_proof', 50)->nullable(true);
             $table->string('blood_group', 50)->nullable(true);
-            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('category_id');
             $table->string('religion', 50)->nullable(true);
             $table->string('mobile_no', 50)->nullable(true);
             $table->string('image', 50)->nullable(true);

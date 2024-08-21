@@ -97,35 +97,29 @@ class ManualScholarshipController extends Controller
         return response()->json(['success' => 1, 'data' => ManualScholarshipResource::collection($manual_scholarship)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ManualScholarship $manualScholarship)
+    public function save_manual_scholarship_app(Request $request)
     {
-        //
-    }
+        $requestedData = $request->json()->all();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ManualScholarship $manualScholarship)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateManualScholarshipRequest $request, ManualScholarship $manualScholarship)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ManualScholarship $manualScholarship)
-    {
-        //
+        foreach ($requestedData as $list) {
+            if($list['id'] != null){
+                $data = ManualScholarship::find($list['id']);
+                $data->course_id = $list['course_id'];
+                $data->semester_id = $list['semester_id'];
+                $data->student_id = $list['student_id'];
+                $data->type_of_scholarship = $list['type_of_scholarship'];
+                $data->amount = $list['amount'];
+                $data->update();
+            }else{
+                $data = new ManualScholarship();
+                $data->course_id = $list['course_id'];
+                $data->semester_id = $list['semester_id'];
+                $data->student_id = $list['student_id'];
+                $data->type_of_scholarship = $list['type_of_scholarship'];
+                $data->amount = $list['amount'];
+                $data->save();
+            }
+        }
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 }
