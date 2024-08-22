@@ -15,8 +15,9 @@ class DegreeController extends Controller
 
     public function save_degree(Request $request)
     {
+        $data = (object)$request->json()->all();
         $degree = new Degree();
-        $degree->name = $request->name;
+        $degree->name = $data->name;
         $degree->save();
 
         return response()->json(['success' => 1, 'data' => $degree], 200, [], JSON_NUMERIC_CHECK);

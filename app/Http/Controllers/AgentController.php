@@ -86,6 +86,9 @@ class AgentController extends Controller
     public function delete_agent($id)
     {
         $data = User::find($id);
+        if($data->email = 'agent@gmail.com'){
+            return response()->json(['success' => 0, 'data' => null], 201, [], JSON_NUMERIC_CHECK);
+        }
         $data->delete();
         return response()->json(['success' => 1, 'data' => $data], 200, [], JSON_NUMERIC_CHECK);
     }
