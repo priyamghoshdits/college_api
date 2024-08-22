@@ -32,7 +32,19 @@ class AttendanceController extends Controller
 
     public function get_class($subject_id,$date){
         $today = ($date == 'null') ? Carbon::now()->format('Y-m-d') : $date;
-        $getClass = Attendance::select('class')->whereSubjectId($subject_id)->where('date',$today)->distinct()->get();
+        $getClass = Attendance::select('class','class_status_id','time_on','ended_on')
+            ->join('class_statuses','class_statuses.id','=','attendances.class_status_id')
+            ->whereSubjectId($subject_id)
+            ->where('date',$today)
+            ->distinct()
+            ->get();
+
+//        foreach ($getClass as $list){
+//            $test[] = $list['class_status_id'];
+//        }
+//
+//        $data = ClassStatus::whereIn('id',$test)->get();
+
         return response()->json(['success'=>1,'data' =>$getClass], 200,[],JSON_NUMERIC_CHECK);
     }
 
@@ -163,7 +175,7 @@ class AttendanceController extends Controller
             }
         }
 
-        return response()->json(['success'=>1,'class_status' =>new ClassStatusResource(ClassStatus::find($classStatus_id))], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'class_status' =>new ClassStatusResource(ClassStatus::find($classStatus_id)), 'class' => $class], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function attendance_percentage(Request $request){
