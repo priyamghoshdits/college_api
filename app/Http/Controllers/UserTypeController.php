@@ -15,7 +15,7 @@ class UserTypeController extends Controller
 
     public function get_user_types()
     {
-        $data = UserType::get();
+        $data = UserType::where('id', '!=', 1)->get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
