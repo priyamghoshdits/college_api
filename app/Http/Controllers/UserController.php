@@ -776,14 +776,14 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $user = new User();
-            $user->identification_no = $request['identification_no'];
-            $user->first_name = $request['first_name'];
-            $user->middle_name = $request['middle_name ?? null'];
-            $user->last_name = $request['last_name'];
-            $user->gender = $request['gender'];
-            $user->dob = $request['dob'];
-            $user->category_id = $request['category_id'];
-            $user->religion = $request['religion'];
+            $user->identification_no = $this->sanitizeInput($request['identification_no']);
+            $user->first_name = $this->sanitizeInput($request['first_name']);
+            $user->middle_name = $this->sanitizeInput($request['middle_name']);
+            $user->last_name = $this->sanitizeInput($request['last_name']);
+            $user->gender = $this->sanitizeInput($request['gender']);
+            $user->dob = $this->sanitizeInput($request['dob']);
+            $user->category_id = $this->sanitizeInput($request['category_id']);
+            $user->religion = $this->sanitizeInput($request['religion']);
             $user->mobile_no = $request['mobile_no'];
             $user->blood_group = $request['blood_group'];
             $user->user_type_id = $request['user_type_id'];
@@ -839,6 +839,7 @@ class UserController extends Controller
             $member_details->department_id = $request['department_id'];
             $member_details->designation_id = $request['designation_id'];
             $member_details->epf_number = $request['epf_number'];
+            $member_details->esi_number = $request['esi_number'];
             $member_details->gross_salary = $request['gross_salary'];
             $member_details->emergency_phone_number = $request['emergency_phone_number'];
             $member_details->location = $request['location'];
@@ -997,6 +998,7 @@ class UserController extends Controller
                 $member_details->department_id = $data->department_id ?? $member_details->department_id;
                 $member_details->designation_id = $data->designation_id ?? $member_details->designation_id;
                 $member_details->epf_number = $data->epf_number ?? $member_details->epf_number;
+                $member_details->esi_number = $data->esi_number ?? $member_details->esi_number;
                 $member_details->gross_salary = $data->gross_salary ?? $member_details->gross_salary;
                 $member_details->emergency_phone_number = $data->emergency_phone_number ?? $member_details->emergency_phone_number;
                 $member_details->location = $data->location ?? $member_details->location;
@@ -1054,6 +1056,7 @@ class UserController extends Controller
                 $member_details->department_id = $data->department_id;
                 $member_details->designation_id = $data->designation_id;
                 $member_details->epf_number = $data->epf_number;
+                $member_details->esi_number = $data->esi_number;
                 $member_details->gross_salary = $data->gross_salary;
                 $member_details->emergency_phone_number = $data->emergency_phone_number;
                 $member_details->location = $data->location;
@@ -1165,6 +1168,7 @@ class UserController extends Controller
             $member_details->department_id = $data->department_id ?? $member_details->department_id;
             $member_details->designation_id = $data->designation_id ?? $member_details->designation_id;
             $member_details->epf_number = $data->epf_number ?? $member_details->epf_number;
+            $member_details->esi_number = $data->esi_number ?? $member_details->esi_number;
             $member_details->gross_salary = $data->gross_salary ?? $member_details->gross_salary;
             $member_details->emergency_phone_number = $data->emergency_phone_number ?? $member_details->emergency_phone_number;
             $member_details->location = $data->location ?? $member_details->location;
@@ -1221,6 +1225,7 @@ class UserController extends Controller
             $member_details->department_id = $data->department_id;
             $member_details->designation_id = $data->designation_id;
             $member_details->epf_number = $data->epf_number;
+            $member_details->esi_number = $data->esi_number;
             $member_details->gross_salary = $data->gross_salary;
             $member_details->emergency_phone_number = $data->emergency_phone_number;
             $member_details->location = $data->location;

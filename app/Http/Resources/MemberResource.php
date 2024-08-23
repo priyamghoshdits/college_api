@@ -34,6 +34,7 @@ class MemberResource extends JsonResource
             'user_type' => UserType::find($this->user_type_id)->name,
             'email' => $this->email,
             'epf_number' => $this->epf_number,
+            'esi_number' => $this->esi_number,
             'basic_salary' => $this->basic_salary,
             'gross_salary' => $this->gross_salary,
             'location' => $this->location,

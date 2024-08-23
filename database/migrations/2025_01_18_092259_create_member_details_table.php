@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("emergency_phone_number")->nullable(true);
             $table->string("qualification")->nullable(true);
             $table->string("epf_number")->nullable(true);
+            $table->string("esi_number")->nullable(true);
             $table->string("current_address")->nullable(true);
             $table->string("permanent_address")->nullable(true);
             $table->string("gross_salary")->nullable(true);
