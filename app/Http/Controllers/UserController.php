@@ -129,7 +129,7 @@ class UserController extends Controller
         $user->first_name = $requestData->first_name;
         $user->last_name = $requestData->last_name;
         $user->gender = $requestData->gender;
-        $user->franchise_id = $requestData->franchise_id;
+        $user->franchise_id = 1;
         $user->category_id = 5;
         $user->dob = $requestData->dob;
         $user->user_type_id = 1;
@@ -292,7 +292,8 @@ class UserController extends Controller
                 $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
                 $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
                 $user->user_type_id = 3;
-                $user->franchise_id = $this->sanitizeInput($request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id']);
+//                $user->franchise_id = $this->sanitizeInput($request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id']);
+                $user->franchise_id = 1;
                 $user->email = $this->sanitizeInput($request['email']);
                 $user->password = $pass;
                 $user->status = ($request['admission_status'] == 0) ? 0 : 1;
@@ -304,7 +305,8 @@ class UserController extends Controller
                 $student_details->student_id = $user_id;
                 $student_details->course_id = $request['course_id'];
                 $student_details->semester_id = $request['semester_id'];
-                $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+//                $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+                $student_details->agent_id = 1;
                 $student_details->current_semester_id = $request['semester_id'];
                 $student_details->session_id = $request['session_id'] ?? null;
                 $student_details->admission_date = $request['admission_date'] ?? null;
@@ -534,7 +536,8 @@ class UserController extends Controller
             $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
             $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
             $user->user_type_id = 3;
-            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
+//            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
+            $user->franchise_id = 1;
             $user->email = $this->sanitizeInput($request['email']);
             $user->password = $pass;
             $user->status = ($request['admission_status'] == 0) ? 0 : 1;
@@ -545,7 +548,8 @@ class UserController extends Controller
             // $student_details->student_id = $user_id;
             $student_details->course_id = $request['course_id'];
             $student_details->semester_id = $request['semester_id'];
-            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+//            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+            $student_details->agent_id = 1;
             $student_details->current_semester_id = $request['semester_id'];
             $student_details->session_id = $request['session_id'] ?? null;
             $student_details->admission_date = $request['admission_date'] ?? null;
@@ -783,7 +787,8 @@ class UserController extends Controller
             $user->mobile_no = $request['mobile_no'];
             $user->blood_group = $request['blood_group'];
             $user->user_type_id = $request['user_type_id'];
-            $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
+//            $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
+            $user->franchise_id = 1;
             $user->email = $request['email'];
             $user->password = $pass;
             $user->status = 1;
