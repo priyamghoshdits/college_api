@@ -38,6 +38,7 @@ class StudentResource extends JsonResource
             'course_name' => (Course::find($this->course_id))->course_name ?? null,
             'semester_id' => $this->semester_id,
             'semester' => Semester::find($this->semester_id)->name ?? null,
+            'abc_id' => $this->abc_id,
             'current_semester_id' => $this->current_semester_id,
             'current_semester' => Semester::find($this->current_semester_id)->name ?? null,
             'session_id' => $this->session_id,
