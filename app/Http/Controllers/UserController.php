@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -275,6 +276,16 @@ class UserController extends Controller
         try {
             if($request['admission_status'] == 0){
                 $user = new User();
+
+                if ($image = $request->file('image')) {
+                    // Define upload path
+                    $destinationPath = public_path('/user_image/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $image->getClientOriginalName();
+                    $image->move($destinationPath, $file_name);
+                    $user->image = $file_name;
+                }
+
                 $user->identification_no = $this->sanitizeInput($request['identification_no'] ?? null);
                 $user->first_name = $this->sanitizeInput($request['first_name']);
                 $user->middle_name = $this->sanitizeInput($request['middle_name'] ?? null);
@@ -291,8 +302,6 @@ class UserController extends Controller
                 $user->password = $pass;
                 $user->status = 0;
                 $user->save();
-
-//                return response()->json(['success' => 0, 'exception' =>$user->id], 500);
 
                 $student_details = new StudentDetail();
                 $student_details->student_id = $user->id;
@@ -540,6 +549,7 @@ class UserController extends Controller
             }
             DB::commit();
         } catch (\Exception $e) {
+            Log::info($e);
             DB::rollBack();
             return response()->json(['success' => 0, 'exception' => $e->getMessage()], 201);
         }
@@ -558,243 +568,324 @@ class UserController extends Controller
     public function update_student(Request $request)
     {
         $return_type = 1;
-        if ($request->form_id == 1) {
-
-            $email_id = $request['email'];
-            $mobile_no = $request['mobile_no'];
-
-            $pass = rand(100000, 999999);
-
+        if($request['admission_status'] == 0){
             $user = User::find($request['id']);
+
+            if ($dob_proofs = $request->file('image')) {
+                if (file_exists(public_path() . '/user_image/' . $user->image)) {
+                    File::delete(public_path() . '/user_image/' . $user->image);
+                }
+                // Define upload path
+                $destinationPath = public_path('/user_image/'); // upload path
+                // Upload Orginal Image
+                $file_name = $dob_proofs->getClientOriginalName();
+                $dob_proofs->move($destinationPath, $file_name);
+                $user->image = $file_name;
+            }
+
+
             $user->identification_no = $this->sanitizeInput($request['identification_no'] ?? null);
             $user->first_name = $this->sanitizeInput($request['first_name']);
             $user->middle_name = $this->sanitizeInput($request['middle_name'] ?? null);
             $user->last_name = $this->sanitizeInput($request['last_name']);
             $user->gender = $this->sanitizeInput($request['gender'] ?? null);
             $user->dob = $this->sanitizeInput($request['dob'] ?? null);
+            $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
             $user->category_id = $this->sanitizeInput($request['category_id']);
             $user->religion = $this->sanitizeInput($request['religion'] ?? null);
-            $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
             $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
             $user->user_type_id = 3;
-//            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
             $user->franchise_id = 1;
             $user->email = $this->sanitizeInput($request['email']);
             $user->password = $pass;
-            $user->status = ($request['admission_status'] == 0) ? 0 : 1;
+            $user->status = 0;
             $user->update();
-            $user_id = $request['id'];
 
-            $student_details = StudentDetail::where('student_id', $user_id)->first();
-            // $student_details->student_id = $user_id;
-            $student_details->course_id = $request['course_id'];
-            $student_details->semester_id = $request['semester_id'];
-//            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
-            $student_details->agent_id = 1;
-            $student_details->current_semester_id = $request['semester_id'];
-            $student_details->session_id = $request['session_id'] ?? null;
-            $student_details->admission_date = $request['admission_date'] ?? null;
-            $student_details->abc_id = $request['abc_id'] ?? null;
-            $student_details->material_status = $request['material_status'] ?? null;
-            $student_details->admission_status = $request['admission_status'] ?? null;
-            $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? null;
-            $student_details->current_address = $request['current_address'] ?? null;
-            $student_details->permanent_address = $request['permanent_address'] ?? null;
-            $student_details->update();
-
-            $registration = Registration::where('student_id', $user_id)->first();
-            // $registration->student_id = $user_id;
-            $registration->roll_no = $request['roll_no'] ?? null;
-            $registration->registration_no = $request['registration_no'] ?? null;
-            $registration->update();
-
-            // if ($student_details->admission_status == 1) {
-            //     dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
-            //         Mail::send('welcome_password', array(
-            //             'name' => $user->first_name . " " . $user->middle_name . " " . $user->last_name, 'password' => $pass, 'phone_no' => $mobile_no
-            //         ), function ($message) use ($email_id) {
-            //             $message->from('rudkarsh@rgoi.in');
-            //             $message->to($email_id);
-            //             $message->subject('Test mail');
-            //         });
-            //     })->afterResponse();
-            // }
-
-        } elseif ($request->form_id == 2) {
-            $user_id = $request['id'];
-
-            $student_details = StudentDetail::where('student_id', $user_id)->first();
-
-            if ($father_income_proofs = $request->file('father_income_proof')) {
-                // Define upload path
-                $destinationPath = public_path('/father_income_proof/'); // upload path
-                // Upload Orginal Image
-                $file_name = $father_income_proofs->getClientOriginalName();
-                $father_income_proofs->move($destinationPath, $file_name);
-                $student_details->father_income_proof = $file_name;
-            }
-
-            if ($mother_income_proof = $request->file('mother_income_proof')) {
-                // Define upload path
-                $destinationPath = public_path('/mother_income_proof/'); // upload path
-                // Upload Orginal Image
-                $file_name = $mother_income_proof->getClientOriginalName();
-                $mother_income_proof->move($destinationPath, $file_name);
-                $student_details->mother_income_proof = $file_name;
-            }
-
-            if ($registration_proofs = $request->file('registration_proof')) {
-                // Define upload path
-                $destinationPath = public_path('/registration_proof/'); // upload path
-                // Upload Orginal Image
-                $file_name = $registration_proofs->getClientOriginalName();
-                $registration_proofs->move($destinationPath, $file_name);
-                $student_details->registration_proof = $file_name;
-            }
-
-            if ($abc_file = $request->file('abc_file')) {
-                // Define upload path
-                $destinationPath = public_path('/abc_file/'); // upload path
-                // Upload Orginal Image
-                $file_name = $abc_file->getClientOriginalName();
-                $abc_file->move($destinationPath, $file_name);
-                $student_details->abc_file = $file_name;
-            }
-            if ($student_signature = $request->file('student_signature')) {
-                // Define upload path
-                $destinationPath = public_path('/student_signature/'); // upload path
-                // Upload Orginal Image
-                $file_name = $student_signature->getClientOriginalName();
-                $student_signature->move($destinationPath, $file_name);
-                $student_details->student_signature = $file_name;
-            }
-            if ($admission_allotment = $request->file('admission_allotment')) {
-                // Define upload path
-                $destinationPath = public_path('/admission_allotment/'); // upload path
-                // Upload Orginal Image
-                $file_name = $admission_allotment->getClientOriginalName();
-                $admission_allotment->move($destinationPath, $file_name);
-                $student_details->admission_allotment = $file_name;
-            }
-
-            $student_details->update();
-
-
-            $user = User::find($user_id);
-
-            if ($files = $request->file('image')) {
+            if ($dob_proofs = $request->file('image')) {
+                if (file_exists(public_path() . '/user_image/' . $user->student_signature)) {
+                    File::delete(public_path() . '/user_image/' . $user->student_signature);
+                }
                 // Define upload path
                 $destinationPath = public_path('/user_image/'); // upload path
-                // Upload Orginal Image
-                $file_name = $files->getClientOriginalName();
-                $files->move($destinationPath, $file_name);
-                $user->image = $file_name;
-            }
-
-            if ($aadhaar_card_proofs = $request->file('aadhaar_card_proof')) {
-                // Define upload path
-                $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
-                // Upload Orginal Image
-                $file_name = $aadhaar_card_proofs->getClientOriginalName();
-                $aadhaar_card_proofs->move($destinationPath, $file_name);
-                $user->aadhaar_card_proof = $file_name;
-            }
-
-            if ($admission_slips = $request->file('admission_slip')) {
-                // Define upload path
-                $destinationPath = public_path('/admission_slip/'); // upload path
-                // Upload Orginal Image
-                $file_name = $admission_slips->getClientOriginalName();
-                $admission_slips->move($destinationPath, $file_name);
-                $user->admission_slip = $file_name;
-            }
-
-            if ($blood_group_proofs = $request->file('blood_group_proof')) {
-                // Define upload path
-                $destinationPath = public_path('/blood_group_proof/'); // upload path
-                // Upload Orginal Image
-                $file_name = $blood_group_proofs->getClientOriginalName();
-                $blood_group_proofs->move($destinationPath, $file_name);
-                $user->blood_group_proof = $file_name;
-            }
-
-            if ($dob_proofs = $request->file('dob_proof')) {
-                // Define upload path
-                $destinationPath = public_path('/dob_proof/'); // upload path
                 // Upload Orginal Image
                 $file_name = $dob_proofs->getClientOriginalName();
                 $dob_proofs->move($destinationPath, $file_name);
                 $user->dob_proof = $file_name;
             }
 
-            $user->update();
-        } elseif ($request->form_id == 3) {
-            // if ($request->admission_status == 1) {
-            // return "data: " . $request['user_id'];
-            $user_id = $request['id'];
-
-            $cautionMoney = CautionMoney::where('user_id', $user_id)->first();
-            if ($cautionMoney) {
-                $cautionMoney->user_id = $user_id;
-                $cautionMoney->caution_money_payment_date = $request['payment_date'];
-                $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
-                $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
-                $cautionMoney->caution_money = $request['caution_money'];
-                $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
-                $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
-                $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? null;
-                $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
-                $cautionMoney->caution_money_refund = 0;
-                $cautionMoney->update();
-            } else {
-                $cautionMoney = new CautionMoney();
-                $cautionMoney->user_id = $user_id;
-                $cautionMoney->caution_money_payment_date = $request['payment_date'];
-                $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
-                $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
-                $cautionMoney->caution_money = $request['caution_money'];
-                $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
-                $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
-                $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? null;
-                $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
-                $cautionMoney->caution_money_refund = 0;
-                $cautionMoney->save();
-            }
-            // }
-        } elseif ($request->form_id == 4) {
-
-            $user_id = $request['id'];
-
-            if ($request['admission_status'] == 0) {
-                $preAdmissionPayment = new PreAdmissionPayment();
-                $preAdmissionPayment->user_id = $user_id;
-                if (isset($request['payment_date'])) {
-                    $preAdmissionPayment->payment_date = $request['payment_date'];
-                    $preAdmissionPayment->mode_of_payment = $request['mode_of_payment'];
-                    $preAdmissionPayment->transaction_id = $request['transaction_id'];
-                    $preAdmissionPayment->amount = $request['amount'];
-                    $preAdmissionPayment->save();
-                }
-            }
-
-            $student_details = StudentDetail::where('student_id', $user_id)->first();
-            $student_details->father_name = $request['father_name'] ?? null;
-            $student_details->father_occupation = $request['father_occupation'] ?? null;
-            $student_details->father_phone = $request['father_phone'] ?? null;
-            $student_details->mother_name = $request['mother_name'] ?? null;
-            $student_details->mother_occupation = $request['mother_occupation'] ?? null;
-            $student_details->guardian_name = $request['guardian_name'] ?? null;
-            $student_details->guardian_phone = $request['guardian_phone'] ?? null;
-            $student_details->guardian_email = $request['guardian_email'] ?? null;
-            // $student_details->admission_status = $request->admission_status ;
-            $student_details->mother_phone = $request['mother_phone'] ?? null;
-            $student_details->guardian_relation = $request['guardian_relation'] ?? null;
-            $student_details->guardian_address = $request['guardian_address'] ?? null;
-            $student_details->guardian_occupation = $request['guardian_occupation'] ?? null;
-            $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
-
+            $student_details = StudentDetail::whereStudentId($user->id)->first();
+            $student_details->course_id = $request['course_id'];
+            $student_details->semester_id = $request['semester_id'];
+            $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? null;
+            $student_details->material_status = $request['material_status'] ?? null;
+            $student_details->current_address = $request['current_address'] ?? null;
+            $student_details->current_semester_id = $request['semester_id'];
+            $student_details->permanent_address = $request['permanent_address'] ?? null;
+            $student_details->session_id = $request['session_id'] ?? null;
+            $student_details->admission_status = 0;
+            $student_details->agent_id = 1;
             $student_details->update();
-            $return_type = 2;
+
+            $user_id = $user->id;
+
+//                return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
+        }else {
+            if ($request->form_id == 1) {
+
+                $email_id = $request['email'];
+                $mobile_no = $request['mobile_no'];
+
+                $pass = rand(100000, 999999);
+
+                $user = User::find($request['id']);
+                $user->identification_no = $this->sanitizeInput($request['identification_no'] ?? null);
+                $user->first_name = $this->sanitizeInput($request['first_name']);
+                $user->middle_name = $this->sanitizeInput($request['middle_name'] ?? null);
+                $user->last_name = $this->sanitizeInput($request['last_name']);
+                $user->gender = $this->sanitizeInput($request['gender'] ?? null);
+                $user->dob = $this->sanitizeInput($request['dob'] ?? null);
+                $user->category_id = $this->sanitizeInput($request['category_id']);
+                $user->religion = $this->sanitizeInput($request['religion'] ?? null);
+                $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
+                $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
+                $user->user_type_id = 3;
+//            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
+                $user->franchise_id = 1;
+                $user->email = $this->sanitizeInput($request['email']);
+                $user->password = $pass;
+                $user->status = ($request['admission_status'] == 0) ? 0 : 1;
+                $user->update();
+                $user_id = $request['id'];
+
+                $student_details = StudentDetail::where('student_id', $user_id)->first();
+                // $student_details->student_id = $user_id;
+                $student_details->course_id = $request['course_id'];
+                $student_details->semester_id = $request['semester_id'];
+//            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+                $student_details->agent_id = 1;
+                $student_details->current_semester_id = $request['semester_id'];
+                $student_details->session_id = $request['session_id'] ?? null;
+                $student_details->admission_date = $request['admission_date'] ?? null;
+                $student_details->abc_id = $request['abc_id'] ?? null;
+                $student_details->material_status = $request['material_status'] ?? null;
+                $student_details->admission_status = $request['admission_status'] ?? null;
+                $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? null;
+                $student_details->current_address = $request['current_address'] ?? null;
+                $student_details->permanent_address = $request['permanent_address'] ?? null;
+                $student_details->update();
+
+                $registration = Registration::where('student_id', $user_id)->first();
+                // $registration->student_id = $user_id;
+                $registration->roll_no = $request['roll_no'] ?? null;
+                $registration->registration_no = $request['registration_no'] ?? null;
+                $registration->update();
+
+                // if ($student_details->admission_status == 1) {
+                //     dispatch(function () use ($user, $pass, $email_id, $mobile_no) {
+                //         Mail::send('welcome_password', array(
+                //             'name' => $user->first_name . " " . $user->middle_name . " " . $user->last_name, 'password' => $pass, 'phone_no' => $mobile_no
+                //         ), function ($message) use ($email_id) {
+                //             $message->from('rudkarsh@rgoi.in');
+                //             $message->to($email_id);
+                //             $message->subject('Test mail');
+                //         });
+                //     })->afterResponse();
+                // }
+
+            } elseif ($request->form_id == 2) {
+                $user_id = $request['id'];
+
+                $student_details = StudentDetail::where('student_id', $user_id)->first();
+
+                if ($father_income_proofs = $request->file('father_income_proof')) {
+                    if (file_exists(public_path() . '/father_income_proof/' . $student_details->father_income_proof)) {
+                        File::delete(public_path() . '/father_income_proof/' . $student_details->father_income_proof);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/father_income_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $father_income_proofs->getClientOriginalName();
+                    $father_income_proofs->move($destinationPath, $file_name);
+                    $student_details->father_income_proof = $file_name;
+                }
+
+                if ($mother_income_proof = $request->file('mother_income_proof')) {
+                    if (file_exists(public_path() . '/mother_income_proof/' . $student_details->mother_income_proof)) {
+                        File::delete(public_path() . '/mother_income_proof/' . $student_details->mother_income_proof);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/mother_income_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $mother_income_proof->getClientOriginalName();
+                    $mother_income_proof->move($destinationPath, $file_name);
+                    $student_details->mother_income_proof = $file_name;
+                }
+
+                if ($registration_proofs = $request->file('registration_proof')) {
+                    if (file_exists(public_path() . '/registration_proof/' . $student_details->registration_proof)) {
+                        File::delete(public_path() . '/registration_proof/' . $student_details->registration_proof);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/registration_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $registration_proofs->getClientOriginalName();
+                    $registration_proofs->move($destinationPath, $file_name);
+                    $student_details->registration_proof = $file_name;
+                }
+
+                if ($abc_file = $request->file('abc_file')) {
+                    if (file_exists(public_path() . '/abc_file/' . $student_details->abc_file)) {
+                        File::delete(public_path() . '/abc_file/' . $student_details->abc_file);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/abc_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $abc_file->getClientOriginalName();
+                    $abc_file->move($destinationPath, $file_name);
+                    $student_details->abc_file = $file_name;
+                }
+                if ($student_signature = $request->file('student_signature')) {
+                    if (file_exists(public_path() . '/student_signature/' . $student_details->student_signature)) {
+                        File::delete(public_path() . '/student_signature/' . $student_details->student_signature);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/student_signature/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $student_signature->getClientOriginalName();
+                    $student_signature->move($destinationPath, $file_name);
+                    $student_details->student_signature = $file_name;
+                }
+                if ($admission_allotment = $request->file('admission_allotment')) {
+                    if (file_exists(public_path() . '/admission_allotment/' . $student_details->admission_allotment)) {
+                        File::delete(public_path() . '/admission_allotment/' . $student_details->admission_allotment);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/admission_allotment/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $admission_allotment->getClientOriginalName();
+                    $admission_allotment->move($destinationPath, $file_name);
+                    $student_details->admission_allotment = $file_name;
+                }
+
+                $student_details->update();
+
+
+                $user = User::find($user_id);
+
+                if ($files = $request->file('image')) {
+                    // Define upload path
+                    $destinationPath = public_path('/user_image/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $files->getClientOriginalName();
+                    $files->move($destinationPath, $file_name);
+                    $user->image = $file_name;
+                }
+
+                if ($aadhaar_card_proofs = $request->file('aadhaar_card_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $aadhaar_card_proofs->getClientOriginalName();
+                    $aadhaar_card_proofs->move($destinationPath, $file_name);
+                    $user->aadhaar_card_proof = $file_name;
+                }
+
+                if ($admission_slips = $request->file('admission_slip')) {
+                    // Define upload path
+                    $destinationPath = public_path('/admission_slip/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $admission_slips->getClientOriginalName();
+                    $admission_slips->move($destinationPath, $file_name);
+                    $user->admission_slip = $file_name;
+                }
+
+                if ($blood_group_proofs = $request->file('blood_group_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/blood_group_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $blood_group_proofs->getClientOriginalName();
+                    $blood_group_proofs->move($destinationPath, $file_name);
+                    $user->blood_group_proof = $file_name;
+                }
+
+                if ($dob_proofs = $request->file('dob_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/dob_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $dob_proofs->getClientOriginalName();
+                    $dob_proofs->move($destinationPath, $file_name);
+                    $user->dob_proof = $file_name;
+                }
+
+                $user->update();
+            } elseif ($request->form_id == 3) {
+                // if ($request->admission_status == 1) {
+                // return "data: " . $request['user_id'];
+                $user_id = $request['id'];
+
+                $cautionMoney = CautionMoney::where('user_id', $user_id)->first();
+                if ($cautionMoney) {
+                    $cautionMoney->user_id = $user_id;
+                    $cautionMoney->caution_money_payment_date = $request['payment_date'];
+                    $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
+                    $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+                    $cautionMoney->caution_money = $request['caution_money'];
+                    $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
+                    $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
+                    $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? null;
+                    $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
+                    $cautionMoney->caution_money_refund = 0;
+                    $cautionMoney->update();
+                } else {
+                    $cautionMoney = new CautionMoney();
+                    $cautionMoney->user_id = $user_id;
+                    $cautionMoney->caution_money_payment_date = $request['payment_date'];
+                    $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
+                    $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+                    $cautionMoney->caution_money = $request['caution_money'];
+                    $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
+                    $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
+                    $cautionMoney->refund_mode_of_payment = $request['refund_mode_of_payment'] ?? null;
+                    $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
+                    $cautionMoney->caution_money_refund = 0;
+                    $cautionMoney->save();
+                }
+                // }
+            } elseif ($request->form_id == 4) {
+
+                $user_id = $request['id'];
+
+                if ($request['admission_status'] == 0) {
+                    $preAdmissionPayment = new PreAdmissionPayment();
+                    $preAdmissionPayment->user_id = $user_id;
+                    if (isset($request['payment_date'])) {
+                        $preAdmissionPayment->payment_date = $request['payment_date'];
+                        $preAdmissionPayment->mode_of_payment = $request['mode_of_payment'];
+                        $preAdmissionPayment->transaction_id = $request['transaction_id'];
+                        $preAdmissionPayment->amount = $request['amount'];
+                        $preAdmissionPayment->save();
+                    }
+                }
+
+                $student_details = StudentDetail::where('student_id', $user_id)->first();
+                $student_details->father_name = $request['father_name'] ?? null;
+                $student_details->father_occupation = $request['father_occupation'] ?? null;
+                $student_details->father_phone = $request['father_phone'] ?? null;
+                $student_details->mother_name = $request['mother_name'] ?? null;
+                $student_details->mother_occupation = $request['mother_occupation'] ?? null;
+                $student_details->guardian_name = $request['guardian_name'] ?? null;
+                $student_details->guardian_phone = $request['guardian_phone'] ?? null;
+                $student_details->guardian_email = $request['guardian_email'] ?? null;
+                // $student_details->admission_status = $request->admission_status ;
+                $student_details->mother_phone = $request['mother_phone'] ?? null;
+                $student_details->guardian_relation = $request['guardian_relation'] ?? null;
+                $student_details->guardian_address = $request['guardian_address'] ?? null;
+                $student_details->guardian_occupation = $request['guardian_occupation'] ?? null;
+                $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
+
+                $student_details->update();
+                $return_type = 2;
+            }
         }
 
         $member = User::select('*', 'users.id as id')
