@@ -43,6 +43,7 @@ class StudentResource extends JsonResource
             'current_semester' => Semester::find($this->current_semester_id)->name ?? null,
             'session_id' => $this->session_id,
             'aadhaar_card_file' => $this->aadhaar_card_proof != null ? asset("aadhaar_card_proof/{$this->aadhaar_card_proof}") : null,
+            'abc_file' => $this->abc_file != null ? asset("abc_file/{$this->abc_file}") : null,
             'admission_slip_file' => $this->admission_slip != null ? asset("admission_slip/{$this->admission_slip}") : null,
             'dob_proof_file' => $this->dob_proof != null ? asset("dob_proof/{$this->dob_proof}") : null,
             'registration_proof' => $this->registration_proof != null ? asset("registration_proof/{$this->registration_proof}") : null,
