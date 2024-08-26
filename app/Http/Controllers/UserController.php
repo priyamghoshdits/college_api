@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -265,13 +266,17 @@ class UserController extends Controller
     {
         // return "form id: " . $request->user_id;
 
+        Log::info($request['admission_status']);
+        Log::info($request['form_id']);
         $pass = rand(100000, 999999);
         $return_type = 1;
         $user_id = '';
+        $admission_status = $request['admission_status'] ?? 5;
+
         DB::beginTransaction();
         try {
 
-            switch ($request['admission_status']){
+            switch ($admission_status){
                 case 0:
                     $user = new User();
 
@@ -320,7 +325,7 @@ class UserController extends Controller
                     break;
 
                 case 1:
-                    switch ($request->form_id) {
+                    switch ($request['form_id']) {
                         case 1:
                             $email_id = $request['email'];
                             $mobile_no = $request['mobile_no'];
@@ -371,6 +376,7 @@ class UserController extends Controller
                             break;
 
                         case 2:
+                            Log::info($request['id']);
                             $user_id = $request['id'];
 
                             $student_details = StudentDetail::where('student_id', $user_id)->first();
@@ -478,6 +484,7 @@ class UserController extends Controller
                             }
 
                             $user->update();
+
                             break;
 
                         case 3:
@@ -495,6 +502,7 @@ class UserController extends Controller
                             $cautionMoney->refund_transaction_id = $request['refund_transaction_id'] ?? null;
                             $cautionMoney->caution_money_refund = 0;
                             $cautionMoney->save();
+
                             break;
 
                         case 4:
@@ -530,22 +538,23 @@ class UserController extends Controller
 
                             $student_details->update();
                             $return_type = 2;
+
                             break;
 
                         default:
-                            return response()->json(['success' => 0, 'data' => "Send a valid form id"], 201, [], JSON_NUMERIC_CHECK);
+                            return response()->json(['success' => 0, 'data' => "Send a valid form id"], 405, [], JSON_NUMERIC_CHECK);
                     }
                     break;
 
                 default:
-                    return response()->json(['success' => 0, 'data' => "invalid admission status"], 201, [], JSON_NUMERIC_CHECK);
+                    return response()->json(['success' => 0, 'data' => "invalid admission status"], 405, [], JSON_NUMERIC_CHECK);
 
             }
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
             if ($e->errorInfo[1] == 1062) {
-                return response()->json(['success' => 0, 'exception' => 'The email address is already registered.'], 400);
+                return response()->json(['success' => 0, 'exception' => 'The email address is already registered.'], 405);
             }
             return response()->json(['success' => 0, 'exception' => $e->getMessage()], 201);
         }
