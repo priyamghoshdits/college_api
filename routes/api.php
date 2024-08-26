@@ -98,6 +98,7 @@ use App\Http\Controllers\ApiScoreController;
 use App\Http\Controllers\PaperPosterController;
 use App\Http\Controllers\ErpSettingsController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SynopsisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,6 +188,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("getMenuManagement", [MenuManagementController::class, 'get_menu_management']);
     Route::get("getMenuForUpdate", [MenuManagementController::class, 'get_menu_for_update']);
     Route::get("updateMenuManagement/{id}", [MenuManagementController::class, 'active_deactivate_menu']);
+
+    //SYNOPSYS
+    Route::get("getSynopsis", [SynopsisController::class, 'get_synopsis']);
+    Route::post("saveSynopsis", [SynopsisController::class, 'save_synopsis']);
+    Route::post("updateSynopsis", [SynopsisController::class, 'update_synopsis']);
+    Route::get("deleteSynopsis/{id}", [SynopsisController::class, 'delete_synopsis']);
 
     // STUDENT
     Route::post("saveStudent", [UserController::class, 'save_student']);
