@@ -19,7 +19,6 @@ use App\Models\ApiScore;
 use App\Models\Attendance;
 use App\Models\BookPublication;
 use App\Models\CautionMoney;
-use App\Models\CourseGroup;
 use App\Models\EducationQualification;
 use App\Models\JournalPublication;
 use App\Models\ManualFees;
@@ -36,12 +35,12 @@ use App\Models\User;
 use App\Models\UserLog;
 use App\Models\UserType;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -262,10 +261,6 @@ class UserController extends Controller
         return response()->json(['success' => 1, 'data' => $request->user()->franchise_id], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    function sanitizeInput($input) {
-        return ($input === 'null' || $input === '') ? null : $input;
-    }
-
     public function save_student(Request $request)
     {
         // return "form id: " . $request->user_id;
@@ -275,7 +270,7 @@ class UserController extends Controller
         $user_id = '';
         DB::beginTransaction();
         try {
-            if($request['admission_status'] == 0){
+            if ($request['admission_status'] == 0) {
                 $user = new User();
 
                 if ($image = $request->file('image')) {
@@ -320,9 +315,9 @@ class UserController extends Controller
 
                 $user_id = $user->id;
 
-            }else {
+            } else {
 
-                switch ($request->form_id){
+                switch ($request->form_id) {
                     case 1:
                         $email_id = $request['email'];
                         $mobile_no = $request['mobile_no'];
@@ -535,11 +530,11 @@ class UserController extends Controller
                         break;
 
                     default:
-                        return response()->json(['success' => 0, 'data' => null], 201, [], JSON_NUMERIC_CHECK);
+                        return response()->json(['success' => 0, 'data' => "Send a valid form id"], 201, [], JSON_NUMERIC_CHECK);
                 }
             }
             DB::commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             if ($e->errorInfo[1] == 1062) {
                 return response()->json(['success' => 0, 'exception' => 'The email address is already registered.'], 400);
@@ -558,10 +553,15 @@ class UserController extends Controller
         return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
+    function sanitizeInput($input)
+    {
+        return ($input === 'null' || $input === '') ? null : $input;
+    }
+
     public function update_student(Request $request)
     {
         $return_type = 1;
-        if($request['admission_status'] == 0){
+        if ($request['admission_status'] == 0) {
             $user = User::find($request['id']);
 
             if ($image = $request->file('image')) {
@@ -609,7 +609,7 @@ class UserController extends Controller
             $user_id = $user->id;
 
 //                return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
-        }else {
+        } else {
             if ($request->form_id == 1) {
 
                 $email_id = $request['email'];
@@ -1016,7 +1016,7 @@ class UserController extends Controller
             //                    $message->subject('Test mail');
             //                });
             //            })->afterResponse();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             return response()->json(['success' => 0, 'exception' => $e->getMessage()], 200);
         }
