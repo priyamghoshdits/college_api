@@ -140,8 +140,24 @@ class PaymentController extends Controller
     }
 
     public function test_func(Request $request){
-//        return $request->getClientIp();
-        return $request->header('User-Agent');
+
+        // Define your connection details
+        $connection = [
+            'driver' => 'sqlsrv',
+            'host' => '203.163.224.169,1443\SQLEXPRESS',
+            'database' => 'etimetracklite1',
+            'port' => '1433',
+            'username' => 'sa',
+            'password' => 'test@123',
+        ];
+
+        // Create a connection dynamically
+        DB::purge('sqlsrv');
+        config(['database.connections.sqlsrv_dynamic' => $connection]);
+
+        $data = DB::connection('sqlsrv_dynamic')->table('Attendance_Data')->get();
+
+        return $data;
     }
 
     public function get_fees_collection_report(Request $request){
