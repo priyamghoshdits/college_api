@@ -99,6 +99,7 @@ use App\Http\Controllers\PaperPosterController;
 use App\Http\Controllers\ErpSettingsController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SynopsisController;
+use App\Http\Controllers\ThesisTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -189,11 +190,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("getMenuForUpdate", [MenuManagementController::class, 'get_menu_for_update']);
     Route::get("updateMenuManagement/{id}", [MenuManagementController::class, 'active_deactivate_menu']);
 
-    //SYNOPSYS
+    //SYNOPSYS TYPE
     Route::get("getSynopsis", [SynopsisController::class, 'get_synopsis']);
     Route::post("saveSynopsis", [SynopsisController::class, 'save_synopsis']);
     Route::post("updateSynopsis", [SynopsisController::class, 'update_synopsis']);
     Route::get("deleteSynopsis/{id}", [SynopsisController::class, 'delete_synopsis']);
+
+    //THESIS TYPE
+    Route::get("getThesisType", [ThesisTypeController::class, 'get_thesis_type']);
+    Route::post("saveThesisType", [ThesisTypeController::class, 'save_thesis']);
+    Route::post("updateThesisType", [ThesisTypeController::class, 'update_thesis_type']);
+    Route::get("deleteThesisType/{id}", [ThesisTypeController::class, 'delete_thesis_type']);
 
     // STUDENT
     Route::post("saveStudent", [UserController::class, 'save_student']);

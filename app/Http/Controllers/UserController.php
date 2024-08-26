@@ -271,7 +271,7 @@ class UserController extends Controller
         $pass = rand(100000, 999999);
         $return_type = 1;
         $user_id = '';
-        $admission_status = $request['admission_status'] ?? 5;
+        $admission_status = $request['admission_status'] ?? 1;
 
         DB::beginTransaction();
         try {
@@ -376,7 +376,6 @@ class UserController extends Controller
                             break;
 
                         case 2:
-                            Log::info($request['id']);
                             $user_id = $request['id'];
 
                             $student_details = StudentDetail::where('student_id', $user_id)->first();
