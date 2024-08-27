@@ -100,6 +100,7 @@ use App\Http\Controllers\ErpSettingsController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SynopsisController;
 use App\Http\Controllers\ThesisTypeController;
+use App\Http\Controllers\UniversityThesisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -470,6 +471,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateUniversitySynopsis", [UniversitySynopsisController::class, 'update_university_synopsis']);
     Route::get("deleteUniversitySynopsis/{id}", [UniversitySynopsisController::class, 'delete_university_synopsis']);
     Route::post("saveUniversitySynopsisApp", [UniversitySynopsisController::class, 'save_university_synopsis_app']);
+
+    // UNIVERSITY THESIS
+    Route::get("getUniversityThesis/{staff_id?}", [UniversityThesisController::class, 'get_university_thesis']);
+    Route::post("saveUniversityThesis", [UniversityThesisController::class, 'save_university_thesis']);
+    Route::post("saveUniversityThesisFile", [UniversityThesisController::class, 'save_university_thesis_file']);
+    Route::post("updateUniversityThesis", [UniversityThesisController::class, 'update_university_thesis']);
+    Route::get("deleteUniversityThesis/{id}", [UniversityThesisController::class, 'delete_university_thesis']);
+    Route::post("saveUniversityThesisApp", [UniversityThesisController::class, 'save_university_thesis_app']);
 
     // STAFF EDUCATION
     Route::get("getStaffEducation/{staff_id?}", [StaffEducationController::class, 'get_staff_education']);
