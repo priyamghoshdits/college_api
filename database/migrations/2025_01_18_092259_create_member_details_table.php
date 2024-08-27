@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string("bank_name")->nullable(true);
             $table->string("ifsc_code")->nullable(true);
             $table->string("bank_branch_name")->nullable(true);
+            $table->string("spouse_name")->nullable(true);
+            $table->string("relation")->nullable(true);
+            $table->string("relation_proof")->nullable(true);
 
             $table->string("pan_number")->nullable(true);
             $table->string("pan_proof")->nullable(true);

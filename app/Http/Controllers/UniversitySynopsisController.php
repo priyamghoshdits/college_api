@@ -15,7 +15,7 @@ class UniversitySynopsisController extends Controller
         } else {
             $PgPhdGuide = UniversitySynopsis::get();
         }
-        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($PgPhdGuide)], 200);
+        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($PgPhdGuide)], 200,[], JSON_NUMERIC_CHECK);
     }
 
     public function save_university_synopsis_file(Request $request)

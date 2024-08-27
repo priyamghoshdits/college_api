@@ -897,8 +897,6 @@ class UserController extends Controller
 
     public function save_member(Request $request)
     {
-        // dd(($request->all()));
-
         $data = (object)$request->json()->all();
         $pass = rand(100000, 999999);
         DB::beginTransaction();
@@ -982,7 +980,18 @@ class UserController extends Controller
             $member_details->current_address = $request['current_address'];
             $member_details->permanent_address = $request['permanent_address'];
             $member_details->pan_number = $request['pan_number'];
+            $member_details->spouse_name = $request['spouse_name'];
+            $member_details->relation = $request['relation'];
 
+
+            if ($files = $request->file('relation_proof')) {
+                // Define upload path
+                $destinationPath = public_path('/relation_proof/'); // upload path
+                // Upload Orginal Image
+                $file_name = $files->getClientOriginalName();
+                $files->move($destinationPath, $file_name);
+                $member_details->relation_proof = $file_name;
+            }
 
             if ($files = $request->file('pan_proof')) {
                 // Define upload path
@@ -992,6 +1001,7 @@ class UserController extends Controller
                 $files->move($destinationPath, $file_name);
                 $member_details->pan_proof = $file_name;
             }
+
             if ($files = $request->file('caste_certificate_proof')) {
                 // Define upload path
                 $destinationPath = public_path('/caste_certificate_proof/'); // upload path
