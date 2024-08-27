@@ -18,10 +18,14 @@ return new class extends Migration
             $table->string('institute_name')->nullable();
             $table->string('title')->nullable();
             $table->string('course')->nullable();
-            $table->string('referance_no')->nullable(null);
-            $table->string('ref_date')->nullable(null);
+            $table->string('synopsis_type_id')->nullable();
+            $table->string('guide')->nullable();
+            $table->string('co_guide')->nullable();
+            $table->string('university_name')->nullable();
+            $table->string('referance_no')->nullable(true);
+            $table->string('ref_date')->nullable(true);
             $table->string('date_evaluation')->nullable();
-            $table->string('file_name')->nullable(null);
+            $table->string('file_name')->nullable(true);
             $table->timestamps();
         });
     }

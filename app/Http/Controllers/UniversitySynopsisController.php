@@ -40,9 +40,13 @@ class UniversitySynopsisController extends Controller
             $data->institute_name = $list['institute_name'];
             $data->title = $list['title'];
             $data->course = $list['course'];
+            $data->synopsis_type_id = $list['synopsis_type_id'];
+            $data->guide = $list['guide'];
+            $data->co_guide = $list['co_guide'];
+            $data->university_name = $list['university_name'];
             $data->referance_no = $list['referance_no'];
             $data->ref_date = $list['ref_date'];
-            $data->file_name = $list['file_name'];
+            $data->file_name = $list['file_name'] ?? null;
             $data->date_evaluation = $list['date_evaluation'];
             $data->save();
         }
@@ -61,6 +65,10 @@ class UniversitySynopsisController extends Controller
                 $data->institute_name = $list['institute_name'];
                 $data->title = $list['title'];
                 $data->course = $list['course'];
+                $data->synopsis_type_id = $list['synopsis_type_id'];
+                $data->guide = $list['guide'];
+                $data->co_guide = $list['co_guide'];
+                $data->university_name = $list['university_name'];
                 $data->referance_no = $list['referance_no'];
                 $data->ref_date = $list['ref_date'];
                 $data->file_name = $list['file_name'];
@@ -72,6 +80,10 @@ class UniversitySynopsisController extends Controller
                 $university_synopsis->institute_name = $list['institute_name'];
                 $university_synopsis->title = $list['title'];
                 $university_synopsis->course = $list['course'];
+                $university_synopsis->synopsis_type_id = $list['synopsis_type_id'];
+                $university_synopsis->guide = $list['guide'];
+                $university_synopsis->co_guide = $list['co_guide'];
+                $university_synopsis->university_name = $list['university_name'];
                 $university_synopsis->referance_no = $list['referance_no'];
                 $university_synopsis->ref_date = $list['ref_date'];
                 $university_synopsis->file_name = $list['file_name'];
@@ -102,6 +114,10 @@ class UniversitySynopsisController extends Controller
                 $universitySynopsys->institute_name = $list['institute_name'];
                 $universitySynopsys->title = $list['title'];
                 $universitySynopsys->course = $list['course'];
+                $universitySynopsys->synopsis_type_id = $list['synopsis_type_id'];
+                $universitySynopsys->guide = $list['guide'];
+                $universitySynopsys->co_guide = $list['co_guide'];
+                $universitySynopsys->university_name = $list['university_name'];
                 $universitySynopsys->referance_no = $list['referance_no'];
                 $universitySynopsys->ref_date = $list['ref_date'];
                 $universitySynopsys->file_name = $list['file_name'];
@@ -114,6 +130,10 @@ class UniversitySynopsisController extends Controller
                 $universitySynopsys->institute_name = $list['institute_name'];
                 $universitySynopsys->title = $list['title'];
                 $universitySynopsys->course = $list['course'];
+                $universitySynopsys->synopsis_type_id = $list['synopsis_type_id'];
+                $universitySynopsys->guide = $list['guide'];
+                $universitySynopsys->co_guide = $list['co_guide'];
+                $universitySynopsys->university_name = $list['university_name'];
                 $universitySynopsys->referance_no = $list['referance_no'];
                 $universitySynopsys->ref_date = $list['ref_date'];
                 $universitySynopsys->file_name = $list['file_name'];

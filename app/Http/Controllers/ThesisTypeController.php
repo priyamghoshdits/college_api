@@ -46,9 +46,6 @@ class ThesisTypeController extends Controller
         return response()->json(['success' => 1, 'data' => $thesisType], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(ThesisType $thesisType)
     {
         //
