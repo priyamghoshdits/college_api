@@ -2,65 +2,148 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UniversitySynopsisResource;
 use App\Models\StudentResult;
 use App\Http\Requests\StoreStudentResultRequest;
 use App\Http\Requests\UpdateStudentResultRequest;
+use App\Models\StudentResult;
+use Illuminate\Http\Request;
 
 class StudentResultController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function get_student_result($student_id = null)
     {
-        //
+        if ($student_id) {
+            $PgPhdGuide = StudentResult::whereStudentId($student_id)->get();
+        } else {
+            $PgPhdGuide = StudentResult::get();
+        }
+        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($PgPhdGuide)], 200,[], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function save_student_result_file(Request $request)
     {
-        //
+        $file_name = '';
+        if ($files = $request->file('file_name')) {
+            $destinationPath = public_path('/university_synopsis/');
+            $profileImage1 = $files->getClientOriginalName();
+            $files->move($destinationPath, $profileImage1);
+            $file_name = $files->getClientOriginalName();
+        }
+        return response()->json(['success' => 1, 'file_name' => $file_name], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreStudentResultRequest $request)
+    public function save_student_result(Request $request)
     {
-        //
+        foreach ($request['university_synopsis_array'] as $list) {
+            $data = new StudentResult();
+            $data->staff_id = $list['staff_id'];
+            $data->student_id = $list['student_id'];
+            $data->institute_name = $list['institute_name'];
+            $data->title = $list['title'];
+            $data->course = $list['course'];
+            $data->synopsis_type_id = $list['synopsis_type_id'];
+            $data->guide = $list['guide'];
+            $data->co_guide = $list['co_guide'];
+            $data->university_name = $list['university_name'];
+            $data->referance_no = $list['referance_no'];
+            $data->ref_date = $list['ref_date'];
+            $data->file_name = $list['file_name'] ?? null;
+            $data->date_evaluation = $list['date_evaluation'];
+            $data->save();
+        }
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(StudentResult $studentResult)
+    public function update_student_result(Request $request)
     {
-        //
+        foreach ($request['university_synopsis_array'] as $list) {
+
+            $university_synopsis = StudentResult::find($list['id']);
+            if (!$university_synopsis) {
+                $data = new StudentResult();
+                $data->staff_id = $list['staff_id'];
+                $data->student_id = $list['student_id'];
+                $data->institute_name = $list['institute_name'];
+                $data->title = $list['title'];
+                $data->course = $list['course'];
+                $data->synopsis_type_id = $list['synopsis_type_id'];
+                $data->guide = $list['guide'];
+                $data->co_guide = $list['co_guide'];
+                $data->university_name = $list['university_name'];
+                $data->referance_no = $list['referance_no'];
+                $data->ref_date = $list['ref_date'];
+                $data->file_name = $list['file_name'];
+                $data->date_evaluation = $list['date_evaluation'];
+                $data->save();
+            } else {
+                $university_synopsis->staff_id = $list['staff_id'];
+                $university_synopsis->student_id = $list['student_id'];
+                $university_synopsis->institute_name = $list['institute_name'];
+                $university_synopsis->title = $list['title'];
+                $university_synopsis->course = $list['course'];
+                $university_synopsis->synopsis_type_id = $list['synopsis_type_id'];
+                $university_synopsis->guide = $list['guide'];
+                $university_synopsis->co_guide = $list['co_guide'];
+                $university_synopsis->university_name = $list['university_name'];
+                $university_synopsis->referance_no = $list['referance_no'];
+                $university_synopsis->ref_date = $list['ref_date'];
+                $university_synopsis->file_name = $list['file_name'];
+                $university_synopsis->date_evaluation = $list['date_evaluation'];
+                $university_synopsis->update();
+            }
+        }
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(StudentResult $studentResult)
+    public function delete_student_result($id)
     {
-        //
+        $university_synopsis = StudentResult::find($id);
+        $university_synopsis->delete();
+
+        $university_synopsis_data = StudentResult::get();
+        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($university_synopsis_data)], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateStudentResultRequest $request, StudentResult $studentResult)
+    public function save_student_result_app(Request $request)
     {
-        //
-    }
+        $data = $request->json()->all();
+        foreach ($data as $list){
+            if($list['id'] != null){
+                $universitySynopsys = StudentResult::find($list['id']);
+                $universitySynopsys->staff_id = $list['staff_id'];
+                $universitySynopsys->student_id = $list['student_id'];
+                $universitySynopsys->institute_name = $list['institute_name'];
+                $universitySynopsys->title = $list['title'];
+                $universitySynopsys->course = $list['course'];
+                $universitySynopsys->synopsis_type_id = $list['synopsis_type_id'];
+                $universitySynopsys->guide = $list['guide'];
+                $universitySynopsys->co_guide = $list['co_guide'];
+                $universitySynopsys->university_name = $list['university_name'];
+                $universitySynopsys->referance_no = $list['referance_no'];
+                $universitySynopsys->ref_date = $list['ref_date'];
+                $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->date_evaluation = $list['date_evaluation'];
+                $universitySynopsys->update();
+            }else{
+                $universitySynopsys = new StudentResult();
+                $universitySynopsys->staff_id = $list['staff_id'];
+                $universitySynopsys->student_id = $list['student_id'];
+                $universitySynopsys->institute_name = $list['institute_name'];
+                $universitySynopsys->title = $list['title'];
+                $universitySynopsys->course = $list['course'];
+                $universitySynopsys->synopsis_type_id = $list['synopsis_type_id'];
+                $universitySynopsys->guide = $list['guide'];
+                $universitySynopsys->co_guide = $list['co_guide'];
+                $universitySynopsys->university_name = $list['university_name'];
+                $universitySynopsys->referance_no = $list['referance_no'];
+                $universitySynopsys->ref_date = $list['ref_date'];
+                $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->date_evaluation = $list['date_evaluation'];
+                $universitySynopsys->save();
+            }
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(StudentResult $studentResult)
-    {
-        //
+        return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
 }

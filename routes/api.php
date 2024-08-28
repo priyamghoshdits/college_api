@@ -474,7 +474,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveUniversitySynopsisApp", [UniversitySynopsisController::class, 'save_university_synopsis_app']);
 
     // STUDENT RESULT
-    Route::get("getStudentResult/{staff_id?}", [StudentResultController::class, 'get_student_result']);
+    Route::get("getStudentResult/{student_id?}", [StudentResultController::class, 'get_student_result']);
     Route::post("saveStudentResult", [StudentResultController::class, 'save_student_result']);
     Route::post("saveStudentResultFile", [StudentResultController::class, 'save_student_result_file']);
     Route::post("updateStudentResult", [StudentResultController::class, 'update_student_result']);
