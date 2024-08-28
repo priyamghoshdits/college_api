@@ -6,7 +6,6 @@ use App\Http\Resources\UniversitySynopsisResource;
 use App\Models\StudentResult;
 use App\Http\Requests\StoreStudentResultRequest;
 use App\Http\Requests\UpdateStudentResultRequest;
-use App\Models\StudentResult;
 use Illuminate\Http\Request;
 
 class StudentResultController extends Controller
@@ -25,7 +24,7 @@ class StudentResultController extends Controller
     {
         $file_name = '';
         if ($files = $request->file('file_name')) {
-            $destinationPath = public_path('/university_synopsis/');
+            $destinationPath = public_path('/student_result/');
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
             $file_name = $files->getClientOriginalName();
@@ -35,21 +34,17 @@ class StudentResultController extends Controller
 
     public function save_student_result(Request $request)
     {
-        foreach ($request['university_synopsis_array'] as $list) {
+        foreach ($request['student_result_array'] as $list) {
             $data = new StudentResult();
-            $data->staff_id = $list['staff_id'];
             $data->student_id = $list['student_id'];
-            $data->institute_name = $list['institute_name'];
-            $data->title = $list['title'];
-            $data->course = $list['course'];
+            $data->date_of_publication = $list['date_of_publication'];
+            $data->exam_marks = $list['exam_marks'];
+            $data->total_number_score = $list['total_number_score'];
             $data->synopsis_type_id = $list['synopsis_type_id'];
-            $data->guide = $list['guide'];
-            $data->co_guide = $list['co_guide'];
-            $data->university_name = $list['university_name'];
-            $data->referance_no = $list['referance_no'];
-            $data->ref_date = $list['ref_date'];
-            $data->file_name = $list['file_name'] ?? null;
-            $data->date_evaluation = $list['date_evaluation'];
+            $data->percentage = $list['percentage'];
+            $data->grade = $list['grade'];
+            $data->division = $list['division'];
+            $data->file_name = $list['file_name'];
             $data->save();
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
@@ -57,40 +52,32 @@ class StudentResultController extends Controller
 
     public function update_student_result(Request $request)
     {
-        foreach ($request['university_synopsis_array'] as $list) {
+        foreach ($request['student_result_array'] as $list) {
 
-            $university_synopsis = StudentResult::find($list['id']);
-            if (!$university_synopsis) {
+            $student_result = StudentResult::find($list['id']);
+            if (!$student_result) {
                 $data = new StudentResult();
-                $data->staff_id = $list['staff_id'];
                 $data->student_id = $list['student_id'];
-                $data->institute_name = $list['institute_name'];
-                $data->title = $list['title'];
-                $data->course = $list['course'];
+                $data->date_of_publication = $list['date_of_publication'];
+                $data->exam_marks = $list['exam_marks'];
+                $data->total_number_score = $list['total_number_score'];
                 $data->synopsis_type_id = $list['synopsis_type_id'];
-                $data->guide = $list['guide'];
-                $data->co_guide = $list['co_guide'];
-                $data->university_name = $list['university_name'];
-                $data->referance_no = $list['referance_no'];
-                $data->ref_date = $list['ref_date'];
+                $data->percentage = $list['percentage'];
+                $data->grade = $list['grade'];
+                $data->division = $list['division'];
                 $data->file_name = $list['file_name'];
-                $data->date_evaluation = $list['date_evaluation'];
                 $data->save();
             } else {
-                $university_synopsis->staff_id = $list['staff_id'];
-                $university_synopsis->student_id = $list['student_id'];
-                $university_synopsis->institute_name = $list['institute_name'];
-                $university_synopsis->title = $list['title'];
-                $university_synopsis->course = $list['course'];
-                $university_synopsis->synopsis_type_id = $list['synopsis_type_id'];
-                $university_synopsis->guide = $list['guide'];
-                $university_synopsis->co_guide = $list['co_guide'];
-                $university_synopsis->university_name = $list['university_name'];
-                $university_synopsis->referance_no = $list['referance_no'];
-                $university_synopsis->ref_date = $list['ref_date'];
-                $university_synopsis->file_name = $list['file_name'];
-                $university_synopsis->date_evaluation = $list['date_evaluation'];
-                $university_synopsis->update();
+                $data->student_id = $list['student_id'];
+                $data->date_of_publication = $list['date_of_publication'];
+                $data->exam_marks = $list['exam_marks'];
+                $data->total_number_score = $list['total_number_score'];
+                $data->synopsis_type_id = $list['synopsis_type_id'];
+                $data->percentage = $list['percentage'];
+                $data->grade = $list['grade'];
+                $data->division = $list['division'];
+                $data->file_name = $list['file_name'];
+                $student_result->update();
             }
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
@@ -98,8 +85,8 @@ class StudentResultController extends Controller
 
     public function delete_student_result($id)
     {
-        $university_synopsis = StudentResult::find($id);
-        $university_synopsis->delete();
+        $student_result = StudentResult::find($id);
+        $student_result->delete();
 
         $university_synopsis_data = StudentResult::get();
         return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($university_synopsis_data)], 200);
