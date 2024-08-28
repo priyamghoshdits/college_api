@@ -98,35 +98,25 @@ class StudentResultController extends Controller
         foreach ($data as $list){
             if($list['id'] != null){
                 $universitySynopsys = StudentResult::find($list['id']);
-                $universitySynopsys->staff_id = $list['staff_id'];
                 $universitySynopsys->student_id = $list['student_id'];
-                $universitySynopsys->institute_name = $list['institute_name'];
-                $universitySynopsys->title = $list['title'];
-                $universitySynopsys->course = $list['course'];
-                $universitySynopsys->synopsis_type_id = $list['synopsis_type_id'];
-                $universitySynopsys->guide = $list['guide'];
-                $universitySynopsys->co_guide = $list['co_guide'];
-                $universitySynopsys->university_name = $list['university_name'];
-                $universitySynopsys->referance_no = $list['referance_no'];
-                $universitySynopsys->ref_date = $list['ref_date'];
+                $universitySynopsys->date_of_publication = $list['date_of_publication'];
+                $universitySynopsys->exam_marks = $list['exam_marks'];
+                $universitySynopsys->total_number_score = $list['total_number_score'];
+                $universitySynopsys->percentage = $list['percentage'];
+                $universitySynopsys->grade = $list['grade'];
+                $universitySynopsys->division = $list['division'];
                 $universitySynopsys->file_name = $list['file_name'];
-                $universitySynopsys->date_evaluation = $list['date_evaluation'];
                 $universitySynopsys->update();
             }else{
                 $universitySynopsys = new StudentResult();
-                $universitySynopsys->staff_id = $list['staff_id'];
                 $universitySynopsys->student_id = $list['student_id'];
-                $universitySynopsys->institute_name = $list['institute_name'];
-                $universitySynopsys->title = $list['title'];
-                $universitySynopsys->course = $list['course'];
-                $universitySynopsys->synopsis_type_id = $list['synopsis_type_id'];
-                $universitySynopsys->guide = $list['guide'];
-                $universitySynopsys->co_guide = $list['co_guide'];
-                $universitySynopsys->university_name = $list['university_name'];
-                $universitySynopsys->referance_no = $list['referance_no'];
-                $universitySynopsys->ref_date = $list['ref_date'];
+                $universitySynopsys->date_of_publication = $list['date_of_publication'];
+                $universitySynopsys->exam_marks = $list['exam_marks'];
+                $universitySynopsys->total_number_score = $list['total_number_score'];
+                $universitySynopsys->percentage = $list['percentage'];
+                $universitySynopsys->grade = $list['grade'];
+                $universitySynopsys->division = $list['division'];
                 $universitySynopsys->file_name = $list['file_name'];
-                $universitySynopsys->date_evaluation = $list['date_evaluation'];
                 $universitySynopsys->save();
             }
         }
