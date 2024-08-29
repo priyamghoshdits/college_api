@@ -55,6 +55,11 @@ return new class extends Migration
             $table->string('abc_file')->nullable();
             $table->string('student_signature')->nullable();
             $table->string('admission_allotment')->nullable();
+            $table->string('ews')->nullable();
+            $table->string('ews_file')->nullable();
+            $table->string('medical')->nullable();
+            $table->string('medical_certificate')->nullable();
+            $table->string('medical_detail')->nullable();
             $table->timestamps();
         });
     }
