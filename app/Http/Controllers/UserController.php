@@ -519,9 +519,9 @@ class UserController extends Controller
 
                             $cautionMoney = new CautionMoney();
                             $cautionMoney->user_id = $user_id;
-                            $cautionMoney->caution_money_payment_date = $request['payment_date'];
-                            $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
-                            $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+                            $cautionMoney->caution_money_payment_date = $request['caution_money_payment_date'];
+                            $cautionMoney->caution_money_mode_of_payment = $request['caution_money_mode_of_payment'];
+                            $cautionMoney->caution_money_transaction_id = $request['caution_money_transaction_id'];
                             $cautionMoney->caution_money = $request['caution_money'];
                             $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
                             $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
