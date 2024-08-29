@@ -897,7 +897,7 @@ class UserController extends Controller
             ->where('users.id', $user_id)
             ->first();
 
-        return $member;
+//        return $member;
 
         return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
     }
