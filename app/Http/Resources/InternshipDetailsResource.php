@@ -21,9 +21,11 @@ class InternshipDetailsResource extends JsonResource
             'internship_provider_id' => $this->internship_provider_id,
             'internship_provider_name' => InternshipProvider::find($this->internship_provider_id)->name,
             'user_id' => $this->user_id,
-            'user_name' => User::find($this->user_id)->first_name .' '. User::find($this->user_id)->middle_name.' '.User::find($this->user_id)->last_name,
+            'user_name' => User::find($this->user_id)->first_name . ' ' . User::find($this->user_id)->middle_name . ' ' . User::find($this->user_id)->last_name,
             'from_date' => $this->from_date,
-            'to_date' => $this->to_date
+            'to_date' => $this->to_date,
+            'internship_file' => $this->internship_file,
+            'file_url' => $this->internship_file != null ? asset("internship_file/{$this->internship_file}") : null,
         ];
     }
 }
