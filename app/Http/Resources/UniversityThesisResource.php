@@ -20,7 +20,7 @@ class UniversityThesisResource extends JsonResource
             'semester_id' => $student_details->semester_id,
             'student_id' => $this->student_id,
             'student_name' => User::find($this->student_id)->first_name . ' ' . User::find($this->student_id)->middle_name . ' ' . User::find($this->student_id)->last_name,
-            'synopsis_type_id' => $this->synopsis_type_id,
+            'thesis_type_id' => $this->thesis_type_id,
             'guide' => $this->guide,
             'co_guide' => $this->co_guide,
             'university_name' => $this->university_name,

@@ -11,11 +11,11 @@ class UniversityThesisController extends Controller
     public function get_university_thesis($staff_id = null)
     {
         if ($staff_id) {
-            $PgPhdGuide = UniversityThesis::where('staff_id', $staff_id)->get();
+            $data = UniversityThesis::where('staff_id', $staff_id)->get();
         } else {
-            $PgPhdGuide = UniversityThesis::get();
+            $data = UniversityThesis::get();
         }
-        return response()->json(['success' => 1, 'data' => UniversityThesisResource::collection($PgPhdGuide)], 200);
+        return response()->json(['success' => 1, 'data' => UniversityThesisResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function save_university_thesis_file(Request $request)
