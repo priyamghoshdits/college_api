@@ -11,11 +11,11 @@ class StudentResultController extends Controller
     public function get_student_result($student_id = null)
     {
         if ($student_id) {
-            $PgPhdGuide = StudentResult::whereStudentId($student_id)->get();
+            $data = StudentResult::whereStudentId($student_id)->get();
         } else {
-            $PgPhdGuide = StudentResult::get();
+            $data = StudentResult::get();
         }
-        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($PgPhdGuide)], 200,[], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($data)], 200,[], JSON_NUMERIC_CHECK);
     }
 
     public function save_student_result_file(Request $request)
@@ -38,7 +38,6 @@ class StudentResultController extends Controller
             $data->date_of_publication = $list['date_of_publication'];
             $data->exam_marks = $list['exam_marks'];
             $data->total_number_score = $list['total_number_score'];
-            $data->synopsis_type_id = $list['synopsis_type_id'];
             $data->percentage = $list['percentage'];
             $data->grade = $list['grade'];
             $data->division = $list['division'];
@@ -59,7 +58,6 @@ class StudentResultController extends Controller
                 $data->date_of_publication = $list['date_of_publication'];
                 $data->exam_marks = $list['exam_marks'];
                 $data->total_number_score = $list['total_number_score'];
-                $data->synopsis_type_id = $list['synopsis_type_id'];
                 $data->percentage = $list['percentage'];
                 $data->grade = $list['grade'];
                 $data->division = $list['division'];
@@ -70,7 +68,6 @@ class StudentResultController extends Controller
                 $data->date_of_publication = $list['date_of_publication'];
                 $data->exam_marks = $list['exam_marks'];
                 $data->total_number_score = $list['total_number_score'];
-                $data->synopsis_type_id = $list['synopsis_type_id'];
                 $data->percentage = $list['percentage'];
                 $data->grade = $list['grade'];
                 $data->division = $list['division'];

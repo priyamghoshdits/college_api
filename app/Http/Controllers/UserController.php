@@ -577,7 +577,8 @@ class UserController extends Controller
     public function update_student(Request $request)
     {
         $return_type = 1;
-        if ($request['admission_status'] == 0) {
+        $admission_status = $request['admission_status'] ?? 1;
+        if ($admission_status == 0) {
             $user = User::find($request['id']);
 
             if ($image = $request->file('image')) {
@@ -820,6 +821,8 @@ class UserController extends Controller
                 $user_id = $request['id'];
 
                 $cautionMoney = CautionMoney::where('user_id', $user_id)->first();
+
+//                return $user_id;
                 if ($cautionMoney) {
                     $cautionMoney->user_id = $user_id;
                     $cautionMoney->caution_money_payment_date = $request['payment_date'];
@@ -864,25 +867,27 @@ class UserController extends Controller
                 }
 
                 $student_details = StudentDetail::where('student_id', $user_id)->first();
-                $student_details->father_name = $request['father_name'] ?? null;
-                $student_details->father_occupation = $request['father_occupation'] ?? null;
-                $student_details->father_phone = $request['father_phone'] ?? null;
-                $student_details->mother_name = $request['mother_name'] ?? null;
-                $student_details->mother_occupation = $request['mother_occupation'] ?? null;
-                $student_details->guardian_name = $request['guardian_name'] ?? null;
-                $student_details->guardian_phone = $request['guardian_phone'] ?? null;
-                $student_details->guardian_email = $request['guardian_email'] ?? null;
+                $student_details->father_name = $this->sanitizeInput($request['father_name']);
+                $student_details->father_occupation = $this->sanitizeInput($request['father_occupation']);
+                $student_details->father_phone = $this->sanitizeInput($request['father_phone']);
+                $student_details->mother_name = $this->sanitizeInput($request['mother_name']);
+                $student_details->mother_occupation = $this->sanitizeInput($request['mother_occupation']);
+                $student_details->guardian_name = $this->sanitizeInput($request['guardian_name']);
+                $student_details->guardian_phone = $this->sanitizeInput($request['guardian_phone']);
+                $student_details->guardian_email = $this->sanitizeInput($request['guardian_email']);
                 // $student_details->admission_status = $request->admission_status ;
-                $student_details->mother_phone = $request['mother_phone'] ?? null;
-                $student_details->guardian_relation = $request['guardian_relation'] ?? null;
-                $student_details->guardian_address = $request['guardian_address'] ?? null;
-                $student_details->guardian_occupation = $request['guardian_occupation'] ?? null;
+                $student_details->mother_phone = $this->sanitizeInput($request['mother_phone']);
+                $student_details->guardian_relation = $this->sanitizeInput($request['guardian_relation']);
+                $student_details->guardian_address =$this->sanitizeInput( $request['guardian_address']);
+                $student_details->guardian_occupation = $this->sanitizeInput($request['guardian_occupation']);
                 $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
 
                 $student_details->update();
                 $return_type = 2;
             }
         }
+
+//        return $user_id;
 
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
@@ -891,6 +896,8 @@ class UserController extends Controller
             ->whereUserTypeId(3)
             ->where('users.id', $user_id)
             ->first();
+
+        return $member;
 
         return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
     }
