@@ -160,7 +160,8 @@ class UserController extends Controller
 
         dispatch(function () use ($data, $pass) {
             Mail::send('welcome_password', array(
-                'name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name, 'password' => $pass
+                'name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name,
+                'password' => $pass
             ), function ($message) use ($data) {
                 $message->from('rudkarsh@rgoi.in');
                 $message->to($data->email);
@@ -180,7 +181,8 @@ class UserController extends Controller
 
         dispatch(function () use ($data, $pass, $email_id) {
             Mail::send('forgot_password', array(
-                'name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name, 'password' => $pass
+                'name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name,
+                'password' => $pass
             ), function ($message) use ($email_id) {
                 $message->from('rudkarsh@rgoi.in');
                 $message->to($email_id);
@@ -210,7 +212,12 @@ class UserController extends Controller
             $manualScholarshipList = ManualScholarship::whereStudentId($request->user()->id)->get();
 
             return response()->json([
-                'success' => 1, 'data' => new StudentResource($member), 'education_details' => $education_details, 'achievement' => AchivementResource::collection($achievement), 'placement' => PlacementResource::collection($placement), 'manualFeesList' => ManualFeesResource::collection($manualFeesList),
+                'success' => 1,
+                'data' => new StudentResource($member),
+                'education_details' => $education_details,
+                'achievement' => AchivementResource::collection($achievement),
+                'placement' => PlacementResource::collection($placement),
+                'manualFeesList' => ManualFeesResource::collection($manualFeesList),
                 'manualScholarshipList' => $manualScholarshipList
             ], 200, [], JSON_NUMERIC_CHECK);
         }
@@ -276,7 +283,7 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
 
-            switch ($admission_status){
+            switch ($admission_status) {
                 case 0:
                     $user = new User();
 
@@ -342,7 +349,7 @@ class UserController extends Controller
                             $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
                             $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
                             $user->user_type_id = 3;
-//                $user->franchise_id = $this->sanitizeInput($request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id']);
+                            //                $user->franchise_id = $this->sanitizeInput($request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id']);
                             $user->franchise_id = 1;
                             $user->email = $this->sanitizeInput($request['email']);
                             $user->password = $pass;
@@ -355,7 +362,7 @@ class UserController extends Controller
                             $student_details->student_id = $user_id;
                             $student_details->course_id = $request['course_id'];
                             $student_details->semester_id = $request['semester_id'];
-//                $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+                            //                $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
                             $student_details->agent_id = 1;
                             $student_details->current_semester_id = $request['semester_id'];
                             $student_details->session_id = $request['session_id'] ?? null;
@@ -366,6 +373,11 @@ class UserController extends Controller
                             $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? null;
                             $student_details->current_address = $request['current_address'] ?? null;
                             $student_details->permanent_address = $request['permanent_address'] ?? null;
+
+                            $student_details->ews = $request['ews'];
+                            $student_details->medical = $request['medical'];
+                            $student_details->medical_detail = $request['medical_detail'];
+
                             $student_details->save();
 
                             $registration = new Registration();
@@ -432,6 +444,22 @@ class UserController extends Controller
                                 $student_details->admission_allotment = $file_name;
                             }
 
+                            if ($medical_certificate = $request->file('medical_certificate')) {
+                                // Define upload path
+                                $destinationPath = public_path('/medical_certificate/'); // upload path
+                                // Upload Orginal Image
+                                $file_name = $medical_certificate->getClientOriginalName();
+                                $medical_certificate->move($destinationPath, $file_name);
+                                $student_details->medical_certificate = $file_name;
+                            }
+                            if ($ews_file = $request->file('ews_file')) {
+                                // Define upload path
+                                $destinationPath = public_path('/ews_file/'); // upload path
+                                // Upload Orginal Image
+                                $file_name = $ews_file->getClientOriginalName();
+                                $ews_file->move($destinationPath, $file_name);
+                                $student_details->ews_file = $file_name;
+                            }
                             $student_details->update();
 
 
@@ -547,7 +575,6 @@ class UserController extends Controller
 
                 default:
                     return response()->json(['success' => 0, 'data' => "invalid admission status"], 405, [], JSON_NUMERIC_CHECK);
-
             }
             DB::commit();
         } catch (Exception $e) {
@@ -625,7 +652,7 @@ class UserController extends Controller
 
             $user_id = $user->id;
 
-//                return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
+            //                return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
         } else {
             if ($request->form_id == 1) {
 
@@ -646,7 +673,7 @@ class UserController extends Controller
                 $user->mobile_no = $this->sanitizeInput($request['mobile_no'] ?? null);
                 $user->blood_group = $this->sanitizeInput($request['blood_group'] ?? null);
                 $user->user_type_id = 3;
-//            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
+                //            $user->franchise_id = $request['franchise_id'] == 'null' || $request['franchise_id'] == null ? $request->user()->franchise_id : $request['franchise_id'];
                 $user->franchise_id = 1;
                 $user->email = $this->sanitizeInput($request['email']);
                 $user->password = $pass;
@@ -658,7 +685,7 @@ class UserController extends Controller
                 // $student_details->student_id = $user_id;
                 $student_details->course_id = $request['course_id'];
                 $student_details->semester_id = $request['semester_id'];
-//            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
+                //            $student_details->agent_id = $request['agent_id'] == 'null' || $request['agent_id'] == null ? $request->user()->id : $request['agent_id'];
                 $student_details->agent_id = 1;
                 $student_details->current_semester_id = $request['semester_id'];
                 $student_details->session_id = $request['session_id'] ?? null;
@@ -669,6 +696,11 @@ class UserController extends Controller
                 $student_details->emergency_phone_number = $request['emergency_phone_number'] ?? null;
                 $student_details->current_address = $request['current_address'] ?? null;
                 $student_details->permanent_address = $request['permanent_address'] ?? null;
+
+                $student_details->ews = $request['ews'];
+                $student_details->medical = $request['medical'];
+                $student_details->medical_detail = $request['medical_detail'];
+
                 $student_details->update();
 
                 $registration = Registration::where('student_id', $user_id)->first();
@@ -762,6 +794,29 @@ class UserController extends Controller
                     $file_name = $admission_allotment->getClientOriginalName();
                     $admission_allotment->move($destinationPath, $file_name);
                     $student_details->admission_allotment = $file_name;
+                }
+
+                if ($medical_certificate = $request->file('medical_certificate')) {
+                    if (file_exists(public_path() . '/medical_certificate/' . $student_details->medical_certificate)) {
+                        File::delete(public_path() . '/medical_certificate/' . $student_details->medical_certificate);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/medical_certificate/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $medical_certificate->getClientOriginalName();
+                    $medical_certificate->move($destinationPath, $file_name);
+                    $student_details->medical_certificate = $file_name;
+                }
+                if ($ews_file = $request->file('ews_file')) {
+                    if (file_exists(public_path() . '/ews_file/' . $student_details->ews_file)) {
+                        File::delete(public_path() . '/ews_file/' . $student_details->ews_file);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/ews_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $ews_file->getClientOriginalName();
+                    $ews_file->move($destinationPath, $file_name);
+                    $student_details->ews_file = $file_name;
                 }
 
                 $student_details->update();
@@ -920,7 +975,7 @@ class UserController extends Controller
             $user->mobile_no = $request['mobile_no'];
             $user->blood_group = $request['blood_group'];
             $user->user_type_id = $request['user_type_id'];
-//            $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
+            //            $user->franchise_id = $request['franchise_id'] ?? $request->user()->franchise_id;
             $user->franchise_id = 1;
             $user->email = $request['email'];
             $user->password = $pass;
