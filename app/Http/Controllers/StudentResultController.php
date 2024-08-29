@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UniversitySynopsisResource;
 use App\Models\StudentResult;
-use App\Http\Requests\StoreStudentResultRequest;
-use App\Http\Requests\UpdateStudentResultRequest;
 use Illuminate\Http\Request;
 
 class StudentResultController extends Controller
