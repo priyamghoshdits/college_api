@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UniversitySynopsisResource;
+use App\Http\Resources\StudentResultResource;
 use App\Models\StudentResult;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class StudentResultController extends Controller
         } else {
             $data = StudentResult::get();
         }
-        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($data)], 200,[], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => StudentResultResource::collection($data)], 200,[], JSON_NUMERIC_CHECK);
     }
 
     public function save_student_result_file(Request $request)
@@ -84,7 +84,7 @@ class StudentResultController extends Controller
         $student_result->delete();
 
         $university_synopsis_data = StudentResult::get();
-        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($university_synopsis_data)], 200);
+        return response()->json(['success' => 1, 'data' => StudentResultResource::collection($university_synopsis_data)], 200);
     }
 
     public function save_student_result_app(Request $request)
