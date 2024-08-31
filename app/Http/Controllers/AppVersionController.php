@@ -21,16 +21,16 @@ class AppVersionController extends Controller
             $build_number = version_compare($data->version, $request['buildNumber']);
             if($version < 0){
                 $data->app_name = $request['appName'];
-                $data->package_name = $request['package_name'];
+                $data->package_name = $request['packageName'];
                 $data->version = $request['version'];
-                $data->build_number = $request['build_number'];
+                $data->build_number = $request['buildNumber'];
                 $data->update();
                 return response()->json(['update_required' => false]);
             }elseif ($build_number < 0){
                 $data->app_name = $request['appName'];
-                $data->package_name = $request['package_name'];
+                $data->package_name = $request['packageName'];
                 $data->version = $request['version'];
-                $data->build_number = $request['build_number'];
+                $data->build_number = $request['buildNumber'];
                 $data->update();
                 return response()->json(['update_required' => false]);
             }elseif ($version == 0 && $build_number == 0){
@@ -40,9 +40,9 @@ class AppVersionController extends Controller
         }else{
             $data = new AppVersion();
             $data->app_name = $request['appName'];
-            $data->package_name = $request['package_name'];
+            $data->package_name = $request['packageName'];
             $data->version = $request['version'];
-            $data->build_number = $request['build_number'];
+            $data->build_number = $request['buildNumber'];
             $data->save();
         }
         return response()->json(['update_required' => false]);
