@@ -20,7 +20,7 @@ class AppVersionController extends Controller
         $data = AppVersion::find(1);
         if($data){
             $version = version_compare($data->version, $request['version']);
-            $build_number = version_compare($data->version, $request['buildNumber']);
+            $build_number = version_compare($data->build_number, $request['buildNumber']);
             Log::info($version);
             Log::info($build_number);
             if($version < 0){
