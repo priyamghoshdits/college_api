@@ -13,12 +13,35 @@ class AppVersionController extends Controller
     public function check_app_version(Request $request)
     {
         $data = AppVersion::find(1);
-        $data = new AppVersion();
-        $data->app_name = $request['appName'];
-        $data->package_name = $request['package_name'];
-        $data->version = $request['version'];
-        $data->build_number = $request['build_number'];
-        $data->save();
+        if($data){
+            $version = version_compare($data->version, $request['version']);
+            $build_number = version_compare($data->version, $request['buildNumber']);
+            if($version < 0){
+                $data->app_name = $request['appName'];
+                $data->package_name = $request['package_name'];
+                $data->version = $request['version'];
+                $data->build_number = $request['build_number'];
+                $data->update();
+                return response()->json(['update_required' => false]);
+            }elseif ($build_number < 0){
+                $data->app_name = $request['appName'];
+                $data->package_name = $request['package_name'];
+                $data->version = $request['version'];
+                $data->build_number = $request['build_number'];
+                $data->update();
+                return response()->json(['update_required' => false]);
+            }elseif ($version == 0 && $build_number == 0){
+                return response()->json(['update_required' => false]);
+            }
+            return response()->json(['update_required' => true]);
+        }else{
+            $data = new AppVersion();
+            $data->app_name = $request['appName'];
+            $data->package_name = $request['package_name'];
+            $data->version = $request['version'];
+            $data->build_number = $request['build_number'];
+            $data->save();
+        }
     }
 
     /**
