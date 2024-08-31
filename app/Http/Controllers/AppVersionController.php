@@ -13,16 +13,13 @@ class AppVersionController extends Controller
 
     public function check_app_version(Request $request)
     {
-        Log::info($request);
         if($request['appInDebugMode']){
-            return response()->json(['update_required' => true]);
+            return response()->json(['update_required' => false]);
         }
         $data = AppVersion::find(1);
         if($data){
             $version = version_compare($data->version, $request['version']);
             $build_number = version_compare($data->build_number, $request['buildNumber']);
-            Log::info($version);
-            Log::info($build_number);
             if($version < 0){
                 $data->app_name = $request['appName'];
                 $data->package_name = $request['packageName'];
@@ -40,7 +37,7 @@ class AppVersionController extends Controller
             }elseif ($version == 0 && $build_number == 0){
                 return response()->json(['update_required' => false]);
             }
-            return response()->json(['update_required' => true]);
+            return response()->json(['update_required' => true, 'file_url' => 'https://devanthims.in/app-release.apk']);
         }else{
             $data = new AppVersion();
             $data->app_name = $request['appName'];

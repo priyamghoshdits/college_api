@@ -698,7 +698,7 @@ class UserController extends Controller
                 $student_details->permanent_address = $request['permanent_address'] ?? null;
 
                 $student_details->ews = $request['ews'];
-                $student_details->medical = $request['medical'];
+                $student_details->medical_history = $request['medical_history'];
                 $student_details->medical_detail = $request['medical_detail'];
 
                 $student_details->update();
@@ -1106,7 +1106,7 @@ class UserController extends Controller
             //            })->afterResponse();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 200);
+            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 403);
         }
 
         return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);
