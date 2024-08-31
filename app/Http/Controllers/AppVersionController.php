@@ -6,12 +6,14 @@ use App\Models\AppVersion;
 use App\Http\Requests\StoreAppVersionRequest;
 use App\Http\Requests\UpdateAppVersionRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AppVersionController extends Controller
 {
 
     public function check_app_version(Request $request)
     {
+        Log::info($request);
         if($request['appInDebugMode']){
             return response()->json(['update_required' => true]);
         }
@@ -19,6 +21,8 @@ class AppVersionController extends Controller
         if($data){
             $version = version_compare($data->version, $request['version']);
             $build_number = version_compare($data->version, $request['buildNumber']);
+            Log::info($version);
+            Log::info($build_number);
             if($version < 0){
                 $data->app_name = $request['appName'];
                 $data->package_name = $request['packageName'];
