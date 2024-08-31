@@ -12,6 +12,9 @@ class AppVersionController extends Controller
 
     public function check_app_version(Request $request)
     {
+        if($request['appInDebugMode']){
+            return response()->json(['update_required' => true]);
+        }
         $data = AppVersion::find(1);
         if($data){
             $version = version_compare($data->version, $request['version']);
@@ -42,7 +45,7 @@ class AppVersionController extends Controller
             $data->build_number = $request['build_number'];
             $data->save();
         }
-        return response()->json(['update_required' => true]);
+        return response()->json(['update_required' => false]);
     }
 
     /**
