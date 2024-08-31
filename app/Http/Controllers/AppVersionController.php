@@ -42,6 +42,7 @@ class AppVersionController extends Controller
             $data->build_number = $request['build_number'];
             $data->save();
         }
+        return response()->json(['update_required' => true]);
     }
 
     /**

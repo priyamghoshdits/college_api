@@ -125,7 +125,7 @@ Route::get("forgotPassword/{email_id}", [UserController::class, 'forgot_password
 Route::get("initilialize", [RolesAndPermissionController::class, 'initilialize']);
 Route::get("clearCache", [RolesAndPermissionController::class, 'clear_cache']);
 
-Route::get("clearCache", [RolesAndPermissionController::class, 'check_app_version']);
+Route::get("appUpdateChecker", [RolesAndPermissionController::class, 'check_app_version']);
 
 
 Route::get("testF", [MemberController::class, 'testUser']);
