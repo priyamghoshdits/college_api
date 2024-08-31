@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\AppVersion;
 use App\Http\Requests\StoreAppVersionRequest;
 use App\Http\Requests\UpdateAppVersionRequest;
+use Illuminate\Http\Request;
 
 class AppVersionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function check_app_version(Request $request)
     {
-        //
+        $data = AppVersion::find(1);
+        $data = new AppVersion();
+        $data->app_name = $request['appName'];
+        $data->package_name = $request['package_name'];
+        $data->version = $request['version'];
+        $data->build_number = $request['build_number'];
+        $data->save();
     }
 
     /**

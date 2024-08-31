@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('app_versions', function (Blueprint $table) {
             $table->id();
+            $table->string('app_name')->nullable(true);
+            $table->string('package_name')->nullable(true);
+            $table->string('version')->nullable(true);
+            $table->string('build_number')->nullable(true);
+            $table->string('build_signature')->nullable(true);
+            $table->string('installer_store')->nullable(true);
             $table->timestamps();
         });
     }
