@@ -376,7 +376,7 @@ class UserController extends Controller
                             $student_details->permanent_address = $request['permanent_address'] ?? null;
 
                             $student_details->ews = $request['ews'];
-                            $student_details->medical = $request['medical'];
+                            $student_details->medical_history = $request['medical_history'];
                             $student_details->medical_detail = $request['medical_detail'];
 
                             $student_details->save();
@@ -520,9 +520,9 @@ class UserController extends Controller
 
                             $cautionMoney = new CautionMoney();
                             $cautionMoney->user_id = $user_id;
-                            $cautionMoney->caution_money_payment_date = $request['payment_date'];
-                            $cautionMoney->caution_money_mode_of_payment = $request['mode_of_payment'];
-                            $cautionMoney->caution_money_transaction_id = $request['transaction_id'];
+                            $cautionMoney->caution_money_payment_date = $request['caution_money_payment_date'];
+                            $cautionMoney->caution_money_mode_of_payment = $request['caution_money_mode_of_payment'];
+                            $cautionMoney->caution_money_transaction_id = $request['caution_money_transaction_id'];
                             $cautionMoney->caution_money = $request['caution_money'];
                             $cautionMoney->caution_money_deduction = $request['deduction'] ?? null;
                             $cautionMoney->refund_payment_date = $request['refund_payment_date'] ?? null;
@@ -699,7 +699,7 @@ class UserController extends Controller
                 $student_details->permanent_address = $request['permanent_address'] ?? null;
 
                 $student_details->ews = $request['ews'];
-                $student_details->medical = $request['medical'];
+                $student_details->medical_history = $request['medical_history'];
                 $student_details->medical_detail = $request['medical_detail'];
 
                 $student_details->update();
@@ -1107,7 +1107,7 @@ class UserController extends Controller
             //            })->afterResponse();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 200);
+            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 403);
         }
 
         return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);

@@ -102,6 +102,8 @@ use App\Http\Controllers\WeekDaysController;
 use App\Http\Controllers\StudentResultController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AppVersionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +126,8 @@ Route::get("forgotPassword/{email_id}", [UserController::class, 'forgot_password
 
 Route::get("initilialize", [RolesAndPermissionController::class, 'initilialize']);
 Route::get("clearCache", [RolesAndPermissionController::class, 'clear_cache']);
+
+Route::post("appUpdateChecker", [AppVersionController::class, 'check_app_version']);
 
 
 Route::get("testF", [MemberController::class, 'testUser']);
