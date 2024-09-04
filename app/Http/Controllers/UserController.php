@@ -275,7 +275,8 @@ class UserController extends Controller
 
         Log::info($request['admission_status']);
         Log::info($request['form_id']);
-        $pass = rand(100000, 999999);
+        // $pass = rand(100000, 999999);
+        $pass = "12345678";
         $return_type = 1;
         $user_id = '';
         $admission_status = $request['admission_status'] ?? 1;
@@ -877,7 +878,7 @@ class UserController extends Controller
 
                 $cautionMoney = CautionMoney::where('user_id', $user_id)->first();
 
-//                return $user_id;
+                //                return $user_id;
                 if ($cautionMoney) {
                     $cautionMoney->user_id = $user_id;
                     $cautionMoney->caution_money_payment_date = $request['payment_date'];
@@ -933,7 +934,7 @@ class UserController extends Controller
                 // $student_details->admission_status = $request->admission_status ;
                 $student_details->mother_phone = $this->sanitizeInput($request['mother_phone']);
                 $student_details->guardian_relation = $this->sanitizeInput($request['guardian_relation']);
-                $student_details->guardian_address =$this->sanitizeInput( $request['guardian_address']);
+                $student_details->guardian_address = $this->sanitizeInput($request['guardian_address']);
                 $student_details->guardian_occupation = $this->sanitizeInput($request['guardian_occupation']);
                 $student_details->pre_admission_payment_id = ($request['admission_status'] == 0) ? $preAdmissionPayment->id : null;
 
@@ -942,7 +943,7 @@ class UserController extends Controller
             }
         }
 
-//        return $user_id;
+        //        return $user_id;
 
         $member = User::select('*', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
@@ -952,7 +953,7 @@ class UserController extends Controller
             ->where('users.id', $user_id)
             ->first();
 
-//        return $member;
+        //        return $member;
 
         return response()->json(['success' => $return_type, 'data' => new StudentResource($member)], 200, [], JSON_NUMERIC_CHECK);
     }
