@@ -1108,7 +1108,7 @@ class UserController extends Controller
             //            })->afterResponse();
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 403);
+            return response()->json(['success' => 0, 'exception' => $e->getMessage()], 410);
         }
 
         return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);

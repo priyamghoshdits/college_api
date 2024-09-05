@@ -22,6 +22,8 @@ class MemberResource extends JsonResource
             'last_name' => $this->last_name,
             'gender' => $this->gender,
             'dob' => $this->dob,
+            'spouse_name' => $this->dob,
+            'relation' => $this->dob,
             'category_id' => $this->category_id,
             'category_name' => Category::find($this->category_id)->name,
             'religion' => $this->religion,
@@ -58,6 +60,7 @@ class MemberResource extends JsonResource
             'caste_certificate_proof' => $this->caste_certificate_proof != null ? asset("caste_certificate_proof/{$this->caste_certificate_proof}") : null,
             'pan_proof' => $this->pan_proof != null ? asset("pan_proof/{$this->pan_proof}") : null,
             'blood_group_proof' => $this->blood_group_proof != null ? asset("blood_group_proof/{$this->blood_group_proof}") : null,
+            'relation_proof' => $this->relation_proof != null ? asset("relation_proof/{$this->relation_proof}") : null,
         ];
     }
 }

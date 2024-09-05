@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manual_scholarships', function (Blueprint $table) {
+        Schema::create('scholarship_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('course_id');
-            $table->string('semester_id');
-            $table->string('student_id');
-            $table->string('scholarship_master_id');
-            $table->string('type_of_scholarship');
-            $table->string('amount');
+            $table->string('name')->nullable(false);
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manual_scholarships');
+        Schema::dropIfExists('scholarship_masters');
     }
 };
