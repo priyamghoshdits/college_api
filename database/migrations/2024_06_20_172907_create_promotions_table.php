@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->string('sl')->nullable(true);
             $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('from')->nullable(true);
             $table->string('to')->nullable(true);

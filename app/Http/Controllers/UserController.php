@@ -276,7 +276,7 @@ class UserController extends Controller
         Log::info($request['admission_status']);
         Log::info($request['form_id']);
         // $pass = rand(100000, 999999);
-        $pass = "12345678";
+        $pass = 12345678;
         $return_type = 1;
         $user_id = '';
         $admission_status = $request['admission_status'] ?? 1;
@@ -961,7 +961,8 @@ class UserController extends Controller
     public function save_member(Request $request)
     {
         $data = (object)$request->json()->all();
-        $pass = rand(100000, 999999);
+//        $pass = rand(100000, 999999);
+        $pass = 12345678;
         DB::beginTransaction();
         try {
             $user = new User();
