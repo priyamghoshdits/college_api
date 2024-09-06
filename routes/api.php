@@ -103,6 +103,7 @@ use App\Http\Controllers\StudentResultController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppVersionController;
+use App\Http\Controllers\ClinicalTrainingController;
 use App\Http\Controllers\ScholarshipMasterController;
 
 /*
@@ -230,6 +231,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveEvent", [EventController::class, 'save_event']);
     Route::post("updateEvent", [EventController::class, 'update_event']);
     Route::get("deleteEvent/{id}", [EventController::class, 'delete_event']);
+
+
+    // CLINICAL TRAINING
+    Route::get("getClinicalTraning", [ClinicalTrainingController::class, 'get_clinical_traning']);
+    Route::post("saveClinicalTraning", [ClinicalTrainingController::class, 'save_clinical_traning']);
+    Route::post("updateClinicalTraning", [ClinicalTrainingController::class, 'update_clinical_traning']);
+    Route::get("deleteClinicalTraning/{id}", [ClinicalTrainingController::class, 'delete_clinical_traning']);
+
 
     //EDUCATION QUALIFICATION
     Route::get("searchEducationQualification/{student_id}", [EducationQualificationController::class, 'search_education_qualification']);
