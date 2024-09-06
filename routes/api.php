@@ -104,6 +104,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppVersionController;
 use App\Http\Controllers\ScholarshipMasterController;
+use App\Http\Controllers\MouController;
 
 /*
 |--------------------------------------------------------------------------
@@ -501,6 +502,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateStaffEducation", [StaffEducationController::class, 'update_staff_education']);
     Route::get("deleteStaffEducation/{id}", [StaffEducationController::class, 'delete_staff_education']);
     Route::post("saveStaffEducationApp", [StaffEducationController::class, 'save_staff_education_app']);
+
+    // MOU
+    Route::get("getMou", [MouController::class, 'get_mou']);
+    Route::post("saveMou", [MouController::class, 'save_mou']);
+    Route::post("saveMouFile", [MouController::class, 'save_mou_file']);
+    Route::post("updateMou", [MouController::class, 'update_mou']);
+    Route::get("deleteMou/{id}", [MouController::class, 'delete_mou']);
+    Route::post("saveMouApp", [MouController::class, 'save_mou_app']);
 
 
     // MANUAL SCHOLARSHIP
