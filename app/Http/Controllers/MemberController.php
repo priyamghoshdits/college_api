@@ -16,6 +16,7 @@ use App\Http\Resources\PlacementResource;
 use App\Http\Resources\StaffEducationResource;
 use App\Http\Resources\StaffExperienceResource;
 use App\Http\Resources\StudentResource;
+use App\Http\Resources\StudentResultResource;
 use App\Models\Achivement;
 use App\Models\AssignSemesterTeacher;
 use App\Models\BookPublication;
@@ -36,6 +37,7 @@ use App\Models\StaffAttendance;
 use App\Models\StaffEducation;
 use App\Models\StaffExperience;
 use App\Models\StudentDetail;
+use App\Models\StudentResult;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -144,6 +146,7 @@ class MemberController extends Controller
         $placement = PlacementResource::collection(PlacementDetails::whereUserId($id)->get());
         $feesDetails = ManualFeesResource::collection(ManualFees::whereStudentId($id)->get());
         $scholarship = ManualScholarshipResource::collection(ManualScholarship::whereStudentId($id)->get());
+        $student_result = StudentResultResource::collection(StudentResult::whereStudentId($id)->get());
 
         return response()->json([
             'success' => 1,
@@ -152,7 +155,8 @@ class MemberController extends Controller
             'placement' => $placement,
             'education_qualification' => $education_details,
             'fees_details' => $feesDetails,
-            'scholarship' => $scholarship
+            'scholarship' => $scholarship,
+            'student_result' => $student_result,
         ], 200, [], JSON_NUMERIC_CHECK);
     }
 

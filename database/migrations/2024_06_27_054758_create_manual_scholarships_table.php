@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('course_id');
             $table->string('semester_id');
             $table->string('student_id');
+            $table->string('scholarship_master_id');
             $table->string('type_of_scholarship');
             $table->string('amount');
             $table->timestamps();

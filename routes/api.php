@@ -103,7 +103,7 @@ use App\Http\Controllers\StudentResultController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppVersionController;
-
+use App\Http\Controllers\ScholarshipMasterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -522,6 +522,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("savePromotion", [PromotionController::class, 'save_promotion']);
     Route::post("updatePromotion", [PromotionController::class, 'update_promotion']);
     Route::get("deletePromotion/{id}", [PromotionController::class, 'delete_promotion']);
+
+    //SCHOLARSHIP MASTER
+    Route::get("getScholarship", [ScholarshipMasterController::class, 'get_scholarship']);
+    Route::post("saveScholarship", [ScholarshipMasterController::class, 'save_scholarship']);
+    Route::post("updateScholarship", [ScholarshipMasterController::class, 'update_scholarship']);
+    Route::get("deleteScholarship/{id}", [ScholarshipMasterController::class, 'delete_scholarship']);
+
 
     //JOURNAL PUBLICATION
     Route::get("searchJournalPublication/{staff_id?}", [JournalPublicationController::class, 'search_journal_publication']);

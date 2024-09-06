@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\LibraryStock;
+use App\Models\StudentDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -12,6 +13,7 @@ class LibraryIssueResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $student_details = StudentDetail::whereStudentId($this->user_id)->first();
         return [
             'id' => $this->id,
             'book_id' => $this->book_id,
@@ -19,6 +21,8 @@ class LibraryIssueResource extends JsonResource
             'publisher_name' => LibraryStock::find($this->book_id)->publisher_name,
             'author_name' => LibraryStock::find($this->book_id)->author_name,
             'user_id' => $this->user_id,
+            'course_id' => $student_details->course_id,
+            'semester_id' => $student_details->current_semester_id,
             'issued_on' => $this->issued_on,
             'return_date' => $this->return_date,
             'fine' => $this->fine,

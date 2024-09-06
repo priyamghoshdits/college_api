@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promotions', function (Blueprint $table) {
+        Schema::create('clinical_trainings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('from')->nullable(true);
-            $table->string('to')->nullable(true);
-            $table->string('promotion_date')->nullable(true);
-            $table->string('file')->nullable(true);
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('promotions');
+        Schema::dropIfExists('clinical_trainings');
     }
 };

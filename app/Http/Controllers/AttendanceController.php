@@ -154,6 +154,12 @@ class AttendanceController extends Controller
                     ->whereClass($class)
                     ->first();
                 if($attendanceUpdate){
+                    $class = ClassStatus::find($attendanceUpdate->class_status_id);
+                    $class->topic = $list['topic_name'] ?? $class->topic;
+                    $class->started_by = $list['user_id'] ?? $class->started_by;
+                    $class->ended_by = $list['user_id'] ?? $class->ended_by;
+                    $class->update();
+
                     $attendanceUpdate->attendance = $list['attendance'];
                     $attendanceUpdate->update();
                 }else{

@@ -64,14 +64,15 @@ class StudentResultController extends Controller
                 $data->file_name = $list['file_name'];
                 $data->save();
             } else {
-                $data->student_id = $list['student_id'];
-                $data->date_of_publication = $list['date_of_publication'];
-                $data->exam_marks = $list['exam_marks'];
-                $data->total_number_score = $list['total_number_score'];
-                $data->percentage = $list['percentage'];
-                $data->grade = $list['grade'];
-                $data->division = $list['division'];
-                $data->file_name = $list['file_name'];
+//                return $list['student_id'];
+                $student_result->student_id = $list['student_id'];
+                $student_result->date_of_publication = $list['date_of_publication'];
+                $student_result->exam_marks = $list['exam_marks'];
+                $student_result->total_number_score = $list['total_number_score'];
+                $student_result->percentage = $list['percentage'];
+                $student_result->grade = $list['grade'];
+                $student_result->division = $list['division'];
+                $student_result->file_name = $list['file_name'] ?? $student_result->file_name;
                 $student_result->update();
             }
         }

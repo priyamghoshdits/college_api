@@ -18,6 +18,7 @@ class StudentResource extends JsonResource
         return [
             'id' => $this->id,
             'identification_no' => $this->identification_no,
+            'filter' => $this->first_name .' '. $this->middle_name .' '.$this->middle_name .' '.$this->last_name,
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
@@ -51,6 +52,7 @@ class StudentResource extends JsonResource
             'dob_proof_file' => $this->dob_proof != null ? asset("dob_proof/{$this->dob_proof}") : null,
             'registration_proof' => $this->registration_proof != null ? asset("registration_proof/{$this->registration_proof}") : null,
             'blood_group_proof' => $this->blood_group_proof != null ? asset("blood_group_proof/{$this->blood_group_proof}") : null,
+            'medical_certificate_file' => $this->medical_certificate != null ? asset("medical_certificate/{$this->medical_certificate}") : null,
             'session' => Session::find($this->session_id)->name ?? null,
             'admission_date' => $this->admission_date,
             'father_name' => $this->father_name ?? null,
