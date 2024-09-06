@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date("from_date")->nullable(false);
             $table->date("to_date")->nullable(false);
-            $table->date("internship_file")->nullable(false);
+            $table->date("internship_file")->nullable(true);
             $table->timestamps();
         });
     }
