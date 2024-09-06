@@ -18,8 +18,8 @@ class ClinicalTrainingResource extends JsonResource
         return [
             'id' => $this->id,
             'internship_provider_id' => $this->internship_provider_id,
-            'student_name' => $this->student_name,
-            'student_full_name' => User::find($this->student_name)->first_name . ' ' . User::find($this->student_name)->middle_name . ' ' . User::find($this->student_name)->last_name,
+            'student_id' => $this->student_id,
+            'student_full_name' => User::find($this->student_id)->first_name . ' ' . User::find($this->student_id)->middle_name . ' ' . User::find($this->student_id)->last_name,
             'course_name' => $this->course_name,
             'year_semester' => $this->year_semester,
             'duration' => $this->duration,

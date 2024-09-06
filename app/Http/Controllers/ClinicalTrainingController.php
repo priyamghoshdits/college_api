@@ -11,7 +11,7 @@ class ClinicalTrainingController extends Controller
     public function save_clinical_traning(Request $request)
     {
         $clinical_training = new ClinicalTraining();
-        $clinical_training->student_name = $request->student_name;
+        $clinical_training->student_id = $request->student_id;
         $clinical_training->course_name = $request->course_name;
         $clinical_training->year_semester = $request->year_semester;
         $clinical_training->duration = $request->duration;
@@ -32,7 +32,7 @@ class ClinicalTrainingController extends Controller
     public function update_clinical_traning(Request $request)
     {
         $clinical_training = ClinicalTraining::find($request->id);
-        $clinical_training->student_name = $request->student_name;
+        $clinical_training->student_id = $request->student_id;
         $clinical_training->course_name = $request->course_name;
         $clinical_training->year_semester = $request->year_semester;
         $clinical_training->duration = $request->duration;

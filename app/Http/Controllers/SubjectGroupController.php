@@ -91,6 +91,7 @@ class SubjectGroupController extends Controller
             foreach ($data as $item) {
                 $objectUpdate = SubjectGroup::find($item['id']);
                 $objectUpdate->semester_id = $semester_id;
+                $objectUpdate->name = $name;
                 $objectUpdate->update();
             }
         }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('university_synopses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('staff_id');
+            $table->string('student_id');
             $table->string('institute_name')->nullable();
             $table->string('title')->nullable();
             $table->string('course')->nullable();
