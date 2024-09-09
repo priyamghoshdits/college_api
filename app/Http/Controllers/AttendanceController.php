@@ -51,6 +51,9 @@ class AttendanceController extends Controller
     public function update_class_end(Request $request,$id,$latitude,$longitude){
         $timezone = new DateTimeZone('Asia/Kolkata');
         $classStatus = ClassStatus::find($id);
+        if($classStatus->started_by == $request->user()->id){
+            return response()->json(['success'=>1,'message' => 'Please end the class with same account'], 400,[],JSON_NUMERIC_CHECK);
+        }
         $classStatus->ended_by = $request->user()->id;
         $classStatus->stop_latitude = $latitude;
         $classStatus->stop_longitude = $longitude;
@@ -65,6 +68,20 @@ class AttendanceController extends Controller
         $requestedData = $request->json()->all();
         $today = ($requestedData[0]['date'] == 'null') ? Carbon::now()->format('Y-m-d') : $requestedData[0]['date'];
 
+        $check_started_class = Attendance::whereCourseId($requestedData[0]['course_id'])
+            ->whereSemesterId($requestedData[0]['semester_id'])
+            ->whereSessionId($requestedData[0]['session_id'])
+            ->where('date',$today)
+            ->orderBy('id','DESC')
+            ->first();
+
+        if($check_started_class){
+            $classCheck = ClassStatus::find($check_started_class->class_status_id);
+            if(($classCheck->started_by !== null) && ($classCheck->ended_by === null) ){
+                return response()->json(['success'=>1,'message'=> "Class not ended"], 400,[],JSON_NUMERIC_CHECK);
+            }
+        }
+
         $class_no = Attendance::whereSubjectId($requestedData[0]['subject_id'])
             ->whereCourseId($requestedData[0]['course_id'])
             ->whereSemesterId($requestedData[0]['semester_id'])
@@ -75,19 +92,6 @@ class AttendanceController extends Controller
 
         if($class_no && $requestedData[0]['_class'] == 'new'){
 
-            $check_started_class = Attendance::whereCourseId($requestedData[0]['course_id'])
-                ->whereSemesterId($requestedData[0]['semester_id'])
-                ->whereSessionId($requestedData[0]['session_id'])
-                ->where('date',$today)
-                ->orderBy('id','DESC')
-                ->first();
-
-            if($check_started_class){
-                $classCheck = ClassStatus::find($check_started_class->class_status_id);
-                if(($classCheck->started_by !== null) && ($classCheck->ended_by === null) ){
-                    return response()->json(['success'=>1,'message'=> "Class not ended"], 400,[],JSON_NUMERIC_CHECK);
-                }
-            }
 
             $class = (int)$class_no->class + 1;
             $course_id = $requestedData[0]['course_id'];
