@@ -35,7 +35,7 @@ class UniversitySynopsisController extends Controller
         foreach ($request['university_synopsis_array'] as $list) {
             $data = new UniversitySynopsis();
             $data->staff_id = $list['staff_id'];
-            $data->student_id = $list['student_id'];
+            $data->student_name = $list['student_name'];
             $data->institute_name = $list['institute_name'];
             $data->title = $list['title'];
             $data->course = $list['course'];

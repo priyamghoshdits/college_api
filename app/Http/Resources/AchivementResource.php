@@ -20,7 +20,7 @@ class AchivementResource extends JsonResource
             'semester_id' => $this->semester_id,
             'semester_name' => Semester::find($this->semester_id)->name,
             'session_id' => $this->session_id,
-            'session_name' => Session::find($this->session_id)->name,
+//            'session_name' => Session::find($this->session_id)->name,
             'student_id' => $this->student_id,
             'student_name' => User::find($this->student_id)->first_name . ' ' . User::find($this->student_id)->middle_name . ' ' . User::find($this->student_id)->last_name,
             'award_name' => $this->award_name,
