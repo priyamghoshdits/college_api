@@ -105,8 +105,6 @@ class RolesSeeder extends Seeder
 
             //new
 
-            // ['name' => 'STUDENT GROUP'],
-            // ['name' => 'CREATE GROUP'],
             ['name' => 'API SCORE'],
             ['name' => 'PROMOTE STUDENTS'],
             ['name' => 'PRE ADMISSION'],
@@ -124,9 +122,6 @@ class RolesSeeder extends Seeder
             ['name' => 'MANUAL FEES'],
             ['name' => 'MANUAL SCHOLARSHIP'],
             ['name' => 'PAPER POSTER']
-
-            //            ['name' => 'ASSIGNMENT'],
-            //            ['name' => 'STUDY MATERIAL'], //35
 
         ]);
     }

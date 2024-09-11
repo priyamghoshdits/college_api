@@ -56,6 +56,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Api Score', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -225,6 +226,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Api Score', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -395,6 +397,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Api Score', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -562,6 +565,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Api Score', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -728,6 +732,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Api Score', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
@@ -895,6 +900,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Degree', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Staff Education', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Book Publication', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Api Score', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Attendance', 'permission' => true, 'franchise_id' => 1],
