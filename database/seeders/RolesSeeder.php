@@ -80,6 +80,10 @@ class RolesSeeder extends Seeder
 
             ['name' => 'ADD COMPANY DETAILS'],
             ['name' => 'PLACEMENT'],
+            ['name' => 'MOU/MOA'],
+            ['name' => 'CLINICAL TRAINING'],
+
+
             ['name' => 'ACHIEVEMENT'],
 
 

@@ -217,7 +217,7 @@ class AttendanceController extends Controller
         $start_date = Carbon::parse($receivedStartDate);
         $end_date = Carbon::parse($receivedEndDate);
         for($i = $start_date; $i <= $end_date; $i->modify('+1 day')){
-            $holiday = Holiday::whereDate('date',Carbon::createFromDate($i->format("Y-m-d")))->first();
+            $holiday = holiday::whereDate('date',Carbon::createFromDate($i->format("Y-m-d")))->first();
             if($holiday){
                 continue;
             }else{

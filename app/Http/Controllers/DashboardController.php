@@ -6,6 +6,7 @@ use App\Models\Achivement;
 use App\Models\Attendance;
 use App\Models\Content;
 use App\Models\Expense;
+use App\Models\LibraryIssue;
 use App\Models\LibraryStock;
 use App\Models\Notice;
 use App\Models\Payment;
@@ -238,6 +239,7 @@ class DashboardController extends Controller
         $total_assignment = count(Content::orderBy('id', 'DESC')->whereType('assignment')->get());
         $totalStudyMaterial = count(Content::orderBy('id', 'DESC')->whereType('study-material')->get());
         $total_achivement = Achivement::whereStudent_id(Auth::id())->count();
+        $total_issued_books = count(LibraryIssue::whereUserId(Auth::id())->whereReturned(0)->get());
 
         $live_class_list = VirtualClass::whereCourseId($student_data->course_id)->whereSemesterId($student_data->semester_id)->get();
 
@@ -376,8 +378,8 @@ class DashboardController extends Controller
             'student_chart' => $studentChart,
             'total_assignment' => $total_assignment,
             'studyMaterial' => $totalStudyMaterial,
-            'total_achivement' => $total_achivement
-
+            'total_achivement' => $total_achivement,
+            'total_issue_books' => $total_issued_books,
         ];
 
         return response()->json(['success' => 1, 'data' => $ret], 200, [], JSON_NUMERIC_CHECK);

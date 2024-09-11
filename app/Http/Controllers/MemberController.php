@@ -23,7 +23,7 @@ use App\Models\BookPublication;
 use App\Models\CautionMoney;
 use App\Models\EducationQualification;
 use App\Models\GeneratedPayroll;
-use App\Models\Holiday;
+use App\Models\holiday;
 use App\Models\JournalPublication;
 use App\Models\Leave;
 use App\Models\LeaveType;
@@ -63,9 +63,9 @@ class MemberController extends Controller
     {
         $teacher_id_payslip = [];
         $teacher_id = [];
-        $assignSemesterTeacher = AssignSemesterTeacher::get();
+        $assignSemesterTeacher = User::whereNotIn('user_type_id', [1, 3])->get();
         foreach ($assignSemesterTeacher as $temp) {
-            $teacher_id[] = $temp['teacher_id'];
+            $teacher_id[] = $temp['id'];
         }
         $payslip = PayslipUpload::whereIn('staff_id',$teacher_id)->where('month', $month)->where('year',$year)->get();
         foreach ($payslip as $temp) {
@@ -169,7 +169,7 @@ class MemberController extends Controller
             ->get();
         foreach ($members as $member) {
             $member->no_of_days = Carbon::now()->month($month)->daysInMonth;
-            $member->total_holidays = Holiday::whereMonth('date', $month)->count();
+            $member->total_holidays = holiday::whereMonth('date', $month)->count();
             $member->generated = (GeneratedPayroll::where('month', $month)->where('year', $year)->whereStaffId($member['id'])->first()) ? (GeneratedPayroll::where('month', $month)->where('year', $year)->whereStaffId($member['id'])->first())->status : 0;
             $member->total_present = StaffAttendance::whereUserTypeId($user_type_id)->whereUserId($member['id'])->whereMonth('date', $month)->whereAttendance('present')->count();
             $member->total_absent = $member->no_of_days - $member->total_present - $member->total_holidays;

@@ -1111,6 +1111,11 @@ class UserController extends Controller
             return response()->json(['success' => 0, 'exception' => $e->getMessage()], 410);
         }
 
+        $user = User::select('*', 'member_details.id as members_id', 'users.id as id')
+            ->leftjoin('member_details', 'member_details.user_id', '=', 'users.id')
+            ->where('users.id', $user->id)
+            ->first();
+
         return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);
     }
 
@@ -1469,6 +1474,11 @@ class UserController extends Controller
 
             $member_details->save();
         }
+
+        $user = User::select('*', 'member_details.id as members_id', 'users.id as id')
+            ->leftjoin('member_details', 'member_details.user_id', '=', 'users.id')
+            ->where('users.id', $user->id)
+            ->first();
 
         return response()->json(['success' => 1, 'data' => new MemberResource($user)], 200, [], JSON_NUMERIC_CHECK);
     }

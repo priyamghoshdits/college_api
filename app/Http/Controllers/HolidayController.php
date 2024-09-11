@@ -115,7 +115,7 @@ class HolidayController extends Controller
         $days = $this->get_days($requestedData->week_name);
         $description = $requestedData->description;
         foreach ($days as $day){
-            $holiday = new Holiday();
+            $holiday = new holiday();
             $holiday->date = $day;
             $holiday->description = $description;
             $holiday->save();
@@ -126,7 +126,7 @@ class HolidayController extends Controller
     public function save_holiday(Request $request)
     {
         $requestedData = (object)$request->json()->all();
-        $holiday = new Holiday();
+        $holiday = new holiday();
         $holiday->date = $requestedData->date;
         $holiday->description = $requestedData->description;
         $holiday->save();
@@ -136,7 +136,7 @@ class HolidayController extends Controller
 
     public function get_holiday_list_by_month($month)
     {
-        $data = Holiday::whereMonth('date', $month)
+        $data = holiday::whereMonth('date', $month)
             ->orderBy('date')
             ->get();
         foreach ($data as $item){
@@ -148,7 +148,7 @@ class HolidayController extends Controller
     public function update_holiday(Request $request)
     {
         $requestedData = (object)$request->json()->all();
-        $holiday = Holiday::find($requestedData->id);
+        $holiday = holiday::find($requestedData->id);
         $holiday->date = $requestedData->date;
         $holiday->description = $requestedData->description;
         $holiday->update();
@@ -158,7 +158,7 @@ class HolidayController extends Controller
 
     public function delete_holiday($id)
     {
-        $data = Holiday::find($id);
+        $data = holiday::find($id);
         $data->delete();
 
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
