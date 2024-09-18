@@ -20,7 +20,7 @@ class PaperSetterController extends Controller
             $data->university_name = $list['university_name'];
             $data->referance_no = $list['referance_no'];
             $data->ref_date = $list['ref_date'];
-            $data->paper_file = $list['upload_file'];
+            $data->paper_file = $list['paper_file'];
             $data->save();
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);

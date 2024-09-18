@@ -30,7 +30,7 @@ class PaperPosterResource extends JsonResource
             "duration" => $this->duration,
             "acivement" => $this->acivement,
             "file_name" => $this->file_name,
-            'file_url' => $this->file_name != null ? asset("paper_file/{$this->file_name}") : null,
+            'file_url' => $this->file_name != null ? asset("paper_poster/{$this->file_name}") : null,
         ];
     }
 }
