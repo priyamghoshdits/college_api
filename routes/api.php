@@ -107,6 +107,7 @@ use App\Http\Controllers\ClinicalTrainingController;
 use App\Http\Controllers\ScholarshipMasterController;
 use App\Http\Controllers\MouController;
 use App\Http\Controllers\InvigilatorController;
+use App\Http\Controllers\OtherAcademicsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -608,6 +609,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveInvigilator", [InvigilatorController::class, 'save_invigilator']);
     Route::post("updateInvigilator", [InvigilatorController::class, 'update_invigilator']);
     Route::get("deleteInvigilator/{id}", [InvigilatorController::class, 'delete_invigilator']);
+
+    //INVIGILATOR
+    Route::get("getInvigilator", [OtherAcademicsController::class, 'get_other_academics']);
+    Route::post("saveInvigilator", [OtherAcademicsController::class, 'save_other_academics']);
+    Route::post("updateInvigilator", [OtherAcademicsController::class, 'update_other_academics']);
+    Route::get("deleteInvigilator/{id}", [OtherAcademicsController::class, 'delete_other_academics']);
 
     //PAYMENT
     Route::get("getPayment", [PaymentController::class, 'get_payment']);

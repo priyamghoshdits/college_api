@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AchivementResource;
+use App\Http\Resources\ApiScoreResource;
 use App\Http\Resources\BookPublicationResource;
 use App\Http\Resources\JournalPublicationResource;
 use App\Http\Resources\LoginResource;
@@ -13,11 +14,13 @@ use App\Http\Resources\PayrollDeductionResource;
 use App\Http\Resources\PayrollEarningResource;
 use App\Http\Resources\PayslipUploadResource;
 use App\Http\Resources\PlacementResource;
+use App\Http\Resources\PromotionResource;
 use App\Http\Resources\StaffEducationResource;
 use App\Http\Resources\StaffExperienceResource;
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\StudentResultResource;
 use App\Models\Achivement;
+use App\Models\ApiScore;
 use App\Models\AssignSemesterTeacher;
 use App\Models\BookPublication;
 use App\Models\CautionMoney;
@@ -33,6 +36,7 @@ use App\Models\PayrollDeduction;
 use App\Models\PayrollEarnings;
 use App\Models\PayslipUpload;
 use App\Models\PlacementDetails;
+use App\Models\Promotion;
 use App\Models\StaffAttendance;
 use App\Models\StaffEducation;
 use App\Models\StaffExperience;
@@ -125,6 +129,10 @@ class MemberController extends Controller
 
         $book_publication = BookPublicationResource::collection(BookPublication::whereStaffId($id)->get());
 
+        $api_score = ApiScoreResource::collection(ApiScore::whereStaffId($id)->get());
+
+        $promotion = PromotionResource::collection(Promotion::whereStaffId($id)->get());
+
         return response()->json([
             'success' => 1,
             'member_data' => $member_details,
@@ -132,6 +140,8 @@ class MemberController extends Controller
             'staff_experience' => $staff_experience,
             'journal_publication' => $journal_publication,
             'book_publication' => $book_publication,
+            'api_score' => $api_score,
+            'promotion' => $promotion,
         ], 200, [], JSON_NUMERIC_CHECK);
     }
 
