@@ -610,7 +610,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateInvigilator", [InvigilatorController::class, 'update_invigilator']);
     Route::get("deleteInvigilator/{id}", [InvigilatorController::class, 'delete_invigilator']);
 
-    //INVIGILATOR
+    //OTHER ACADEMICS
     Route::get("getInvigilator", [OtherAcademicsController::class, 'get_other_academics']);
     Route::post("saveInvigilator", [OtherAcademicsController::class, 'save_other_academics']);
     Route::post("updateInvigilator", [OtherAcademicsController::class, 'update_other_academics']);

@@ -16,7 +16,11 @@ class OtherAcademicsController extends Controller
 
     public function save_other_academics(Request $request)
     {
-        //
+        $academics = new OtherAcademics();
+        $academics->designation = $request['designation'];
+        $academics->appointed_by = $request['appointed_by'];
+        $academics->date_of_appointment = $request['date_of_appointment'];
+        $academics->save();
     }
 
     public function update_other_academics(Request $request)
