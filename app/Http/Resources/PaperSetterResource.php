@@ -16,6 +16,7 @@ class PaperSetterResource extends JsonResource
             'staff_name' => User::find($this->staff_id)->first_name.' '.User::find($this->staff_id)->middle_name.' '.User::find($this->staff_id)->last_name,
             'examination_name' => $this->examination_name,
             'subject_name' => $this->subject_name,
+            'course_name' => $this->course_name,
             'university_name' => $this->university_name,
             'referance_no' => $this->referance_no,
             'ref_date' => $this->ref_date,

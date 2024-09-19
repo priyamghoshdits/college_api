@@ -17,6 +17,7 @@ class PaperSetterController extends Controller
             $data->staff_id = $list['staff_id'];
             $data->examination_name = $list['examination_name'];
             $data->subject_name = $list['subject_name'];
+            $data->course_name = $list['course_name'];
             $data->university_name = $list['university_name'];
             $data->referance_no = $list['referance_no'];
             $data->ref_date = $list['ref_date'];

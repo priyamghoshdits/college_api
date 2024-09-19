@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('consultancies', function (Blueprint $table) {
+        Schema::create('invigilators', function (Blueprint $table) {
             $table->id();
-            $table->string('staff_id')->nullable(false);
-            $table->string('project_consultancy')->nullable(true);
-            $table->string('sponsored_by')->nullable(true);
-            $table->string('consultant')->nullable(true);
-            $table->string('amount')->nullable(true);
-            $table->string('duration')->nullable(true);
-            $table->string('status')->nullable(true);
+            $table->string('name_of_examination')->nullable(true);
+            $table->string('course_name')->nullable(true);
+            $table->string('subject')->nullable(true);
             $table->string('from_date')->nullable(true);
             $table->string('to_date')->nullable(true);
+            $table->string('name_of_institute')->nullable(true);
+            $table->string('appointed_by')->nullable(true);
+            $table->string('file_name')->nullable(true);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('consultancies');
+        Schema::dropIfExists('invigilators');
     }
 };

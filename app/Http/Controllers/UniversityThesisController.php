@@ -23,7 +23,8 @@ class UniversityThesisController extends Controller
         $file_name = '';
         if ($files = $request->file('file_name')) {
             $destinationPath = public_path('/university_thesis/');
-            $profileImage1 = $files->getClientOriginalName();
+            $extension = $files->getClientOriginalExtension();
+            $profileImage1 = pathinfo($files->getClientOriginalName(), PATHINFO_FILENAME) . '_' .date('Ymd_His'). '.' . $extension;
             $files->move($destinationPath, $profileImage1);
             $file_name = $files->getClientOriginalName();
         }

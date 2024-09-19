@@ -20,6 +20,8 @@ class ConsultancyResource extends JsonResource
             'amount' => $this->amount,
             'duration' => $this->duration,
             'status' => $this->status,
+            'from_date' => $this->from_date,
+            'to_date' => $this->to_date,
         ];
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('staff_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('examination_name')->nullable(true);
             $table->string('subject_name')->nullable(true);
+            $table->string('course_name')->nullable(true);
             $table->string('university_name')->nullable(true);
             $table->string('referance_no')->nullable(true);
             $table->string('ref_date')->nullable(true);

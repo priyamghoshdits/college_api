@@ -21,6 +21,8 @@ class ConsultancyController extends Controller
             $consultancy->amount = $list['amount'];
             $consultancy->duration = $list['duration'];
             $consultancy->status = $list['status'];
+            $consultancy->from_date = $list['from_date'];
+            $consultancy->to_date = $list['to_date'];
             $consultancy->save();
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
@@ -38,6 +40,8 @@ class ConsultancyController extends Controller
                 $consultancy->amount = $list['amount'];
                 $consultancy->duration = $list['duration'];
                 $consultancy->status = $list['status'];
+                $consultancy->from_date = $list['from_date'];
+                $consultancy->to_date = $list['to_date'];
                 $consultancy->update();
             }else{
                 $consultancy = new Consultancy();
@@ -48,6 +52,8 @@ class ConsultancyController extends Controller
                 $consultancy->amount = $list['amount'];
                 $consultancy->duration = $list['duration'];
                 $consultancy->status = $list['status'];
+                $consultancy->from_date = $list['from_date'];
+                $consultancy->to_date = $list['to_date'];
                 $consultancy->save();
             }
         }
