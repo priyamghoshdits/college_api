@@ -108,6 +108,8 @@ use App\Http\Controllers\ScholarshipMasterController;
 use App\Http\Controllers\MouController;
 use App\Http\Controllers\InvigilatorController;
 use App\Http\Controllers\OtherAcademicsController;
+use App\Http\Controllers\PatentController;
+use App\Http\Controllers\UniversityAdjudicatorSynopsisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -609,6 +611,18 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveInvigilator", [InvigilatorController::class, 'save_invigilator']);
     Route::post("updateInvigilator", [InvigilatorController::class, 'update_invigilator']);
     Route::get("deleteInvigilator/{id}", [InvigilatorController::class, 'delete_invigilator']);
+
+    //INVIGILATOR
+    Route::get("getUniversityAdjudicator", [UniversityAdjudicatorSynopsisController::class, 'get_university_adjudicator']);
+    Route::post("saveUniversityAdjudicator", [UniversityAdjudicatorSynopsisController::class, 'save_university_adjudicator']);
+    Route::post("updateUniversityAdjudicator", [UniversityAdjudicatorSynopsisController::class, 'update_university_adjudicator']);
+    Route::get("deleteUniversityAdjudicator/{id}", [UniversityAdjudicatorSynopsisController::class, 'delete_university_adjudicator']);
+
+    //PATENT
+    Route::get("getPatent", [PatentController::class, 'get_patent']);
+    Route::post("savePatent", [PatentController::class, 'save_patent']);
+    Route::post("updatePatent", [PatentController::class, 'update_patent']);
+    Route::get("deletePatent/{id}", [PatentController::class, 'delete_patent']);
 
     //OTHER ACADEMICS
     Route::get("getOtherAcademics", [OtherAcademicsController::class, 'get_other_academics']);

@@ -36,7 +36,7 @@ class InvigilatorController extends Controller
         }
         $invigilator->save();
 
-        return response()->json(['success' => 1, 'data' => $invigilator , 'message' => 'Invigilator saved successfully'], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => new InvigilatorResource($invigilator) , 'message' => 'Invigilator saved successfully'], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function update_invigilator(Request $request)
@@ -61,7 +61,7 @@ class InvigilatorController extends Controller
         }
         $invigilator->update();
 
-        return response()->json(['success' => 1, 'data' => $invigilator , 'message' => 'Invigilator updated successfully'], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' =>new InvigilatorResource($invigilator) , 'message' => 'Invigilator updated successfully'], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function delete_invigilator($id)
@@ -71,7 +71,7 @@ class InvigilatorController extends Controller
             File::delete(public_path() . '/invigilator/' . $invigilator->file_name);
         }
         $invigilator->delete();
-        return response()->json(['success' => 1, 'data' => $invigilator , 'message' => 'Invigilator Deleted successfully'], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' =>new InvigilatorResource($invigilator) , 'message' => 'Invigilator Deleted successfully'], 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
