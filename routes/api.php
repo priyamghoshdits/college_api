@@ -110,7 +110,7 @@ use App\Http\Controllers\InvigilatorController;
 use App\Http\Controllers\OtherAcademicsController;
 use App\Http\Controllers\PatentController;
 use App\Http\Controllers\UniversityAdjudicatorSynopsisController;
-
+use App\Http\Controllers\UniversityAdjudicatorThesisController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -612,11 +612,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("updateInvigilator", [InvigilatorController::class, 'update_invigilator']);
     Route::get("deleteInvigilator/{id}", [InvigilatorController::class, 'delete_invigilator']);
 
-    //INVIGILATOR
+    //UNIVERSITY ADJUDICATOR SYNOPSIS
     Route::get("getUniversityAdjudicatorSynopsis", [UniversityAdjudicatorSynopsisController::class, 'get_university_adjudicator']);
     Route::post("saveUniversityAdjudicatorSynopsis", [UniversityAdjudicatorSynopsisController::class, 'save_university_adjudicator']);
     Route::post("updateUniversityAdjudicatorSynopsis", [UniversityAdjudicatorSynopsisController::class, 'update_university_adjudicator']);
     Route::get("deleteUniversityAdjudicatorSynopsis/{id}", [UniversityAdjudicatorSynopsisController::class, 'delete_university_adjudicator']);
+
+    //UNIVERSITY ADJUDICATOR THESIS
+    Route::get("getUniversityAdjudicatorThesis", [UniversityAdjudicatorThesisController::class, 'get_university_adjudicator']);
+    Route::post("saveUniversityAdjudicatorThesis", [UniversityAdjudicatorThesisController::class, 'save_university_adjudicator']);
+    Route::post("updateUniversityAdjudicatorThesis", [UniversityAdjudicatorThesisController::class, 'update_university_adjudicator']);
+    Route::get("deleteUniversityAdjudicatorThesis/{id}", [UniversityAdjudicatorThesisController::class, 'delete_university_adjudicator']);
 
     //PATENT
     Route::get("getPatent", [PatentController::class, 'get_patent']);

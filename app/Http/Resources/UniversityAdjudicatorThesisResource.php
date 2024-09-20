@@ -6,7 +6,7 @@ use App\Models\ThesisType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UniversityAdjudicatorResource extends JsonResource
+class UniversityAdjudicatorThesisResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
