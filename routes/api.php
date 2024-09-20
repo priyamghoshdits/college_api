@@ -613,10 +613,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deleteInvigilator/{id}", [InvigilatorController::class, 'delete_invigilator']);
 
     //INVIGILATOR
-    Route::get("getUniversityAdjudicator", [UniversityAdjudicatorSynopsisController::class, 'get_university_adjudicator']);
-    Route::post("saveUniversityAdjudicator", [UniversityAdjudicatorSynopsisController::class, 'save_university_adjudicator']);
-    Route::post("updateUniversityAdjudicator", [UniversityAdjudicatorSynopsisController::class, 'update_university_adjudicator']);
-    Route::get("deleteUniversityAdjudicator/{id}", [UniversityAdjudicatorSynopsisController::class, 'delete_university_adjudicator']);
+    Route::get("getUniversityAdjudicatorSynopsis", [UniversityAdjudicatorSynopsisController::class, 'get_university_adjudicator']);
+    Route::post("saveUniversityAdjudicatorSynopsis", [UniversityAdjudicatorSynopsisController::class, 'save_university_adjudicator']);
+    Route::post("updateUniversityAdjudicatorSynopsis", [UniversityAdjudicatorSynopsisController::class, 'update_university_adjudicator']);
+    Route::get("deleteUniversityAdjudicatorSynopsis/{id}", [UniversityAdjudicatorSynopsisController::class, 'delete_university_adjudicator']);
 
     //PATENT
     Route::get("getPatent", [PatentController::class, 'get_patent']);
