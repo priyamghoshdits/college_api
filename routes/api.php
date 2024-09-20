@@ -611,10 +611,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deleteInvigilator/{id}", [InvigilatorController::class, 'delete_invigilator']);
 
     //OTHER ACADEMICS
-    Route::get("getInvigilator", [OtherAcademicsController::class, 'get_other_academics']);
-    Route::post("saveInvigilator", [OtherAcademicsController::class, 'save_other_academics']);
-    Route::post("updateInvigilator", [OtherAcademicsController::class, 'update_other_academics']);
-    Route::get("deleteInvigilator/{id}", [OtherAcademicsController::class, 'delete_other_academics']);
+    Route::get("getOtherAcademics", [OtherAcademicsController::class, 'get_other_academics']);
+    Route::post("saveOtherAcademics", [OtherAcademicsController::class, 'save_other_academics']);
+    Route::post("updateOtherAcademics", [OtherAcademicsController::class, 'update_other_academics']);
+    Route::get("deleteOtherAcademics/{id}", [OtherAcademicsController::class, 'delete_other_academics']);
 
     //PAYMENT
     Route::get("getPayment", [PaymentController::class, 'get_payment']);
