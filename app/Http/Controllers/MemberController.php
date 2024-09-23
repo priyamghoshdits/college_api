@@ -155,7 +155,6 @@ class MemberController extends Controller
         $achievement = AchivementResource::collection(Achivement::whereStudentId($id)->get());
         $placement = PlacementResource::collection(PlacementDetails::whereUserId($id)->get());
         $feesDetails = ManualFeesResource::collection(ManualFees::whereStudentId($id)->get());
-        dd($feesDetails);
         $scholarship = ManualScholarshipResource::collection(ManualScholarship::whereStudentId($id)->get());
         $student_result = StudentResultResource::collection(StudentResult::whereStudentId($id)->get());
 
