@@ -16,7 +16,7 @@ class ManualFeesResource extends JsonResource
             'id' => $this->id,
             'student_id' => $this->student_id,
 //            'student_name' => User::find($this->id)->first_name .' '.User::find($this->id)->middle_name.' '.User::find($this->id)->last_name,
-            'student_name' => User::find($this->id)->first_name,
+            'student_name' => User::find($this->id),
             'semester_id' => $this->semester_id,
             'semester_name' => Semester::find($this->semester_id)->name,
             'course_id' => $this->course_id,
