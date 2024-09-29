@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ExpenseController extends Controller
 {
@@ -51,12 +52,12 @@ class ExpenseController extends Controller
         return response()->json(['success'=>1,'data'=>new ExpenseResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Expense $expense)
+    public function get_expense_report(Request $request)
     {
-        //
+        $data = (object)$request->json()->all();
+        $return_data = DB::select("select * from expenses WHERE date(date) > ? and date(date) < ?;",[$data->from_date, $data->to_date]);
+
+        return response()->json(['success'=>1,'data'=>ExpenseResource::collection($return_data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
