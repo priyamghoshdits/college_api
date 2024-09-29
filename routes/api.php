@@ -104,6 +104,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppVersionController;
 use App\Http\Controllers\ClinicalTrainingController;
+use App\Http\Controllers\HostelAssignController;
 use App\Http\Controllers\ScholarshipMasterController;
 use App\Http\Controllers\MouController;
 use App\Http\Controllers\InvigilatorController;
@@ -274,6 +275,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveHostels", [HotelController::class, 'save_hostels']);
     Route::post("updateHostels", [HotelController::class, 'update_hostels']);
     Route::get("deleteHostels/{id}", [HotelController::class, 'delete_hostels']);
+
+    // HOSTEL ASSIGN
+    Route::get("getHostelAssign", [HostelAssignController::class, 'get_hostel_assign']);
+    Route::post("saveHostelAssign", [HostelAssignController::class, 'save_hostel_assign']);
+    Route::post("updateHostelAssign", [HostelAssignController::class, 'update_hostel_assign']);
+    Route::get("deleteHostelAssign/{id}", [HostelAssignController::class, 'delete_hostel_assign']);
 
     //ASSIGN VEHICLE
     Route::get("getAssignVehicle", [AssignVehicleController::class, 'get_assign_vehicle']);
