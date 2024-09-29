@@ -7,6 +7,7 @@ use App\Models\Income;
 use App\Http\Requests\StoreIncomeRequest;
 use App\Http\Requests\UpdateIncomeRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IncomeController extends Controller
 {
@@ -51,12 +52,12 @@ class IncomeController extends Controller
         return response()->json(['success'=>1,'data'=>new IncomeResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Income $income)
+    public function get_income_report(Request $request)
     {
-        //
+        $data = (object)$request->json()->all();
+        $return_data = DB::select("select * from incomes WHERE date(date) > ? and date(date) < ?;",[$data->from_date, $data->to_date]);
+
+        return response()->json(['success'=>1,'data'=>IncomeResource::collection($return_data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
