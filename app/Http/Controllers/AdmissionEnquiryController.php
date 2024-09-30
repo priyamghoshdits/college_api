@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAdmissionEnquiryRequest;
 use App\Http\Requests\UpdateAdmissionEnquiryRequest;
 use App\Models\StudentEnquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdmissionEnquiryController extends Controller
 {
@@ -61,12 +62,12 @@ class AdmissionEnquiryController extends Controller
         return response()->json(['success'=>1,'data'=>$admissionEnquiry], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(AdmissionEnquiry $admissionEnquiry)
+    public function get_admission_enquiry_report(Request $request)
     {
-        //
+        $requested_data = (object)$request->json()->all();
+        $return_data = DB::select("select * from admission_enquiries WHERE date(date) > ? and date(date) < ?;",[$requested_data->from_date, $requested_data->to_date]);
+
+        return response()->json(['success'=>1,'data'=>$return_data], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
