@@ -8,6 +8,7 @@ use App\Models\VirtualMeeting;
 use App\Http\Requests\StoreVirtualMeetingRequest;
 use App\Http\Requests\UpdateVirtualMeetingRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VirtualMeetingController extends Controller
 {
@@ -58,9 +59,12 @@ class VirtualMeetingController extends Controller
         return response()->json(['success'=>1,'data'=> new VirtualMeetingResource($virtualMeeting)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function edit(VirtualMeeting $virtualMeeting)
+    public function get_Virtual_meeting_report(Request $request)
     {
-        //
+        $requested_data = (object)$request->json()->all();
+        $return_data = DB::select("select * from virtual_meetings WHERE date(date_of_meeting) > ? and date(date_of_meeting) < ?;",[$requested_data->from_date, $requested_data->to_date]);
+
+        return response()->json(['success'=>1,'data'=>VirtualMeetingResource::collection($return_data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

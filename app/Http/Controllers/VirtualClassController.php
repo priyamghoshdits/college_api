@@ -7,6 +7,7 @@ use App\Models\VirtualClass;
 use App\Http\Requests\StoreVirtualClassRequest;
 use App\Http\Requests\UpdateVirtualClassRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VirtualClassController extends Controller
 {
@@ -61,9 +62,12 @@ class VirtualClassController extends Controller
         return response()->json(['success'=>1,'data'=> new VirtualClassResource($virtualClass)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function edit(VirtualClass $virtualClass)
+    public function get_Virtual_class_report(Request $request)
     {
-        //
+        $requested_data = (object)$request->json()->all();
+        $return_data = DB::select("select * from virtual_classes WHERE date(date_of_class) > ? and date(date_of_class) < ?;",[$requested_data->from_date, $requested_data->to_date]);
+
+        return response()->json(['success'=>1,'data'=>VirtualClassResource::collection($return_data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
