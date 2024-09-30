@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ItemStockResource;
+use App\Models\InventoryItem;
 use App\Models\ItemStock;
 use App\Http\Requests\StoreItemStockRequest;
 use App\Http\Requests\UpdateItemStockRequest;
+use App\Models\ItemStore;
+use App\Models\ItemSupplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemStockController extends Controller
 {
@@ -61,12 +65,20 @@ class ItemStockController extends Controller
         return response()->json(['success'=>1,'data'=> $data?$data->quantity:0], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateItemStockRequest $request, ItemStock $itemStock)
+    public function get_inventory_report(Request $request)
     {
-        //
+        $requested_data = (object)$request->json()->all();
+        $itemStock = DB::select("SELECT * FROM item_stocks where date(purchase_date) >= ? and date(purchase_date) <= ?",[$requested_data->from_date,$requested_data->to_date]);
+
+        foreach ($itemStock as $stock){
+            $stock->inventory_name = InventoryItem::find($stock->inventory_item_id)->name;
+            $stock->suplier_name = ItemSupplier::find($stock->item_supplier_id)->name;
+            $stock->store_name = ItemStore::find($stock->item_store_id)->name;
+            $stock->issued_item = DB::select("SELECT ifnull(SUM(quantity),0) as quantity FROM inventory_issues where item_type_id = ? and inventory_item_id = ?;",[$stock->item_type_id,$stock->inventory_item_id])[0]->quantity;
+            $stock->total_quantity = $stock->quantity + $stock->issued_item;
+        }
+
+        return response()->json(['success'=>1,'data'=> $itemStock], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
