@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Course;
+use App\Models\HotelDetails;
 use App\Models\Semester;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class HostelAssignResource extends JsonResource
             "student_id" => $this->student_id,
             'student_name' => User::find($this->student_id)->first_name . ' ' . User::find($this->student_id)->middle_name . ' ' . User::find($this->student_id)->last_name,
             "hostel_room_id" => $this->hostel_room_id,
+            "hostel_room_name" => HotelDetails::find($this->hostel_room_id)->name,
             "from_date" => $this->from_date,
             "to_date" => $this->to_date,
             "remarks" => $this->remarks,
