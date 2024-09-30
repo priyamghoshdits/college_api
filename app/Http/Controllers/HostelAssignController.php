@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\HostelAssign;
 use App\Http\Resources\HostelAssignResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HostelAssignController extends Controller
 {
@@ -52,5 +53,14 @@ class HostelAssignController extends Controller
         $hostel = HostelAssign::find($id);
         $hostel->delete();
         return response()->json(['success' => 1, 'data' => new HostelAssignResource($hostel)], 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    public function get_hostel_assign_report(Request $request)
+    {
+        $data = (object)$request->json()->all();
+        // $hostel_assign_data = DB::select("select * from hostel_assigns WHERE date(from_date) > ? and date(to_date) < ?;",[$data->from_date, $data->to_date]);
+        $hostel_assign_data = HostelAssign::whereBetween('from_date', [$data->from_date, $data->to_date])->get();
+
+        return response()->json(['success' => 1, 'data' => HostelAssignResource::collection($hostel_assign_data)], 200, [], JSON_NUMERIC_CHECK);
     }
 }

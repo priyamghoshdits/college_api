@@ -892,6 +892,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("getFeesCollectionReport", [PaymentController::class, 'get_fees_collection_report']);
     Route::post("getIncomeReport", [IncomeController::class, 'get_income_report']);
     Route::post("getExpenseReport", [ExpenseController::class, 'get_expense_report']);
+    Route::post("getHostelAssignReport", [HostelAssignController::class, 'get_hostel_assign_report']);
 
 
     //CHAT
