@@ -51,6 +51,7 @@ use App\Http\Controllers\ItemStoreController;
 use App\Http\Controllers\ItemSupplierController;
 use App\Http\Controllers\ItemTypesController;
 use App\Http\Controllers\JournalPublicationController;
+use App\Http\Controllers\AllocateVehicleController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LeaveListController;
 use App\Http\Controllers\LeaveTypeController;
@@ -765,6 +766,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveIncomeHead", [IncomeHeadController::class, 'save_income_head']);
     Route::post("updateIncomeHead", [IncomeHeadController::class, 'update_income_head']);
     Route::get("deleteIncomeHead/{id?}", [IncomeHeadController::class, 'delete_income_head']);
+
+    //ALLOCATE VEHICLE API
+    Route::get("getAllocatedVehicle", [AllocateVehicleController::class, 'get_allocate_vehicle']);
+    Route::post("saveAllocatedVehicle", [AllocateVehicleController::class, 'save_allocate_vehicle']);
+    Route::post("updateAllocatedVehicle", [AllocateVehicleController::class, 'update_allocate_vehicle']);
+    Route::get("deleteAllocatedVehicle/{id?}", [AllocateVehicleController::class, 'delete_allocate_vehicle']);
 
     //EXPENSE HEAD API
     Route::get("getExpenseHead", [ExpenseHeadController::class, 'get_expense_head']);
