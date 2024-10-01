@@ -7,6 +7,7 @@ use App\Models\AllocateVehicle;
 use App\Http\Requests\StoreAllocateVehicleRequest;
 use App\Http\Requests\UpdateAllocateVehicleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AllocateVehicleController extends Controller
 {
@@ -54,12 +55,12 @@ class AllocateVehicleController extends Controller
         return response()->json(['success'=>1,'data'=>new AllocateVehicleResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(AllocateVehicle $allocateVehicle)
+    public function get_allocate_vehicle_report(Request $request)
     {
-        //
+        $requested_data = (object)$request->json()->all();
+        $data = DB::select("SELECT * FROM allocate_vehicles where date(date) >= ? and date(date) <= ?",[$requested_data->from_date,$requested_data->to_date]);
+
+        return response()->json(['success'=>1,'data'=>AllocateVehicleResource::collection($data)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
