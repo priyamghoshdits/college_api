@@ -17,6 +17,7 @@ class ManualFeesController extends Controller
         $manualFees->course_id = $request['course_id'];
         $manualFees->semester_id = $request['semester_id'];
         $manualFees->student_id = $request['student_id'];
+        $manualFees->money_received_number = $request['money_received_number'];
         $manualFees->date_of_payment = $request['date_of_payment'];
         $manualFees->amount = $request['amount'];
 

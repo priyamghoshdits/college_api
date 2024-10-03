@@ -22,6 +22,7 @@ class ManualFeesResource extends JsonResource
             'course_id' => $this->course_id,
             'course_name' => Course::find($this->course_id)->course_name,
             'date_of_payment' => $this->date_of_payment,
+            'money_received_number' => $this->money_received_number,
             'amount' => $this->amount,
             'file_name' => $this->file_name
         ];
