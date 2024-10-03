@@ -32,11 +32,13 @@ return new class extends Migration
             $table->string("father_name")->nullable(true);
             $table->string("father_occupation")->nullable(true);
             $table->string("father_phone")->nullable(true);
+            $table->string("father_email")->nullable(true);
             $table->string("father_income_proof")->nullable(true);
 
             $table->string("mother_phone")->nullable(true);
             $table->string("mother_name")->nullable(true);
             $table->string("mother_occupation")->nullable(true);
+            $table->string("mother_email")->nullable(true);
             $table->string("mother_income_proof")->nullable(true);
 
             $table->string("registration_proof")->nullable(true);

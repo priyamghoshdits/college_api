@@ -558,8 +558,11 @@ class UserController extends Controller
                             $student_details->father_name = $this->sanitizeInput($request['father_name'] ?? null);
                             $student_details->father_occupation = $this->sanitizeInput($request['father_occupation'] ?? null);
                             $student_details->father_phone = $this->sanitizeInput($request['father_phone'] ?? null);
+                            $student_details->father_email = $this->sanitizeInput($request['father_email'] ?? null);
                             $student_details->mother_name = $this->sanitizeInput($request['mother_name'] ?? null);
+                            $student_details->mother_phone = $this->sanitizeInput($request['mother_phone'] ?? null);
                             $student_details->mother_occupation = $this->sanitizeInput($request['mother_occupation'] ?? null);
+                            $student_details->mother_email = $this->sanitizeInput($request['mother_email'] ?? null);
                             $student_details->guardian_name = $this->sanitizeInput($request['guardian_name'] ?? null);
                             $student_details->guardian_phone = $this->sanitizeInput($request['guardian_phone'] ?? null);
                             $student_details->guardian_email = $this->sanitizeInput($request['guardian_email'] ?? null);
