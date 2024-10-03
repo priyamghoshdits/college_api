@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('percentage')->nullable();
             $table->string('grade')->nullable();
             $table->string('division')->nullable();
+            $table->string('year_semester')->nullable();
             $table->string('file_name')->nullable();
             $table->timestamps();
         });

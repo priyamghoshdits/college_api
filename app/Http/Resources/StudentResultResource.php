@@ -24,6 +24,7 @@ class StudentResultResource extends JsonResource
             'percentage' => $this->percentage,
             'grade' => $this->grade,
             'division' => $this->division,
+            'year_semester' => $this->year_semester,
             'file_url' => $this->file_name != null ? asset("student_result/{$this->file_name}") : null,
         ];
     }

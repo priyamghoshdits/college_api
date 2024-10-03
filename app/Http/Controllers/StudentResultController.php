@@ -41,6 +41,7 @@ class StudentResultController extends Controller
             $data->percentage = $list['percentage'];
             $data->grade = $list['grade'];
             $data->division = $list['division'];
+            $data->year_semester = $list['year_semester'];
             $data->file_name = $list['file_name'];
             $data->save();
         }
@@ -61,6 +62,7 @@ class StudentResultController extends Controller
                 $data->percentage = $list['percentage'];
                 $data->grade = $list['grade'];
                 $data->division = $list['division'];
+                $data->year_semester = $list['year_semester'];
                 $data->file_name = $list['file_name'];
                 $data->save();
             } else {
@@ -72,6 +74,7 @@ class StudentResultController extends Controller
                 $student_result->percentage = $list['percentage'];
                 $student_result->grade = $list['grade'];
                 $student_result->division = $list['division'];
+                $student_result->year_semester = $list['year_semester'];
                 $student_result->file_name = $list['file_name'] ?? $student_result->file_name;
                 $student_result->update();
             }
@@ -102,6 +105,7 @@ class StudentResultController extends Controller
                 $universitySynopsys->grade = $list['grade'];
                 $universitySynopsys->division = $list['division'];
                 $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->year_semester = $list['year_semester'];
                 $universitySynopsys->update();
             }else{
                 $universitySynopsys = new StudentResult();
@@ -113,6 +117,7 @@ class StudentResultController extends Controller
                 $universitySynopsys->grade = $list['grade'];
                 $universitySynopsys->division = $list['division'];
                 $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->year_semester = $list['year_semester'];
                 $universitySynopsys->save();
             }
         }
