@@ -26,6 +26,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\EducationQualificationController;
+use App\Http\Controllers\StudentInternshipController;
 use App\Http\Controllers\ErpSettingsController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExaminerController;
@@ -232,6 +233,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveLibraryDetails", [LibraryStockController::class, 'save_library_details']);
     Route::post("updateLibraryDetails", [LibraryStockController::class, 'update_library_details']);
     Route::get("deleteLibraryDetails/{id}", [LibraryStockController::class, 'delete_library_details']);
+
+
+    //STUDENT INTERNSHIP
+    Route::get("getStudentInternship", [StudentInternshipController::class, 'get_student_internship']);
+    Route::post("saveStudentInternship", [StudentInternshipController::class, 'save_student_internship']);
+    Route::post("updateStudentInternship", [StudentInternshipController::class, 'update_student_internship']);
+    Route::get("deleteStudentInternship/{id}", [StudentInternshipController::class, 'delete_student_internship']);
+
 
     // EVENT
     Route::get("getEvent", [EventController::class, 'get_event']);
