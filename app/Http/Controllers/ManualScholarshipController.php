@@ -43,6 +43,7 @@ class ManualScholarshipController extends Controller
             $data = new ManualScholarship();
             $data->course_id = $list['course_id'];
             $data->semester_id = $list['semester_id'];
+            $data->course_year = $list['course_year'];
             $data->student_id = $list['student_id'];
             $data->scholarship_master_id = $list['scholarship_master_id'];
             $data->type_of_scholarship = $list['type_of_scholarship'];
@@ -59,6 +60,7 @@ class ManualScholarshipController extends Controller
             if ($data) {
                 $data->course_id = $list['course_id'];
                 $data->semester_id = $list['semester_id'];
+                $data->course_year = $list['course_year'];
                 $data->student_id = $list['student_id'];
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
@@ -68,6 +70,7 @@ class ManualScholarshipController extends Controller
                 $data = new ManualScholarship();
                 $data->course_id = $list['course_id'];
                 $data->semester_id = $list['semester_id'];
+                $data->course_year = $list['course_year'];
                 $data->student_id = $list['student_id'];
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
@@ -109,6 +112,7 @@ class ManualScholarshipController extends Controller
                 $data = ManualScholarship::find($list['id']);
                 $data->course_id = $list['course_id'];
                 $data->semester_id = $list['semester_id'];
+                $data->course_year = $list['course_year'];
                 $data->student_id = $list['student_id'];
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
@@ -118,6 +122,7 @@ class ManualScholarshipController extends Controller
                 $data = new ManualScholarship();
                 $data->course_id = $list['course_id'];
                 $data->semester_id = $list['semester_id'];
+                $data->course_year = $list['course_year'];
                 $data->student_id = $list['student_id'];
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];

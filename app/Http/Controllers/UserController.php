@@ -272,9 +272,6 @@ class UserController extends Controller
     public function save_student(Request $request)
     {
         // return "form id: " . $request->user_id;
-
-        Log::info($request['admission_status']);
-        Log::info($request['form_id']);
         // $pass = rand(100000, 999999);
         $pass = 12345678;
         $return_type = 1;
@@ -409,6 +406,15 @@ class UserController extends Controller
                                 $file_name = $mother_income_proof->getClientOriginalName();
                                 $mother_income_proof->move($destinationPath, $file_name);
                                 $student_details->mother_income_proof = $file_name;
+                            }
+
+                            if ($pwd_file = $request->file('pwd_file')) {
+                                // Define upload path
+                                $destinationPath = public_path('/pwd_file/'); // upload path
+                                // Upload Orginal Image
+                                $file_name = $pwd_file->getClientOriginalName();
+                                $pwd_file->move($destinationPath, $file_name);
+                                $student_details->pwd_file = $file_name;
                             }
 
                             if ($registration_proofs = $request->file('registration_proof')) {
@@ -749,6 +755,18 @@ class UserController extends Controller
                     $file_name = $mother_income_proof->getClientOriginalName();
                     $mother_income_proof->move($destinationPath, $file_name);
                     $student_details->mother_income_proof = $file_name;
+                }
+
+                if ($pwd_file = $request->file('pwd_file')) {
+                    if (file_exists(public_path() . '/pwd_file/' . $student_details->pwd_file)) {
+                        File::delete(public_path() . '/pwd_file/' . $student_details->pwd_file);
+                    }
+                    // Define upload path
+                    $destinationPath = public_path('/pwd_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $pwd_file->getClientOriginalName();
+                    $pwd_file->move($destinationPath, $file_name);
+                    $student_details->pwd_file = $file_name;
                 }
 
                 if ($registration_proofs = $request->file('registration_proof')) {

@@ -53,6 +53,7 @@ return new class extends Migration
             $table->integer('caution_money_id')->nullable(true);
             $table->string('abc_id')->nullable();
             $table->string('abc_file')->nullable();
+            $table->string('pwd_file')->nullable();
             $table->string('student_signature')->nullable();
             $table->string('admission_allotment')->nullable();
             $table->string('ews')->nullable();

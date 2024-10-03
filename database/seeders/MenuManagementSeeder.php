@@ -115,6 +115,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Result', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
@@ -152,8 +154,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Term/Semester Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Scholarship Master', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Scholarship Details', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '1', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
@@ -286,6 +289,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Result', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -323,8 +328,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Term/Semester Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Scholarship Master', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Scholarship Details', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '2', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
@@ -457,6 +463,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Result', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -493,8 +501,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Term/Semester Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Scholarship Master', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Scholarship Details', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
@@ -625,6 +634,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Result', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -661,8 +672,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Term/Semester Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Scholarship Master', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Scholarship Details', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '4', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
@@ -792,6 +804,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Result', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -828,8 +842,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Term/Semester Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Scholarship Master', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Scholarship Details', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],
@@ -960,6 +975,8 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Education Qualification', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Certificate Types', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Caution Money', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Result', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Communication', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Notice', 'permission' => true, 'franchise_id' => 1],
@@ -996,8 +1013,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Fees Structure', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Collect Fees', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Discount/Scholarship', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Manual Fees', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Manual Scholarship', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Term/Semester Fees', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Scholarship Master', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Scholarship Details', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Report', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Admission report', 'permission' => true, 'franchise_id' => 1],

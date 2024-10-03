@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('manual_scholarships', function (Blueprint $table) {
             $table->id();
-            $table->string('course_id');
-            $table->string('semester_id');
-            $table->string('student_id');
-            $table->string('scholarship_master_id');
-            $table->string('type_of_scholarship');
-            $table->string('amount');
+            $table->string('course_id')->nullable(true);
+            $table->string('semester_id')->nullable(true);
+            $table->string('student_id')->nullable(true);
+            $table->string('course_year')->nullable(true);
+            $table->string('scholarship_master_id')->nullable(true);
+            $table->string('type_of_scholarship')->nullable(true);
+            $table->string('amount')->nullable(true);
             $table->timestamps();
         });
     }
