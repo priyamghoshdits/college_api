@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\StudentResultResource;
 use App\Models\StudentResult;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StudentResultController extends Controller
 {
@@ -23,9 +24,16 @@ class StudentResultController extends Controller
         $file_name = '';
         if ($files = $request->file('file_name')) {
             $destinationPath = public_path('/student_result/');
-            $profileImage1 = $files->getClientOriginalName();
+
+            // Assuming $file is an instance of UploadedFile
+            $originalName = pathinfo($files->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $files->getClientOriginalExtension();
+            $profileImage1 = $originalName . '_' . date('Ymd_His') . '_' . Str::random(5) . '.' . $extension;
+
+
+//            $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
-            $file_name = $files->getClientOriginalName();
+            $file_name = $profileImage1;
         }
         return response()->json(['success' => 1, 'file_name' => $file_name], 200);
     }
@@ -42,6 +50,9 @@ class StudentResultController extends Controller
             $data->grade = $list['grade'];
             $data->division = $list['division'];
             $data->year_semester = $list['year_semester'];
+            $data->university_rank = $list['university_rank'];
+            $data->institutional_rank = $list['institutional_rank'];
+            $data->university_rank_file_name = $list['university_rank_file_name'];
             $data->file_name = $list['file_name'];
             $data->save();
         }
@@ -63,7 +74,10 @@ class StudentResultController extends Controller
                 $data->grade = $list['grade'];
                 $data->division = $list['division'];
                 $data->year_semester = $list['year_semester'];
+                $data->university_rank = $list['university_rank'];
+                $data->institutional_rank = $list['institutional_rank'];
                 $data->file_name = $list['file_name'];
+                $data->university_rank_file_name = $list['university_rank_file_name'];
                 $data->save();
             } else {
 //                return $list['student_id'];
@@ -75,7 +89,10 @@ class StudentResultController extends Controller
                 $student_result->grade = $list['grade'];
                 $student_result->division = $list['division'];
                 $student_result->year_semester = $list['year_semester'];
+                $student_result->university_rank = $list['university_rank'];
+                $student_result->institutional_rank = $list['institutional_rank'];
                 $student_result->file_name = $list['file_name'] ?? $student_result->file_name;
+                $student_result->university_rank_file_name = $list['university_rank_file_name'] ?? $student_result->university_rank_file_name;
                 $student_result->update();
             }
         }
@@ -105,7 +122,10 @@ class StudentResultController extends Controller
                 $universitySynopsys->grade = $list['grade'];
                 $universitySynopsys->division = $list['division'];
                 $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->university_rank_file_name = $list['university_rank_file_name'];
                 $universitySynopsys->year_semester = $list['year_semester'];
+                $universitySynopsys->university_rank = $list['university_rank'];
+                $universitySynopsys->institutional_rank = $list['institutional_rank'];
                 $universitySynopsys->update();
             }else{
                 $universitySynopsys = new StudentResult();
@@ -116,8 +136,10 @@ class StudentResultController extends Controller
                 $universitySynopsys->percentage = $list['percentage'];
                 $universitySynopsys->grade = $list['grade'];
                 $universitySynopsys->division = $list['division'];
-                $universitySynopsys->file_name = $list['file_name'];
+                $universitySynopsys->university_rank_file_name = $list['university_rank_file_name'];
                 $universitySynopsys->year_semester = $list['year_semester'];
+                $universitySynopsys->university_rank = $list['university_rank'];
+                $universitySynopsys->institutional_rank = $list['institutional_rank'];
                 $universitySynopsys->save();
             }
         }

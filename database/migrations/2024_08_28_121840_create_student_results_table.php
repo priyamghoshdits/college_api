@@ -14,14 +14,17 @@ return new class extends Migration
         Schema::create('student_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('date_of_publication')->nullable();
-            $table->string('exam_marks')->nullable();
-            $table->string('total_number_score')->nullable();
-            $table->string('percentage')->nullable();
-            $table->string('grade')->nullable();
-            $table->string('division')->nullable();
-            $table->string('year_semester')->nullable();
-            $table->string('file_name')->nullable();
+            $table->string('date_of_publication')->nullable(true);
+            $table->string('exam_marks')->nullable(true);
+            $table->string('total_number_score')->nullable(true);
+            $table->string('percentage')->nullable(true);
+            $table->string('grade')->nullable(true);
+            $table->string('division')->nullable(true);
+            $table->string('year_semester')->nullable(true);
+            $table->string('institutional_rank')->nullable(true);
+            $table->string('university_rank')->nullable(true);
+            $table->string('file_name')->nullable(true);
+            $table->string('university_rank_file_name')->nullable(true);
             $table->timestamps();
         });
     }
