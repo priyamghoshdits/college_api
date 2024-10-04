@@ -84,6 +84,7 @@ use App\Http\Controllers\SeminarWorkshopFacultyController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StaffAttendanceController;
 use App\Http\Controllers\StaffEducationController;
+use App\Http\Controllers\StudentDegreeController;
 use App\Http\Controllers\StaffExperienceController;
 use App\Http\Controllers\StudentDetailController;
 use App\Http\Controllers\SubjectController;
@@ -261,6 +262,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("saveEducationQualification", [EducationQualificationController::class, 'save_education_qualification']);
     Route::post("updateEducationQualification", [EducationQualificationController::class, 'update_education_qualification']);
     Route::get("deleteEducationQualification/{id}", [EducationQualificationController::class, 'delete_education_qualification']);
+    Route::post("saveStudentEducationFile", [EducationQualificationController::class, 'save_student_education_file']);
+
 
     //LIBRARY DIGITAL BOOKS
     Route::get("getLibraryDigitalBook", [LibraryDigitalBookController::class, 'get_digital_library_books']);
@@ -550,11 +553,18 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("deleteManualScholarship/{id}", [ManualScholarshipController::class, 'delete_manual_scholarship']);
     Route::post("saveManualScholarshipApp", [ManualScholarshipController::class, 'save_manual_scholarship_app']);
 
-    // DEGREE
+    //STAFF DEGREE
     Route::get("getDegree", [DegreeController::class, 'get_degree']);
     Route::post("saveDegree", [DegreeController::class, 'save_degree']);
     Route::post("updateDegree", [DegreeController::class, 'update_degree']);
     Route::get("deleteDegree/{id}", [DegreeController::class, 'delete_degree']);
+
+    //STUDENT DEGREE
+    Route::get("getStudentDegree", [StudentDegreeController::class, 'get_student_degree']);
+    Route::post("saveStudentDegree", [StudentDegreeController::class, 'save_student_degree']);
+    Route::post("updateStudentDegree", [StudentDegreeController::class, 'update_student_degree']);
+    Route::get("deleteStudentDegree/{id}", [StudentDegreeController::class, 'delete_student_degree']);
+
 
     //PROMOTION
     Route::get("getPromotion", [PromotionController::class, 'get_promotion']);
