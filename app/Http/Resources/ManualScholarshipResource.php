@@ -22,6 +22,7 @@ class ManualScholarshipResource extends JsonResource
             'scholarship_master_name' => ScholarshipMaster::find($this->scholarship_master_id) ? ScholarshipMaster::find($this->scholarship_master_id)->name : null,
             'type_of_scholarship' => $this->type_of_scholarship,
             'amount' => $this->amount,
+            'other_scholarship_name' => $this->other_scholarship_name,
             'course_name' => Course::find($this->course_id)->course_name,
             'semester_name' => Semester::find($this->semester_id)->name,
             'student_name' => User::find($this->student_id)->first_name . ' ' . User::find($this->student_id)->middle_name . ' ' . User::find($this->student_id)->last_name,

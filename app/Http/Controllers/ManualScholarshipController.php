@@ -48,6 +48,7 @@ class ManualScholarshipController extends Controller
             $data->scholarship_master_id = $list['scholarship_master_id'];
             $data->type_of_scholarship = $list['type_of_scholarship'];
             $data->amount = $list['amount'];
+            $data->other_scholarship_name = $list['other_scholarship_name'];
             $data->save();
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
@@ -65,6 +66,7 @@ class ManualScholarshipController extends Controller
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
                 $data->amount = $list['amount'];
+                $data->other_scholarship_name = $list['other_scholarship_name'];
                 $data->update();
             } else {
                 $data = new ManualScholarship();
@@ -75,6 +77,7 @@ class ManualScholarshipController extends Controller
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
                 $data->amount = $list['amount'];
+                $data->other_scholarship_name = $list['other_scholarship_name'];
                 $data->save();
             }
         }
@@ -117,6 +120,7 @@ class ManualScholarshipController extends Controller
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
                 $data->amount = $list['amount'];
+                $data->other_scholarship_name = $list['other_scholarship_name'];
                 $data->update();
             }else{
                 $data = new ManualScholarship();
@@ -127,6 +131,7 @@ class ManualScholarshipController extends Controller
                 $data->type_of_scholarship = $list['type_of_scholarship'];
                 $data->scholarship_master_id = $list['scholarship_master_id'];
                 $data->amount = $list['amount'];
+                $data->other_scholarship_name = $list['other_scholarship_name'];
                 $data->save();
             }
         }

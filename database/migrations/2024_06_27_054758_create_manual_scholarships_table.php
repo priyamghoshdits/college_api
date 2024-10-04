@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('scholarship_master_id')->nullable(true);
             $table->string('type_of_scholarship')->nullable(true);
             $table->string('amount')->nullable(true);
+            $table->string('other_scholarship_name')->nullable(true);
             $table->timestamps();
         });
     }
