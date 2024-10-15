@@ -17,6 +17,7 @@ use App\Http\Resources\PlacementResource;
 use App\Http\Resources\PromotionResource;
 use App\Http\Resources\StaffEducationResource;
 use App\Http\Resources\StaffExperienceResource;
+use App\Http\Resources\StudentEducationResource;
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\StudentResultResource;
 use App\Models\Achivement;
@@ -151,7 +152,7 @@ class MemberController extends Controller
             ->leftjoin('registrations', 'registrations.student_id', '=', 'users.id')
             ->where('users.id',$id)
             ->first());
-        $education_details = EducationQualification::whereStudentId($id)->first();
+        $education_details = StudentEducationResource::collection(EducationQualification::whereStudentId($id)->get());
         $achievement = AchivementResource::collection(Achivement::whereStudentId($id)->get());
         $placement = PlacementResource::collection(PlacementDetails::whereUserId($id)->get());
         $feesDetails = ManualFeesResource::collection(ManualFees::whereStudentId($id)->get());

@@ -23,7 +23,8 @@ class EducationQualificationController extends Controller
         $file_name = '';
         if ($files = $request->file('file_name')) {
             $destinationPath = public_path('/student_education/');
-            $profileImage1 = uniqid() . '_' . date('Ymd_His') . '_' . $files->getClientOriginalName();
+//            $profileImage1 = uniqid() . '_' . date('Ymd_His') . '_' . $files->getClientOriginalName();
+            $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
             $file_name = $profileImage1;
         }
