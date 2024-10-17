@@ -425,9 +425,9 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Income Head', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Add Income', 'permission' => true, 'franchise_id' => 1],
 
-            ['user_type_id' => '1', 'groups' => 1, 'name' => 'Expense', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Expense Head', 'permission' => true, 'franchise_id' => 1],
-            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Add Expense', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 1, 'name' => 'Expense', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Expense Head', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Add Expense', 'permission' => true, 'franchise_id' => 1],
 
             ['user_type_id' => '3', 'groups' => 1, 'name' => 'Hostel', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Add Hostel', 'permission' => true, 'franchise_id' => 1],
