@@ -1154,9 +1154,6 @@ class UserController extends Controller
         $user->blood_group = $data->blood_group ?? $user->blood_group;
 
         if ($files = $request->file('profile_image')) {
-            if (file_exists(public_path() . '/user_image/' . $user->image)) {
-                File::delete(public_path() . '/user_image/' . $user->image);
-            }
             // Define upload path
             $destinationPath = public_path('/user_image/'); // upload path
             // Upload Orginal Image
@@ -1165,39 +1162,40 @@ class UserController extends Controller
             $user->image = $file_name;
         }
 
-        if ($files = $request->file('aadhaar_card_proof')) {
-            if (file_exists(public_path() . '/aadhaar_card_proof/' . $user->aadhaar_card_proof)) {
-                File::delete(public_path() . '/aadhaar_card_proof/' . $user->aadhaar_card_proof);
-            }
+        if ($aadhaar_card_proofs = $request->file('aadhaar_card_proof')) {
             // Define upload path
             $destinationPath = public_path('/aadhaar_card_proof/'); // upload path
             // Upload Orginal Image
-            $file_name = $files->getClientOriginalName();
-            $files->move($destinationPath, $file_name);
+            $file_name = $aadhaar_card_proofs->getClientOriginalName();
+            $aadhaar_card_proofs->move($destinationPath, $file_name);
             $user->aadhaar_card_proof = $file_name;
         }
 
-        if ($files = $request->file('dob_proof')) {
-            if (file_exists(public_path() . '/dob_proof/' . $user->dob_proof)) {
-                File::delete(public_path() . '/dob_proof/' . $user->dob_proof);
-            }
+        if ($admission_slips = $request->file('admission_allotment')) {
             // Define upload path
-            $destinationPath = public_path('/dob_proof/'); // upload path
+            $destinationPath = public_path('/admission_slip/'); // upload path
             // Upload Orginal Image
-            $file_name = $files->getClientOriginalName();
-            $files->move($destinationPath, $file_name);
-            $user->dob_proof = $file_name;
+            $file_name = $admission_slips->getClientOriginalName();
+            $admission_slips->move($destinationPath, $file_name);
+            $user->admission_slip = $file_name;
         }
-        if ($files = $request->file('blood_group_proof')) {
-            if (file_exists(public_path() . '/dob_proof/' . $user->blood_group_proof)) {
-                File::delete(public_path() . '/dob_proof/' . $user->blood_group_proof);
-            }
+
+        if ($blood_group_proofs = $request->file('blood_group_proof')) {
             // Define upload path
             $destinationPath = public_path('/blood_group_proof/'); // upload path
             // Upload Orginal Image
-            $file_name = $files->getClientOriginalName();
-            $files->move($destinationPath, $file_name);
+            $file_name = $blood_group_proofs->getClientOriginalName();
+            $blood_group_proofs->move($destinationPath, $file_name);
             $user->blood_group_proof = $file_name;
+        }
+
+        if ($dob_proofs = $request->file('dob_proof')) {
+            // Define upload path
+            $destinationPath = public_path('/dob_proof/'); // upload path
+            // Upload Orginal Image
+            $file_name = $dob_proofs->getClientOriginalName();
+            $dob_proofs->move($destinationPath, $file_name);
+            $user->dob_proof = $file_name;
         }
 
         $user->update();
@@ -1205,9 +1203,86 @@ class UserController extends Controller
         if ($user->user_type_id == 3) {
             $studentDetails = StudentDetail::whereStudentId($request->user()->id)->first();
             if ($studentDetails) {
-                $studentDetails->admission_date = $data->admission_date;
-                $studentDetails->emergency_phone_number = $data->emergency_phone_number;
-                $studentDetails->material_status = $data->material_status;
+                $studentDetails->admission_date = $request->admission_date;
+                $studentDetails->emergency_phone_number = $request->emergency_phone_number;
+                $studentDetails->material_status = $request->material_status;
+                if ($father_income_proofs = $request->file('father_income_certificate')) {
+                    // Define upload path
+                    $destinationPath = public_path('/father_income_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $father_income_proofs->getClientOriginalName();
+                    $father_income_proofs->move($destinationPath, $file_name);
+                    $studentDetails->father_income_proof = $file_name;
+                }
+
+                if ($mother_income_proof = $request->file('mother_income_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/mother_income_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $mother_income_proof->getClientOriginalName();
+                    $mother_income_proof->move($destinationPath, $file_name);
+                    $studentDetails->mother_income_proof = $file_name;
+                }
+
+                if ($pwd_file = $request->file('pwd_file')) {
+                    // Define upload path
+                    $destinationPath = public_path('/pwd_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $pwd_file->getClientOriginalName();
+                    $pwd_file->move($destinationPath, $file_name);
+                    $studentDetails->pwd_file = $file_name;
+                }
+
+                if ($registration_proofs = $request->file('registration_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/registration_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $registration_proofs->getClientOriginalName();
+                    $registration_proofs->move($destinationPath, $file_name);
+                    $studentDetails->registration_proof = $file_name;
+                }
+
+                if ($abc_file = $request->file('abc_file')) {
+                    // Define upload path
+                    $destinationPath = public_path('/abc_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $abc_file->getClientOriginalName();
+                    $abc_file->move($destinationPath, $file_name);
+                    $studentDetails->abc_file = $file_name;
+                }
+                if ($student_signature = $request->file('student_signature')) {
+                    // Define upload path
+                    $destinationPath = public_path('/student_signature/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $student_signature->getClientOriginalName();
+                    $student_signature->move($destinationPath, $file_name);
+                    $studentDetails->student_signature = $file_name;
+                }
+                if ($admission_allotment = $request->file('admission_allotment')) {
+                    // Define upload path
+                    $destinationPath = public_path('/admission_allotment/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $admission_allotment->getClientOriginalName();
+                    $admission_allotment->move($destinationPath, $file_name);
+                    $studentDetails->admission_allotment = $file_name;
+                }
+
+                if ($medical_certificate = $request->file('medical_certificate')) {
+                    // Define upload path
+                    $destinationPath = public_path('/medical_certificate/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $medical_certificate->getClientOriginalName();
+                    $medical_certificate->move($destinationPath, $file_name);
+                    $studentDetails->medical_certificate = $file_name;
+                }
+                if ($ews_file = $request->file('ews_file')) {
+                    // Define upload path
+                    $destinationPath = public_path('/ews_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $ews_file->getClientOriginalName();
+                    $ews_file->move($destinationPath, $file_name);
+                    $studentDetails->ews_file = $file_name;
+                }
 
                 $studentDetails->update();
             } else {
@@ -1216,6 +1291,83 @@ class UserController extends Controller
                 $studentDetails->admission_date = $data->admission_date;
                 $studentDetails->emergency_phone_number = $data->emergency_phone_number;
                 $studentDetails->material_status = $data->material_status;
+                if ($father_income_proofs = $request->file('father_income_certificate')) {
+                    // Define upload path
+                    $destinationPath = public_path('/father_income_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $father_income_proofs->getClientOriginalName();
+                    $father_income_proofs->move($destinationPath, $file_name);
+                    $studentDetails->father_income_proof = $file_name;
+                }
+
+                if ($mother_income_proof = $request->file('mother_income_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/mother_income_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $mother_income_proof->getClientOriginalName();
+                    $mother_income_proof->move($destinationPath, $file_name);
+                    $studentDetails->mother_income_proof = $file_name;
+                }
+
+                if ($pwd_file = $request->file('pwd_file')) {
+                    // Define upload path
+                    $destinationPath = public_path('/pwd_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $pwd_file->getClientOriginalName();
+                    $pwd_file->move($destinationPath, $file_name);
+                    $studentDetails->pwd_file = $file_name;
+                }
+
+                if ($registration_proofs = $request->file('registration_proof')) {
+                    // Define upload path
+                    $destinationPath = public_path('/registration_proof/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $registration_proofs->getClientOriginalName();
+                    $registration_proofs->move($destinationPath, $file_name);
+                    $studentDetails->registration_proof = $file_name;
+                }
+
+                if ($abc_file = $request->file('abc_file')) {
+                    // Define upload path
+                    $destinationPath = public_path('/abc_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $abc_file->getClientOriginalName();
+                    $abc_file->move($destinationPath, $file_name);
+                    $studentDetails->abc_file = $file_name;
+                }
+                if ($student_signature = $request->file('student_signature')) {
+                    // Define upload path
+                    $destinationPath = public_path('/student_signature/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $student_signature->getClientOriginalName();
+                    $student_signature->move($destinationPath, $file_name);
+                    $studentDetails->student_signature = $file_name;
+                }
+                if ($admission_allotment = $request->file('admission_allotment')) {
+                    // Define upload path
+                    $destinationPath = public_path('/admission_allotment/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $admission_allotment->getClientOriginalName();
+                    $admission_allotment->move($destinationPath, $file_name);
+                    $studentDetails->admission_allotment = $file_name;
+                }
+
+                if ($medical_certificate = $request->file('medical_certificate')) {
+                    // Define upload path
+                    $destinationPath = public_path('/medical_certificate/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $medical_certificate->getClientOriginalName();
+                    $medical_certificate->move($destinationPath, $file_name);
+                    $studentDetails->medical_certificate = $file_name;
+                }
+                if ($ews_file = $request->file('ews_file')) {
+                    // Define upload path
+                    $destinationPath = public_path('/ews_file/'); // upload path
+                    // Upload Orginal Image
+                    $file_name = $ews_file->getClientOriginalName();
+                    $ews_file->move($destinationPath, $file_name);
+                    $studentDetails->ews_file = $file_name;
+                }
 
                 $studentDetails->save();
             }
