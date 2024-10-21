@@ -46,6 +46,7 @@ class StudentResource extends JsonResource
             'current_semester_id' => $this->current_semester_id,
             'current_semester' => Semester::find($this->current_semester_id)->name ?? null,
             'session_id' => $this->session_id,
+            'profile_image' => $this->image != null ? asset("user_image/{$this->image}") : null,
             'aadhaar_card_file' => $this->aadhaar_card_proof != null ? asset("aadhaar_card_proof/{$this->aadhaar_card_proof}") : null,
             'abc_file' => $this->abc_file != null ? asset("abc_file/{$this->abc_file}") : null,
             'admission_slip_file' => $this->admission_slip != null ? asset("admission_slip/{$this->admission_slip}") : null,
@@ -53,6 +54,13 @@ class StudentResource extends JsonResource
             'registration_proof' => $this->registration_proof != null ? asset("registration_proof/{$this->registration_proof}") : null,
             'blood_group_proof' => $this->blood_group_proof != null ? asset("blood_group_proof/{$this->blood_group_proof}") : null,
             'medical_certificate_file' => $this->medical_certificate != null ? asset("medical_certificate/{$this->medical_certificate}") : null,
+            'ews_file' => $this->ews_file != null ? asset("ews_file/{$this->ews_file}") : null,
+            'student_signature' => $this->student_signature != null ? asset("student_signature/{$this->student_signature}") : null,
+            'pwd_file' => $this->pwd_file != null ? asset("pwd_file/{$this->pwd_file}") : null,
+            'mother_income_proof' => $this->mother_income_proof != null ? asset("mother_income_proof/{$this->mother_income_proof}") : null,
+            'father_income_proof' => $this->father_income_proof != null ? asset("father_income_proof/{$this->father_income_proof}") : null,
+
+
             'session' => Session::find($this->session_id)->name ?? null,
             'admission_date' => $this->admission_date,
             'father_name' => $this->father_name ?? null,
