@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('course_id');
             $table->string('semester_id');
             $table->string('student_id');
+            $table->string('term_sem_id');
             $table->string('money_received_number');
             $table->string('date_of_payment');
             $table->string('amount');

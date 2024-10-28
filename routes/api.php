@@ -115,6 +115,8 @@ use App\Http\Controllers\OtherAcademicsController;
 use App\Http\Controllers\PatentController;
 use App\Http\Controllers\UniversityAdjudicatorSynopsisController;
 use App\Http\Controllers\UniversityAdjudicatorThesisController;
+use App\Http\Controllers\TermSemController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -969,3 +971,11 @@ Route::get("tmail", [FeesTypeController::class, 'testMail']);
 Route::get("testMigration", [MemberController::class, 'test_migration']);
 
 // count(json_decode($data->semester_by_course(3)->content(),true)['data']); semester controller
+
+
+// Term Semester///////////////////////////////////////
+
+Route::get("getTermsem", [TermSemController::class, 'get_termsem']);
+Route::post("saveTermsem", [TermSemController::class, 'save_termsem']);
+Route::post("updateTermsem", [TermSemController::class, 'update_termsem']);
+Route::get("deleteTermsem/{id}", [TermSemController::class, 'delete_termsem']);
