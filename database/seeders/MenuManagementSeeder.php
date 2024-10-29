@@ -180,6 +180,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '1', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Term Semester', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Student Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '1', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
 
 
             //USER 2
@@ -354,6 +358,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '2', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Term Semester', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Student Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '2', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
 
 
             //USER 3
@@ -525,6 +533,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '3', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Term Semester', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Student Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '3', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
 
 
             //            USER 4
@@ -696,6 +708,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '4', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Term Semester', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Student Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '4', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
 
             //            USER 5
             ['user_type_id' => '5', 'groups' => 1, 'name' => 'Academics', 'permission' => true, 'franchise_id' => 1],
@@ -866,6 +882,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '5', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Term Semester', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Student Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '5', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
 
 
             // USER 6
@@ -879,6 +899,7 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Subject', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Session', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Promote Students', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Term Semester', 'permission' => true, 'franchise_id' => 1],
 
 
             ['user_type_id' => '6', 'groups' => 1, 'name' => 'Human Resource', 'permission' => true, 'franchise_id' => 1],
@@ -1037,6 +1058,10 @@ class MenuManagementSeeder extends Seeder
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Study Material', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Assignment', 'permission' => true, 'franchise_id' => 1],
             ['user_type_id' => '6', 'groups' => 0, 'name' => 'Syllabus', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Send Login Credential', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Student Degree', 'permission' => true, 'franchise_id' => 1],
+            ['user_type_id' => '6', 'groups' => 0, 'name' => 'Student Admission', 'permission' => true, 'franchise_id' => 1],
+
         ]);
     }
 }

@@ -100,6 +100,8 @@ class RolesSeeder extends Seeder
             ['name' => 'STAFF EDUCATION'],
             ['name' => 'BOOK PUBLICATION'],
             ['name' => 'STAFF PROMOTION'],
+            ['name' => 'TERM SEMESTER'],
+
 
 
 
