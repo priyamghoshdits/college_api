@@ -36,7 +36,7 @@ class StudentInternshipController extends Controller
             $files->move($destinationPath, $profileImage1);
             $data->file_name = $profileImage1;
         }
-        dd($data);
+        // dd($data);
         $data->save();
 
         return response()->json(['success' => 1, 'data' =>new StudentInternshipResource($data)], 200, [], JSON_NUMERIC_CHECK);
