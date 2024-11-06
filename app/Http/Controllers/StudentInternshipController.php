@@ -19,11 +19,12 @@ class StudentInternshipController extends Controller
 
     public function save_student_internship(Request $request)
     {
+
         $data = new StudentInternship();
         $data->course_id = $request['course_id'];
         $data->semester_id = $request['semester_id'];
         $data->session_id = $request['session_id'];
-        $data->student_id = $request['student_id'];                                        
+        $data->student_id = $request['student_id'];
         $data->from_date = $request['from_date'];
         $data->to_date = $request['to_date'];
         $data->institutional_name = $request['institutional_name'];
@@ -35,6 +36,7 @@ class StudentInternshipController extends Controller
             $files->move($destinationPath, $profileImage1);
             $data->file_name = $profileImage1;
         }
+        dd($data);
         $data->save();
 
         return response()->json(['success' => 1, 'data' =>new StudentInternshipResource($data)], 200, [], JSON_NUMERIC_CHECK);
