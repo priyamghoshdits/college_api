@@ -8,13 +8,13 @@ use App\Models\TermSemester;
 
 class TermSemController extends Controller
 {
-    public function get_termsem()
+    public function get_term_sem()
     {
         $data = TermSemester::get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function save_termsem(Request $request)
+    public function save_term_sem(Request $request)
     {
         $requestedData = (object)$request->json()->all();
         $terms = new TermSemester();
@@ -26,7 +26,7 @@ class TermSemController extends Controller
     }
 
 
-    public function update_termsem(Request $request)
+    public function update_term_sem(Request $request)
     {
         $requestedData = (object)$request->json()->all();
         $terms = TermSemester::find($requestedData->id);
@@ -36,7 +36,7 @@ class TermSemController extends Controller
         return response()->json(['success'=>1,'data'=>$terms], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function delete_termsem($id){
+    public function delete_term_sem($id){
         $terms = TermSemester::find($id);
         $terms->delete();
         return response()->json(['success'=>1,'data'=>$terms], 200,[],JSON_NUMERIC_CHECK);

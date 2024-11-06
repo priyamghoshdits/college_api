@@ -927,6 +927,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("getInventoryReport", [ItemStockController::class, 'get_inventory_report']);
     Route::post("getAllocatedVehicleReport", [AllocateVehicleController::class, 'get_allocate_vehicle_report']);
 
+//   Term Semester
+    Route::get("getTermSem", [TermSemController::class, 'get_term_sem']);
+    Route::post("saveTermSem", [TermSemController::class, 'save_term_sem']);
+    Route::post("updateTermSem", [TermSemController::class, 'update_term_sem']);
+    Route::get("deleteTermSem/{id}", [TermSemController::class, 'delete_term_sem']);
+
     //CHAT
     Route::get("getChat", [ChatController::class, 'get_chat']);
     Route::post("saveChat", [ChatController::class, 'save_chat']);
@@ -975,7 +981,4 @@ Route::get("testMigration", [MemberController::class, 'test_migration']);
 
 // Term Semester///////////////////////////////////////
 
-Route::get("getTermsem", [TermSemController::class, 'get_termsem']);
-Route::post("saveTermsem", [TermSemController::class, 'save_termsem']);
-Route::post("updateTermsem", [TermSemController::class, 'update_termsem']);
-Route::get("deleteTermsem/{id}", [TermSemController::class, 'delete_termsem']);
+
