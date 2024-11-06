@@ -23,7 +23,7 @@ class StudentInternshipController extends Controller
         $data->course_id = $request['course_id'];
         $data->semester_id = $request['semester_id'];
         $data->session_id = $request['session_id'];
-        $data->student_id = $request['student_id'];
+        $data->student_id = $request['student_id'];                                        
         $data->from_date = $request['from_date'];
         $data->to_date = $request['to_date'];
         $data->institutional_name = $request['institutional_name'];
