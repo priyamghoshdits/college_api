@@ -1208,6 +1208,8 @@ class UserController extends Controller
                 $studentDetails->material_status = $request->material_status;
                 $studentDetails->abc_id = $request->abc_id;
                 $studentDetails->medical_history = $request->medical_history;
+                $studentDetails->medical_detail = $request->medical_detail;
+
 
                 if ($father_income_proofs = $request->file('father_income_certificate')) {
                     // Define upload path
@@ -1296,6 +1298,8 @@ class UserController extends Controller
                 $studentDetails->material_status = $data->material_status;
                 $studentDetails->abc_id = $request->abc_id;
                 $studentDetails->medical_history = $request->medical_history;
+                $studentDetails->medical_detail = $request->medical_detail;
+
                 if ($father_income_proofs = $request->file('father_income_certificate')) {
                     // Define upload path
                     $destinationPath = public_path('/father_income_proof/'); // upload path
