@@ -55,7 +55,7 @@ class StudentResultController extends Controller
             $data->university_rank_file_name = $list['university_rank_file_name'];
             $data->file_name = $list['file_name'];
             $data->save();
-            dd($data);
+            // dd($data);
 
         }
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
