@@ -28,7 +28,7 @@ class ManualFeesController extends Controller
             $files->move($destinationPath, $profileImage1);
             $manualFees->file_name = $profileImage1;
         }
-        dd($manualFees);
+        // dd($manualFees);
 
         $manualFees->save();
 
