@@ -1209,7 +1209,18 @@ class UserController extends Controller
                 $studentDetails->abc_id = $request->abc_id;
                 $studentDetails->medical_history = $request->medical_history;
                 $studentDetails->medical_detail = $request->medical_detail;
-
+                $studentDetails->father_name = $request->father_name;
+                $studentDetails->father_phone = $request->father_phone;
+                $studentDetails->father_occupation = $request->father_occupation;
+                $studentDetails->mother_name = $request->mother_name;
+                $studentDetails->mother_phone = $request->mother_phone;
+                $studentDetails->mother_occupation = $request->mother_occupation;
+                $studentDetails->guardian_name = $request->guardian_name;
+                $studentDetails->guardian_phone = $request->guardian_phone;
+                $studentDetails->guardian_email = $request->guardian_email;
+                $studentDetails->guardian_relation = $request->guardian_relation;
+                $studentDetails->guardian_occupation = $request->guardian_occupation;
+                $studentDetails->guardian_address = $request->guardian_address;
 
                 if ($father_income_proofs = $request->file('father_income_certificate')) {
                     // Define upload path
@@ -1299,6 +1310,18 @@ class UserController extends Controller
                 $studentDetails->abc_id = $request->abc_id;
                 $studentDetails->medical_history = $request->medical_history;
                 $studentDetails->medical_detail = $request->medical_detail;
+                $studentDetails->father_name = $request->father_name;
+                $studentDetails->father_phone = $request->father_phone;
+                $studentDetails->father_occupation = $request->father_occupation;
+                $studentDetails->mother_name = $request->mother_name;
+                $studentDetails->mother_phone = $request->mother_phone;
+                $studentDetails->mother_occupation = $request->mother_occupation;
+                $studentDetails->guardian_name = $request->guardian_name;
+                $studentDetails->guardian_phone = $request->guardian_phone;
+                $studentDetails->guardian_email = $request->guardian_email;
+                $studentDetails->guardian_relation = $request->guardian_relation;
+                $studentDetails->guardian_occupation = $request->guardian_occupation;
+                $studentDetails->guardian_address = $request->guardian_address;
 
                 if ($father_income_proofs = $request->file('father_income_certificate')) {
                     // Define upload path
