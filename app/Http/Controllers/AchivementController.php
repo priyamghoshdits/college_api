@@ -25,19 +25,27 @@ class AchivementController extends Controller
         $achievement->student_id = $request['student_id'];
         $achievement->award_name = $request['award_name'];
         $achievement->award_date = $request['award_date'];
-        $achievement->file_name = $achievement->id . '_' . $request['file_name'];
-        $achievement->save();
+
 
         if ($files = $request->file('file')) {
             // Define upload path
             $destinationPath = public_path('/achievement/'); // upload path
             // Upload Orginal Image
-            $profileImage1 = $achievement->id . '_' . $files->getClientOriginalName();
-            $achievement = Achivement::find($achievement->id);
-            $achievement->file_name =  $achievement->id . '_' . $profileImage1;
-            $achievement->update();
+            $originalName = pathinfo($files->getClientOriginalName(), PATHINFO_FILENAME);
+            $profileImage1 = $files->getClientOriginalName();
+
+            // $profileImage1 = $achievement->id . '_' . $files->getClientOriginalName();
+            // $achievement = Achivement::find($achievement->id);
+            // $achievement->file_name =  $achievement->id . '_' . $profileImage1;
+            // $achievement->update();
             $files->move($destinationPath, $profileImage1);
+            $file_name = $profileImage1;
+
         }
+
+        // $achievement->file_name = $achievement->id . '_' . $request['file_name'];
+        $achievement->file_name = $file_name;
+        $achievement->save();
 
         return response()->json(['success' => 1, 'data' => new AchivementResource($achievement)], 200, [], JSON_NUMERIC_CHECK);
     }

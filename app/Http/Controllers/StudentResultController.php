@@ -27,8 +27,8 @@ class StudentResultController extends Controller
 
             // Assuming $file is an instance of UploadedFile
             $originalName = pathinfo($files->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $files->getClientOriginalExtension();
-            $profileImage1 = $originalName . '_' . date('Ymd_His') . '_' . Str::random(5) . '.' . $extension;
+            $profileImage1 = $files->getClientOriginalName();
+            // $profileImage1 = $originalName . '_' . date('Ymd_His') . '_' . Str::random(5) . '.' . $extension;
 
 
 //            $profileImage1 = $files->getClientOriginalName();
