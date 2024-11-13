@@ -14,7 +14,7 @@ class StudentInternshipResource extends JsonResource
       public function toArray(Request $request): array
     {
         $student_details = User::find($this->student_id);
-        $session = Session::find($this->session_id);
+        // $session = Session::find($this->session_id);
         return [
             'id' => $this->id,
             'course_id' => $this->course_id,
@@ -22,7 +22,8 @@ class StudentInternshipResource extends JsonResource
             'semester_id' => $this->semester_id,
             'semester_name' => Semester::find($this->semester_id)->name,
             'session_id' => $this->session_id,
-            'session_name' => $session ? $session->name : '',
+            // 'session_name' => $session ? $session->name : '',
+            'session_name' => Session::find($this->session_id)->name,
             'student_id' => $this->student_id,
             'student_name' => $student_details->first_name .' '. $student_details->middle_name .' '.$student_details->last_name,
             'from_date' => $this->from_date,
