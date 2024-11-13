@@ -26,9 +26,13 @@ class ManualFeesController extends Controller
             $destinationPath = public_path('/manual_fees/');
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
-            $manualFees->file_name = $profileImage1;
+            $file_name = $profileImage1;
+
+            // $manualFees->file_name = $profileImage1;
         }
         // dd($manualFees);
+        $manualFees->file_name = $file_name;
+
 
         $manualFees->save();
 
