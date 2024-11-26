@@ -364,6 +364,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("changeStudentStatus/{id}", [MemberController::class, 'change_student_status']);
     Route::get("getTeacherByCourseAndSem/{course_id}/{semester_id}", [MemberController::class, 'get_teacher_by_course_and_semester']);
 
+
+    Route::get("getStudentstestapi/{session_id}", [MemberController::class, 'get_students_api_test']);
+
     //INTERNSHIP PROVIDER
     Route::get("getInternshipProvider", [InternshipProviderController::class, 'get_internship_providers']);
     Route::post("saveInternshipProvider", [InternshipProviderController::class, 'save_internship_provider']);
