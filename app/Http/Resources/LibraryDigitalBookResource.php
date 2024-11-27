@@ -21,6 +21,7 @@ class LibraryDigitalBookResource extends JsonResource
             'book_id' => $this->book_id,
             'book_name' => LibraryStock::find($this->book_id)->name,
             'file_name' => $this->file_name,
+            'file_url' =>  $this->file_name != null ? asset("library_books/{$this->file_name}") : null,
         ];
     }
 }
