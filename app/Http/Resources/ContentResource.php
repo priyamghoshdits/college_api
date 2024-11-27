@@ -23,8 +23,9 @@ class ContentResource extends JsonResource
             'semester_name' => Semester::find($this->semester_id)->name,
             'subject_id' => $this->subject_id,
             'subject_name' => Subject::find($this->subject_id)->name,
-            'content_name' => $this->content_name,
+            'content_name' => $this->content_name != null ? asset("content/{$this->content_name}") : null,
             'description' => $this->description,
         ];
     }
 }
+
