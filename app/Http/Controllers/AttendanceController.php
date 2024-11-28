@@ -289,6 +289,7 @@ class AttendanceController extends Controller
             inner join semesters on semesters.id = attendances.semester_id
             inner join subjects on subjects.id = attendances.subject_id
             inner join users on attendances.attendance_by = users.id
+            inner join users as student_user on student_user.id = attendances.user_id
             where attendances.course_id = ? and attendances.semester_id = ? and attendances.date = ? and attendances.attendance_by = ? and attendances.user_id = ?",[$course_id, $semester_id, $date, $member_id, $user_id]);
         }else if(($user_id == 'null') && ($member_id == 'null')){
             $attendance = DB::select("select attendances.user_id, CONCAT(student_user.first_name, ' ', student_user.last_name) as student_name ,  attendances.id,CONCAT(users.first_name, ' ', users.last_name) as attendance_by_name, attendances.course_id, attendances.semester_id, attendances.subject_id, courses.course_name, semesters.name as semester_name, subjects.name as subject_name, attendances.attendance, attendances.date from attendances
