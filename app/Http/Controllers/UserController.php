@@ -118,7 +118,7 @@ class UserController extends Controller
         $token = $user->createToken('my-app-token')->plainTextToken;
         $user->token = $token;
 
-        $user->img_url = asset('public/user_image/');
+        $user->img_url = asset('user_image/');
 
         return response()->json(['success' => 1, 'data' => new LoginResource($user), 'full_data' => $user, $token => $token], 200, [], JSON_NUMERIC_CHECK);
     }
