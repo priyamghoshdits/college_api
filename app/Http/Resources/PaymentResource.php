@@ -19,7 +19,7 @@ class PaymentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_name' => User::find($this->id)->first_name.' '.User::find($this->id)->middle_name.' '.User::find($this->id)->last_name,
+            'user_name' => User::find($this->student_id)->first_name.' '.User::find($this->student_id)->middle_name.' '.User::find($this->student_id)->last_name,
             'semester_id' => $this->semester_id,
             'semester_name' => Semester::find($this->semester_id)->name,
             'course_id' => $this->course_id,
