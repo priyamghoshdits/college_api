@@ -18,7 +18,7 @@ class SubjectDetailsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'subject_id' => $this->subject_id,
-            'subject_name' => Subject::find($this->subject_id)->name,
+            'subject_name' => Subject::find($this->subject_id) ? Subject::find($this->subject_id)->name : null ,
             'course_id' => $this->course_id,
             'course_name' => Course::find($this->course_id)->course_name,
             'semester_name' => Semester::find($this->semester_id)->name,

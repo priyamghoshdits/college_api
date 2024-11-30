@@ -25,7 +25,7 @@ class QuestionResource extends JsonResource
             'ans_submitted' => $this->ans_count,
             'course_name' => Course::find($this->course_id)->course_name,
             'semester_name' => Semester::find($this->semester_id)->name,
-            'subject_name' => Subject::find($this->subject_id)->name,
+            'subject_name' => Subject::find($this->subject_id) ? Subject::find($this->subject_id)->name : null,
             'exam_date' => $this->exam_date,
             'publish_date' => $this->publish_date,
             'time_from' => $this->time_from,
