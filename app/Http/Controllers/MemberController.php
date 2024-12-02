@@ -235,7 +235,7 @@ class MemberController extends Controller
 
             return $member;
 
-        return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
+        // return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function get_students_for_caution_money(Request $request)
