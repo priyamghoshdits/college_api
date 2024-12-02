@@ -228,7 +228,6 @@ class MemberController extends Controller
         $member = User::select('users.id', 'users.first_name','users.middle_name','users.last_name','users.image')
             ->whereUserTypeId(3)
             ->whereSessionId($session_id)
-            ->where('users.franchise_id', $request->user()->franchise_id)
             ->orderby('id','desc')
             ->limit(3);
 
