@@ -218,7 +218,6 @@ class MemberController extends Controller
             ->leftjoin('caution_money', 'caution_money.user_id', '=', 'users.id')
             ->whereUserTypeId(3)
             ->whereSessionId($session_id)
-            ->where('users.franchise_id', $request->user()->franchise_id)
             ->get();
 
         return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
@@ -226,16 +225,13 @@ class MemberController extends Controller
 
     public function get_students_api_test($session_id)
     {
-        $member = User::select('users.id', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.image')
-            // ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+        $member = User::select('*', 'student_details.id as student_details_id', 'users.id as id')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereUserTypeId(3)
-            // ->whereSessionId($session_id)
-            ->orderby('id', 'desc')
-            ->limit(3);
+            ->whereSessionId($session_id)
+            ->get();
 
-            return $member;
-
-        // return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function get_students_for_caution_money(Request $request)
