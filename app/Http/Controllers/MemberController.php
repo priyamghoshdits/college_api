@@ -228,6 +228,7 @@ class MemberController extends Controller
         $member = User::select('*', 'student_details.id as student_details_id', 'users.id as id')
             ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereUserTypeId(3)
+            ->whereNotNull('image')
             ->whereSessionId($session_id)
             ->get();
 
