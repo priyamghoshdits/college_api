@@ -233,6 +233,8 @@ class MemberController extends Controller
             ->orderby('id', 'desc')
             ->limit(3);
 
+            return $member;
+
         return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
@@ -291,7 +293,6 @@ class MemberController extends Controller
             ->whereCourseId($data->course_id)
             ->whereCurrentSemesterId($data->semester_id)
             ->whereSessionId($data->session_id)
-            ->where('users.franchise_id', $request->user()->franchise_id)
             ->get();
 
         return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
