@@ -72,7 +72,7 @@ class MemberController extends Controller
         foreach ($assignSemesterTeacher as $temp) {
             $teacher_id[] = $temp['id'];
         }
-        $payslip = PayslipUpload::whereIn('staff_id',$teacher_id)->where('month', $month)->where('year',$year)->get();
+        $payslip = PayslipUpload::whereIn('staff_id', $teacher_id)->where('month', $month)->where('year', $year)->get();
         foreach ($payslip as $temp) {
             $teacher_id_payslip[] = $temp['staff_id'];
         }
@@ -117,9 +117,10 @@ class MemberController extends Controller
         return response()->json(['success' => 1, 'data' => $payslip], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_member_full_details($id){
+    public function get_member_full_details($id)
+    {
         $member_details = new MemberResource(User::leftjoin('member_details', 'member_details.user_id', '=', 'users.id')
-            ->where('users.id',$id)
+            ->where('users.id', $id)
             ->first());
 
         $educational_qualification = StaffEducationResource::collection(StaffEducation::whereStaffId($id)->get());
@@ -150,7 +151,7 @@ class MemberController extends Controller
     {
         $student_details = new StudentResource(User::leftjoin('student_details', 'student_details.student_id', '=', 'users.id')
             ->leftjoin('registrations', 'registrations.student_id', '=', 'users.id')
-            ->where('users.id',$id)
+            ->where('users.id', $id)
             ->first());
         $education_details = StudentEducationResource::collection(EducationQualification::whereStudentId($id)->get());
         $achievement = AchivementResource::collection(Achivement::whereStudentId($id)->get());
@@ -225,10 +226,11 @@ class MemberController extends Controller
 
     public function get_students_api_test($session_id)
     {
-        $member = User::select('users.id', 'users.first_name','users.middle_name','users.last_name','users.image')
+        $member = User::select('users.id', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.image')
+            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereUserTypeId(3)
             ->whereSessionId($session_id)
-            ->orderby('id','desc')
+            ->orderby('id', 'desc')
             ->limit(3);
 
         return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
@@ -343,12 +345,10 @@ class MemberController extends Controller
                     $message->to($email_id);
                     $message->subject($subject);
                 });
-
             }
         }
 
         return response()->json(['success' => 1, 'data' => $data], 200, [], JSON_NUMERIC_CHECK);
-
     }
 
     public function delete_member($id)
@@ -422,7 +422,7 @@ class MemberController extends Controller
     {
 
         $user = User::find($request['user_id']);
-//        return response()->json(['success'=>$request['id']], 200,[],JSON_NUMERIC_CHECK);
+        //        return response()->json(['success'=>$request['id']], 200,[],JSON_NUMERIC_CHECK);
         if (file_exists(public_path() . '/user_image/' . $user->image)) {
             File::delete(public_path() . '/user_image/' . $user->image);
         }
@@ -468,15 +468,15 @@ class MemberController extends Controller
         // Return the list of files and directories (for demonstration purposes, we're just returning a JSON response)
         return response()->json($result);
 
-//        $directories = File::directories(public_path('/aadhaar_card_proof'));
-//
-//        // Prepare directory names
-//        $directoryNames = array_map(function($dir) {
-//            return basename($dir);
-//        }, $directories);
-//
-//        // Return the list of directories (for demonstration purposes, we're just returning a JSON response)
-//        return response()->json($directoryNames);
+        //        $directories = File::directories(public_path('/aadhaar_card_proof'));
+        //
+        //        // Prepare directory names
+        //        $directoryNames = array_map(function($dir) {
+        //            return basename($dir);
+        //        }, $directories);
+        //
+        //        // Return the list of directories (for demonstration purposes, we're just returning a JSON response)
+        //        return response()->json($directoryNames);
     }
 
     public function testUser()
