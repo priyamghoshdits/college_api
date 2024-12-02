@@ -223,7 +223,7 @@ class MemberController extends Controller
         return response()->json(['success' => 1, 'data' => StudentResource::collection($member)], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    public function get_students_api_test(Request $request, $session_id)
+    public function get_students_api_test($session_id)
     {
         $member = User::select('users.id', 'users.first_name','users.middle_name','users.last_name','users.image')
             ->whereUserTypeId(3)
