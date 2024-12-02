@@ -227,9 +227,9 @@ class MemberController extends Controller
     public function get_students_api_test($session_id)
     {
         $member = User::select('users.id', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.image')
-            ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
+            // ->leftjoin('student_details', 'users.id', '=', 'student_details.student_id')
             ->whereUserTypeId(3)
-            ->whereSessionId($session_id)
+            // ->whereSessionId($session_id)
             ->orderby('id', 'desc')
             ->limit(3);
 
