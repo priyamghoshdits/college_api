@@ -53,6 +53,30 @@ use Illuminate\Support\Facades\Mail;
 
 class MemberController extends Controller
 {
+
+    public function upload_image(Request $request)
+    {
+        if ($files = $request->file('file')) {
+            // Define upload path
+            $destinationPath = public_path('/faceDetection/');
+            
+			// Get the original file extension
+			$fileExtension = $files->getClientOriginalExtension();
+
+			// Generate a unique file name
+			$profileImage1 = uniqid('face_', true) . '.' . $fileExtension;
+
+			// Move the file to the destination path
+			$files->move($destinationPath, $profileImage1);
+			
+			$data['file'] = $profileImage1;
+			$data['file_url'] = url('faceDetection').'/'.$profileImage1;
+			return response()->json(['success' => 1, 'data' => $data], 200, [], JSON_NUMERIC_CHECK);
+        }
+        return response()->json(['success' => 0], 400, [], JSON_NUMERIC_CHECK);
+    }
+
+    
     public function get_all_members(Request $request)
     {
         $member = User::select('*', 'member_details.id as members_id', 'users.id as id')

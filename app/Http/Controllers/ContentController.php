@@ -40,14 +40,13 @@ class ContentController extends Controller
         // $data->content_name = $request['content_name'];
         $data->description = $request['description'];
         
-
         if ($files = $request->file('file')) {
             // Define upload path
             $destinationPath = public_path('/content/'); // upload path
             // Upload Orginal Image
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
-            $data->content_name = $profileImage1;
+            $data->content_name = $profileImage1 ?? null;
         }
         $data->save();
 
