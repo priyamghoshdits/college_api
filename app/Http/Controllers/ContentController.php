@@ -37,9 +37,9 @@ class ContentController extends Controller
         $data->course_id = $request['course_id'];
         $data->semester_id = $request['semester_id'];
         $data->subject_id = $request['subject_id'];
-        $data->content_name = $request['content_name'];
+        // $data->content_name = $request['content_name'];
         $data->description = $request['description'];
-        $data->save();
+        
 
         if ($files = $request->file('file')) {
             // Define upload path
@@ -47,7 +47,9 @@ class ContentController extends Controller
             // Upload Orginal Image
             $profileImage1 = $files->getClientOriginalName();
             $files->move($destinationPath, $profileImage1);
+            $data->content_name = $profileImage1;
         }
+        $data->save();
 
         return response()->json(['success'=>1,'data'=>new ContentResource($data)], 200,[],JSON_NUMERIC_CHECK);
     }
