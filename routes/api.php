@@ -930,7 +930,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post("getInventoryReport", [ItemStockController::class, 'get_inventory_report']);
     Route::post("getAllocatedVehicleReport", [AllocateVehicleController::class, 'get_allocate_vehicle_report']);
 
-//   Term Semester
+    //   Term Semester
     Route::get("getTermSem", [TermSemController::class, 'get_term_sem']);
     Route::post("saveTermSem", [TermSemController::class, 'save_term_sem']);
     Route::post("updateTermSem", [TermSemController::class, 'update_term_sem']);
@@ -939,6 +939,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     //CHAT
     Route::get("getChat", [ChatController::class, 'get_chat']);
     Route::post("saveChat", [ChatController::class, 'save_chat']);
+
+    // use face detection section
+    Route::post("upload-image", [MemberController::class, 'upload_image']);
+    Route::get("delete-image", [MemberController::class, 'delete_image']);
 });
 
 //CORN JOB
@@ -983,5 +987,3 @@ Route::get("testMigration", [MemberController::class, 'test_migration']);
 
 
 // Term Semester///////////////////////////////////////
-
-
