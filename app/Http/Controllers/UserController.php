@@ -1570,7 +1570,7 @@ class UserController extends Controller
         $user->user_type_id = $data->user_type_id;
         $user->franchise_id = $request->user()->franchise_id;
         $user->email = $data->email;
-        $user->password = $data->password ?? $data->password;
+        $user->password = $data->password ?? $user->password;
         $user->status = $data->status ?? 1;
         $user->update();
 
