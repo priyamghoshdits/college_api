@@ -49,6 +49,9 @@ class UserTypeController extends Controller
     public function update_user_type(Request $request)
     {
         $requestedData = (object)$request->json()->all();
+        if($requestedData->id>0 && $requestedData->id <=6){
+            return response()->json(['success'=>2,'data'=>null], 201,[],JSON_NUMERIC_CHECK);
+        }
         $data = UserType::find($requestedData->id);
         $data->name = $requestedData->name;
         $data->save();
@@ -57,7 +60,7 @@ class UserTypeController extends Controller
 
     public function delete_user_type($id)
     {
-        if($id>0 && $id <6){
+        if($id>0 && $id <=6){
             return response()->json(['success'=>2,'data'=>null], 201,[],JSON_NUMERIC_CHECK);
         }
         $data = UserType::find($id);
