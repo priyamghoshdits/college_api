@@ -107,7 +107,7 @@ class UserController extends Controller
 
         //For App
         if(isset($requestData->platform)){
-            if($user->user_type_id != 2 || $user->user_type_id != 3 || $user->user_type_id != 6){
+            if($user->user_type_id != 2 && $user->user_type_id != 3 && $user->user_type_id != 6){
                 return response()->json(['success' => 0, 'data' => null, 'message' => 'Not allowed to login in app'], 200, [], JSON_NUMERIC_CHECK); 
             }
         }
