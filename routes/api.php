@@ -145,6 +145,11 @@ Route::post("appUpdateChecker", [AppVersionController::class, 'check_app_version
 Route::get("testF", [MemberController::class, 'testUser']);
 Route::get("testFile", [MemberController::class, 'testFile']);
 
+
+// use face detection section
+Route::post("upload-image", [MemberController::class, 'upload_image']);
+Route::get("delete-image", [MemberController::class, 'delete_image']);
+
 Route::post("getMarksheet", [MarksheetController::class, 'get_mark_sheet']);
 
 Route::get("getErpSettings", [ErpSettingsController::class, 'get_erp_settings']);
@@ -940,9 +945,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get("getChat", [ChatController::class, 'get_chat']);
     Route::post("saveChat", [ChatController::class, 'save_chat']);
 
-    // use face detection section
-    Route::post("upload-image", [MemberController::class, 'upload_image']);
-    Route::get("delete-image", [MemberController::class, 'delete_image']);
+    
 });
 
 //CORN JOB
