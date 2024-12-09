@@ -106,11 +106,11 @@ class UserController extends Controller
         $user = User::whereEmail($requestData->email)->whereStatus(1)->first();
 
         //For App
-        if(isset($requestData->platform)){
-            if($user->user_type_id != 2 && $user->user_type_id != 3 && $user->user_type_id != 6){
-                return response()->json(['success' => 0, 'data' => null, 'message' => 'Not allowed to login in app'], 200, [], JSON_NUMERIC_CHECK); 
-            }
-        }
+        // if(isset($requestData->platform)){
+        //     if($user->user_type_id != 2 && $user->user_type_id != 3 && $user->user_type_id != 6){
+        //         return response()->json(['success' => 0, 'data' => null, 'message' => 'Not allowed to login in app'], 200, [], JSON_NUMERIC_CHECK); 
+        //     }
+        // }
 
         if (!$user || !Hash::check($requestData->password, $user->password)) {
             return response()->json(['success' => 0, 'data' => null, 'message' => 'Wrong credential or user disabled'], 200, [], JSON_NUMERIC_CHECK);
