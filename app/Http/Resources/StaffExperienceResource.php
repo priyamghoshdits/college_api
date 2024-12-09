@@ -13,7 +13,7 @@ class StaffExperienceResource extends JsonResource
         return [
             'id' => $this->id,
             'staff_id' => $this->staff_id,
-            'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
+            // 'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
             'designation' => $this->designation,
             'organization' => $this->organization,
             'experience' => $this->experience,
