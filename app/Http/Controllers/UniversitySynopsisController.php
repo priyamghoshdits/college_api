@@ -15,7 +15,7 @@ class UniversitySynopsisController extends Controller
         } else {
             $PgPhdGuide = UniversitySynopsis::get();
         }
-        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($PgPhdGuide)], 200,[], JSON_NUMERIC_CHECK);
+        return response()->json(['success' => 1, 'data' => UniversitySynopsisResource::collection($PgPhdGuide)], 200, [], JSON_NUMERIC_CHECK);
     }
 
     public function save_university_synopsis_file(Request $request)
@@ -24,7 +24,7 @@ class UniversitySynopsisController extends Controller
         if ($files = $request->file('file_name')) {
             $destinationPath = public_path('/university_synopsis/');
             $extension = $files->getClientOriginalExtension();
-            $profileImage1 = pathinfo($files->getClientOriginalName(), PATHINFO_FILENAME) . '_' .date('Ymd_His'). '.' . $extension;
+            $profileImage1 = pathinfo($files->getClientOriginalName(), PATHINFO_FILENAME) . '_' . date('Ymd_His') . '.' . $extension;
             $files->move($destinationPath, $profileImage1);
             $file_name = $files->getClientOriginalName();
         }
@@ -61,7 +61,6 @@ class UniversitySynopsisController extends Controller
             if (!$university_synopsis) {
                 $data = new UniversitySynopsis();
                 $data->staff_id = $list['staff_id'];
-                $data->student_id = $list['student_id'];
                 $data->institute_name = $list['institute_name'];
                 $data->title = $list['title'];
                 $data->course = $list['course'];
@@ -76,7 +75,6 @@ class UniversitySynopsisController extends Controller
                 $data->save();
             } else {
                 $university_synopsis->staff_id = $list['staff_id'];
-                $university_synopsis->student_id = $list['student_id'];
                 $university_synopsis->institute_name = $list['institute_name'];
                 $university_synopsis->title = $list['title'];
                 $university_synopsis->course = $list['course'];
@@ -106,8 +104,8 @@ class UniversitySynopsisController extends Controller
     public function save_university_synopsis_app(Request $request)
     {
         $data = $request->json()->all();
-        foreach ($data as $list){
-            if($list['id'] != null){
+        foreach ($data as $list) {
+            if ($list['id'] != null) {
                 $universitySynopsys = UniversitySynopsis::find($list['id']);
                 $universitySynopsys->staff_id = $list['staff_id'];
                 $universitySynopsys->student_id = $list['student_id'];
@@ -123,7 +121,7 @@ class UniversitySynopsisController extends Controller
                 $universitySynopsys->file_name = $list['file_name'];
                 $universitySynopsys->date_evaluation = $list['date_evaluation'];
                 $universitySynopsys->update();
-            }else{
+            } else {
                 $universitySynopsys = new UniversitySynopsis();
                 $universitySynopsys->staff_id = $list['staff_id'];
                 $universitySynopsys->student_id = $list['student_id'];
@@ -144,5 +142,4 @@ class UniversitySynopsisController extends Controller
 
         return response()->json(['success' => 1, 'data' => null], 200, [], JSON_NUMERIC_CHECK);
     }
-
 }

@@ -16,7 +16,7 @@ class StaffEducationResource extends JsonResource
             'staff_id' => $this->staff_id,
             'staff_name' => User::find($this->staff_id)->first_name . ' ' . User::find($this->staff_id)->middle_name . ' ' . User::find($this->staff_id)->last_name,
             'degree' => $this->degree,
-            'degree_name' => Degree::find($this->degree)->name,
+            'degree_name' => Degree::find($this->degree)?->name,
             'specialization' => $this->specialization,
             'university_name' => $this->university_name,
             'percentage' => $this->percentage,

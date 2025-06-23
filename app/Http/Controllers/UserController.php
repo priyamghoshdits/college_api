@@ -181,24 +181,46 @@ class UserController extends Controller
 
     public function forgot_password($email_id)
     {
-        $pass = rand(100000, 999999);
+        try {
+            DB::beginTransaction();
 
-        $data = User::whereEmail($email_id)->first();
-        $data->password = $pass;
-        $data->update();
+            $user = User::whereEmail($email_id)->first();
 
-        dispatch(function () use ($data, $pass, $email_id) {
-            Mail::send('forgot_password', array(
-                'name' => $data->first_name . " " . $data->middle_name . " " . $data->last_name,
-                'password' => $pass
-            ), function ($message) use ($email_id) {
-                $message->from('rudkarsh@rgoi.in');
-                $message->to($email_id);
-                $message->subject('Forgot Passowrd');
-            });
-        })->afterResponse();
-        return response()->json(['success' => 1, 'data' => "Please check your mail"], 200, [], JSON_NUMERIC_CHECK);
+            if (!$user) {
+                return response()->json(['success' => 0, 'message' => 'User not found'], 404);
+            }
+
+            $plainPassword = rand(100000, 999999);
+            $user->password = $plainPassword;
+            $user->save();
+
+            // Send email after response (asynchronously)
+            dispatch(function () use ($user, $plainPassword, $email_id) {
+                Mail::send('forgot_password', [
+                    'name' => trim($user->first_name . ' ' . $user->middle_name . ' ' . $user->last_name),
+                    'password' => $plainPassword
+                ], function ($message) use ($email_id) {
+                    $message->from('hihsdevantforgetpass@gmail.com', 'HIHS COLLEGE FORGET PASS');
+                    $message->to($email_id);
+                    $message->subject('Forgot Password');
+                });
+            })->afterResponse();
+
+            DB::commit();
+
+            return response()->json([
+                'success' => 1,
+                'data' => 'Please check your email for your new password.'
+            ], 200, [], JSON_NUMERIC_CHECK);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
+
 
     public function logout(Request $request)
     {
@@ -990,7 +1012,7 @@ class UserController extends Controller
     public function save_member(Request $request)
     {
         $data = (object)$request->json()->all();
-//        $pass = rand(100000, 999999);
+        //        $pass = rand(100000, 999999);
         $pass = 12345678;
         DB::beginTransaction();
         try {
